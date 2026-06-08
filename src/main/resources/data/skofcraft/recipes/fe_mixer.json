@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RMR",
+    "RCR",
+    "RRR"
+  ],
+  "key": {
+    "R": { "item": "minecraft:redstone" },
+    "M": { "item": "skofcraft:manual_mixer" },
+    "C": { "item": "minecraft:copper_ingot" }
+  },
+  "result": {
+    "item": "skofcraft:fe_mixer"
+  }
+}

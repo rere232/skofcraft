@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "age=0": { "model": "minecraft:block/crop" },
+    "age=1": { "model": "minecraft:block/crop" },
+    "age=2": { "model": "minecraft:block/crop" },
+    "age=3": { "model": "minecraft:block/crop" },
+    "age=4": { "model": "minecraft:block/crop" },
+    "age=5": { "model": "minecraft:block/crop" },
+    "age=6": { "model": "minecraft:block/crop" },
+    "age=7": { "model": "minecraft:block/crop" }
+  }
+}

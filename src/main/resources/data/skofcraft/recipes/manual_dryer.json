@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WSW",
+    "WWW"
+  ],
+  "key": {
+    "W": { "item": "minecraft:dark_oak_wood" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": {
+    "item": "skofcraft:manual_dryer"
+  }
+}

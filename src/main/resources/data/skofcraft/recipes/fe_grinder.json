@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RGR",
+    "RCR",
+    "RRR"
+  ],
+  "key": {
+    "R": { "item": "minecraft:redstone" },
+    "G": { "item": "skofcraft:manual_grinder" },
+    "C": { "item": "minecraft:copper_ingot" }
+  },
+  "result": {
+    "item": "skofcraft:fe_grinder"
+  }
+}

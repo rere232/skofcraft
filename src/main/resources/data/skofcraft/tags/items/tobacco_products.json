@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#skofcraft:snus",
+    "#skofcraft:nicotine_pouches",
+    "skofcraft:tobacco_leaf_fresh",
+    "skofcraft:tobacco_leaf_dry",
+    "skofcraft:tobacco_dust"
+  ]
+}

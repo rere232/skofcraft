@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "skofcraft:flavor_mint",
+    "skofcraft:flavor_ice_mint",
+    "skofcraft:flavor_berry",
+    "skofcraft:flavor_citrus",
+    "skofcraft:flavor_licorice",
+    "skofcraft:flavor_cola",
+    "skofcraft:flavor_coffee",
+    "skofcraft:flavor_nature"
+  ]
+}
