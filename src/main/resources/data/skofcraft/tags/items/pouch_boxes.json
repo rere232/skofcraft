@@ -1,6 +1,4 @@
 {
   "replace": false,
-  "values": [
-    "skofcraft:filled_pouch_box"
-  ]
+  "values": ["skofcraft:filled_pouch_box"]
 }

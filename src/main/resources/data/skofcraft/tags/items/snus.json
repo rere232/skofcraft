@@ -1,6 +1,4 @@
 {
   "replace": false,
-  "values": [
-    "skofcraft:snus_pouch"
-  ]
+  "values": ["skofcraft:snus_pouch"]
 }

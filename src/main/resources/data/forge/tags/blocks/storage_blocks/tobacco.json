@@ -1,6 +1,4 @@
 {
   "replace": false,
-  "values": [
-    "skofcraft:manual_dryer"
-  ]
+  "values": ["skofcraft:manual_dryer"]
 }

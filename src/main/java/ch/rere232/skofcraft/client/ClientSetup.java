@@ -2,8 +2,14 @@ package ch.rere232.skofcraft.client;
 
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.menu.FEDryerMenu;
+import ch.rere232.skofcraft.menu.FEGrinderMenu;
+import ch.rere232.skofcraft.menu.FEMixerMenu;
+import ch.rere232.skofcraft.menu.FEPressMenu;
 import ch.rere232.skofcraft.menu.SkofcraftMenus;
 import ch.rere232.skofcraft.screen.FEDryerScreen;
+import ch.rere232.skofcraft.screen.FEGrinderScreen;
+import ch.rere232.skofcraft.screen.FEMixerScreen;
+import ch.rere232.skofcraft.screen.FEPressScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,5 +21,8 @@ public class ClientSetup {
     @SubscribeEvent
     public static void setupClient(FMLClientSetupEvent event) {
         MenuScreens.register(SkofcraftMenus.FE_DRYER.get(), FEDryerScreen::new);
+        MenuScreens.register(SkofcraftMenus.FE_GRINDER.get(), FEGrinderScreen::new);
+        MenuScreens.register(SkofcraftMenus.FE_MIXER.get(), FEMixerScreen::new);
+        MenuScreens.register(SkofcraftMenus.FE_PRESS.get(), FEPressScreen::new);
     }
 }

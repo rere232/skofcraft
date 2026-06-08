@@ -1,8 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "minecraft:oak_leaves" }
-  ],
+  "ingredients": [{ "item": "minecraft:oak_leaves" }],
   "result": {
     "item": "skofcraft:tobacco_seeds",
     "count": 1

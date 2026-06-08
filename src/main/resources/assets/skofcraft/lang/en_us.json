@@ -11,6 +11,7 @@
   "item.skofcraft.neutral_base": "Neutral Base",
   "item.skofcraft.nicotine_extract": "Nicotine Extract",
   "item.skofcraft.nicotine_crystals": "Nicotine Crystals",
+  "item.skofcraft.salt": "Salt",
   "item.skofcraft.flavor_mint": "Mint Flavor",
   "item.skofcraft.flavor_ice_mint": "Ice Mint Flavor",
   "item.skofcraft.flavor_berry": "Berry Flavor",
@@ -40,6 +41,6 @@
   "block.skofcraft.industrial_snus_line": "Industrial Snus Line",
   "block.skofcraft.industrial_pouch_line": "Industrial Pouch Line",
   "block.skofcraft.industrial_packager": "Industrial Packager",
-  "block.skofcraft.industrial_extractor": "Industrial Extractor"
+  "block.skofcraft.industrial_extractor": "Industrial Extractor",
+  "block.skofcraft.tobacco_plant": "Tobacco Plant"
 }
-, "block.skofcraft.tobacco_plant": "Tobacco Plant"

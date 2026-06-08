@@ -1,10 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "RMR",
-    "RCR",
-    "RRR"
-  ],
+  "pattern": ["RMR", "RCR", "RRR"],
   "key": {
     "R": { "item": "minecraft:redstone" },
     "M": { "item": "skofcraft:manual_dryer" },

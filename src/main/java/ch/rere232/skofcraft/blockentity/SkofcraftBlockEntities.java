@@ -12,4 +12,13 @@ public class SkofcraftBlockEntities {
 
     public static final RegistryObject<BlockEntityType<FEDryerBlockEntity>> FE_DRYER = BLOCK_ENTITIES.register("fe_dryer",
             () -> BlockEntityType.Builder.of(FEDryerBlockEntity::new, SkofcraftBlocks.FE_DRYER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<FEGrinderBlockEntity>> FE_GRINDER = BLOCK_ENTITIES.register("fe_grinder",
+            () -> BlockEntityType.Builder.of(FEGrinderBlockEntity::new, SkofcraftBlocks.FE_GRINDER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<FEMixerBlockEntity>> FE_MIXER = BLOCK_ENTITIES.register("fe_mixer",
+            () -> BlockEntityType.Builder.of(FEMixerBlockEntity::new, SkofcraftBlocks.FE_MIXER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<FEPressBlockEntity>> FE_PRESS = BLOCK_ENTITIES.register("fe_press",
+            () -> BlockEntityType.Builder.of(FEPressBlockEntity::new, SkofcraftBlocks.FE_PRESS.get()).build(null));
 }

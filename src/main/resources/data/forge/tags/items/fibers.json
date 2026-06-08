@@ -1,6 +1,4 @@
 {
   "replace": false,
-  "values": [
-    "skofcraft:vegetal_fiber"
-  ]
+  "values": ["skofcraft:vegetal_fiber"]
 }

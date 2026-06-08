@@ -1,10 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "RER",
-    "RCR",
-    "RRR"
-  ],
+  "pattern": ["RER", "RCR", "RRR"],
   "key": {
     "R": { "item": "minecraft:redstone" },
     "E": { "item": "minecraft:dispenser" },

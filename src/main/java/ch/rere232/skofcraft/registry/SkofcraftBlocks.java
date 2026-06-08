@@ -2,6 +2,9 @@ package ch.rere232.skofcraft.registry;
 
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.block.FEDryerBlock;
+import ch.rere232.skofcraft.block.FEGrinderBlock;
+import ch.rere232.skofcraft.block.FEMixerBlock;
+import ch.rere232.skofcraft.block.FEPressBlock;
 import ch.rere232.skofcraft.crop.TobaccoPlantBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -21,9 +24,9 @@ public class SkofcraftBlocks {
     public static final RegistryObject<Block> MANUAL_POUCH_PRESS = machine("manual_pouch_press", MapColor.METAL);
 
     public static final RegistryObject<Block> FE_DRYER = BLOCKS.register("fe_dryer", () -> new FEDryerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F)));
-    public static final RegistryObject<Block> FE_GRINDER = machine("fe_grinder", MapColor.METAL);
-    public static final RegistryObject<Block> FE_MIXER = machine("fe_mixer", MapColor.METAL);
-    public static final RegistryObject<Block> FE_PRESS = machine("fe_press", MapColor.METAL);
+    public static final RegistryObject<Block> FE_GRINDER = BLOCKS.register("fe_grinder", () -> new FEGrinderBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F)));
+    public static final RegistryObject<Block> FE_MIXER = BLOCKS.register("fe_mixer", () -> new FEMixerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F)));
+    public static final RegistryObject<Block> FE_PRESS = BLOCKS.register("fe_press", () -> new FEPressBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F)));
     public static final RegistryObject<Block> FE_NICOTINE_EXTRACTOR = machine("fe_nicotine_extractor", MapColor.METAL);
     public static final RegistryObject<Block> FE_PACKAGER = machine("fe_packager", MapColor.METAL);
 
