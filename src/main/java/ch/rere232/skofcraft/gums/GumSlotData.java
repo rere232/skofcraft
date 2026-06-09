@@ -2,6 +2,7 @@ package ch.rere232.skofcraft.gums;
 
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.item.GumConsumableItem;
+import ch.rere232.skofcraft.registry.SkofcraftItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -11,6 +12,49 @@ public class GumSlotData {
 
     private static final String ROOT = "SkofcraftGums";
     private static final String SLOT_PREFIX = "Slot";
+
+    private final Player player;
+
+    public GumSlotData(Player player) {
+        this.player = player;
+    }
+
+    public static GumSlotData get(Player player) {
+        return new GumSlotData(player);
+    }
+
+    public ItemStack getSlotItem(int index) {
+        CompoundTag rootTag = getRootTag();
+        int ticks = rootTag.getInt(SLOT_PREFIX + index);
+        if (ticks > 0) {
+            return new ItemStack(SkofcraftItems.SNUS_POUCH.get());
+        }
+        return ItemStack.EMPTY;
+    }
+
+    public int getRemainingTicks(int index) {
+        CompoundTag rootTag = getRootTag();
+        return rootTag.getInt(SLOT_PREFIX + index);
+    }
+
+    public void removeSlot(int index) {
+        CompoundTag rootTag = getRootTag();
+        rootTag.putInt(SLOT_PREFIX + index, 0);
+    }
+
+    public void tryInsert(int slotIndex, ItemStack stack) {
+        if (!(stack.getItem() instanceof GumConsumableItem consumable)) {
+            return;
+        }
+
+        CompoundTag rootTag = getRootTag();
+        String key = SLOT_PREFIX + slotIndex;
+        int ticks = rootTag.getInt(key);
+        if (ticks <= 0) {
+            int durationTicks = consumable.getDurationMinutes() * 60 * 20;
+            rootTag.putInt(key, durationTicks);
+        }
+    }
 
     public static boolean tryInsert(Player player, ItemStack stack) {
         if (!(stack.getItem() instanceof GumConsumableItem consumable)) {
@@ -45,6 +89,14 @@ public class GumSlotData {
         if (active > 0) {
             GumStatusEffects.apply(player, active, SkofcraftConfig.enableNegativeEffects);
         }
+    }
+
+    private CompoundTag getRootTag() {
+        CompoundTag persistent = player.getPersistentData();
+        if (!persistent.contains(ROOT)) {
+            persistent.put(ROOT, new CompoundTag());
+        }
+        return persistent.getCompound(ROOT);
     }
 
     private static CompoundTag getRootTag(Player player) {

@@ -4,6 +4,8 @@ import ch.rere232.skofcraft.blockentity.FEGrinderBlockEntity;
 import ch.rere232.skofcraft.blockentity.SkofcraftBlockEntities;
 import ch.rere232.skofcraft.menu.FEGrinderMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class FEGrinderBlock extends BaseEntityBlock {
@@ -38,11 +41,14 @@ public class FEGrinderBlock extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult result) {
         if (level.isClientSide) return InteractionResult.SUCCESS;
-        BlockEntity be = level.getBlockEntity(blockPos);
-        if (be instanceof FEGrinderBlockEntity grinder) {
-            player.openMenu(new net.minecraft.world.SimpleMenuProvider((windowId, playerInventory, p) -> 
-                new FEGrinderMenu(windowId, playerInventory, grinder), 
-                net.minecraft.network.chat.Component.literal("FE Grinder")));
+        if (player instanceof ServerPlayer serverPlayer) {
+            BlockEntity be = level.getBlockEntity(blockPos);
+            if (be instanceof FEGrinderBlockEntity grinder) {
+                NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
+                    (windowId, playerInventory, p) -> new FEGrinderMenu(windowId, playerInventory, grinder),
+                    Component.literal("FE Grinder")
+                ));
+            }
         }
         return InteractionResult.CONSUME;
     }

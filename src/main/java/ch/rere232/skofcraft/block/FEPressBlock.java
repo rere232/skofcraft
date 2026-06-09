@@ -4,6 +4,8 @@ import ch.rere232.skofcraft.blockentity.FEPressBlockEntity;
 import ch.rere232.skofcraft.blockentity.SkofcraftBlockEntities;
 import ch.rere232.skofcraft.menu.FEPressMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class FEPressBlock extends BaseEntityBlock {
@@ -38,11 +41,14 @@ public class FEPressBlock extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult result) {
         if (level.isClientSide) return InteractionResult.SUCCESS;
-        BlockEntity be = level.getBlockEntity(blockPos);
-        if (be instanceof FEPressBlockEntity press) {
-            player.openMenu(new net.minecraft.world.SimpleMenuProvider((windowId, playerInventory, p) -> 
-                new FEPressMenu(windowId, playerInventory, press), 
-                net.minecraft.network.chat.Component.literal("FE Press")));
+        if (player instanceof ServerPlayer serverPlayer) {
+            BlockEntity be = level.getBlockEntity(blockPos);
+            if (be instanceof FEPressBlockEntity press) {
+                NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
+                    (windowId, playerInventory, p) -> new FEPressMenu(windowId, playerInventory, press),
+                    Component.literal("FE Press")
+                ));
+            }
         }
         return InteractionResult.CONSUME;
     }
