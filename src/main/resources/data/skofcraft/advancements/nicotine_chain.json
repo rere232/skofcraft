@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:fe_upgrade",
+  "display": {
+    "icon": {
+      "item": "skofcraft:nicotine_pouch"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.nicotine_chain.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.nicotine_chain.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_nicotine_pouch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:nicotine_pouch"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

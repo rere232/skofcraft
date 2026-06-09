@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "skofcraft:tobacco_seeds"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.root.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.root.description"
+    },
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_tobacco_seeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:tobacco_seeds"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -42,5 +42,20 @@
   "block.skofcraft.industrial_pouch_line": "Industrial Pouch Line",
   "block.skofcraft.industrial_packager": "Industrial Packager",
   "block.skofcraft.industrial_extractor": "Industrial Extractor",
-  "block.skofcraft.tobacco_plant": "Tobacco Plant"
+  "block.skofcraft.tobacco_plant": "Tobacco Plant",
+
+  "advancements.skofcraft.root.title": "From Seed to Snus",
+  "advancements.skofcraft.root.description": "Get your first tobacco seeds.",
+  "advancements.skofcraft.plant_tobacco.title": "First Harvest",
+  "advancements.skofcraft.plant_tobacco.description": "Collect fresh tobacco leaves.",
+  "advancements.skofcraft.manual_line.title": "Handcrafted Line",
+  "advancements.skofcraft.manual_line.description": "Build your first manual SKOFCRAFT machine.",
+  "advancements.skofcraft.first_snus.title": "First Pouch",
+  "advancements.skofcraft.first_snus.description": "Produce a snus pouch.",
+  "advancements.skofcraft.fe_upgrade.title": "Powered Upgrade",
+  "advancements.skofcraft.fe_upgrade.description": "Move your production to FE machines.",
+  "advancements.skofcraft.nicotine_chain.title": "Nicotine Chain",
+  "advancements.skofcraft.nicotine_chain.description": "Craft a nicotine pouch.",
+  "advancements.skofcraft.boxed_production.title": "Factory Output",
+  "advancements.skofcraft.boxed_production.description": "Fill both snus and pouch boxes."
 }

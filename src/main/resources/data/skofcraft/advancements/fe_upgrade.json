@@ -1,0 +1,35 @@
+{
+  "parent": "skofcraft:first_snus",
+  "display": {
+    "icon": {
+      "item": "skofcraft:fe_grinder"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.fe_upgrade.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.fe_upgrade.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_fe_machine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:fe_dryer",
+              "skofcraft:fe_grinder",
+              "skofcraft:fe_mixer",
+              "skofcraft:fe_press"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import ch.rere232.skofcraft.blockentity.SkofcraftBlockEntities;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.gums.GumEvents;
 import ch.rere232.skofcraft.menu.SkofcraftMenus;
+import ch.rere232.skofcraft.network.SkofcraftNetwork;
 import ch.rere232.skofcraft.registry.SkofcraftBlocks;
 import ch.rere232.skofcraft.registry.SkofcraftCreativeTabs;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
@@ -28,6 +29,7 @@ public class SkofcraftMod {
         SkofcraftCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         SkofcraftBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         SkofcraftMenus.MENUS.register(modEventBus);
+        SkofcraftNetwork.register();
 
         context.registerConfig(ModConfig.Type.COMMON, SkofcraftConfig.SPEC, "skofcraft-common.toml");
 

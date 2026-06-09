@@ -110,6 +110,24 @@ public class GumSlotData {
         }
     }
 
+    public static void applySyncData(Player player, int[] ticks, String[] itemIds) {
+        if (ticks == null || itemIds == null || ticks.length < SLOT_COUNT || itemIds.length < SLOT_COUNT) {
+            return;
+        }
+        CompoundTag rootTag = getRootTag(player);
+        for (int i = 0; i < SLOT_COUNT; i++) {
+            String tickKey = SLOT_PREFIX + i;
+            String itemKey = ITEM_PREFIX + i;
+            int value = Math.max(0, ticks[i]);
+            rootTag.putInt(tickKey, value);
+            if (value > 0 && !itemIds[i].isEmpty()) {
+                rootTag.putString(itemKey, itemIds[i]);
+            } else {
+                rootTag.remove(itemKey);
+            }
+        }
+    }
+
     private CompoundTag getRootTag() {
         CompoundTag persistent = player.getPersistentData();
         if (!persistent.contains(ROOT)) {

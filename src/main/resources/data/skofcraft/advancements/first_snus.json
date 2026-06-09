@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:manual_line",
+  "display": {
+    "icon": {
+      "item": "skofcraft:snus_pouch"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.first_snus.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.first_snus.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_snus_pouch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:snus_pouch"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

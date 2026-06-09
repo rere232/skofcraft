@@ -1,0 +1,52 @@
+{
+  "parent": "skofcraft:nicotine_chain",
+  "display": {
+    "icon": {
+      "item": "skofcraft:filled_snus_box"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.boxed_production.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.boxed_production.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_filled_snus_box": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:filled_snus_box"
+            ]
+          }
+        ]
+      }
+    },
+    "has_filled_pouch_box": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:filled_pouch_box"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_filled_snus_box"
+    ],
+    [
+      "has_filled_pouch_box"
+    ]
+  ]
+}

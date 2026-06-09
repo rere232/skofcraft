@@ -42,5 +42,20 @@
   "block.skofcraft.industrial_pouch_line": "Ligne industrielle de pouches",
   "block.skofcraft.industrial_packager": "Emballeuse industrielle",
   "block.skofcraft.industrial_extractor": "Extracteur industriel",
-  "block.skofcraft.tobacco_plant": "Plante de tabac"
+  "block.skofcraft.tobacco_plant": "Plante de tabac",
+
+  "advancements.skofcraft.root.title": "De la graine au snus",
+  "advancements.skofcraft.root.description": "Obtenir vos premieres graines de tabac.",
+  "advancements.skofcraft.plant_tobacco.title": "Premiere recolte",
+  "advancements.skofcraft.plant_tobacco.description": "Recuperer des feuilles de tabac fraiches.",
+  "advancements.skofcraft.manual_line.title": "Ligne artisanale",
+  "advancements.skofcraft.manual_line.description": "Construire votre premiere machine manuelle SKOFCRAFT.",
+  "advancements.skofcraft.first_snus.title": "Premier sachet",
+  "advancements.skofcraft.first_snus.description": "Produire un sachet de snus.",
+  "advancements.skofcraft.fe_upgrade.title": "Passage a l'electrique",
+  "advancements.skofcraft.fe_upgrade.description": "Migrer la production vers des machines FE.",
+  "advancements.skofcraft.nicotine_chain.title": "Chaine nicotine",
+  "advancements.skofcraft.nicotine_chain.description": "Fabriquer un nicotine pouch.",
+  "advancements.skofcraft.boxed_production.title": "Production en boites",
+  "advancements.skofcraft.boxed_production.description": "Remplir une boite de snus et une boite de pouches."
 }
