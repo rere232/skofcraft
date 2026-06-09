@@ -51,10 +51,15 @@ public class FEDryerBlock extends BaseEntityBlock {
         if (player instanceof ServerPlayer serverPlayer) {
             BlockEntity be = level.getBlockEntity(blockPos);
             if (be instanceof FEDryerBlockEntity dryer) {
+                if (!requiresEnergy && player.isShiftKeyDown()) {
+                    if (dryer.manualCrank()) {
+                        return InteractionResult.CONSUME;
+                    }
+                }
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEDryerMenu(windowId, playerInventory, dryer),
                     Component.literal(requiresEnergy ? "FE Dryer" : "Manual Dryer")
-                ));
+                ), buf -> buf.writeBlockPos(blockPos));
             }
         }
         return InteractionResult.CONSUME;

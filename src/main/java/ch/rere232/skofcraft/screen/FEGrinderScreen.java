@@ -1,6 +1,5 @@
 package ch.rere232.skofcraft.screen;
 
-import ch.rere232.skofcraft.blockentity.FEGrinderBlockEntity;
 import ch.rere232.skofcraft.menu.FEGrinderMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -34,11 +33,9 @@ public class FEGrinderScreen extends AbstractContainerScreen<FEGrinderMenu> {
         MachineScreenHelper.drawSeparator(g, x + 7, y + 82, 162);
         MachineScreenHelper.drawSlot(g, x + 44, y + 35);
         MachineScreenHelper.drawSlot(g, x + 116, y + 35);
-        FEGrinderBlockEntity be = this.menu.getBlockEntity();
-        if (be == null) return;
-        MachineScreenHelper.drawArrow(g, x + 64, y + 26, be.getProcessingProgress(), Math.max(be.getMaxProgress(), 1), 48);
-        if (be.requiresEnergy()) {
-            MachineScreenHelper.drawFEBar(g, x + 152, y + 14, be.getEnergy().getEnergyStored(), be.getEnergy().getMaxEnergyStored());
+        MachineScreenHelper.drawArrow(g, x + 64, y + 26, menu.getProgress(), Math.max(menu.getMaxProgress(), 1), 48);
+        if (menu.requiresEnergy()) {
+            MachineScreenHelper.drawFEBar(g, x + 152, y + 14, menu.getEnergy(), menu.getMaxEnergy());
         }
     }
 }

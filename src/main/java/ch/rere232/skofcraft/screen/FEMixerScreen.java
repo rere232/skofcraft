@@ -1,6 +1,5 @@
 package ch.rere232.skofcraft.screen;
 
-import ch.rere232.skofcraft.blockentity.FEMixerBlockEntity;
 import ch.rere232.skofcraft.menu.FEMixerMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -37,11 +36,9 @@ public class FEMixerScreen extends AbstractContainerScreen<FEMixerMenu> {
         MachineScreenHelper.drawSlot(g, x + 44, y + 35);
         MachineScreenHelper.drawSlot(g, x + 62, y + 35);
         MachineScreenHelper.drawSlot(g, x + 116, y + 35);
-        FEMixerBlockEntity be = this.menu.getBlockEntity();
-        if (be == null) return;
-        MachineScreenHelper.drawArrow(g, x + 82, y + 26, be.getProcessingProgress(), Math.max(be.getMaxProgress(), 1), 30);
-        if (be.requiresEnergy()) {
-            MachineScreenHelper.drawFEBar(g, x + 152, y + 14, be.getEnergy().getEnergyStored(), be.getEnergy().getMaxEnergyStored());
+        MachineScreenHelper.drawArrow(g, x + 82, y + 26, menu.getProgress(), Math.max(menu.getMaxProgress(), 1), 30);
+        if (menu.requiresEnergy()) {
+            MachineScreenHelper.drawFEBar(g, x + 152, y + 14, menu.getEnergy(), menu.getMaxEnergy());
         }
     }
 }

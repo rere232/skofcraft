@@ -51,10 +51,15 @@ public class FEPressBlock extends BaseEntityBlock {
         if (player instanceof ServerPlayer serverPlayer) {
             BlockEntity be = level.getBlockEntity(blockPos);
             if (be instanceof FEPressBlockEntity press) {
+                if (!requiresEnergy && player.isShiftKeyDown()) {
+                    if (press.manualCrank()) {
+                        return InteractionResult.CONSUME;
+                    }
+                }
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEPressMenu(windowId, playerInventory, press),
                     Component.literal(requiresEnergy ? "FE Press" : "Manual Press")
-                ));
+                ), buf -> buf.writeBlockPos(blockPos));
             }
         }
         return InteractionResult.CONSUME;

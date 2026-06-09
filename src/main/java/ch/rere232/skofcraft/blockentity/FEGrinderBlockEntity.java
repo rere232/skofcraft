@@ -42,6 +42,7 @@ public class FEGrinderBlockEntity extends BlockEntity {
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
+    private int manualWorkTicks = 0;
 
     public FEGrinderBlockEntity(BlockPos blockPos, BlockState blockState) {
         this(blockPos, blockState, true);
@@ -61,8 +62,9 @@ public class FEGrinderBlockEntity extends BlockEntity {
         }
 
         if (isProcessing) {
-            if (!requiresEnergy || energy.getEnergyStored() >= ENERGY_PER_TICK) {
+            if (requiresEnergy ? energy.getEnergyStored() >= ENERGY_PER_TICK : manualWorkTicks > 0) {
                 if (requiresEnergy) energy.extractEnergy(ENERGY_PER_TICK, false);
+                else manualWorkTicks--;
                 processingProgress++;
 
                 if (processingProgress >= PROCESSING_TIME) {
@@ -107,6 +109,19 @@ public class FEGrinderBlockEntity extends BlockEntity {
         input.shrink(1);
     }
 
+    public boolean manualCrank() {
+        if (requiresEnergy || !canProcess()) {
+            return false;
+        }
+        if (!isProcessing) {
+            isProcessing = true;
+            processingProgress = 0;
+        }
+        manualWorkTicks = Math.min(manualWorkTicks + 20, PROCESSING_TIME);
+        setChanged();
+        return true;
+    }
+
     @Override
     public void load(@NotNull CompoundTag tag) {
         super.load(tag);
@@ -115,6 +130,7 @@ public class FEGrinderBlockEntity extends BlockEntity {
         energy.receiveEnergy(savedEnergy, false);
         processingProgress = tag.getInt("Progress");
         isProcessing = tag.getBoolean("Processing");
+        manualWorkTicks = tag.getInt("ManualWorkTicks");
     }
 
     @Override
@@ -123,6 +139,7 @@ public class FEGrinderBlockEntity extends BlockEntity {
         tag.putInt("Energy", energy.getEnergyStored());
         tag.putInt("Progress", processingProgress);
         tag.putBoolean("Processing", isProcessing);
+        tag.putInt("ManualWorkTicks", manualWorkTicks);
     }
 
     @Override

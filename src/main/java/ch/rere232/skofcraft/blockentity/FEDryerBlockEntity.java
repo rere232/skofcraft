@@ -43,6 +43,7 @@ public class FEDryerBlockEntity extends BlockEntity {
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
+    private int manualWorkTicks = 0;
 
     public FEDryerBlockEntity(BlockPos blockPos, BlockState blockState) {
         this(blockPos, blockState, true);
@@ -62,8 +63,9 @@ public class FEDryerBlockEntity extends BlockEntity {
         }
 
         if (isProcessing) {
-            if (!requiresEnergy || energy.getEnergyStored() >= ENERGY_PER_TICK) {
+            if (requiresEnergy ? energy.getEnergyStored() >= ENERGY_PER_TICK : manualWorkTicks > 0) {
                 if (requiresEnergy) energy.extractEnergy(ENERGY_PER_TICK, false);
+                else manualWorkTicks--;
                 processingProgress++;
 
                 if (processingProgress >= PROCESSING_TIME) {
@@ -108,6 +110,19 @@ public class FEDryerBlockEntity extends BlockEntity {
         input.shrink(1);
     }
 
+    public boolean manualCrank() {
+        if (requiresEnergy || !canProcess()) {
+            return false;
+        }
+        if (!isProcessing) {
+            isProcessing = true;
+            processingProgress = 0;
+        }
+        manualWorkTicks = Math.min(manualWorkTicks + 20, PROCESSING_TIME);
+        setChanged();
+        return true;
+    }
+
     private boolean isFreshTobacco(Object item) {
         return item == SkofcraftItems.TOBACCO_LEAF_FRESH.get();
     }
@@ -120,6 +135,7 @@ public class FEDryerBlockEntity extends BlockEntity {
         energy.receiveEnergy(savedEnergy, false);
         processingProgress = tag.getInt("Progress");
         isProcessing = tag.getBoolean("Processing");
+        manualWorkTicks = tag.getInt("ManualWorkTicks");
     }
 
     @Override
@@ -128,6 +144,7 @@ public class FEDryerBlockEntity extends BlockEntity {
         tag.putInt("Energy", energy.getEnergyStored());
         tag.putInt("Progress", processingProgress);
         tag.putBoolean("Processing", isProcessing);
+        tag.putInt("ManualWorkTicks", manualWorkTicks);
     }
 
     @Override

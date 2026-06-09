@@ -1,19 +1,50 @@
 package ch.rere232.skofcraft.menu;
 
 import ch.rere232.skofcraft.blockentity.FEGrinderBlockEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class FEGrinderMenu extends AbstractContainerMenu {
     private final FEGrinderBlockEntity blockEntity;
+    private final ContainerData data;
 
     public FEGrinderMenu(int windowId, Inventory playerInventory, FEGrinderBlockEntity blockEntity) {
+        this(windowId, playerInventory, blockEntity, new ContainerData() {
+            @Override
+            public int get(int index) {
+                return switch (index) {
+                    case 0 -> blockEntity.getProcessingProgress();
+                    case 1 -> blockEntity.getMaxProgress();
+                    case 2 -> blockEntity.getEnergy().getEnergyStored();
+                    case 3 -> blockEntity.requiresEnergy() ? 1 : 0;
+                    default -> 0;
+                };
+            }
+
+            @Override
+            public void set(int index, int value) {
+                // server authoritative
+            }
+
+            @Override
+            public int getCount() {
+                return 4;
+            }
+        });
+    }
+
+    private FEGrinderMenu(int windowId, Inventory playerInventory, FEGrinderBlockEntity blockEntity, ContainerData data) {
         super(SkofcraftMenus.FE_GRINDER.get(), windowId);
         this.blockEntity = blockEntity;
+        this.data = data;
 
         addSlot(new Slot(blockEntity.getInputSlots(), 0, 44, 35));
         addSlot(new Slot(blockEntity.getOutputSlots(), 0, 116, 35) {
@@ -32,10 +63,23 @@ public class FEGrinderMenu extends AbstractContainerMenu {
         for (int i = 0; i < 9; ++i) {
             addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
+
+        addDataSlots(data);
     }
 
     public FEGrinderMenu(int windowId, Inventory playerInventory, FriendlyByteBuf buffer) {
-        this(windowId, playerInventory, new FEGrinderBlockEntity(new net.minecraft.core.BlockPos(0, 0, 0), net.minecraft.world.level.block.Blocks.AIR.defaultBlockState()));
+        this(windowId, playerInventory, getBlockEntity(playerInventory, buffer), new SimpleContainerData(4));
+    }
+
+    private static FEGrinderBlockEntity getBlockEntity(Inventory playerInventory, FriendlyByteBuf buffer) {
+        if (buffer != null && buffer.isReadable()) {
+            BlockPos pos = buffer.readBlockPos();
+            BlockEntity blockEntity = playerInventory.player.level().getBlockEntity(pos);
+            if (blockEntity instanceof FEGrinderBlockEntity grinder) {
+                return grinder;
+            }
+        }
+        return new FEGrinderBlockEntity(new BlockPos(0, 0, 0), net.minecraft.world.level.block.Blocks.AIR.defaultBlockState());
     }
 
     @Override
@@ -72,5 +116,25 @@ public class FEGrinderMenu extends AbstractContainerMenu {
 
     public FEGrinderBlockEntity getBlockEntity() {
         return blockEntity;
+    }
+
+    public int getProgress() {
+        return data.get(0);
+    }
+
+    public int getMaxProgress() {
+        return data.get(1);
+    }
+
+    public int getEnergy() {
+        return data.get(2);
+    }
+
+    public int getMaxEnergy() {
+        return blockEntity.getEnergy().getMaxEnergyStored();
+    }
+
+    public boolean requiresEnergy() {
+        return data.get(3) == 1;
     }
 }

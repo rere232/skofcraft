@@ -51,10 +51,15 @@ public class FEGrinderBlock extends BaseEntityBlock {
         if (player instanceof ServerPlayer serverPlayer) {
             BlockEntity be = level.getBlockEntity(blockPos);
             if (be instanceof FEGrinderBlockEntity grinder) {
+                if (!requiresEnergy && player.isShiftKeyDown()) {
+                    if (grinder.manualCrank()) {
+                        return InteractionResult.CONSUME;
+                    }
+                }
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEGrinderMenu(windowId, playerInventory, grinder),
                     Component.literal(requiresEnergy ? "FE Grinder" : "Manual Grinder")
-                ));
+                ), buf -> buf.writeBlockPos(blockPos));
             }
         }
         return InteractionResult.CONSUME;

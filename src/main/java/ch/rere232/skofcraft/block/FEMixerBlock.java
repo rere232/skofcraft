@@ -51,10 +51,15 @@ public class FEMixerBlock extends BaseEntityBlock {
         if (player instanceof ServerPlayer serverPlayer) {
             BlockEntity be = level.getBlockEntity(blockPos);
             if (be instanceof FEMixerBlockEntity mixer) {
+                if (!requiresEnergy && player.isShiftKeyDown()) {
+                    if (mixer.manualCrank()) {
+                        return InteractionResult.CONSUME;
+                    }
+                }
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEMixerMenu(windowId, playerInventory, mixer),
                     Component.literal(requiresEnergy ? "FE Mixer" : "Manual Mixer")
-                ));
+                ), buf -> buf.writeBlockPos(blockPos));
             }
         }
         return InteractionResult.CONSUME;
