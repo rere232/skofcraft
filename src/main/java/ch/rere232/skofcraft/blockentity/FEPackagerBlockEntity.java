@@ -15,6 +15,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.EnergyStorage;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.CombinedInvWrapper;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,6 +43,9 @@ public class FEPackagerBlockEntity extends BlockEntity {
 
     private final Container inputSlots = new SimpleContainer(2);
     private final Container outputSlots = new SimpleContainer(1);
+    private final LazyOptional<IItemHandler> inputItemHandler = LazyOptional.of(() -> new InvWrapper(inputSlots));
+    private final LazyOptional<IItemHandler> outputItemHandler = LazyOptional.of(() -> new InvWrapper(outputSlots));
+    private final LazyOptional<IItemHandler> combinedItemHandler = LazyOptional.of(() -> new CombinedInvWrapper(new InvWrapper(inputSlots), new InvWrapper(outputSlots)));
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
@@ -73,32 +79,42 @@ public class FEPackagerBlockEntity extends BlockEntity {
     }
 
     private boolean canProcess() {
-        ItemStack snus = inputSlots.getItem(0);
+        ItemStack pouchStack = inputSlots.getItem(0);
         ItemStack box = inputSlots.getItem(1);
         ItemStack output = outputSlots.getItem(0);
+        ItemStack result = getResultForInputs(pouchStack, box);
 
-        if (snus.isEmpty() || snus.getItem() != SkofcraftItems.SNUS_POUCH.get() || snus.getCount() < 20) return false;
-        if (box.isEmpty() || box.getItem() != SkofcraftItems.EMPTY_SNUS_BOX.get()) return false;
+        if (pouchStack.isEmpty() || pouchStack.getCount() < 20 || box.isEmpty() || result.isEmpty()) return false;
         if (output.isEmpty()) return true;
-        return output.getItem() == SkofcraftItems.FILLED_SNUS_BOX.get() && output.getCount() < 64;
+        return output.getItem() == result.getItem() && output.getCount() < 64;
     }
 
     private void finishProcessing() {
-        ItemStack snus = inputSlots.getItem(0);
+        ItemStack pouchStack = inputSlots.getItem(0);
         ItemStack box = inputSlots.getItem(1);
         ItemStack output = outputSlots.getItem(0);
+        ItemStack result = getResultForInputs(pouchStack, box);
 
-        if (snus.isEmpty() || snus.getCount() < 20 || box.isEmpty()) return;
+        if (pouchStack.isEmpty() || pouchStack.getCount() < 20 || box.isEmpty() || result.isEmpty()) return;
 
-        ItemStack result = new ItemStack(SkofcraftItems.FILLED_SNUS_BOX.get());
         if (output.isEmpty()) {
-            outputSlots.setItem(0, result);
+            outputSlots.setItem(0, result.copy());
         } else if (output.getItem() == result.getItem() && output.getCount() < 64) {
             output.grow(1);
         }
 
-        snus.shrink(20);
+        pouchStack.shrink(20);
         box.shrink(1);
+    }
+
+    private ItemStack getResultForInputs(ItemStack pouchStack, ItemStack box) {
+        if (pouchStack.getItem() == SkofcraftItems.SNUS_POUCH.get() && box.getItem() == SkofcraftItems.EMPTY_SNUS_BOX.get()) {
+            return new ItemStack(SkofcraftItems.FILLED_SNUS_BOX.get());
+        }
+        if (pouchStack.getItem() == SkofcraftItems.NICOTINE_POUCH.get() && box.getItem() == SkofcraftItems.EMPTY_POUCH_BOX.get()) {
+            return new ItemStack(SkofcraftItems.FILLED_POUCH_BOX.get());
+        }
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -137,7 +153,22 @@ public class FEPackagerBlockEntity extends BlockEntity {
         if (cap == ForgeCapabilities.ENERGY) {
             return energyHandler.cast();
         }
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (side == null) {
+                return combinedItemHandler.cast();
+            }
+            return (side == Direction.DOWN ? outputItemHandler : inputItemHandler).cast();
+        }
         return super.getCapability(cap, side);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        energyHandler.invalidate();
+        inputItemHandler.invalidate();
+        outputItemHandler.invalidate();
+        combinedItemHandler.invalidate();
     }
 
     public EnergyStorage getEnergy() {

@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.blockentity;
 
+import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.registry.SkofcraftBlocks;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import net.minecraft.core.BlockPos;
@@ -16,6 +17,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.EnergyStorage;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.CombinedInvWrapper;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,6 +45,9 @@ public class FEMixerBlockEntity extends BlockEntity {
 
     private final Container inputSlots = new SimpleContainer(3);
     private final Container outputSlots = new SimpleContainer(1);
+    private final LazyOptional<IItemHandler> inputItemHandler = LazyOptional.of(() -> new InvWrapper(inputSlots));
+    private final LazyOptional<IItemHandler> outputItemHandler = LazyOptional.of(() -> new InvWrapper(outputSlots));
+    private final LazyOptional<IItemHandler> combinedItemHandler = LazyOptional.of(() -> new CombinedInvWrapper(new InvWrapper(inputSlots), new InvWrapper(outputSlots)));
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
@@ -112,6 +119,7 @@ public class FEMixerBlockEntity extends BlockEntity {
         if (extract.isEmpty() || flavor.isEmpty() || pouch.isEmpty()) return;
 
         ItemStack result = new ItemStack(SkofcraftItems.NICOTINE_POUCH.get());
+        GumConsumableItem.setFlavor(result, flavor);
 
         if (output.isEmpty()) {
             outputSlots.setItem(0, result);
@@ -186,7 +194,22 @@ public class FEMixerBlockEntity extends BlockEntity {
         if (cap == ForgeCapabilities.ENERGY) {
             return energyHandler.cast();
         }
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (side == null) {
+                return combinedItemHandler.cast();
+            }
+            return (side == Direction.DOWN ? outputItemHandler : inputItemHandler).cast();
+        }
         return super.getCapability(cap, side);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        energyHandler.invalidate();
+        inputItemHandler.invalidate();
+        outputItemHandler.invalidate();
+        combinedItemHandler.invalidate();
     }
 
     public EnergyStorage getEnergy() {

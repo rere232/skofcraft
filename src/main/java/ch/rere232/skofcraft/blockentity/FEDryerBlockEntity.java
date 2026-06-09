@@ -17,6 +17,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.EnergyStorage;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.CombinedInvWrapper;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -43,6 +46,9 @@ public class FEDryerBlockEntity extends BlockEntity {
 
     private final Container inputSlots = new SimpleContainer(1);
     private final Container outputSlots = new SimpleContainer(1);
+    private final LazyOptional<IItemHandler> inputItemHandler = LazyOptional.of(() -> new InvWrapper(inputSlots));
+    private final LazyOptional<IItemHandler> outputItemHandler = LazyOptional.of(() -> new InvWrapper(outputSlots));
+    private final LazyOptional<IItemHandler> combinedItemHandler = LazyOptional.of(() -> new CombinedInvWrapper(new InvWrapper(inputSlots), new InvWrapper(outputSlots)));
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
@@ -209,7 +215,22 @@ public class FEDryerBlockEntity extends BlockEntity {
         if (cap == ForgeCapabilities.ENERGY) {
             return energyHandler.cast();
         }
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (side == null) {
+                return combinedItemHandler.cast();
+            }
+            return (side == Direction.DOWN ? outputItemHandler : inputItemHandler).cast();
+        }
         return super.getCapability(cap, side);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        energyHandler.invalidate();
+        inputItemHandler.invalidate();
+        outputItemHandler.invalidate();
+        combinedItemHandler.invalidate();
     }
 
     public EnergyStorage getEnergy() {

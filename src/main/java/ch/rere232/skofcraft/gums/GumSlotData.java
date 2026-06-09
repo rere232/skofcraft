@@ -16,6 +16,7 @@ public class GumSlotData {
     private static final String ROOT = "SkofcraftGums";
     private static final String SLOT_PREFIX = "Slot";
     private static final String ITEM_PREFIX = "SlotItem";
+    private static final String FLAVOR_PREFIX = "SlotFlavor";
 
     private final Player player;
 
@@ -36,7 +37,12 @@ public class GumSlotData {
             if (key != null) {
                 Item item = BuiltInRegistries.ITEM.get(key);
                 if (item != net.minecraft.world.item.Items.AIR) {
-                    return new ItemStack(item);
+                    ItemStack stack = new ItemStack(item);
+                    String flavorId = rootTag.getString(FLAVOR_PREFIX + index);
+                    if (!flavorId.isEmpty()) {
+                        stack.getOrCreateTag().putString(GumConsumableItem.TAG_FLAVOR, flavorId);
+                    }
+                    return stack;
                 }
             }
             return new ItemStack(SkofcraftItems.SNUS_POUCH.get());
@@ -53,6 +59,7 @@ public class GumSlotData {
         CompoundTag rootTag = getRootTag();
         rootTag.putInt(SLOT_PREFIX + index, 0);
         rootTag.remove(ITEM_PREFIX + index);
+        rootTag.remove(FLAVOR_PREFIX + index);
     }
 
     public void tryInsert(int slotIndex, ItemStack stack) {
@@ -67,6 +74,10 @@ public class GumSlotData {
             int durationTicks = consumable.getDurationMinutes() * 60 * 20;
             rootTag.putInt(key, durationTicks);
             rootTag.putString(ITEM_PREFIX + slotIndex, BuiltInRegistries.ITEM.getKey(stack.getItem()).toString());
+            String flavorId = GumConsumableItem.getFlavorId(stack);
+            if (!flavorId.isEmpty()) {
+                rootTag.putString(FLAVOR_PREFIX + slotIndex, flavorId);
+            }
         }
     }
 
@@ -83,6 +94,10 @@ public class GumSlotData {
                 int durationTicks = consumable.getDurationMinutes() * 60 * 20;
                 rootTag.putInt(key, durationTicks);
                 rootTag.putString(ITEM_PREFIX + i, BuiltInRegistries.ITEM.getKey(stack.getItem()).toString());
+                String flavorId = GumConsumableItem.getFlavorId(stack);
+                if (!flavorId.isEmpty()) {
+                    rootTag.putString(FLAVOR_PREFIX + i, flavorId);
+                }
                 return true;
             }
         }
@@ -100,18 +115,19 @@ public class GumSlotData {
                 rootTag.putInt(key, nextTicks);
                 if (nextTicks <= 0) {
                     rootTag.remove(ITEM_PREFIX + i);
+                    rootTag.remove(FLAVOR_PREFIX + i);
                 }
                 active++;
             }
         }
 
         if (!player.level().isClientSide && active > 0) {
-            GumStatusEffects.apply(player, active, SkofcraftConfig.enableNegativeEffects);
+            GumStatusEffects.apply(player, get(player), SkofcraftConfig.enableNegativeEffects);
         }
     }
 
-    public static void applySyncData(Player player, int[] ticks, String[] itemIds) {
-        if (ticks == null || itemIds == null || ticks.length < SLOT_COUNT || itemIds.length < SLOT_COUNT) {
+    public static void applySyncData(Player player, int[] ticks, String[] itemIds, String[] flavorIds) {
+        if (ticks == null || itemIds == null || flavorIds == null || ticks.length < SLOT_COUNT || itemIds.length < SLOT_COUNT || flavorIds.length < SLOT_COUNT) {
             return;
         }
         CompoundTag rootTag = getRootTag(player);
@@ -122,8 +138,14 @@ public class GumSlotData {
             rootTag.putInt(tickKey, value);
             if (value > 0 && !itemIds[i].isEmpty()) {
                 rootTag.putString(itemKey, itemIds[i]);
+                if (!flavorIds[i].isEmpty()) {
+                    rootTag.putString(FLAVOR_PREFIX + i, flavorIds[i]);
+                } else {
+                    rootTag.remove(FLAVOR_PREFIX + i);
+                }
             } else {
                 rootTag.remove(itemKey);
+                rootTag.remove(FLAVOR_PREFIX + i);
             }
         }
     }

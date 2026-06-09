@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.gums;
 
+import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.network.GumSyncS2CPacket;
 import ch.rere232.skofcraft.network.SkofcraftNetwork;
 import net.minecraft.server.level.ServerPlayer;
@@ -33,13 +34,15 @@ public class GumEvents {
         GumSlotData data = GumSlotData.get(serverPlayer);
         int[] ticks = new int[GumSlotData.SLOT_COUNT];
         String[] itemIds = new String[GumSlotData.SLOT_COUNT];
+        String[] flavorIds = new String[GumSlotData.SLOT_COUNT];
 
         for (int i = 0; i < GumSlotData.SLOT_COUNT; i++) {
             ticks[i] = data.getRemainingTicks(i);
             ItemStack item = data.getSlotItem(i);
             itemIds[i] = item.isEmpty() ? "" : net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item.getItem()).toString();
+            flavorIds[i] = item.isEmpty() ? "" : GumConsumableItem.getFlavorId(item);
         }
 
-        SkofcraftNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new GumSyncS2CPacket(ticks, itemIds));
+        SkofcraftNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new GumSyncS2CPacket(ticks, itemIds, flavorIds));
     }
 }
