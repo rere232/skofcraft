@@ -63,6 +63,23 @@ public class GumScreen extends Screen {
             }
         }
 
+        for (int i = 0; i < SLOT_COUNT; i++) {
+            ItemStack slotItem = gumData.getSlotItem(i);
+            int remainingTicks = gumData.getRemainingTicks(i);
+            String line;
+            int color;
+
+            if (!slotItem.isEmpty() && remainingTicks > 0) {
+                line = "#" + (i + 1) + " " + slotItem.getHoverName().getString() + " - " + formatTime(remainingTicks);
+                color = 0x202020;
+            } else {
+                line = "#" + (i + 1) + " Empty";
+                color = 0x606060;
+            }
+
+            guiGraphics.drawString(this.font, line, leftPos + 8, topPos + 48 + i * 9, color, false);
+        }
+
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
                 int slotX = leftPos + 8 + col * 18;
@@ -133,5 +150,12 @@ public class GumScreen extends Screen {
     @Override
     public boolean isPauseScreen() {
         return false;
+    }
+
+    private String formatTime(int ticks) {
+        int totalSeconds = Math.max(0, ticks / 20);
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+        return String.format("%02d:%02d", minutes, seconds);
     }
 }
