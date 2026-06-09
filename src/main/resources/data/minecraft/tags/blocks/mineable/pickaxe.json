@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "skofcraft:manual_dryer",
     "skofcraft:manual_grinder",
     "skofcraft:manual_mixer",
     "skofcraft:manual_pouch_press",
