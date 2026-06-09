@@ -76,12 +76,9 @@ public class FEDryerBlockEntity extends BlockEntity {
                 energy.extractEnergy(ENERGY_PER_TICK, false);
                 processingProgress++;
             } else {
+                if (manualWorkTicks <= 0) return;
+                manualWorkTicks--;
                 processingProgress++;
-                if (manualWorkTicks > 0) {
-                    // Cranking adds a bonus tick of progress while charge remains.
-                    manualWorkTicks--;
-                    processingProgress++;
-                }
             }
 
             if (processingProgress >= PROCESSING_TIME) {

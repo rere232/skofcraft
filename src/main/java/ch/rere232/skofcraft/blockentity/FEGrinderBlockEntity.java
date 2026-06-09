@@ -75,12 +75,9 @@ public class FEGrinderBlockEntity extends BlockEntity {
                 energy.extractEnergy(ENERGY_PER_TICK, false);
                 processingProgress++;
             } else {
+                if (manualWorkTicks <= 0) return;
+                manualWorkTicks--;
                 processingProgress++;
-                // Cranking adds a bonus tick of progress while charge remains.
-                if (manualWorkTicks > 0) {
-                    manualWorkTicks--;
-                    processingProgress++;
-                }
             }
 
             if (processingProgress >= PROCESSING_TIME) {
