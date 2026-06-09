@@ -3,8 +3,11 @@ package ch.rere232.skofcraft.gums;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class GumSlotData {
@@ -12,6 +15,7 @@ public class GumSlotData {
 
     private static final String ROOT = "SkofcraftGums";
     private static final String SLOT_PREFIX = "Slot";
+    private static final String ITEM_PREFIX = "SlotItem";
 
     private final Player player;
 
@@ -27,6 +31,14 @@ public class GumSlotData {
         CompoundTag rootTag = getRootTag();
         int ticks = rootTag.getInt(SLOT_PREFIX + index);
         if (ticks > 0) {
+            String itemId = rootTag.getString(ITEM_PREFIX + index);
+            ResourceLocation key = ResourceLocation.tryParse(itemId);
+            if (key != null) {
+                Item item = BuiltInRegistries.ITEM.get(key);
+                if (item != net.minecraft.world.item.Items.AIR) {
+                    return new ItemStack(item);
+                }
+            }
             return new ItemStack(SkofcraftItems.SNUS_POUCH.get());
         }
         return ItemStack.EMPTY;
@@ -40,6 +52,7 @@ public class GumSlotData {
     public void removeSlot(int index) {
         CompoundTag rootTag = getRootTag();
         rootTag.putInt(SLOT_PREFIX + index, 0);
+        rootTag.remove(ITEM_PREFIX + index);
     }
 
     public void tryInsert(int slotIndex, ItemStack stack) {
@@ -53,6 +66,7 @@ public class GumSlotData {
         if (ticks <= 0) {
             int durationTicks = consumable.getDurationMinutes() * 60 * 20;
             rootTag.putInt(key, durationTicks);
+            rootTag.putString(ITEM_PREFIX + slotIndex, BuiltInRegistries.ITEM.getKey(stack.getItem()).toString());
         }
     }
 
@@ -68,6 +82,7 @@ public class GumSlotData {
             if (ticks <= 0) {
                 int durationTicks = consumable.getDurationMinutes() * 60 * 20;
                 rootTag.putInt(key, durationTicks);
+                rootTag.putString(ITEM_PREFIX + i, BuiltInRegistries.ITEM.getKey(stack.getItem()).toString());
                 return true;
             }
         }
@@ -81,12 +96,16 @@ public class GumSlotData {
             String key = SLOT_PREFIX + i;
             int ticks = rootTag.getInt(key);
             if (ticks > 0) {
-                rootTag.putInt(key, ticks - 1);
+                int nextTicks = ticks - 1;
+                rootTag.putInt(key, nextTicks);
+                if (nextTicks <= 0) {
+                    rootTag.remove(ITEM_PREFIX + i);
+                }
                 active++;
             }
         }
 
-        if (active > 0) {
+        if (!player.level().isClientSide && active > 0) {
             GumStatusEffects.apply(player, active, SkofcraftConfig.enableNegativeEffects);
         }
     }

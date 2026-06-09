@@ -2,8 +2,6 @@ package ch.rere232.skofcraft.screen;
 
 import ch.rere232.skofcraft.gums.GumSlotData;
 import ch.rere232.skofcraft.keybind.SkofcraftKeybinds;
-import ch.rere232.skofcraft.registry.SkofcraftItems;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -15,12 +13,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class GumScreen extends Screen {
     private static final int SLOT_COUNT = 4;
-    private static final int SLOT_SIZE = 18;
-    private static final int SLOT_PADDING = 2;
+    private static final int PANEL_WIDTH = 176;
+    private static final int PANEL_HEIGHT = 166;
 
     private final Player player;
-    private int offsetX;
-    private int offsetY;
+    private int leftPos;
+    private int topPos;
 
     public GumScreen(Player player) {
         super(Component.literal("Gum Slots"));
@@ -30,79 +28,92 @@ public class GumScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        offsetX = (this.width - 100) / 2;
-        offsetY = (this.height - 100) / 2;
+        leftPos = (this.width - PANEL_WIDTH) / 2;
+        topPos = (this.height - PANEL_HEIGHT) / 2;
     }
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         this.renderBackground(guiGraphics);
-        guiGraphics.pose().pushPose();
-        guiGraphics.pose().translate(offsetX, offsetY, 0);
+        MachineScreenHelper.drawPanel(guiGraphics, leftPos, topPos, PANEL_WIDTH, PANEL_HEIGHT);
+        MachineScreenHelper.drawSeparator(guiGraphics, leftPos + 7, topPos + 82, 162);
 
-        guiGraphics.fill(0, 0, 100, 100, 0xFF8B8B8B);
+        guiGraphics.drawString(this.font, this.title, leftPos + 8, topPos + 6, 0x404040, false);
+        guiGraphics.drawString(this.font, Component.literal("Inventory"), leftPos + 8, topPos + 72, 0x404040, false);
+        guiGraphics.drawString(this.font, Component.literal("Right-click gum item to equip"), leftPos + 8, topPos + 58, 0x404040, false);
 
         GumSlotData gumData = GumSlotData.get(player);
 
-        int col = 0, row = 0;
+        int baseX = leftPos + 44;
+        int baseY = topPos + 20;
         for (int i = 0; i < SLOT_COUNT; i++) {
-            int x = col * (SLOT_SIZE + SLOT_PADDING);
-            int y = row * (SLOT_SIZE + SLOT_PADDING);
-
-            guiGraphics.fill(x + 2, y + 2, x + SLOT_SIZE, y + SLOT_SIZE, 0xFF000000);
-            guiGraphics.fill(x + 3, y + 3, x + SLOT_SIZE - 1, y + SLOT_SIZE - 1, 0xFF333333);
+            int x = baseX + i * 18;
+            int y = baseY;
+            MachineScreenHelper.drawSlot(guiGraphics, x, y);
 
             ItemStack slotItem = gumData.getSlotItem(i);
             if (!slotItem.isEmpty()) {
-                guiGraphics.renderItem(slotItem, x + 3, y + 3);
-                guiGraphics.renderItemDecorations(this.font, slotItem, x + 3, y + 3);
+                guiGraphics.renderItem(slotItem, x + 1, y + 1);
+                guiGraphics.renderItemDecorations(this.font, slotItem, x + 1, y + 1);
                 int remainingTicks = gumData.getRemainingTicks(i);
                 if (remainingTicks > 0) {
                     int remainingSeconds = Math.max(1, remainingTicks / 20);
-                    guiGraphics.drawString(this.font, String.valueOf(remainingSeconds), x + 8, y + 8, 0xFFFFFF);
+                    guiGraphics.drawString(this.font, String.valueOf(remainingSeconds), x + 11, y + 11, 0xFFFFFF, false);
                 }
-            }
-
-            col++;
-            if (col >= 2) {
-                col = 0;
-                row++;
             }
         }
 
-        guiGraphics.pose().popPose();
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 9; col++) {
+                int slotX = leftPos + 8 + col * 18;
+                int slotY = topPos + 84 + row * 18;
+                MachineScreenHelper.drawSlot(guiGraphics, slotX, slotY);
+                ItemStack stack = player.getInventory().getItem(col + row * 9 + 9);
+                if (!stack.isEmpty()) {
+                    guiGraphics.renderItem(stack, slotX + 1, slotY + 1);
+                    guiGraphics.renderItemDecorations(this.font, stack, slotX + 1, slotY + 1);
+                }
+            }
+        }
+
+        for (int col = 0; col < 9; col++) {
+            int slotX = leftPos + 8 + col * 18;
+            int slotY = topPos + 142;
+            MachineScreenHelper.drawSlot(guiGraphics, slotX, slotY);
+            ItemStack stack = player.getInventory().getItem(col);
+            if (!stack.isEmpty()) {
+                guiGraphics.renderItem(stack, slotX + 1, slotY + 1);
+                guiGraphics.renderItemDecorations(this.font, stack, slotX + 1, slotY + 1);
+            }
+        }
+
         super.render(guiGraphics, mouseX, mouseY, partialTick);
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        int relX = (int) (mouseX - offsetX);
-        int relY = (int) (mouseY - offsetY);
+        int x = (int) mouseX;
+        int y = (int) mouseY;
+        int slotBaseX = leftPos + 44;
+        int slotBaseY = topPos + 20;
 
-        if (relX >= 0 && relX <= 100 && relY >= 0 && relY <= 100) {
-            int col = relX / (SLOT_SIZE + SLOT_PADDING);
-            int row = relY / (SLOT_SIZE + SLOT_PADDING);
-            if (col >= 2) col = 1;
-            if (row >= 2) row = 1;
-            int slotIndex = col + row * 2;
-
-            if (slotIndex < SLOT_COUNT) {
-                GumSlotData gumData = GumSlotData.get(player);
-                ItemStack slotItem = gumData.getSlotItem(slotIndex);
-                
-                if (!slotItem.isEmpty()) {
-                    gumData.removeSlot(slotIndex);
+        if (button == 1) {
+            for (int i = 0; i < SLOT_COUNT; i++) {
+                int sx = slotBaseX + i * 18;
+                int sy = slotBaseY;
+                if (x >= sx && x < sx + 18 && y >= sy && y < sy + 18) {
+                    GumSlotData gumData = GumSlotData.get(player);
+                    ItemStack slotItem = gumData.getSlotItem(i);
+                    if (!slotItem.isEmpty()) {
+                        gumData.removeSlot(i);
+                        player.addItem(slotItem.copy());
+                    }
                     return true;
                 }
             }
-            return true;
         }
 
         return super.mouseClicked(mouseX, mouseY, button);
-    }
-
-    private boolean isGumItem(Object item) {
-        return item == SkofcraftItems.SNUS_POUCH.get() || item == SkofcraftItems.NICOTINE_POUCH.get();
     }
 
     @Override

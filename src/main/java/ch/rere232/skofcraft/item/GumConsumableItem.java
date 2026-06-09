@@ -26,8 +26,8 @@ public class GumConsumableItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
+        boolean inserted = GumSlotData.tryInsert(player, stack);
         if (!level.isClientSide) {
-            boolean inserted = GumSlotData.tryInsert(player, stack);
             if (inserted && !player.getAbilities().instabuild) {
                 stack.shrink(1);
             }
