@@ -21,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "skofcraft:filled_snus_box"
-            ]
+            "items": ["skofcraft:filled_snus_box"]
           }
         ]
       }
@@ -33,20 +31,11 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "skofcraft:filled_pouch_box"
-            ]
+            "items": ["skofcraft:filled_pouch_box"]
           }
         ]
       }
     }
   },
-  "requirements": [
-    [
-      "has_filled_snus_box"
-    ],
-    [
-      "has_filled_pouch_box"
-    ]
-  ]
+  "requirements": [["has_filled_snus_box"], ["has_filled_pouch_box"]]
 }

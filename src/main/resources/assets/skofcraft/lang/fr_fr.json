@@ -57,5 +57,7 @@
   "advancements.skofcraft.nicotine_chain.title": "Chaine nicotine",
   "advancements.skofcraft.nicotine_chain.description": "Fabriquer un nicotine pouch.",
   "advancements.skofcraft.boxed_production.title": "Production en boites",
-  "advancements.skofcraft.boxed_production.description": "Remplir une boite de snus et une boite de pouches."
+  "advancements.skofcraft.boxed_production.description": "Remplir une boite de snus et une boite de pouches.",
+
+  "entity.minecraft.villager.skofcraft.tobacconist": "Tabacologue"
 }

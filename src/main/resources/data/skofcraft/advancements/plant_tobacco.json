@@ -21,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "skofcraft:tobacco_leaf_fresh"
-            ]
+            "items": ["skofcraft:tobacco_leaf_fresh"]
           }
         ]
       }

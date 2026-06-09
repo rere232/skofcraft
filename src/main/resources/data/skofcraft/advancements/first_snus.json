@@ -21,9 +21,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "skofcraft:snus_pouch"
-            ]
+            "items": ["skofcraft:snus_pouch"]
           }
         ]
       }
