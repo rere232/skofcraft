@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "skofcraft:item/tobbaco_plant"
+  }
+}

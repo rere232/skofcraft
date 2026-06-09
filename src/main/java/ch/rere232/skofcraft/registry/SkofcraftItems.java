@@ -6,6 +6,7 @@ import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.item.SkofcraftBoxItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -15,7 +16,8 @@ import java.util.function.Supplier;
 public class SkofcraftItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SkofcraftMod.MODID);
 
-    public static final RegistryObject<Item> TOBACCO_SEEDS = item("tobacco_seeds");
+        public static final RegistryObject<Item> TOBACCO_SEEDS = ITEMS.register("tobacco_seeds",
+            () -> new ItemNameBlockItem(SkofcraftBlocks.TOBACCO_PLANT.get(), new Item.Properties()));
     public static final RegistryObject<Item> TOBACCO_LEAF_FRESH = item("tobacco_leaf_fresh");
     public static final RegistryObject<Item> TOBACCO_LEAF_DRY = item("tobacco_leaf_dry");
     public static final RegistryObject<Item> TOBACCO_DUST = item("tobacco_dust");
