@@ -1,6 +1,7 @@
 package ch.rere232.skofcraft.blockentity;
 
 import ch.rere232.skofcraft.menu.FEDryerMenu;
+import ch.rere232.skofcraft.registry.SkofcraftBlocks;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -9,6 +10,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -51,7 +53,11 @@ public class FEDryerBlockEntity extends BlockEntity {
 
     public FEDryerBlockEntity(BlockPos blockPos, BlockState blockState, boolean requiresEnergy) {
         super(SkofcraftBlockEntities.FE_DRYER.get(), blockPos, blockState);
-        this.requiresEnergy = requiresEnergy;
+        this.requiresEnergy = requiresEnergy && !isManualBlock(blockState.getBlock());
+    }
+
+    private static boolean isManualBlock(Block block) {
+        return block == SkofcraftBlocks.MANUAL_DRYER.get();
     }
 
     public void tick() {
@@ -63,18 +69,27 @@ public class FEDryerBlockEntity extends BlockEntity {
         }
 
         if (isProcessing) {
-            if (requiresEnergy ? energy.getEnergyStored() >= ENERGY_PER_TICK : manualWorkTicks > 0) {
-                if (requiresEnergy) energy.extractEnergy(ENERGY_PER_TICK, false);
-                else manualWorkTicks--;
-                processingProgress++;
-
-                if (processingProgress >= PROCESSING_TIME) {
-                    finishProcessing();
-                    isProcessing = false;
-                    processingProgress = 0;
+            if (requiresEnergy) {
+                if (energy.getEnergyStored() < ENERGY_PER_TICK) {
+                    return;
                 }
-                setChanged();
+                energy.extractEnergy(ENERGY_PER_TICK, false);
+                processingProgress++;
+            } else {
+                processingProgress++;
+                if (manualWorkTicks > 0) {
+                    // Cranking adds a bonus tick of progress while charge remains.
+                    manualWorkTicks--;
+                    processingProgress++;
+                }
             }
+
+            if (processingProgress >= PROCESSING_TIME) {
+                finishProcessing();
+                isProcessing = false;
+                processingProgress = 0;
+            }
+            setChanged();
         }
     }
 
