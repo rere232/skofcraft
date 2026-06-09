@@ -1,6 +1,11 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "all": "minecraft:block/iron_block"
+    "down": "skofcraft:block/manual_machine_bottom",
+    "up": "skofcraft:block/manual_dryer_top",
+    "north": "skofcraft:block/manual_dryer_front",
+    "south": "skofcraft:block/manual_machine_side",
+    "east": "skofcraft:block/manual_machine_side",
+    "west": "skofcraft:block/manual_machine_side"
   }
 }

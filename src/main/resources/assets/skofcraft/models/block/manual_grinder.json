@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "down": "skofcraft:block/manual_grinder_bottom",
+    "down": "skofcraft:block/manual_machine_bottom",
     "up": "skofcraft:block/manual_grinder_top",
     "north": "skofcraft:block/manual_grinder_front",
-    "south": "skofcraft:block/manual_grinder_side",
-    "east": "skofcraft:block/manual_grinder_side",
-    "west": "skofcraft:block/manual_grinder_side"
+    "south": "skofcraft:block/manual_machine_side",
+    "east": "skofcraft:block/manual_machine_side",
+    "west": "skofcraft:block/manual_machine_side"
   }
 }
