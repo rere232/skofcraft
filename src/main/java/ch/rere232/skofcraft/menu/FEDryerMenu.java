@@ -25,7 +25,7 @@ public class FEDryerMenu extends AbstractContainerMenu {
         this.inputSlots = blockEntity.getInputSlots();
         this.outputSlots = blockEntity.getOutputSlots();
 
-        addSlot(new Slot(inputSlots, 0, 54, 17));
+        addSlot(new Slot(inputSlots, 0, 44, 35));
         addSlot(new Slot(outputSlots, 0, 116, 35) {
             @Override
             public boolean mayPlace(@NotNull ItemStack itemStack) {
@@ -44,14 +44,14 @@ public class FEDryerMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
-                addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 140 + i * 18));
+                addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; i++) {
-            addSlot(new Slot(playerInventory, i, 8 + i * 18, 198));
+            addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 

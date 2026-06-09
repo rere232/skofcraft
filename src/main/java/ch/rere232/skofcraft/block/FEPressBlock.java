@@ -21,14 +21,21 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class FEPressBlock extends BaseEntityBlock {
+    private final boolean requiresEnergy;
+
     public FEPressBlock(Properties properties) {
+        this(properties, true);
+    }
+
+    public FEPressBlock(Properties properties, boolean requiresEnergy) {
         super(properties);
+        this.requiresEnergy = requiresEnergy;
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new FEPressBlockEntity(blockPos, blockState);
+        return new FEPressBlockEntity(blockPos, blockState, requiresEnergy);
     }
 
     @Nullable

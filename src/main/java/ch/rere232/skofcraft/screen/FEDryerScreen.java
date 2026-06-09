@@ -4,49 +4,41 @@ import ch.rere232.skofcraft.blockentity.FEDryerBlockEntity;
 import ch.rere232.skofcraft.menu.FEDryerMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class FEDryerScreen extends AbstractContainerScreen<FEDryerMenu> {
-    private static final int TEXTURE_WIDTH = 176;
-    private static final int TEXTURE_HEIGHT = 222;
 
-    public FEDryerScreen(FEDryerMenu menu, Inventory inventory, net.minecraft.network.chat.Component component) {
-        super(menu, inventory, component);
-        this.imageWidth = TEXTURE_WIDTH;
-        this.imageHeight = TEXTURE_HEIGHT;
+    public FEDryerScreen(FEDryerMenu menu, Inventory inventory, Component title) {
+        super(menu, inventory, title);
+        this.imageWidth = 176;
+        this.imageHeight = 166;
+        this.inventoryLabelX = 8;
+        this.inventoryLabelY = 72;
     }
 
     @Override
-    protected void init() {
-        super.init();
-        this.leftPos = (this.width - this.imageWidth) / 2;
-        this.topPos = (this.height - this.imageHeight) / 2;
+    public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
+        this.renderBackground(g);
+        super.render(g, mouseX, mouseY, partialTick);
+        this.renderTooltip(g, mouseX, mouseY);
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
-        this.renderTooltip(guiGraphics, mouseX, mouseY);
-    }
-
-    @Override
-    protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-        guiGraphics.fill(this.leftPos, this.topPos, this.leftPos + this.imageWidth, this.topPos + this.imageHeight, 0xFF8B8B8B);
-
+    protected void renderBg(GuiGraphics g, float partialTick, int mouseX, int mouseY) {
+        int x = this.leftPos, y = this.topPos;
+        MachineScreenHelper.drawPanel(g, x, y, 176, 166);
+        MachineScreenHelper.drawSeparator(g, x + 7, y + 82, 162);
+        // Machine slots
+        MachineScreenHelper.drawSlot(g, x + 44, y + 35);
+        MachineScreenHelper.drawSlot(g, x + 116, y + 35);
+        // Bars
         FEDryerBlockEntity be = this.menu.getBlockEntity();
-        if (be != null) {
-            int progress = be.getProcessingProgress();
-            int maxProgress = be.getMaxProgress();
-            int barWidth = (int) (progress * 40.0F / maxProgress);
-            guiGraphics.fill(this.leftPos + 85, this.topPos + 40, this.leftPos + 85 + barWidth, this.topPos + 48, 0xFF00FF00);
-
-            int energy = be.getEnergy().getEnergyStored();
-            int maxEnergy = be.getEnergy().getMaxEnergyStored();
-            int energyBarHeight = (int) (energy * 48.0F / maxEnergy);
-            guiGraphics.fill(this.leftPos + 20, this.topPos + 60 + (48 - energyBarHeight), this.leftPos + 26, this.topPos + 60 + 48, 0xFFFFFF00);
-        }
+        if (be == null) return;
+        MachineScreenHelper.drawArrow(g, x + 64, y + 26, be.getProcessingProgress(), Math.max(be.getMaxProgress(), 1), 48);
+        MachineScreenHelper.drawFEBar(g, x + 152, y + 14, be.getEnergy().getEnergyStored(), be.getEnergy().getMaxEnergyStored());
     }
 }

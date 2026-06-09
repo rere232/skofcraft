@@ -23,6 +23,8 @@ public class FEMixerBlockEntity extends BlockEntity {
     private static final int PROCESSING_TIME = 200;
     private static final int ENERGY_PER_TICK = 20;
 
+    private final boolean requiresEnergy;
+
     private final EnergyStorage energy = new EnergyStorage(CAPACITY, MAX_RECEIVE, 0, 0) {
         @Override
         public int receiveEnergy(int maxReceive, boolean simulate) {
@@ -42,7 +44,12 @@ public class FEMixerBlockEntity extends BlockEntity {
     private boolean isProcessing = false;
 
     public FEMixerBlockEntity(BlockPos blockPos, BlockState blockState) {
+        this(blockPos, blockState, true);
+    }
+
+    public FEMixerBlockEntity(BlockPos blockPos, BlockState blockState, boolean requiresEnergy) {
         super(SkofcraftBlockEntities.FE_MIXER.get(), blockPos, blockState);
+        this.requiresEnergy = requiresEnergy;
     }
 
     public void tick() {
@@ -54,8 +61,8 @@ public class FEMixerBlockEntity extends BlockEntity {
         }
 
         if (isProcessing) {
-            if (energy.getEnergyStored() >= ENERGY_PER_TICK) {
-                energy.extractEnergy(ENERGY_PER_TICK, false);
+            if (!requiresEnergy || energy.getEnergyStored() >= ENERGY_PER_TICK) {
+                if (requiresEnergy) energy.extractEnergy(ENERGY_PER_TICK, false);
                 processingProgress++;
 
                 if (processingProgress >= PROCESSING_TIME) {

@@ -21,14 +21,21 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class FEGrinderBlock extends BaseEntityBlock {
+    private final boolean requiresEnergy;
+
     public FEGrinderBlock(Properties properties) {
+        this(properties, true);
+    }
+
+    public FEGrinderBlock(Properties properties, boolean requiresEnergy) {
         super(properties);
+        this.requiresEnergy = requiresEnergy;
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new FEGrinderBlockEntity(blockPos, blockState);
+        return new FEGrinderBlockEntity(blockPos, blockState, requiresEnergy);
     }
 
     @Nullable

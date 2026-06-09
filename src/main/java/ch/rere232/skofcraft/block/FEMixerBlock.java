@@ -21,14 +21,21 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class FEMixerBlock extends BaseEntityBlock {
+    private final boolean requiresEnergy;
+
     public FEMixerBlock(Properties properties) {
+        this(properties, true);
+    }
+
+    public FEMixerBlock(Properties properties, boolean requiresEnergy) {
         super(properties);
+        this.requiresEnergy = requiresEnergy;
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new FEMixerBlockEntity(blockPos, blockState);
+        return new FEMixerBlockEntity(blockPos, blockState, requiresEnergy);
     }
 
     @Nullable

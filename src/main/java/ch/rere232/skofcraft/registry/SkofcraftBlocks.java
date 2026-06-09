@@ -18,10 +18,10 @@ public class SkofcraftBlocks {
 
     public static final RegistryObject<Block> TOBACCO_PLANT = BLOCKS.register("tobacco_plant", () -> new TobaccoPlantBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().noOcclusion()));
 
-    public static final RegistryObject<Block> MANUAL_DRYER = BLOCKS.register("manual_dryer", () -> new FEDryerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(3.0F, 6.0F)));
-    public static final RegistryObject<Block> MANUAL_GRINDER = BLOCKS.register("manual_grinder", () -> new FEGrinderBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F)));
-    public static final RegistryObject<Block> MANUAL_MIXER = BLOCKS.register("manual_mixer", () -> new FEMixerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F)));
-    public static final RegistryObject<Block> MANUAL_POUCH_PRESS = BLOCKS.register("manual_pouch_press", () -> new FEPressBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F)));
+    public static final RegistryObject<Block> MANUAL_DRYER = BLOCKS.register("manual_dryer", () -> new FEDryerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(3.0F, 6.0F), false));
+    public static final RegistryObject<Block> MANUAL_GRINDER = BLOCKS.register("manual_grinder", () -> new FEGrinderBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F), false));
+    public static final RegistryObject<Block> MANUAL_MIXER = BLOCKS.register("manual_mixer", () -> new FEMixerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F), false));
+    public static final RegistryObject<Block> MANUAL_POUCH_PRESS = BLOCKS.register("manual_pouch_press", () -> new FEPressBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F), false));
 
     public static final RegistryObject<Block> FE_DRYER = BLOCKS.register("fe_dryer", () -> new FEDryerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F)));
     public static final RegistryObject<Block> FE_GRINDER = BLOCKS.register("fe_grinder", () -> new FEGrinderBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F)));
