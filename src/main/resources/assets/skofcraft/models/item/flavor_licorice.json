@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraft:item/flavor_licorice"
+    "layer0": "skofcraft:item/flavor_licorice"
   }
 }
