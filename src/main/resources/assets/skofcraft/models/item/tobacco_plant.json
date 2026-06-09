@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "skofcraft:item/tobacco_leaf_dry"
+    "layer0": "skofcraft:item/tobbaco_plant"
   }
 }
