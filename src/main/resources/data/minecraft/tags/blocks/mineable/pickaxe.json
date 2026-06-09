@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "skofcraft:manual_grinder",
+    "skofcraft:manual_mixer",
+    "skofcraft:manual_pouch_press",
+    "skofcraft:fe_dryer",
+    "skofcraft:fe_grinder",
+    "skofcraft:fe_mixer",
+    "skofcraft:fe_press",
+    "skofcraft:fe_nicotine_extractor",
+    "skofcraft:fe_packager",
+    "skofcraft:industrial_snus_line",
+    "skofcraft:industrial_pouch_line",
+    "skofcraft:industrial_packager",
+    "skofcraft:industrial_extractor"
+  ]
+}
