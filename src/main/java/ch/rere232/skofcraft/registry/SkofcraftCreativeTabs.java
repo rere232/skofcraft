@@ -21,7 +21,6 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.TOBACCO_DUST.get());
 
                 output.accept(SkofcraftItems.VEGETAL_FIBER.get());
-                output.accept(SkofcraftItems.NEUTRAL_BASE.get());
                 output.accept(SkofcraftItems.NICOTINE_EXTRACT.get());
                 output.accept(SkofcraftItems.NICOTINE_CRYSTALS.get());
 

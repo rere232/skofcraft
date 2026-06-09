@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["RDR", "RCR", "RRR"],
+  "key": {
+    "R": { "item": "minecraft:redstone" },
+    "D": { "item": "skofcraft:fe_dryer" },
+    "C": { "item": "minecraft:copper_ingot" }
+  },
+  "result": {
+    "item": "skofcraft:fe_nicotine_extractor"
+  }
+}

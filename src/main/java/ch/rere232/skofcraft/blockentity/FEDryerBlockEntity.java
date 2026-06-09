@@ -27,6 +27,7 @@ public class FEDryerBlockEntity extends BlockEntity {
     private static final int ENERGY_PER_TICK = 20;
 
     private final boolean requiresEnergy;
+    private final boolean extractorMode;
 
     private final EnergyStorage energy = new EnergyStorage(CAPACITY, MAX_RECEIVE, 0, 0) {
         @Override
@@ -54,6 +55,7 @@ public class FEDryerBlockEntity extends BlockEntity {
     public FEDryerBlockEntity(BlockPos blockPos, BlockState blockState, boolean requiresEnergy) {
         super(SkofcraftBlockEntities.FE_DRYER.get(), blockPos, blockState);
         this.requiresEnergy = requiresEnergy && !isManualBlock(blockState.getBlock());
+        this.extractorMode = blockState.getBlock() == SkofcraftBlocks.FE_NICOTINE_EXTRACTOR.get() || blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_EXTRACTOR.get();
     }
 
     private static boolean isManualBlock(Block block) {
@@ -94,6 +96,18 @@ public class FEDryerBlockEntity extends BlockEntity {
         ItemStack input = inputSlots.getItem(0);
         ItemStack output = outputSlots.getItem(0);
 
+        if (extractorMode) {
+            if (input.isEmpty() || input.getItem() != SkofcraftItems.TOBACCO_LEAF_DRY.get()) {
+                return false;
+            }
+
+            if (output.isEmpty()) {
+                return true;
+            }
+
+            return output.getItem() == SkofcraftItems.NICOTINE_EXTRACT.get() && output.getCount() < 64;
+        }
+
         if (input.isEmpty() || !isFreshTobacco(input.getItem())) {
             return false;
         }
@@ -109,6 +123,20 @@ public class FEDryerBlockEntity extends BlockEntity {
         ItemStack input = inputSlots.getItem(0);
         ItemStack output = outputSlots.getItem(0);
 
+        if (isExtractorMode()) {
+            if (input.isEmpty() || input.getItem() != SkofcraftItems.TOBACCO_LEAF_DRY.get()) return;
+
+            ItemStack result = new ItemStack(SkofcraftItems.NICOTINE_EXTRACT.get());
+            if (output.isEmpty()) {
+                outputSlots.setItem(0, result);
+            } else if (output.getItem() == result.getItem() && output.getCount() < 64) {
+                output.grow(1);
+            }
+
+            input.shrink(1);
+            return;
+        }
+
         if (input.isEmpty() || !isFreshTobacco(input.getItem())) return;
 
         ItemStack result = new ItemStack(SkofcraftItems.TOBACCO_LEAF_DRY.get());
@@ -123,7 +151,7 @@ public class FEDryerBlockEntity extends BlockEntity {
     }
 
     public boolean manualCrank() {
-        if (requiresEnergy || !canProcess()) {
+        if (requiresEnergy || extractorMode || !canProcess()) {
             return false;
         }
         if (!isProcessing) {
@@ -137,6 +165,10 @@ public class FEDryerBlockEntity extends BlockEntity {
 
     private boolean isFreshTobacco(Object item) {
         return item == SkofcraftItems.TOBACCO_LEAF_FRESH.get();
+    }
+
+    public boolean isExtractorMode() {
+        return extractorMode;
     }
 
     @Override

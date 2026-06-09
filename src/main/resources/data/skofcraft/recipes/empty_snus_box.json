@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["PPP", "PCP", "PPP"],
+  "key": {
+    "P": { "item": "minecraft:dark_oak_planks" },
+    "C": { "item": "minecraft:chest" }
+  },
+  "result": {
+    "item": "skofcraft:empty_snus_box"
+  }
+}

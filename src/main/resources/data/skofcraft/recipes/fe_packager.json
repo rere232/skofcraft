@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["RPR", "RCR", "RRR"],
+  "key": {
+    "R": { "item": "minecraft:redstone" },
+    "P": { "item": "skofcraft:fe_press" },
+    "C": { "item": "minecraft:copper_ingot" }
+  },
+  "result": {
+    "item": "skofcraft:fe_packager"
+  }
+}

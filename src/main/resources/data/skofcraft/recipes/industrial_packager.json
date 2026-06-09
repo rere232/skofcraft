@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["RPR", "RIR", "RRR"],
+  "key": {
+    "R": { "item": "minecraft:redstone_block" },
+    "P": { "item": "skofcraft:fe_packager" },
+    "I": { "item": "minecraft:iron_block" }
+  },
+  "result": {
+    "item": "skofcraft:industrial_packager"
+  }
+}

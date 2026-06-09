@@ -9,7 +9,6 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -19,13 +18,13 @@ import net.minecraftforge.energy.EnergyStorage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class FEPressBlockEntity extends BlockEntity {
+public class FEPackagerBlockEntity extends BlockEntity {
     private static final int CAPACITY = 10000;
     private static final int MAX_RECEIVE = 100;
-    private static final int PROCESSING_TIME = 150;
     private static final int ENERGY_PER_TICK = 20;
 
-    private final boolean requiresEnergy;
+    private final boolean industrial;
+    private final int processingTime;
 
     private final EnergyStorage energy = new EnergyStorage(CAPACITY, MAX_RECEIVE, 0, 0) {
         @Override
@@ -44,19 +43,11 @@ public class FEPressBlockEntity extends BlockEntity {
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
-    private int manualWorkTicks = 0;
 
-    public FEPressBlockEntity(BlockPos blockPos, BlockState blockState) {
-        this(blockPos, blockState, true);
-    }
-
-    public FEPressBlockEntity(BlockPos blockPos, BlockState blockState, boolean requiresEnergy) {
-        super(SkofcraftBlockEntities.FE_PRESS.get(), blockPos, blockState);
-        this.requiresEnergy = requiresEnergy && !isManualBlock(blockState.getBlock());
-    }
-
-    private static boolean isManualBlock(Block block) {
-        return block == SkofcraftBlocks.MANUAL_POUCH_PRESS.get();
+    public FEPackagerBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(SkofcraftBlockEntities.FE_PACKAGER.get(), blockPos, blockState);
+        this.industrial = blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_PACKAGER.get();
+        this.processingTime = industrial ? 100 : 160;
     }
 
     public void tick() {
@@ -68,19 +59,11 @@ public class FEPressBlockEntity extends BlockEntity {
         }
 
         if (isProcessing) {
-            if (requiresEnergy) {
-                if (energy.getEnergyStored() < ENERGY_PER_TICK) {
-                    return;
-                }
-                energy.extractEnergy(ENERGY_PER_TICK, false);
-                processingProgress++;
-            } else {
-                if (manualWorkTicks <= 0) return;
-                manualWorkTicks--;
-                processingProgress++;
-            }
+            if (energy.getEnergyStored() < ENERGY_PER_TICK) return;
+            energy.extractEnergy(ENERGY_PER_TICK, false);
+            processingProgress++;
 
-            if (processingProgress >= PROCESSING_TIME) {
+            if (processingProgress >= processingTime) {
                 finishProcessing();
                 isProcessing = false;
                 processingProgress = 0;
@@ -90,47 +73,32 @@ public class FEPressBlockEntity extends BlockEntity {
     }
 
     private boolean canProcess() {
-        ItemStack dust = inputSlots.getItem(0);
-        ItemStack pouch = inputSlots.getItem(1);
+        ItemStack snus = inputSlots.getItem(0);
+        ItemStack box = inputSlots.getItem(1);
         ItemStack output = outputSlots.getItem(0);
 
-        if (dust.isEmpty() || dust.getItem() != SkofcraftItems.TOBACCO_DUST.get()) return false;
-        if (pouch.isEmpty() || pouch.getItem() != SkofcraftItems.EMPTY_POUCH.get()) return false;
-
+        if (snus.isEmpty() || snus.getItem() != SkofcraftItems.SNUS_POUCH.get() || snus.getCount() < 20) return false;
+        if (box.isEmpty() || box.getItem() != SkofcraftItems.EMPTY_SNUS_BOX.get()) return false;
         if (output.isEmpty()) return true;
-        return output.getItem() == SkofcraftItems.SNUS_POUCH.get() && output.getCount() < 64;
+        return output.getItem() == SkofcraftItems.FILLED_SNUS_BOX.get() && output.getCount() < 64;
     }
 
     private void finishProcessing() {
-        ItemStack dust = inputSlots.getItem(0);
-        ItemStack pouch = inputSlots.getItem(1);
+        ItemStack snus = inputSlots.getItem(0);
+        ItemStack box = inputSlots.getItem(1);
         ItemStack output = outputSlots.getItem(0);
 
-        if (dust.isEmpty() || pouch.isEmpty()) return;
+        if (snus.isEmpty() || snus.getCount() < 20 || box.isEmpty()) return;
 
-        ItemStack result = new ItemStack(SkofcraftItems.SNUS_POUCH.get());
-
+        ItemStack result = new ItemStack(SkofcraftItems.FILLED_SNUS_BOX.get());
         if (output.isEmpty()) {
             outputSlots.setItem(0, result);
         } else if (output.getItem() == result.getItem() && output.getCount() < 64) {
             output.grow(1);
         }
 
-        dust.shrink(1);
-        pouch.shrink(1);
-    }
-
-    public boolean manualCrank() {
-        if (requiresEnergy || !canProcess()) {
-            return false;
-        }
-        if (!isProcessing) {
-            isProcessing = true;
-            processingProgress = 0;
-        }
-        manualWorkTicks = Math.min(manualWorkTicks + 20, PROCESSING_TIME);
-        setChanged();
-        return true;
+        snus.shrink(20);
+        box.shrink(1);
     }
 
     @Override
@@ -141,7 +109,6 @@ public class FEPressBlockEntity extends BlockEntity {
         energy.receiveEnergy(savedEnergy, false);
         processingProgress = tag.getInt("Progress");
         isProcessing = tag.getBoolean("Processing");
-        manualWorkTicks = tag.getInt("ManualWorkTicks");
     }
 
     @Override
@@ -150,7 +117,6 @@ public class FEPressBlockEntity extends BlockEntity {
         tag.putInt("Energy", energy.getEnergyStored());
         tag.putInt("Progress", processingProgress);
         tag.putBoolean("Processing", isProcessing);
-        tag.putInt("ManualWorkTicks", manualWorkTicks);
     }
 
     @Override
@@ -178,10 +144,6 @@ public class FEPressBlockEntity extends BlockEntity {
         return energy;
     }
 
-    public boolean requiresEnergy() {
-        return requiresEnergy;
-    }
-
     public Container getInputSlots() {
         return inputSlots;
     }
@@ -195,10 +157,10 @@ public class FEPressBlockEntity extends BlockEntity {
     }
 
     public int getMaxProgress() {
-        return PROCESSING_TIME;
+        return processingTime;
     }
 
-    public boolean isProcessing() {
-        return isProcessing;
+    public boolean isIndustrial() {
+        return industrial;
     }
 }

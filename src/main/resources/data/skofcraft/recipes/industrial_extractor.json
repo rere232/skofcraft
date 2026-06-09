@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["RER", "RIR", "RRR"],
+  "key": {
+    "R": { "item": "minecraft:redstone_block" },
+    "E": { "item": "skofcraft:fe_nicotine_extractor" },
+    "I": { "item": "minecraft:iron_block" }
+  },
+  "result": {
+    "item": "skofcraft:industrial_extractor"
+  }
+}

@@ -90,28 +90,28 @@ public class FEMixerBlockEntity extends BlockEntity {
     }
 
     private boolean canProcess() {
-        ItemStack dust = inputSlots.getItem(0);
+        ItemStack extract = inputSlots.getItem(0);
         ItemStack flavor = inputSlots.getItem(1);
-        ItemStack salt = inputSlots.getItem(2);
+        ItemStack pouch = inputSlots.getItem(2);
         ItemStack output = outputSlots.getItem(0);
 
-        if (dust.isEmpty() || dust.getItem() != SkofcraftItems.TOBACCO_DUST.get()) return false;
-        if (flavor.isEmpty()) return false;
-        if (salt.isEmpty() || salt.getItem() != SkofcraftItems.SALT.get()) return false;
+        if (extract.isEmpty() || extract.getItem() != SkofcraftItems.NICOTINE_EXTRACT.get()) return false;
+        if (flavor.isEmpty() || !isFlavorItem(flavor.getItem())) return false;
+        if (pouch.isEmpty() || pouch.getItem() != SkofcraftItems.EMPTY_POUCH.get()) return false;
 
         if (output.isEmpty()) return true;
         return output.getCount() < 64;
     }
 
     private void finishProcessing() {
-        ItemStack dust = inputSlots.getItem(0);
+        ItemStack extract = inputSlots.getItem(0);
         ItemStack flavor = inputSlots.getItem(1);
-        ItemStack salt = inputSlots.getItem(2);
+        ItemStack pouch = inputSlots.getItem(2);
         ItemStack output = outputSlots.getItem(0);
 
-        if (dust.isEmpty() || flavor.isEmpty() || salt.isEmpty()) return;
+        if (extract.isEmpty() || flavor.isEmpty() || pouch.isEmpty()) return;
 
-        ItemStack result = new ItemStack(SkofcraftItems.NEUTRAL_BASE.get());
+        ItemStack result = new ItemStack(SkofcraftItems.NICOTINE_POUCH.get());
 
         if (output.isEmpty()) {
             outputSlots.setItem(0, result);
@@ -119,9 +119,20 @@ public class FEMixerBlockEntity extends BlockEntity {
             output.grow(1);
         }
 
-        dust.shrink(1);
+        extract.shrink(1);
         flavor.shrink(1);
-        salt.shrink(1);
+        pouch.shrink(1);
+    }
+
+    private boolean isFlavorItem(Object item) {
+        return item == SkofcraftItems.FLAVOR_MINT.get()
+                || item == SkofcraftItems.FLAVOR_ICE_MINT.get()
+                || item == SkofcraftItems.FLAVOR_BERRY.get()
+                || item == SkofcraftItems.FLAVOR_CITRUS.get()
+                || item == SkofcraftItems.FLAVOR_LICORICE.get()
+                || item == SkofcraftItems.FLAVOR_COLA.get()
+                || item == SkofcraftItems.FLAVOR_COFFEE.get()
+                || item == SkofcraftItems.FLAVOR_NATURE.get();
     }
 
     public boolean manualCrank() {

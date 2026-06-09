@@ -39,8 +39,13 @@ public class SkofcraftBlockEntities {
                     FEPressBlockEntity::new,
                     SkofcraftBlocks.FE_PRESS.get(),
                     SkofcraftBlocks.MANUAL_POUCH_PRESS.get(),
+                    SkofcraftBlocks.INDUSTRIAL_POUCH_LINE.get()
+            ).build(null));
+
+    public static final RegistryObject<BlockEntityType<FEPackagerBlockEntity>> FE_PACKAGER = BLOCK_ENTITIES.register("fe_packager",
+            () -> BlockEntityType.Builder.of(
+                    FEPackagerBlockEntity::new,
                     SkofcraftBlocks.FE_PACKAGER.get(),
-                    SkofcraftBlocks.INDUSTRIAL_POUCH_LINE.get(),
                     SkofcraftBlocks.INDUSTRIAL_PACKAGER.get()
             ).build(null));
 }

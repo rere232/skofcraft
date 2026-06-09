@@ -24,7 +24,6 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> NEUTRAL_BASE = item("neutral_base");
     public static final RegistryObject<Item> NICOTINE_EXTRACT = item("nicotine_extract");
     public static final RegistryObject<Item> NICOTINE_CRYSTALS = item("nicotine_crystals");
-    public static final RegistryObject<Item> SALT = item("salt");
 
     public static final RegistryObject<Item> FLAVOR_MINT = item("flavor_mint");
     public static final RegistryObject<Item> FLAVOR_ICE_MINT = item("flavor_ice_mint");

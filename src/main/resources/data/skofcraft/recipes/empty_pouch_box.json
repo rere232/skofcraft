@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["PPP", "PBP", "PPP"],
+  "key": {
+    "P": { "item": "minecraft:paper" },
+    "B": { "item": "minecraft:chest" }
+  },
+  "result": {
+    "item": "skofcraft:empty_pouch_box"
+  }
+}

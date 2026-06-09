@@ -23,4 +23,7 @@ public class SkofcraftMenus {
 
     public static final RegistryObject<MenuType<FEPressMenu>> FE_PRESS = MENUS.register("fe_press",
             () -> IForgeMenuType.create((windowId, playerInventory, packetBuffer) -> new FEPressMenu(windowId, playerInventory, packetBuffer)));
+
+    public static final RegistryObject<MenuType<FEPackagerMenu>> FE_PACKAGER = MENUS.register("fe_packager",
+            () -> IForgeMenuType.create((windowId, playerInventory, packetBuffer) -> new FEPackagerMenu(windowId, playerInventory, packetBuffer)));
 }
