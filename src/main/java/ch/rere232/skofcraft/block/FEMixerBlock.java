@@ -53,7 +53,7 @@ public class FEMixerBlock extends BaseEntityBlock {
             if (be instanceof FEMixerBlockEntity mixer) {
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEMixerMenu(windowId, playerInventory, mixer),
-                    Component.literal("FE Mixer")
+                    Component.literal(requiresEnergy ? "FE Mixer" : "Manual Mixer")
                 ));
             }
         }

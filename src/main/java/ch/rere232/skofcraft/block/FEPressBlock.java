@@ -53,7 +53,7 @@ public class FEPressBlock extends BaseEntityBlock {
             if (be instanceof FEPressBlockEntity press) {
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEPressMenu(windowId, playerInventory, press),
-                    Component.literal("FE Press")
+                    Component.literal(requiresEnergy ? "FE Press" : "Manual Press")
                 ));
             }
         }

@@ -53,7 +53,7 @@ public class FEGrinderBlock extends BaseEntityBlock {
             if (be instanceof FEGrinderBlockEntity grinder) {
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEGrinderMenu(windowId, playerInventory, grinder),
-                    Component.literal("FE Grinder")
+                    Component.literal(requiresEnergy ? "FE Grinder" : "Manual Grinder")
                 ));
             }
         }

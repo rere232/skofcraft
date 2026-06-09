@@ -53,7 +53,7 @@ public class FEDryerBlock extends BaseEntityBlock {
             if (be instanceof FEDryerBlockEntity dryer) {
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEDryerMenu(windowId, playerInventory, dryer),
-                    Component.literal("FE Dryer")
+                    Component.literal(requiresEnergy ? "FE Dryer" : "Manual Dryer")
                 ));
             }
         }

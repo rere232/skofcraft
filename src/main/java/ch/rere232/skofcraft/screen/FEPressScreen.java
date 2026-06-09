@@ -38,6 +38,8 @@ public class FEPressScreen extends AbstractContainerScreen<FEPressMenu> {
         FEPressBlockEntity be = this.menu.getBlockEntity();
         if (be == null) return;
         MachineScreenHelper.drawArrow(g, x + 82, y + 26, be.getProcessingProgress(), Math.max(be.getMaxProgress(), 1), 30);
-        MachineScreenHelper.drawFEBar(g, x + 152, y + 14, be.getEnergy().getEnergyStored(), be.getEnergy().getMaxEnergyStored());
+        if (be.requiresEnergy()) {
+            MachineScreenHelper.drawFEBar(g, x + 152, y + 14, be.getEnergy().getEnergyStored(), be.getEnergy().getMaxEnergyStored());
+        }
     }
 }

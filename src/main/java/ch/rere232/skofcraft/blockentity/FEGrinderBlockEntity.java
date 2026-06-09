@@ -150,6 +150,10 @@ public class FEGrinderBlockEntity extends BlockEntity {
         return energy;
     }
 
+    public boolean requiresEnergy() {
+        return requiresEnergy;
+    }
+
     public Container getInputSlots() {
         return inputSlots;
     }
