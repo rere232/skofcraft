@@ -106,7 +106,9 @@ public class FEMixerBlockEntity extends BlockEntity {
     @Override
     public void load(@NotNull CompoundTag tag) {
         super.load(tag);
-        energy.deserializeNBT(tag.getCompound("Energy"));
+        int savedEnergy = tag.getInt("Energy");
+        energy.extractEnergy(energy.getMaxEnergyStored(), false);
+        energy.receiveEnergy(savedEnergy, false);
         processingProgress = tag.getInt("Progress");
         isProcessing = tag.getBoolean("Processing");
     }
@@ -114,7 +116,7 @@ public class FEMixerBlockEntity extends BlockEntity {
     @Override
     public void saveAdditional(@NotNull CompoundTag tag) {
         super.saveAdditional(tag);
-        tag.put("Energy", energy.serializeNBT());
+        tag.putInt("Energy", energy.getEnergyStored());
         tag.putInt("Progress", processingProgress);
         tag.putBoolean("Processing", isProcessing);
     }
