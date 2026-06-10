@@ -11,7 +11,7 @@ public class GumStatusEffects {
     private GumStatusEffects() {
     }
 
-    public static void apply(Player player, GumSlotData data, boolean enableNegativeEffects) {
+    public static void apply(Player player, GumSlotData data, boolean enableNegativeEffects, boolean enableTolerance, int toleranceLevel) {
         int activeSlots = 0;
         for (int i = 0; i < GumSlotData.SLOT_COUNT; i++) {
             if (data.getRemainingTicks(i) > 0) {
@@ -23,7 +23,9 @@ public class GumStatusEffects {
             return;
         }
 
-        int positiveAmplifier = Math.min(1, activeSlots - 1);
+        int baseAmplifier = Math.min(1, activeSlots - 1);
+        int tolerancePenalty = enableTolerance ? toleranceLevel / 40 : 0;
+        int positiveAmplifier = Math.max(0, baseAmplifier - tolerancePenalty);
 
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 120, positiveAmplifier, true, false, true));
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 120, positiveAmplifier, true, false, true));
@@ -46,6 +48,32 @@ public class GumStatusEffects {
         }
         if (enableNegativeEffects && activeSlots >= 4) {
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 0, true, false, true));
+        }
+    }
+
+    public static void applyCraving(Player player, int addictionLevel, int cravingTicks, boolean enableNegativeEffects) {
+        if (!enableNegativeEffects || addictionLevel <= 0 || cravingTicks < 20 * 30) {
+            return;
+        }
+
+        int stage = 0;
+        if (cravingTicks >= 20 * 180) {
+            stage = 3;
+        } else if (cravingTicks >= 20 * 90) {
+            stage = 2;
+        } else {
+            stage = 1;
+        }
+
+        int severity = Math.min(2, addictionLevel / 35);
+        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 120, Math.min(1 + severity, 2), true, false, true));
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 120, severity, true, false, true));
+
+        if (stage >= 2) {
+            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, severity, true, false, true));
+        }
+        if (stage >= 3) {
+            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100, 0, true, false, true));
         }
     }
 

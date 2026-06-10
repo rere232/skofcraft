@@ -17,6 +17,12 @@ public class GumSlotData {
     private static final String SLOT_PREFIX = "Slot";
     private static final String ITEM_PREFIX = "SlotItem";
     private static final String FLAVOR_PREFIX = "SlotFlavor";
+    private static final String TOLERANCE_KEY = "Tolerance";
+    private static final String ADDICTION_KEY = "Addiction";
+    private static final String CRAVING_TICKS_KEY = "CravingTicks";
+
+    private static final int MAX_TOLERANCE = 100;
+    private static final int MAX_ADDICTION = 100;
 
     private final Player player;
 
@@ -78,6 +84,7 @@ public class GumSlotData {
             if (!flavorId.isEmpty()) {
                 rootTag.putString(FLAVOR_PREFIX + slotIndex, flavorId);
             }
+            onProductInserted(rootTag);
         }
     }
 
@@ -98,6 +105,7 @@ public class GumSlotData {
                 if (!flavorId.isEmpty()) {
                     rootTag.putString(FLAVOR_PREFIX + i, flavorId);
                 }
+                onProductInserted(rootTag);
                 return true;
             }
         }
@@ -121,8 +129,49 @@ public class GumSlotData {
             }
         }
 
-        if (!player.level().isClientSide && active > 0) {
-            GumStatusEffects.apply(player, get(player), SkofcraftConfig.enableNegativeEffects);
+        if (!player.level().isClientSide) {
+            if (active > 0) {
+                rootTag.putInt(CRAVING_TICKS_KEY, 0);
+                if (SkofcraftConfig.enableTolerance && player.tickCount % 200 == 0) {
+                    int tolerance = rootTag.getInt(TOLERANCE_KEY);
+                    rootTag.putInt(TOLERANCE_KEY, Math.min(MAX_TOLERANCE, tolerance + 1));
+                }
+                GumStatusEffects.apply(player, get(player), SkofcraftConfig.enableNegativeEffects, SkofcraftConfig.enableTolerance, rootTag.getInt(TOLERANCE_KEY));
+                return;
+            }
+
+            if (SkofcraftConfig.enableTolerance && player.tickCount % 200 == 0) {
+                int tolerance = rootTag.getInt(TOLERANCE_KEY);
+                rootTag.putInt(TOLERANCE_KEY, Math.max(0, tolerance - 1));
+            }
+
+            if (SkofcraftConfig.enableAddiction) {
+                int addiction = rootTag.getInt(ADDICTION_KEY);
+                int cravingTicks = rootTag.getInt(CRAVING_TICKS_KEY) + 1;
+                rootTag.putInt(CRAVING_TICKS_KEY, cravingTicks);
+
+                if (player.tickCount % 1200 == 0) {
+                    rootTag.putInt(ADDICTION_KEY, Math.max(0, addiction - 1));
+                }
+
+                GumStatusEffects.applyCraving(player, addiction, cravingTicks, SkofcraftConfig.enableNegativeEffects);
+            } else {
+                rootTag.putInt(CRAVING_TICKS_KEY, 0);
+            }
+        }
+    }
+
+    private static void onProductInserted(CompoundTag rootTag) {
+        rootTag.putInt(CRAVING_TICKS_KEY, 0);
+
+        if (SkofcraftConfig.enableTolerance) {
+            int tolerance = rootTag.getInt(TOLERANCE_KEY);
+            rootTag.putInt(TOLERANCE_KEY, Math.min(MAX_TOLERANCE, tolerance + 2));
+        }
+
+        if (SkofcraftConfig.enableAddiction) {
+            int addiction = rootTag.getInt(ADDICTION_KEY);
+            rootTag.putInt(ADDICTION_KEY, Math.min(MAX_ADDICTION, addiction + 3));
         }
     }
 

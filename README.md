@@ -1,371 +1,551 @@
-Cahier des charges — SKOFCRAFT
+# SKOFCRAFT
 
-Nom complet : SKOFCRAFT
-Signification : Snus Kingdom Of Freedom Craft
-Package Java : ch.rere232.skofcraft
-Version cible : Minecraft Java 1.20.1
-Type de mod : Agriculture, production industrielle, consommation, économie
-Énergie : Forge Energy / FE
+## Snus Kingdom Of Freedom Craft
 
-1. Objectif du mod
+### Informations générales
 
-SKOFCRAFT ajoute une chaîne complète de production de snus et de nicotine pouches dans Minecraft.
+| Élément                 | Valeur                                         |
+| ----------------------- | ---------------------------------------------- |
+| Nom du mod              | SKOFCRAFT                                      |
+| Signification           | Snus Kingdom Of Freedom Craft                  |
+| Package Java            | `ch.rere232.skofcraft`                         |
+| Version Minecraft cible | 1.20.1                                         |
+| Loader                  | Forge                                          |
+| Énergie                 | Forge Energy (FE)                              |
+| Type                    | Agriculture, industrie, économie, consommation |
+
+---
+
+# Objectif
+
+SKOFCRAFT ajoute une chaîne de production complète de snus et de nicotine pouches.
 
 Le joueur doit pouvoir :
 
-Cultiver du tabac
-Sécher les feuilles
-Broyer les matières
-Créer des mélanges
-Produire des sachets
-Remplir des boîtes de 20
-Utiliser les snus via une interface de gencives
-Automatiser la production avec des machines FE
-Acheter/vendre certains items avec un villageois buraliste
-2. Progression
+* Cultiver du tabac
+* Produire du snus
+* Produire des nicotine pouches
+* Utiliser des machines alimentées en FE
+* Automatiser sa production
+* Remplir des boîtes de snus
+* Consommer les produits via une interface de gencives
+* Développer une industrie complète autour du tabac
+
+---
+
+# Progression
+
+Aucun système de recherche.
 
 La progression se fait uniquement par les crafts.
 
-Chaque machine avancée demande une ancienne machine dans sa recette.
+Chaque machine avancée doit utiliser les machines précédentes dans sa recette.
 
 Exemple :
 
-Broyeur FE = Broyeur manuel + redstone + fer + composant énergétique
-Mélangeur FE = Mélangeur manuel + cuivre + redstone + moteur
-Machine industrielle = Machine FE + acier + circuit avancé
-
-Pas besoin de système de recherche, niveau ou quête obligatoire.
-
-3. Ressources ajoutées
-Agriculture
-Graine de tabac
-Plant de tabac
-Feuille de tabac fraîche
-Feuille de tabac séchée
-Tabac moulu
-Nicotine pouches
-Fibre végétale
-Base neutre
-Extrait de nicotine
-Cristaux de nicotine fictifs
-Poudre aromatisée
-Mélange pour pouch
-Arômes
-Menthe
-Ice mint
-Citrus
-Berry
-Réglisse
-Cola
-Café
-Nature
-Emballage
-Sachet vide
-Sachet de snus
-Nicotine pouch
-Boîte vide
-Boîte de snus
-Boîte de nicotine pouches
-4. Machines
-Machines manuelles
-Séchoir manuel
-Broyeur manuel
-Mélangeur manuel
-Presse à sachets manuelle
-Machines FE
-Séchoir FE
+```text
 Broyeur FE
+ └─ nécessite Broyeur Manuel
+
 Mélangeur FE
-Extracteur de nicotine FE
-Presse à sachets FE
+ └─ nécessite Mélangeur Manuel
+
 Emballeuse FE
-Machines industrielles
-Ligne industrielle de snus
-Ligne industrielle de nicotine pouches
-Emballeuse industrielle
-Extracteur avancé
+ └─ nécessite Presse FE
 
-Chaque machine FE doit avoir :
+Machine Industrielle
+ └─ nécessite Machine FE
+```
 
-Stockage interne en FE
-Consommation par tick
-Temps de traitement
-Slots input/output
-Compatibilité hopper
-Compatibilité pipes si possible
-Interface graphique
-5. Forge Energy
+Le joueur progresse naturellement grâce aux ressources et aux recettes.
 
-Les machines utilisent Forge Energy.
+---
 
-Exemple d’équilibrage :
+# Ressources
 
-Séchoir FE : 20 FE/tick
-Broyeur FE : 40 FE/tick
-Mélangeur FE : 60 FE/tick
-Presse FE : 60 FE/tick
-Emballeuse FE : 80 FE/tick
-Extracteur FE : 100 FE/tick
-Machine industrielle : 200 FE/tick
-6. Production du snus
+## Agriculture
 
-Étapes :
+* Graine de tabac
+* Plant de tabac
+* Feuille de tabac fraîche
+* Feuille de tabac séchée
+* Tabac moulu
 
+## Nicotine
+
+* Fibre végétale
+* Base neutre
+* Extrait de nicotine
+* Cristaux de nicotine
+
+## Arômes
+
+* Menthe
+* Ice Mint
+* Berry
+* Citrus
+* Réglisse
+* Cola
+* Café
+* Nature
+
+## Emballage
+
+* Sachet vide
+* Sachet de snus
+* Nicotine pouch
+* Boîte vide
+* Boîte de snus
+* Boîte de nicotine pouches
+
+---
+
+# Machines
+
+## Machines manuelles
+
+* Séchoir manuel
+* Broyeur manuel
+* Mélangeur manuel
+* Presse à sachets manuelle
+
+## Machines FE
+
+* Séchoir FE
+* Broyeur FE
+* Mélangeur FE
+* Presse FE
+* Extracteur de nicotine FE
+* Emballeuse FE
+
+## Machines industrielles
+
+* Ligne de production de snus
+* Ligne de production de pouches
+* Emballeuse industrielle
+* Extracteur industriel
+
+---
+
+# Consommation énergétique
+
+## Exemple d'équilibrage
+
+| Machine       | FE/t |
+| ------------- | ---- |
+| Séchoir FE    | 20   |
+| Broyeur FE    | 40   |
+| Mélangeur FE  | 60   |
+| Presse FE     | 60   |
+| Emballeuse FE | 80   |
+| Extracteur FE | 100  |
+| Industrielle  | 200  |
+
+Toutes les machines doivent être compatibles :
+
+* Forge Energy
+* Hoppers
+* Pipes
+* Câbles FE
+
+---
+
+# Production du Snus
+
+```text
 Tabac frais
-→ Séchage
-→ Feuille de tabac séchée
-→ Broyage
-→ Tabac moulu
-→ Mélange avec sel + arôme
-→ Mélange de snus
-→ Presse à sachets
-→ Sachets de snus
-→ Emballeuse
-→ Boîte de snus remplie
+↓
+Séchage
+↓
+Feuille séchée
+↓
+Broyage
+↓
+Tabac moulu
+↓
+Ajout sel + arôme
+↓
+Mélange de snus
+↓
+Presse à sachets
+↓
+Snus
+↓
+Emballeuse
+↓
+Boîte remplie
+```
 
-Types de snus :
+## Variantes
 
-Snus nature
-Snus menthe
-Snus ice mint
-Snus berry
-Snus réglisse
-Snus strong
-Snus extra strong
-Snus premium
-7. Production des nicotine pouches
+* Nature
+* Mint
+* Ice Mint
+* Berry
+* Réglisse
+* Strong
+* Extra Strong
+* Premium
 
-Étapes :
+---
 
+# Production des Nicotine Pouches
+
+```text
 Fibre végétale
-→ Base neutre
-→ Ajout extrait de nicotine
-→ Ajout arôme
-→ Mélange pour pouch
-→ Presse à sachets
-→ Nicotine pouch
-→ Emballeuse
-→ Boîte de nicotine pouches remplie
+↓
+Base neutre
+↓
+Ajout nicotine
+↓
+Ajout arôme
+↓
+Mélange
+↓
+Presse
+↓
+Pouch
+↓
+Emballeuse
+↓
+Boîte remplie
+```
 
-Types de pouches :
+## Variantes
 
-Mint pouch
-Ice mint pouch
-Citrus pouch
-Berry pouch
-Cola pouch
-Coffee pouch
-Strong pouch
-Extra strong pouch
-8. Boîtes de 20
+* Mint
+* Ice Mint
+* Berry
+* Citrus
+* Cola
+* Coffee
+* Strong
+* Extra Strong
 
-Les boîtes fonctionnent comme un item avec durabilité.
+---
 
-Une boîte pleine contient 20 snus ou 20 pouches.
+# Boîtes de Snus et Pouches
 
-Comportement :
+## Capacité
 
-Clic droit avec une boîte dans la main
-Donne 1 snus/pouch dans l’inventaire
-Retire 1 durabilité à la boîte
-Quand la boîte arrive à 0, elle devient une boîte vide ou disparaît selon config
+Chaque boîte contient :
+
+```text
+20 unités
+```
+
+## Fabrication
+
+Une boîte ne peut être remplie que via une emballeuse.
+
+## Fonctionnement
+
+Lorsque le joueur fait clic droit :
+
+* Une unité est retirée de la boîte
+* Une snus ou pouch est ajoutée à l'inventaire
+* La boîte perd 1 point de durabilité
 
 Exemple :
 
-Boîte pleine : 20/20
-Après clic droit : 19/20
-Après 20 utilisations : boîte vide
+```text
+20/20
+19/20
+18/20
+...
+0/20
+```
 
-À prévoir :
+Lorsque la boîte est vide :
 
-Tooltip affichant le contenu restant
-Différents modèles/textures selon le type
-Stack size faible, par exemple 1 ou 4
-Possibilité de remplir uniquement via l’emballeuse
-9. Interface de gencives
+* Elle devient une boîte vide
 
-Ajouter une interface spéciale pour placer les snus/pouches.
+## Informations affichées
 
-Nom possible :
+Tooltip :
 
-Interface de gencives
+```text
+Contenu restant : 13/20
+```
 
-Fonctionnement :
+---
 
-4 slots disponibles
-Chaque slot peut contenir 1 snus ou 1 nicotine pouch
-Les effets durent tant que le produit est dans un slot
-Le produit se consomme progressivement
-Quand la durée est terminée, le slot se vide
+# Interface des Gencives
 
-Slots :
+## Ouverture
 
-Gencive haut gauche
-Gencive haut droite
-Gencive bas gauche
-Gencive bas droite
+Touche configurable :
 
-Règles possibles :
+```text
+G
+```
 
-Maximum 4 produits actifs
-Plus il y en a, plus les effets sont forts
-Trop de produits donne des malus
-Interface ouverte avec une touche dédiée, par exemple G
-10. Effets en jeu
+## Nombre de slots
 
-Effets positifs possibles :
+```text
+4 slots
+```
 
-Vitesse légère
-Haste léger
-Réduction de fatigue
-Focus : minage plus rapide
-Résistance légère au ralentissement
+Disposition :
 
-Effets négatifs possibles :
+```text
+Haut Gauche
+Haut Droite
 
-Nausée si abus
-Lenteur si surconsommation
-Malus temporaire après usage excessif
-Tolérance progressive
-11. Addiction / tolérance
+Bas Gauche
+Bas Droite
+```
+
+---
+
+# Placement d'une Snus ou d'une Pouch
+
+Le joueur peut glisser une snus ou une pouch dans un slot libre.
+
+Lorsqu'un produit est placé :
+
+* Il devient actif
+* Un timer démarre
+* Le produit ne peut plus être retiré
+
+---
+
+# Durée d'utilisation
+
+Durée par défaut :
+
+```text
+15 minutes
+```
+
+Chaque produit possède une barre de progression similaire à une durabilité.
+
+Exemple :
+
+```text
+██████████ 100%
+██████░░░░ 60%
+██░░░░░░░░ 20%
+```
+
+Cette barre représente le temps restant dans la gencive.
+
+---
+
+# Verrouillage
+
+Pendant les 15 minutes :
+
+* Impossible de retirer la snus
+* Impossible de déplacer la snus
+* Impossible de remplacer la snus
+
+Le slot reste verrouillé.
+
+---
+
+# Fin d'utilisation
+
+Lorsque le timer atteint 0 :
+
+* Le produit disparaît
+* Le slot se libère automatiquement
+* Les effets cessent
+
+---
+
+# Effets
+
+## Positifs
+
+* Speed léger
+* Haste léger
+* Focus
+* Réduction fatigue
+
+## Négatifs
+
+* Nausée
+* Fatigue
+* Lenteur
+
+---
+
+# Tolérance
 
 Option configurable.
 
-Mécaniques :
+Plus le joueur consomme :
 
-Plus le joueur consomme, plus la tolérance augmente
-Les effets deviennent moins forts
-Si le joueur arrête brutalement, il peut avoir un malus temporaire
-Tout doit être désactivable dans la config
+* Plus la tolérance augmente
+* Plus les bonus diminuent
 
-Config :
+---
 
-enableAddiction = true/false
-enableTolerance = true/false
-enableNegativeEffects = true/false
-12. Villageois buraliste
+# Addiction
 
-Ajouter une profession :
+Option configurable.
+
+Peut provoquer :
+
+* Fatigue
+* Lenteur
+* Réduction temporaire des bonus
+
+---
+
+# Villageois
+
+## Profession
 
 Buraliste
 
-Bloc de métier possible :
+## Bloc de métier
 
-Comptoir de buraliste
+Comptoir de Buraliste
 
-Il peut vendre :
+## Vente
 
-Graines de tabac
-Sachets vides
-Boîtes vides
-Arômes
-Machines basiques
-Snus simples
-Nicotine pouches simples
+* Graines de tabac
+* Arômes
+* Sachets vides
+* Boîtes vides
+* Produits simples
 
-Il peut acheter :
+## Achat
 
-Feuilles séchées
-Tabac moulu
-Boîtes de snus
-Boîtes de pouches
-Produits premium
+* Feuilles séchées
+* Tabac moulu
+* Boîtes remplies
+* Produits premium
 
-Pas de système d’interdiction dans les villages.
+---
 
-13. Compatibilité avec les autres mods
+# Compatibilité
 
-Ajouter des tags pour faciliter la compatibilité.
+## Forge Tags
 
-Tags items
+```text
 forge:crops/tobacco
 forge:seeds/tobacco
 forge:dusts/tobacco
+forge:salt
+forge:fibers
+forge:flavors
 forge:nuggets/nicotine
 forge:storage_blocks/tobacco
-forge:tools/knives
-forge:salt
-forge:flavors
-forge:fibers
-Tags SKOFCRAFT
+```
+
+## Tags SKOFCRAFT
+
+```text
 skofcraft:snus
 skofcraft:nicotine_pouches
 skofcraft:snus_boxes
 skofcraft:pouch_boxes
-skofcraft:flavors
-skofcraft:tobacco_products
 skofcraft:machines
-Compatibilités visées
-JEI / REI / EMI pour les recettes
-Forge Energy
-Mekanism, Thermal, Pipez ou autres mods de câbles FE
-Farmers Delight via tags agricoles si possible
-Create via compatibilité mécanique optionnelle plus tard
-14. Interfaces graphiques
+skofcraft:tobacco_products
+skofcraft:flavors
+```
 
-Interfaces à prévoir :
+## Mods compatibles visés
 
-Séchoir
-Broyeur
-Mélangeur
-Presse
-Emballeuse
-Extracteur
-Interface de gencives
-Buraliste
+* JEI
+* EMI
+* REI
+* Mekanism
+* Thermal
+* Pipez
+* Farmer's Delight
+* Create (compatibilité future)
 
-Chaque GUI machine affiche :
+---
 
-Énergie stockée
-Progression
-Input
-Output
-Recette active
-15. Config
+# Interfaces Graphiques
 
-Fichier de configuration :
+Machines :
 
+* Séchoir
+* Broyeur
+* Mélangeur
+* Presse
+* Emballeuse
+* Extracteur
+
+Interface spéciale :
+
+* Interface des gencives
+
+Toutes les interfaces affichent :
+
+* Progression
+* FE stockée
+* Input
+* Output
+
+---
+
+# Configuration
+
+Fichier :
+
+```text
 skofcraft-common.toml
+```
 
 Options :
 
-enableAddiction
-enableTolerance
-enableNegativeEffects
-tobaccoGrowthSpeed
-machineEnergyMultiplier
-snusEffectDuration
-pouchEffectDuration
-boxCapacity
-enableVillager
-enableJEICompat
-16. Onglet créatif
+```text
+enableAddiction=true
+enableTolerance=true
+enableNegativeEffects=true
 
-Ajouter un onglet créatif :
+tobaccoGrowthSpeed=1.0
 
+machineEnergyMultiplier=1.0
+
+snusDurationMinutes=15
+pouchDurationMinutes=15
+
+boxCapacity=20
+
+enableVillager=true
+```
+
+---
+
+# Onglet Créatif
+
+Nom :
+
+```text
 SKOFCRAFT
+```
 
-Contenu :
+Catégories :
 
-Graines
-Plantes
-Ressources
-Arômes
-Machines
-Snus
-Pouches
-Boîtes
-Blocs de métier
-17. Advancements
+* Agriculture
+* Ressources
+* Machines
+* Arômes
+* Snus
+* Pouches
+* Boîtes
 
-Succès possibles :
+---
 
-Bienvenue au royaume du snus
-Récolter du tabac
-Premier séchage
-Premier snus
-Production automatisée
-Boîte pleine
-Buraliste officiel
-Surconsommation
-Usine SKOFCRAFT
+# Advancements
+
+* Bienvenue dans SKOFCRAFT
+* Première récolte
+* Premier séchage
+* Premier snus
+* Première pouch
+* Première boîte remplie
+* Premier buraliste
+* Production automatisée
+* Industrie SKOFCRAFT
+* Royaume du Snus
+
+```
+```
