@@ -16,19 +16,17 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.CombinedInvWrapper;
-import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class FEPressBlockEntity extends BlockEntity {
     private static final int CAPACITY = 10000;
     private static final int MAX_RECEIVE = 100;
-    private static final int PROCESSING_TIME = 150;
     private static final int ENERGY_PER_TICK = 20;
 
     private final boolean requiresEnergy;
+    private final boolean industrial;
+    private final int processingTime;
 
     private final EnergyStorage energy = new EnergyStorage(CAPACITY, MAX_RECEIVE, 0, 0) {
         @Override
@@ -44,9 +42,7 @@ public class FEPressBlockEntity extends BlockEntity {
 
     private final Container inputSlots = new SimpleContainer(2);
     private final Container outputSlots = new SimpleContainer(1);
-    private final LazyOptional<IItemHandler> inputItemHandler = LazyOptional.of(() -> new InvWrapper(inputSlots));
-    private final LazyOptional<IItemHandler> outputItemHandler = LazyOptional.of(() -> new InvWrapper(outputSlots));
-    private final LazyOptional<IItemHandler> combinedItemHandler = LazyOptional.of(() -> new CombinedInvWrapper(new InvWrapper(inputSlots), new InvWrapper(outputSlots)));
+    private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged));
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
@@ -59,6 +55,8 @@ public class FEPressBlockEntity extends BlockEntity {
     public FEPressBlockEntity(BlockPos blockPos, BlockState blockState, boolean requiresEnergy) {
         super(SkofcraftBlockEntities.FE_PRESS.get(), blockPos, blockState);
         this.requiresEnergy = requiresEnergy && !isManualBlock(blockState.getBlock());
+        this.industrial = blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_POUCH_LINE.get();
+        this.processingTime = industrial ? 90 : 150;
     }
 
     private static boolean isManualBlock(Block block) {
@@ -86,7 +84,7 @@ public class FEPressBlockEntity extends BlockEntity {
                 processingProgress++;
             }
 
-            if (processingProgress >= PROCESSING_TIME) {
+            if (processingProgress >= processingTime) {
                 finishProcessing();
                 isProcessing = false;
                 processingProgress = 0;
@@ -134,7 +132,7 @@ public class FEPressBlockEntity extends BlockEntity {
             isProcessing = true;
             processingProgress = 0;
         }
-        manualWorkTicks = Math.min(manualWorkTicks + 20, PROCESSING_TIME);
+        manualWorkTicks = Math.min(manualWorkTicks + 20, processingTime);
         setChanged();
         return true;
     }
@@ -178,10 +176,7 @@ public class FEPressBlockEntity extends BlockEntity {
             return energyHandler.cast();
         }
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == null) {
-                return combinedItemHandler.cast();
-            }
-            return (side == Direction.DOWN ? outputItemHandler : inputItemHandler).cast();
+            return itemHandler.cast();
         }
         return super.getCapability(cap, side);
     }
@@ -190,9 +185,7 @@ public class FEPressBlockEntity extends BlockEntity {
     public void invalidateCaps() {
         super.invalidateCaps();
         energyHandler.invalidate();
-        inputItemHandler.invalidate();
-        outputItemHandler.invalidate();
-        combinedItemHandler.invalidate();
+        itemHandler.invalidate();
     }
 
     public EnergyStorage getEnergy() {
@@ -216,10 +209,14 @@ public class FEPressBlockEntity extends BlockEntity {
     }
 
     public int getMaxProgress() {
-        return PROCESSING_TIME;
+        return processingTime;
     }
 
     public boolean isProcessing() {
         return isProcessing;
+    }
+
+    public boolean isIndustrial() {
+        return industrial;
     }
 }

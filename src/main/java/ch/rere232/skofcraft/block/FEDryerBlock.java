@@ -3,6 +3,7 @@ package ch.rere232.skofcraft.block;
 import ch.rere232.skofcraft.blockentity.FEDryerBlockEntity;
 import ch.rere232.skofcraft.blockentity.SkofcraftBlockEntities;
 import ch.rere232.skofcraft.menu.FEDryerMenu;
+import ch.rere232.skofcraft.registry.SkofcraftBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -57,7 +58,7 @@ public class FEDryerBlock extends BaseEntityBlock {
                     }
                 }
                 String title = dryer.isExtractorMode()
-                        ? (blockState.getBlock() == ch.rere232.skofcraft.registry.SkofcraftBlocks.INDUSTRIAL_EXTRACTOR.get() ? "Industrial Extractor" : "FE Nicotine Extractor")
+                        ? (blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_EXTRACTOR.get() ? "Industrial Extractor" : "FE Nicotine Extractor")
                         : (requiresEnergy ? "FE Dryer" : "Manual Dryer");
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEDryerMenu(windowId, playerInventory, dryer),

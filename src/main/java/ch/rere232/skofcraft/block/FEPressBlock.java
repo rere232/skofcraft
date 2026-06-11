@@ -3,6 +3,7 @@ package ch.rere232.skofcraft.block;
 import ch.rere232.skofcraft.blockentity.FEPressBlockEntity;
 import ch.rere232.skofcraft.blockentity.SkofcraftBlockEntities;
 import ch.rere232.skofcraft.menu.FEPressMenu;
+import ch.rere232.skofcraft.registry.SkofcraftBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -56,9 +57,10 @@ public class FEPressBlock extends BaseEntityBlock {
                         return InteractionResult.CONSUME;
                     }
                 }
+                boolean industrial = blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_POUCH_LINE.get();
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEPressMenu(windowId, playerInventory, press),
-                    Component.literal(requiresEnergy ? "FE Press" : "Manual Press")
+                    Component.literal(industrial ? "Industrial Pouch Line" : (requiresEnergy ? "FE Press" : "Manual Press"))
                 ), buf -> buf.writeBlockPos(blockPos));
             }
         }

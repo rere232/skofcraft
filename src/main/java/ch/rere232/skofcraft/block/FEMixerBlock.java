@@ -3,6 +3,7 @@ package ch.rere232.skofcraft.block;
 import ch.rere232.skofcraft.blockentity.FEMixerBlockEntity;
 import ch.rere232.skofcraft.blockentity.SkofcraftBlockEntities;
 import ch.rere232.skofcraft.menu.FEMixerMenu;
+import ch.rere232.skofcraft.registry.SkofcraftBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -56,9 +57,10 @@ public class FEMixerBlock extends BaseEntityBlock {
                         return InteractionResult.CONSUME;
                     }
                 }
+                boolean industrial = blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_SNUS_LINE.get();
                 NetworkHooks.openScreen(serverPlayer, new net.minecraft.world.SimpleMenuProvider(
                     (windowId, playerInventory, p) -> new FEMixerMenu(windowId, playerInventory, mixer),
-                    Component.literal(requiresEnergy ? "FE Mixer" : "Manual Mixer")
+                    Component.literal(industrial ? "Industrial Snus Line" : (requiresEnergy ? "FE Mixer" : "Manual Mixer"))
                 ), buf -> buf.writeBlockPos(blockPos));
             }
         }
