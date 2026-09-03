@@ -3,16 +3,23 @@ package ch.rere232.skofcraft.blockentity;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import java.util.function.BiPredicate;
 
 public class MachineItemHandler implements IItemHandlerModifiable {
     private final Container inputSlots;
     private final Container outputSlots;
     private final Runnable onChange;
+    private final BiPredicate<Integer, ItemStack> inputValidator;
 
     public MachineItemHandler(Container inputSlots, Container outputSlots, Runnable onChange) {
+        this(inputSlots, outputSlots, onChange, (slot, stack) -> !stack.isEmpty());
+    }
+
+    public MachineItemHandler(Container inputSlots, Container outputSlots, Runnable onChange, BiPredicate<Integer, ItemStack> inputValidator) {
         this.inputSlots = inputSlots;
         this.outputSlots = outputSlots;
         this.onChange = onChange;
+        this.inputValidator = inputValidator;
     }
 
     @Override
@@ -94,7 +101,7 @@ public class MachineItemHandler implements IItemHandlerModifiable {
 
     @Override
     public boolean isItemValid(int slot, ItemStack stack) {
-        return !isOutputSlot(slot) && !stack.isEmpty();
+        return isInputSlot(slot) && inputValidator.test(slot, stack);
     }
 
     @Override

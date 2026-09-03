@@ -1,4 +1,7 @@
 
+SKOFCRAFT project documentation is maintained in README.md.
+This file is retained only as the original Forge MDK setup reference.
+
 Source installation information for modders
 -------------------------------------------
 This code follows the Minecraft Forge installation methodology. It will apply

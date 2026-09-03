@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["RPR", "RMR", "RRR"],
+  "key": {
+    "R": { "item": "minecraft:redstone" },
+    "P": { "item": "skofcraft:fe_press" },
+    "M": { "item": "skofcraft:fe_mixer" }
+  },
+  "result": { "item": "skofcraft:industrial_pouch_line" }
+}

@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -42,9 +43,9 @@ public class FEDryerBlockEntity extends BlockEntity {
     };
     private final LazyOptional<EnergyStorage> energyHandler = LazyOptional.of(() -> energy);
 
-    private final Container inputSlots = new SimpleContainer(1);
-    private final Container outputSlots = new SimpleContainer(1);
-    private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged));
+    private final SimpleContainer inputSlots = new SimpleContainer(1);
+    private final SimpleContainer outputSlots = new SimpleContainer(1);
+    private final LazyOptional<MachineItemHandler> itemHandler;
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
@@ -60,6 +61,7 @@ public class FEDryerBlockEntity extends BlockEntity {
         this.extractorMode = blockState.getBlock() == SkofcraftBlocks.FE_NICOTINE_EXTRACTOR.get() || blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_EXTRACTOR.get();
         this.industrial = blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_EXTRACTOR.get();
         this.processingTime = industrial ? 120 : (extractorMode ? 180 : 200);
+        this.itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> extractorMode ? stack.is(SkofcraftItems.TOBACCO_LEAF_DRY.get()) : isFreshTobacco(stack.getItem())));
     }
 
     private static boolean isManualBlock(Block block) {
@@ -76,10 +78,11 @@ public class FEDryerBlockEntity extends BlockEntity {
 
         if (isProcessing) {
             if (requiresEnergy) {
-                if (energy.getEnergyStored() < ENERGY_PER_TICK) {
+                int energyPerTick = Math.max(1, (int) Math.round(ENERGY_PER_TICK * ch.rere232.skofcraft.config.SkofcraftConfig.machineEnergyMultiplier));
+                if (energy.getEnergyStored() < energyPerTick) {
                     return;
                 }
-                energy.extractEnergy(ENERGY_PER_TICK, false);
+                energy.extractEnergy(energyPerTick, false);
                 processingProgress++;
             } else {
                 if (manualWorkTicks <= 0) return;
@@ -184,6 +187,22 @@ public class FEDryerBlockEntity extends BlockEntity {
         processingProgress = tag.getInt("Progress");
         isProcessing = tag.getBoolean("Processing");
         manualWorkTicks = tag.getInt("ManualWorkTicks");
+
+        net.minecraft.nbt.ListTag inputList = tag.getList("InputItems", 10);
+        for (int i = 0; i < inputSlots.getContainerSize(); i++) {
+            inputSlots.setItem(i, ItemStack.EMPTY);
+        }
+        for (int i = 0; i < inputList.size() && i < inputSlots.getContainerSize(); i++) {
+            inputSlots.setItem(i, ItemStack.of(inputList.getCompound(i)));
+        }
+
+        net.minecraft.nbt.ListTag outputList = tag.getList("OutputItems", 10);
+        for (int i = 0; i < outputSlots.getContainerSize(); i++) {
+            outputSlots.setItem(i, ItemStack.EMPTY);
+        }
+        for (int i = 0; i < outputList.size() && i < outputSlots.getContainerSize(); i++) {
+            outputSlots.setItem(i, ItemStack.of(outputList.getCompound(i)));
+        }
     }
 
     @Override
@@ -193,6 +212,28 @@ public class FEDryerBlockEntity extends BlockEntity {
         tag.putInt("Progress", processingProgress);
         tag.putBoolean("Processing", isProcessing);
         tag.putInt("ManualWorkTicks", manualWorkTicks);
+
+        net.minecraft.nbt.ListTag inputList = new net.minecraft.nbt.ListTag();
+        for (int i = 0; i < inputSlots.getContainerSize(); i++) {
+            ItemStack stack = inputSlots.getItem(i);
+            if (!stack.isEmpty()) {
+                CompoundTag stackTag = new CompoundTag();
+                stack.save(stackTag);
+                inputList.add(stackTag);
+            }
+        }
+        tag.put("InputItems", inputList);
+
+        net.minecraft.nbt.ListTag outputList = new net.minecraft.nbt.ListTag();
+        for (int i = 0; i < outputSlots.getContainerSize(); i++) {
+            ItemStack stack = outputSlots.getItem(i);
+            if (!stack.isEmpty()) {
+                CompoundTag stackTag = new CompoundTag();
+                stack.save(stackTag);
+                outputList.add(stackTag);
+            }
+        }
+        tag.put("OutputItems", outputList);
     }
 
     @Override

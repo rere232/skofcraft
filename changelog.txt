@@ -1,3 +1,5 @@
+SKOFCRAFT changes are tracked in the project history. The Forge release notes below are retained as upstream reference material.
+
 1.20.1 Changelog
 47.4
 ====

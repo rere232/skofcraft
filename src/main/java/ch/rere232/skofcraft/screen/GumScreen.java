@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class GumScreen extends Screen {
     private static final int SLOT_COUNT = 4;
     private static final int PANEL_WIDTH = 176;
-    private static final int PANEL_HEIGHT = 166;
+    private static final int PANEL_HEIGHT = 192;
 
     private final Player player;
     private int leftPos;
@@ -36,11 +36,9 @@ public class GumScreen extends Screen {
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         this.renderBackground(guiGraphics);
         MachineScreenHelper.drawPanel(guiGraphics, leftPos, topPos, PANEL_WIDTH, PANEL_HEIGHT);
-        MachineScreenHelper.drawSeparator(guiGraphics, leftPos + 7, topPos + 82, 162);
+        MachineScreenHelper.drawSeparator(guiGraphics, leftPos + 7, topPos + 102, 162);
 
         guiGraphics.drawString(this.font, this.title, leftPos + 8, topPos + 6, 0x404040, false);
-        guiGraphics.drawString(this.font, Component.literal("Inventory"), leftPos + 8, topPos + 72, 0x404040, false);
-        guiGraphics.drawString(this.font, Component.literal("Right-click gum item to equip"), leftPos + 8, topPos + 58, 0x404040, false);
 
         GumSlotData gumData = GumSlotData.get(player);
 
@@ -77,13 +75,17 @@ public class GumScreen extends Screen {
                 color = 0x606060;
             }
 
-            guiGraphics.drawString(this.font, line, leftPos + 8, topPos + 48 + i * 9, color, false);
+            String visibleLine = this.font.plainSubstrByWidth(line, PANEL_WIDTH - 16);
+            guiGraphics.drawString(this.font, visibleLine, leftPos + 8, topPos + 48 + i * 9, color, false);
         }
+
+        guiGraphics.drawString(this.font, Component.literal("Right-click gum item to equip"), leftPos + 8, topPos + 84, 0x404040, false);
+        guiGraphics.drawString(this.font, Component.literal("Inventory"), leftPos + 8, topPos + 94, 0x404040, false);
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
                 int slotX = leftPos + 8 + col * 18;
-                int slotY = topPos + 84 + row * 18;
+                int slotY = topPos + 104 + row * 18;
                 MachineScreenHelper.drawSlot(guiGraphics, slotX, slotY);
                 ItemStack stack = player.getInventory().getItem(col + row * 9 + 9);
                 if (!stack.isEmpty()) {
@@ -95,7 +97,7 @@ public class GumScreen extends Screen {
 
         for (int col = 0; col < 9; col++) {
             int slotX = leftPos + 8 + col * 18;
-            int slotY = topPos + 142;
+            int slotY = topPos + 158;
             MachineScreenHelper.drawSlot(guiGraphics, slotX, slotY);
             ItemStack stack = player.getInventory().getItem(col);
             if (!stack.isEmpty()) {
