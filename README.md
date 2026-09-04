@@ -2,6 +2,566 @@
 
 ## Snus Kingdom Of Freedom Craft
 
+### General information
+
+| Item                    | Value                                          |
+| ----------------------- | ---------------------------------------------- |
+| Mod name                | SKOFCRAFT                                      |
+| Meaning                 | Snus Kingdom Of Freedom Craft                  |
+| Java package            | `ch.rere232.skofcraft`                         |
+| Target Minecraft version | 1.20.1                                         |
+| Loader                  | Forge                                          |
+| Energy                  | Forge Energy (FE)                              |
+| Type                    | Agriculture, industry, economy, consumption    |
+
+---
+
+# Objective
+
+SKOFCRAFT adds a complete snus and nicotine pouch production chain.
+
+The player must be able to:
+
+* Grow tobacco
+* Produce snus
+* Produce nicotine pouches
+* Use FE-powered machines
+* Automate production
+* Fill snus tins
+* Consume products through a gum interface
+* Build a complete tobacco industry
+
+---
+
+# Progression
+
+There is no research system.
+
+Progression is based exclusively on crafting.
+
+Each advanced machine must use previous machines in its recipe.
+
+Example:
+
+```text
+FE Grinder
+ └─ requires Manual Grinder
+
+FE Mixer
+ └─ requires Manual Mixer
+
+FE Packer
+ └─ requires FE Press
+
+Industrial Machine
+ └─ requires FE Machine
+```
+
+The player progresses naturally through resources and recipes.
+
+---
+
+# Resources
+
+## Agriculture
+
+* Tobacco seed
+* Tobacco plant
+* Fresh tobacco leaf
+* Dried tobacco leaf
+* Ground tobacco
+
+## Nicotine
+
+* Plant fiber
+* Neutral base
+* Nicotine extract
+* Nicotine crystals
+
+## Flavors
+
+* Mint
+* Ice Mint
+* Berry
+* Citrus
+* Licorice
+* Cola
+* Coffee
+* Natural
+
+## Packaging
+
+* Empty pouch
+* Snus pouch
+* Nicotine pouch
+* Empty tin
+* Snus tin
+* Nicotine pouch tin
+
+---
+
+# Machines
+
+## Manual machines
+
+* Manual Dryer
+* Manual Grinder
+* Manual Mixer
+* Manual Pouch Press
+
+## FE machines
+
+* FE Dryer
+* FE Grinder
+* FE Mixer
+* FE Press
+* FE Nicotine Extractor
+* FE Packer
+
+## Industrial machines
+
+* Snus production line
+* Pouch production line
+* Industrial Packer
+* Industrial Extractor
+
+---
+
+# Energy consumption
+
+## Balancing example
+
+| Machine       | FE/t |
+| ------------- | ---- |
+| FE Dryer      | 20   |
+| FE Grinder    | 40   |
+| FE Mixer      | 60   |
+| FE Press      | 60   |
+| FE Packer     | 80   |
+| FE Extractor  | 100  |
+| Industrial    | 200  |
+
+All machines must be compatible with:
+
+* Forge Energy
+* Hoppers
+* Pipes
+* FE cables
+
+---
+
+# Snus production
+
+```text
+Fresh tobacco
+↓
+Drying
+↓
+Dried leaf
+↓
+Grinding
+↓
+Ground tobacco
+↓
+Add salt + flavor
+↓
+Snus mixture
+↓
+Pouch press
+↓
+Snus
+↓
+Packer
+↓
+Filled tin
+```
+
+## Variants
+
+* Natural
+* Mint
+* Ice Mint
+* Berry
+* Licorice
+* Strong
+* Extra Strong
+* Premium
+
+---
+
+# Nicotine pouch production
+
+```text
+Plant fiber
+↓
+Neutral base
+↓
+Add nicotine
+↓
+Add flavor
+↓
+Mixing
+↓
+Pressing
+↓
+Pouch
+↓
+Packer
+↓
+Filled tin
+```
+
+## Variants
+
+* Mint
+* Ice Mint
+* Berry
+* Citrus
+* Cola
+* Coffee
+* Strong
+* Extra Strong
+
+---
+
+# Snus and pouch tins
+
+## Capacity
+
+Each tin contains:
+
+```text
+20 units
+```
+
+## Manufacturing
+
+A tin can only be filled using a packer.
+
+---
+
+# Snus and pouch tins
+
+## Operation
+
+When the player right-clicks:
+
+* One unit is removed from the tin
+* One snus pouch or nicotine pouch is added to the inventory
+* The tin loses 1 durability point
+
+Example:
+
+```text
+20/20
+19/20
+18/20
+...
+0/20
+```
+
+When the tin is empty:
+
+* It becomes an empty tin
+
+## Displayed information
+
+Tooltip:
+
+```text
+Remaining contents: 13/20
+```
+
+---
+
+# Gum interface
+
+## Opening
+
+Configurable key:
+
+```text
+G
+```
+
+## Number of slots
+
+```text
+4 slots
+```
+
+Layout:
+
+```text
+Top Left
+Top Right
+
+Bottom Left
+Bottom Right
+```
+
+---
+
+# Placing a snus pouch or nicotine pouch
+
+The player can drag a snus pouch or nicotine pouch into an empty slot.
+
+When a product is placed:
+
+* It becomes active
+* A timer starts
+* The product can no longer be removed
+
+---
+
+# Usage duration
+
+Default duration:
+
+```text
+15 minutes
+```
+
+Each product has a progress bar similar to a durability bar.
+
+Example:
+
+```text
+██████████ 100%
+██████░░░░ 60%
+██░░░░░░░░ 20%
+```
+
+This bar represents the time remaining in the gum.
+
+---
+
+# Locking
+
+For 15 minutes:
+
+* The snus pouch cannot be removed
+* The snus pouch cannot be moved
+* The snus pouch cannot be replaced
+
+The slot remains locked.
+
+---
+
+# End of use
+
+When the timer reaches 0:
+
+* The product disappears
+* The slot is released automatically
+* The effects stop
+
+---
+
+# Effects
+
+## Positive
+
+* Slight Speed
+* Slight Haste
+* Focus
+* Reduced fatigue
+
+## Negative
+
+* Nausea
+* Fatigue
+* Slowness
+
+---
+
+# Tolerance
+
+Configurable option.
+
+The more the player consumes:
+
+* The more tolerance increases
+* The more bonuses decrease
+
+---
+
+# Addiction
+
+Configurable option.
+
+It can cause:
+
+* Fatigue
+* Slowness
+* Temporary reduction of bonuses
+
+---
+
+# Villagers
+
+## Profession
+
+Tobacconist
+
+## Job site block
+
+Tobacconist's Counter
+
+## Selling
+
+* Tobacco seeds
+* Flavors
+* Empty pouches
+* Empty tins
+* Basic products
+
+## Buying
+
+* Dried leaves
+* Ground tobacco
+* Filled tins
+* Premium products
+
+---
+
+# Compatibility
+
+## Forge tags
+
+```text
+forge:crops/tobacco
+forge:seeds/tobacco
+forge:dusts/tobacco
+forge:salt
+forge:fibers
+forge:flavors
+forge:nuggets/nicotine
+forge:storage_blocks/tobacco
+```
+
+## SKOFCRAFT tags
+
+```text
+skofcraft:snus
+skofcraft:nicotine_pouches
+skofcraft:snus_boxes
+skofcraft:pouch_boxes
+skofcraft:machines
+skofcraft:tobacco_products
+skofcraft:flavors
+```
+
+## Targeted compatible mods
+
+* JEI
+* EMI
+* REI
+* Mekanism
+* Thermal
+* Pipez
+* Farmer's Delight
+* Create (future compatibility)
+
+---
+
+# Graphical interfaces
+
+Machines:
+
+* Dryer
+* Grinder
+* Mixer
+* Press
+* Packer
+* Extractor
+
+Special interface:
+
+* Gum interface
+
+All interfaces display:
+
+* Progress
+* Stored FE
+* Input
+* Output
+
+---
+
+# Configuration
+
+File:
+
+```text
+skofcraft-common.toml
+```
+
+Options:
+
+```text
+enableAddiction=true
+enableTolerance=true
+enableNegativeEffects=true
+
+tobaccoGrowthSpeed=1.0
+
+machineEnergyMultiplier=1.0
+
+snusDurationMinutes=15
+pouchDurationMinutes=15
+
+boxCapacity=20
+
+enableVillager=true
+```
+
+---
+
+# Creative tab
+
+Name:
+
+```text
+SKOFCRAFT
+```
+
+Categories:
+
+* Agriculture
+* Resources
+* Machines
+* Flavors
+* Snus
+* Pouches
+* Tins
+
+---
+
+# Advancements
+
+* Welcome to SKOFCRAFT
+* First harvest
+* First drying
+* First snus
+* First pouch
+* First filled tin
+* First tobacconist
+* Automated production
+* SKOFCRAFT industry
+* Snus Kingdom
+
+```
+```
+
+# Version francaise
+
+---
+
+# SKOFCRAFT
+
+## Snus Kingdom Of Freedom Craft
+
 ### Informations générales
 
 | Élément                 | Valeur                                         |
