@@ -1,6 +1,7 @@
 package ch.rere232.skofcraft.item;
 
 import ch.rere232.skofcraft.gums.GumSlotData;
+import ch.rere232.skofcraft.phone.PhoneAddiction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
@@ -50,6 +51,7 @@ public class AddictolItem extends Item {
                 CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             }
             GumSlotData.resetDependence(player);
+            PhoneAddiction.reset(player);
             player.removeEffect(MobEffects.WEAKNESS);
             player.removeEffect(MobEffects.DIG_SLOWDOWN);
             player.removeEffect(MobEffects.CONFUSION);

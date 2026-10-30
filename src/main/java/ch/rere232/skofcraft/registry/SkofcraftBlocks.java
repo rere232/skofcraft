@@ -7,7 +7,9 @@ import ch.rere232.skofcraft.block.FEMixerBlock;
 import ch.rere232.skofcraft.block.FEPackagerBlock;
 import ch.rere232.skofcraft.block.FEPressBlock;
 import ch.rere232.skofcraft.block.ChichaBlock;
+import ch.rere232.skofcraft.block.BlahajBlock;
 import ch.rere232.skofcraft.block.SpitPuddleBlock;
+import ch.rere232.skofcraft.block.TobacconistCounterBlock;
 import ch.rere232.skofcraft.crop.TobaccoPlantBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -22,6 +24,8 @@ public class SkofcraftBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SkofcraftMod.MODID);
 
     public static final RegistryObject<Block> TOBACCO_PLANT = BLOCKS.register("tobacco_plant", () -> new TobaccoPlantBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().noOcclusion()));
+    public static final RegistryObject<Block> TOBACCONIST_COUNTER = BLOCKS.register("tobacconist_counter", () -> new TobacconistCounterBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> BLAHAJ = BLOCKS.register("blahaj", () -> new BlahajBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(0.8F).noOcclusion().sound(SoundType.WOOL)));
     public static final RegistryObject<Block> CHICHA = BLOCKS.register("chicha", () -> new ChichaBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(1.5F, 3.0F).noOcclusion().sound(SoundType.METAL)));
     public static final RegistryObject<Block> SPIT_PUDDLE = BLOCKS.register("spit_puddle", () -> new SpitPuddleBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).noCollission().noOcclusion().instabreak().replaceable().pushReaction(PushReaction.DESTROY).sound(SoundType.SLIME_BLOCK)));
 

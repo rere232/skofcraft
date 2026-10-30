@@ -11,6 +11,7 @@ import net.minecraft.client.KeyMapping;
 public class SkofcraftKeybinds {
     public static KeyMapping OPEN_GUMS_SCREEN;
     public static KeyMapping SPIT;
+    public static KeyMapping HELICOPTER_DESCEND;
 
     @SubscribeEvent
     public static void registerKeybinds(RegisterKeyMappingsEvent event) {
@@ -18,5 +19,7 @@ public class SkofcraftKeybinds {
         event.register(OPEN_GUMS_SCREEN);
         SPIT = new KeyMapping("key.skofcraft.spit", com.mojang.blaze3d.platform.InputConstants.KEY_V, "key.categories.gameplay");
         event.register(SPIT);
+        HELICOPTER_DESCEND = new KeyMapping("key.skofcraft.helicopter_descend", com.mojang.blaze3d.platform.InputConstants.KEY_C, "key.categories.movement");
+        event.register(HELICOPTER_DESCEND);
     }
 }

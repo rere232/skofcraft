@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "skofcraft:block/blahaj"
+    },
+    "facing=east": {
+      "model": "skofcraft:block/blahaj",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "skofcraft:block/blahaj",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "skofcraft:block/blahaj",
+      "y": 270
+    }
+  }
+}

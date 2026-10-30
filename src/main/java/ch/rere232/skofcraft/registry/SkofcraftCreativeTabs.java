@@ -48,7 +48,12 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.EMPTY_CIGARETTE_PACK.get());
                 output.accept(SkofcraftItems.CIGARETTE_PACK.get());
                 output.accept(SkofcraftItems.CHICHA.get());
+                output.accept(SkofcraftItems.TOBACCONIST_COUNTER.get());
                 output.accept(SkofcraftItems.ADDICTOL.get());
+                output.accept(SkofcraftItems.PHONE.get());
+                output.accept(SkofcraftItems.BLAHAJ.get());
+                output.accept(SkofcraftItems.APACHE.get());
+                output.accept(SkofcraftItems.F14.get());
                 output.accept(SkofcraftItems.EMPTY_SNUS_BOX.get());
                 output.accept(SkofcraftItems.FILLED_SNUS_BOX.get());
                 output.accept(SkofcraftItems.EMPTY_POUCH_BOX.get());

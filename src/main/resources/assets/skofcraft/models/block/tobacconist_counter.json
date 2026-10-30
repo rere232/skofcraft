@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "skofcraft:block/tobacconist_counter_top",
+    "front": "skofcraft:block/tobacconist_counter_front",
+    "side": "skofcraft:block/tobacconist_counter_side"
+  }
+}

@@ -193,6 +193,42 @@ final class QuestBookContent {
                 text("industrial.p2")
         )));
 
+        chapters.add(new Chapter(t("phone.title"), stack(SkofcraftItems.PHONE.get()), List.of(
+                text("phone.p1"),
+                craft(stack(SkofcraftItems.PHONE.get()), new String[] {"NNN", "NGN", "CRC"},
+                        'N', Items.IRON_NUGGET, 'G', Items.GLASS_PANE, 'C', Items.COPPER_INGOT, 'R', Items.REDSTONE),
+                text("phone.p2"), text("phone.p3"), text("phone.p4")
+        )));
+
+        chapters.add(new Chapter(t("apache.title"), stack(SkofcraftItems.APACHE.get()), List.of(
+                text("apache.p1"),
+                craft(stack(SkofcraftItems.APACHE.get()), new String[] {"III", "BDB", "ITI"},
+                        'I', Items.IRON_INGOT, 'B', Items.IRON_BLOCK, 'D', Items.DISPENSER, 'T', Items.TNT),
+                text("apache.p2"), text("apache.p3")
+        )));
+
+        chapters.add(new Chapter(t("f14.title"), stack(SkofcraftItems.F14.get()), List.of(
+                text("f14.p1"),
+                craft(stack(SkofcraftItems.F14.get()), new String[] {"IGI", "BDB", "RTR"},
+                        'I', Items.IRON_INGOT, 'G', Items.GLASS_PANE, 'B', Items.IRON_BLOCK, 'D', Items.DIAMOND,
+                        'R', Items.REDSTONE_BLOCK, 'T', Items.TNT),
+                text("f14.p2"), text("f14.p3")
+        )));
+
+        chapters.add(new Chapter(t("blahaj.title"), stack(SkofcraftItems.BLAHAJ.get()), List.of(
+                text("blahaj.p1"),
+                craft(stack(SkofcraftItems.BLAHAJ.get()), new String[] {"BBB", "WLW", "BDB"},
+                        'B', Items.BLUE_WOOL, 'W', Items.WHITE_WOOL, 'L', Items.LIGHT_BLUE_WOOL, 'D', Items.BLACK_DYE),
+                text("blahaj.p2")
+        )));
+
+        chapters.add(new Chapter(t("tobacconist.title"), stack(SkofcraftItems.TOBACCONIST_COUNTER.get()), List.of(
+                text("tobacconist.p1"),
+                craft(stack(SkofcraftItems.TOBACCONIST_COUNTER.get()), new String[] {"SSS", "PCP", "PPP"},
+                        'S', Items.DARK_OAK_SLAB, 'P', Items.DARK_OAK_PLANKS, 'C', Items.CHEST),
+                text("tobacconist.p2"), text("tobacconist.p3"), text("tobacconist.p4")
+        )));
+
         chapters.add(new Chapter(t("addictol.title"), stack(SkofcraftItems.ADDICTOL.get()), List.of(
                 text("addictol.p1"),
                 craft(stack(SkofcraftItems.ADDICTOL.get()), new String[] {"G G", " M ", "G G"},

@@ -3,6 +3,7 @@ package ch.rere232.skofcraft.gums;
 import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.network.GumSyncS2CPacket;
 import ch.rere232.skofcraft.network.SkofcraftNetwork;
+import ch.rere232.skofcraft.phone.PhoneAddiction;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
@@ -21,12 +22,19 @@ public class GumEvents {
         if (event.player instanceof ServerPlayer serverPlayer && serverPlayer.tickCount % 5 == 0) {
             syncToClient(serverPlayer);
         }
+        if (event.player instanceof ServerPlayer serverPlayer) {
+            PhoneAddiction.tick(serverPlayer);
+            if (serverPlayer.tickCount % 200 == 0) {
+                PhoneAddiction.sync(serverPlayer);
+            }
+        }
     }
 
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
             syncToClient(serverPlayer);
+            PhoneAddiction.sync(serverPlayer);
         }
     }
 

@@ -4,8 +4,12 @@ import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.item.AddictolItem;
+import ch.rere232.skofcraft.item.ApacheItem;
+import ch.rere232.skofcraft.item.BlahajItem;
+import ch.rere232.skofcraft.item.F14Item;
 import ch.rere232.skofcraft.item.ChichaPipeItem;
 import ch.rere232.skofcraft.item.PouchMixItem;
+import ch.rere232.skofcraft.item.PhoneItem;
 import ch.rere232.skofcraft.item.SnuffItem;
 import ch.rere232.skofcraft.item.VapeItem;
 import ch.rere232.skofcraft.item.QuestBookItem;
@@ -70,6 +74,12 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> SNUS_POUCH = gumItem("snus_pouch", () -> SkofcraftConfig.snusDurationMinutes);
     public static final RegistryObject<Item> NICOTINE_POUCH = gumItem("nicotine_pouch", () -> SkofcraftConfig.pouchDurationMinutes);
     public static final RegistryObject<Item> SPIT = ITEMS.register("spit", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> PHONE = ITEMS.register("phone",
+            () -> new PhoneItem(new Item.Properties()));
+    public static final RegistryObject<Item> APACHE = ITEMS.register("apache",
+            () -> new ApacheItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> F14 = ITEMS.register("f14",
+            () -> new F14Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> ADDICTOL = ITEMS.register("addictol",
             () -> new AddictolItem(new Item.Properties().stacksTo(4).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> CHICHA_PIPE = ITEMS.register("chicha_pipe",
@@ -86,7 +96,10 @@ public class SkofcraftItems {
             () -> new SkofcraftBoxItem(new Item.Properties(), NICOTINE_POUCH::get, EMPTY_POUCH_BOX::get));
 
     public static final RegistryObject<Item> TOBACCO_PLANT = blockItem("tobacco_plant", SkofcraftBlocks.TOBACCO_PLANT);
+    public static final RegistryObject<Item> BLAHAJ = ITEMS.register("blahaj",
+            () -> new BlahajItem(SkofcraftBlocks.BLAHAJ.get(), new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> CHICHA = blockItem("chicha", SkofcraftBlocks.CHICHA);
+    public static final RegistryObject<Item> TOBACCONIST_COUNTER = blockItem("tobacconist_counter", SkofcraftBlocks.TOBACCONIST_COUNTER);
     public static final RegistryObject<Item> MANUAL_DRYER = blockItem("manual_dryer", SkofcraftBlocks.MANUAL_DRYER);
     public static final RegistryObject<Item> MANUAL_GRINDER = blockItem("manual_grinder", SkofcraftBlocks.MANUAL_GRINDER);
     public static final RegistryObject<Item> MANUAL_MIXER = blockItem("manual_mixer", SkofcraftBlocks.MANUAL_MIXER);

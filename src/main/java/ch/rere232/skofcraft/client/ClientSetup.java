@@ -37,11 +37,27 @@ public class ClientSetup {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(SkofcraftEntities.SPIT.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.DELIVERY_PLANE.get(), DeliveryPlaneRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.DELIVERY_CRATE.get(), DeliveryCrateRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.APACHE.get(), ApacheRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.F14.get(), F14Renderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.APACHE_BULLET.get(), ctx -> new ThrownItemRenderer<>(ctx, 0.6F, true));
+        event.registerEntityRenderer(SkofcraftEntities.APACHE_ROCKET.get(), ctx -> new ThrownItemRenderer<>(ctx, 1.0F, true));
         event.registerBlockEntityRenderer(SkofcraftBlockEntities.CHICHA.get(), ChichaRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(DeliveryPlaneModel.LAYER, DeliveryPlaneModel::createBodyLayer);
+        event.registerLayerDefinition(DeliveryCrateModel.LAYER, DeliveryCrateModel::createBodyLayer);
+        event.registerLayerDefinition(ApacheModel.LAYER, ApacheModel::createBodyLayer);
+        event.registerLayerDefinition(F14Model.LAYER, F14Model::createBodyLayer);
     }
 
     @SubscribeEvent
     public static void registerOverlays(RegisterGuiOverlaysEvent event) {
         event.registerAboveAll("spit_overlay", SpitOverlay::render);
+        event.registerAboveAll("apache_hud", ApacheHud::render);
+        event.registerAboveAll("f14_hud", F14Hud::render);
     }
 }
