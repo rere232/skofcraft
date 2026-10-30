@@ -2,6 +2,62 @@
   "itemGroup.skofcraft.skofcraft": "SKOFCRAFT",
   "message.skofcraft.gums_full": "All gum slots are occupied.",
   "tooltip.skofcraft.remaining": "Remaining content: %s/%s",
+  "tooltip.skofcraft.strength": "Strength: %s",
+  "tooltip.skofcraft.strength.1": "Strong",
+  "tooltip.skofcraft.strength.2": "Extra Strong",
+  "tooltip.skofcraft.strength.3": "Premium",
+
+  "item.skofcraft.quest_book": "Quest Book",
+
+  "questbook.skofcraft.heading": "SKOFCRAFT Guide",
+  "questbook.skofcraft.intro.title": "Getting Started",
+  "questbook.skofcraft.intro.p1": "Welcome! This book explains how to make everything in SKOFCRAFT. Pick a chapter on the left and scroll with the mouse wheel.",
+  "questbook.skofcraft.intro.p2": "Snus route: Seeds > Fresh Leaf > Dried Leaf > Ground Tobacco > Snus Pouch > Snus Box.",
+  "questbook.skofcraft.intro.p3": "Nicotine route: Dried Leaf > Nicotine Extract > Nicotine Pouch (with a flavor) > Pouch Box.",
+  "questbook.skofcraft.intro.p4": "Manual machines are cranked by hand (Shift + right-click). FE machines run on Forge Energy instead.",
+
+  "questbook.skofcraft.farming.title": "Tobacco Farming",
+  "questbook.skofcraft.farming.p1": "Craft Tobacco Seeds from any Oak Leaves, or buy them from a Tobacconist villager.",
+  "questbook.skofcraft.farming.p2": "Plant the seeds on farmland and wait until the plant is fully grown (8 stages).",
+  "questbook.skofcraft.farming.p3": "Break a fully grown plant to get Fresh Tobacco Leaves. Breaking it early only gives the seed back.",
+  "questbook.skofcraft.farming.p4": "Tobacconists also buy Fresh Tobacco Leaves for emeralds.",
+
+  "questbook.skofcraft.drying.title": "Drying Leaves",
+  "questbook.skofcraft.drying.p1": "The Manual Dryer turns Fresh Tobacco Leaves into Dried Tobacco Leaves.",
+  "questbook.skofcraft.drying.p2": "Right-click the machine to open it and put leaves in the left slot. Then Shift + right-click it to crank: each crank adds 1 second of work and a leaf needs 10 seconds. Take the result from the right slot.",
+
+  "questbook.skofcraft.grinding.title": "Grinding",
+  "questbook.skofcraft.grinding.p1": "The Manual Grinder crushes Dried Tobacco Leaves into Ground Tobacco.",
+  "questbook.skofcraft.grinding.p2": "One leaf gives 2 Ground Tobacco. Crank it like the dryer; a leaf needs about 8 cranks.",
+
+  "questbook.skofcraft.snus.title": "Snus Pouches",
+  "questbook.skofcraft.snus.p1": "The Manual Pouch Press packs Ground Tobacco into Empty Pouches. Empty Pouches cannot be crafted: buy them from a Tobacconist villager.",
+  "questbook.skofcraft.snus.p2": "Put Ground Tobacco in the middle slot and an Empty Pouch in the right one, then crank. You get a Snus Pouch. The left slot is an optional booster: Nicotine Extract makes Strong snus, 1 Nicotine Crystal Extra Strong, and 2 Crystals Premium.",
+
+  "questbook.skofcraft.nicotine.title": "Nicotine Pouches",
+  "questbook.skofcraft.nicotine.p1": "A nicotine pouch takes 3 steps: the Mixer combines Neutral Base, Nicotine and a Flavor into a Nicotine Mix, then the Press turns the Mix and an Empty Pouch into a Nicotine Pouch.",
+  "questbook.skofcraft.nicotine.p2": "Plant Fiber: 3 Sugar Cane make 2 fibers. Neutral Base: 4 fibers and a Water Bucket make 4 bases (you keep the bucket).",
+  "questbook.skofcraft.nicotine.p3": "Nicotine Extract comes from the FE Nicotine Extractor. It needs power, so build an FE Dryer first (see Powered Machines). Smelt an Extract in a furnace to get a stronger Nicotine Crystal.",
+  "questbook.skofcraft.nicotine.p4": "Mixer slots: Neutral Base, Nicotine, Flavor. Extract gives a normal pouch, 1 Crystal Strong, 2 Crystals Extra Strong. The flavor changes the bonus (Mint gives extra speed). Mint Flavor can be bought from a Tobacconist; other flavors have no survival recipe yet.",
+
+  "questbook.skofcraft.packaging.title": "Boxes",
+  "questbook.skofcraft.packaging.p1": "Craft empty boxes first: wood for snus, paper for nicotine pouches.",
+  "questbook.skofcraft.packaging.p2": "The FE Packager fills a box with a full set of pouches of the same type (20 by default). Snus Pouches go in Snus Boxes, Nicotine Pouches in Pouch Boxes. Flavor and strength are kept. Pouches do not stack, so the Packager's pouch slot works as a counter: add them one at a time (it shows 5/20) and it packs a box once full. The Press output counts the same way: click it to take pouches one by one, Shift-click to take them all.",
+  "questbook.skofcraft.packaging.p3": "Right-click a filled box to take out one pouch at a time. It becomes an empty box when it runs out.",
+
+  "questbook.skofcraft.power.title": "Powered Machines",
+  "questbook.skofcraft.power.p1": "Each FE machine is an upgrade of a manual one: put the manual machine in the middle of the recipe.",
+  "questbook.skofcraft.power.p2": "FE machines work on their own, no cranking. Each stores 10,000 FE and accepts up to 500 FE/t. Use per tick: Dryer 20, Grinder 40, Mixer 60, Press 60, Packager 80, Extractor 100, industrial machines 200. Hover the orange bar to see the charge. The Packager always needs power.",
+
+  "questbook.skofcraft.industrial.title": "Industrial Machines",
+  "questbook.skofcraft.industrial.p1": "Industrial machines are upgrades of FE machines that work faster.",
+  "questbook.skofcraft.industrial.p2": "The Snus Line works like a Mixer (6 s instead of 10 s) and the Pouch Line like a Press (4.5 s instead of 7.5 s). The Extractor takes 6 s instead of 9 s and the Packager 4 s instead of 8 s.",
+
+  "questbook.skofcraft.using.title": "Using Pouches",
+  "questbook.skofcraft.using.p1": "Right-click a pouch to place it in one of your 4 gum slots. It lasts several minutes (15 by default).",
+  "questbook.skofcraft.using.p2": "Press G (default key) to open the gum screen, see the time left and right-click a slot to discard its pouch.",
+  "questbook.skofcraft.using.p3": "Active pouches give Speed and Haste, stronger with 2 or more. Strong pouches add +1 and Extra Strong or Premium +2, but build tolerance and addiction faster. Nicotine Pouches add a bonus depending on their flavor.",
+  "questbook.skofcraft.using.p4": "Careful: 3 pouches at once cause nausea and 4 slow you down (Premium pouches avoid this). Heavy use builds tolerance, and stopping after getting addicted brings withdrawal (weakness, mining fatigue). These can be disabled in the config.",
 
   "item.skofcraft.tobacco_seeds": "Tobacco Seeds",
   "item.skofcraft.tobacco_leaf_fresh": "Fresh Tobacco Leaf",
@@ -11,6 +67,7 @@
   "item.skofcraft.neutral_base": "Neutral Base",
   "item.skofcraft.nicotine_extract": "Nicotine Extract",
   "item.skofcraft.nicotine_crystals": "Nicotine Crystals",
+  "item.skofcraft.nicotine_mix": "Nicotine Mix",
   "item.skofcraft.salt": "Salt",
   "item.skofcraft.flavor_mint": "Mint Flavor",
   "item.skofcraft.flavor_ice_mint": "Ice Mint Flavor",
@@ -58,6 +115,16 @@
   "advancements.skofcraft.nicotine_chain.description": "Craft a nicotine pouch.",
   "advancements.skofcraft.boxed_production.title": "Factory Output",
   "advancements.skofcraft.boxed_production.description": "Fill both snus and pouch boxes.",
+  "advancements.skofcraft.first_drying.title": "First Drying",
+  "advancements.skofcraft.first_drying.description": "Dry a tobacco leaf.",
+  "advancements.skofcraft.first_tobacconist.title": "Open for Business",
+  "advancements.skofcraft.first_tobacconist.description": "Trade with a Tobacconist villager.",
+  "advancements.skofcraft.automated_production.title": "Automated Production",
+  "advancements.skofcraft.automated_production.description": "Build an FE Packager.",
+  "advancements.skofcraft.industry.title": "SKOFCRAFT Industry",
+  "advancements.skofcraft.industry.description": "Build an industrial machine.",
+  "advancements.skofcraft.snus_kingdom.title": "Snus Kingdom",
+  "advancements.skofcraft.snus_kingdom.description": "Own an Industrial Packager along with filled snus and pouch boxes.",
 
   "entity.minecraft.villager.skofcraft.tobacconist": "Tobacconist"
 }

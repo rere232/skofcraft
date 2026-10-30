@@ -23,13 +23,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class FEDryerBlockEntity extends BlockEntity {
     private static final int CAPACITY = 10000;
-    private static final int MAX_RECEIVE = 100;
-    private static final int ENERGY_PER_TICK = 20;
+    private static final int MAX_RECEIVE = 500;
 
     private final boolean requiresEnergy;
     private final boolean extractorMode;
     private final boolean industrial;
     private final int processingTime;
+    private final int energyCost;
 
     private final EnergyStorage energy = new EnergyStorage(CAPACITY, MAX_RECEIVE, 0, 0) {
         @Override
@@ -61,6 +61,7 @@ public class FEDryerBlockEntity extends BlockEntity {
         this.extractorMode = blockState.getBlock() == SkofcraftBlocks.FE_NICOTINE_EXTRACTOR.get() || blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_EXTRACTOR.get();
         this.industrial = blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_EXTRACTOR.get();
         this.processingTime = industrial ? 120 : (extractorMode ? 180 : 200);
+        this.energyCost = industrial ? 200 : (extractorMode ? 100 : 20);
         this.itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> extractorMode ? stack.is(SkofcraftItems.TOBACCO_LEAF_DRY.get()) : isFreshTobacco(stack.getItem())));
     }
 
@@ -78,7 +79,7 @@ public class FEDryerBlockEntity extends BlockEntity {
 
         if (isProcessing) {
             if (requiresEnergy) {
-                int energyPerTick = Math.max(1, (int) Math.round(ENERGY_PER_TICK * ch.rere232.skofcraft.config.SkofcraftConfig.machineEnergyMultiplier));
+                int energyPerTick = Math.max(1, (int) Math.round(energyCost * ch.rere232.skofcraft.config.SkofcraftConfig.machineEnergyMultiplier));
                 if (energy.getEnergyStored() < energyPerTick) {
                     return;
                 }

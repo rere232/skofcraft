@@ -3,6 +3,8 @@ package ch.rere232.skofcraft.registry;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.item.GumConsumableItem;
+import ch.rere232.skofcraft.item.PouchMixItem;
+import ch.rere232.skofcraft.item.QuestBookItem;
 import ch.rere232.skofcraft.item.SkofcraftBoxItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -18,6 +20,9 @@ public class SkofcraftItems {
 
         public static final RegistryObject<Item> TOBACCO_SEEDS = ITEMS.register("tobacco_seeds",
             () -> new ItemNameBlockItem(SkofcraftBlocks.TOBACCO_PLANT.get(), new Item.Properties()));
+    public static final RegistryObject<Item> QUEST_BOOK = ITEMS.register("quest_book",
+            () -> new QuestBookItem(new Item.Properties()));
+
     public static final RegistryObject<Item> TOBACCO_LEAF_FRESH = item("tobacco_leaf_fresh");
     public static final RegistryObject<Item> TOBACCO_LEAF_DRY = item("tobacco_leaf_dry");
     public static final RegistryObject<Item> TOBACCO_DUST = item("tobacco_dust");
@@ -26,6 +31,8 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> NEUTRAL_BASE = item("neutral_base");
     public static final RegistryObject<Item> NICOTINE_EXTRACT = item("nicotine_extract");
     public static final RegistryObject<Item> NICOTINE_CRYSTALS = item("nicotine_crystals");
+    public static final RegistryObject<Item> NICOTINE_MIX = ITEMS.register("nicotine_mix",
+            () -> new PouchMixItem(new Item.Properties()));
 
     public static final RegistryObject<Item> FLAVOR_MINT = item("flavor_mint");
     public static final RegistryObject<Item> FLAVOR_ICE_MINT = item("flavor_ice_mint");
@@ -71,7 +78,7 @@ public class SkofcraftItems {
     }
 
     private static RegistryObject<Item> gumItem(String name, Supplier<Integer> durationSupplier) {
-        return ITEMS.register(name, () -> new GumConsumableItem(new Item.Properties().stacksTo(16), durationSupplier));
+        return ITEMS.register(name, () -> new GumConsumableItem(new Item.Properties().stacksTo(1), durationSupplier));
     }
 
     private static RegistryObject<Item> blockItem(String name, Supplier<? extends net.minecraft.world.level.block.Block> block) {

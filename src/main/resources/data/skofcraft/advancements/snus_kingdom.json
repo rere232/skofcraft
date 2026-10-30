@@ -1,0 +1,38 @@
+{
+  "parent": "skofcraft:industry",
+  "display": {
+    "icon": { "item": "skofcraft:filled_snus_box" },
+    "title": { "translate": "advancements.skofcraft.snus_kingdom.title" },
+    "description": { "translate": "advancements.skofcraft.snus_kingdom.description" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_filled_snus_box": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          { "items": ["skofcraft:filled_snus_box"] }
+        ]
+      }
+    },
+    "has_filled_pouch_box": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          { "items": ["skofcraft:filled_pouch_box"] }
+        ]
+      }
+    },
+    "has_industrial_packager": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          { "items": ["skofcraft:industrial_packager"] }
+        ]
+      }
+    }
+  }
+}

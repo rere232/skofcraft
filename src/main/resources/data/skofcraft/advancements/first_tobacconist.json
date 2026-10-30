@@ -1,0 +1,28 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": { "item": "minecraft:emerald" },
+    "title": { "translate": "advancements.skofcraft.first_tobacconist.title" },
+    "description": { "translate": "advancements.skofcraft.first_tobacconist.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "traded_with_tobacconist": {
+      "trigger": "minecraft:villager_trade",
+      "conditions": {
+        "villager": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "nbt": "{VillagerData:{profession:\"skofcraft:tobacconist\"}}"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

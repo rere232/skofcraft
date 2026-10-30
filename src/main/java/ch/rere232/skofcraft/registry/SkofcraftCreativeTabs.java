@@ -15,6 +15,7 @@ public class SkofcraftCreativeTabs {
             .title(Component.translatable("itemGroup.skofcraft.skofcraft"))
             .icon(() -> new ItemStack(SkofcraftItems.FILLED_SNUS_BOX.get()))
             .displayItems((parameters, output) -> {
+                output.accept(SkofcraftItems.QUEST_BOOK.get());
                 output.accept(SkofcraftItems.TOBACCO_SEEDS.get());
                 output.accept(SkofcraftItems.TOBACCO_LEAF_FRESH.get());
                 output.accept(SkofcraftItems.TOBACCO_LEAF_DRY.get());
@@ -23,6 +24,7 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.VEGETAL_FIBER.get());
                 output.accept(SkofcraftItems.NICOTINE_EXTRACT.get());
                 output.accept(SkofcraftItems.NICOTINE_CRYSTALS.get());
+                output.accept(SkofcraftItems.NICOTINE_MIX.get());
 
                 output.accept(SkofcraftItems.FLAVOR_MINT.get());
                 output.accept(SkofcraftItems.FLAVOR_ICE_MINT.get());

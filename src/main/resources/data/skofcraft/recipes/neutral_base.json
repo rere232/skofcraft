@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "skofcraft:vegetal_fiber" },
+    { "item": "skofcraft:vegetal_fiber" },
+    { "item": "skofcraft:vegetal_fiber" },
+    { "item": "skofcraft:vegetal_fiber" },
+    { "item": "minecraft:water_bucket" }
+  ],
+  "result": {
+    "item": "skofcraft:neutral_base",
+    "count": 4
+  }
+}

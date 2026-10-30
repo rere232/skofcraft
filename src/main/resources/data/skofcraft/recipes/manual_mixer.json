@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": ["III", "IMI", "III"],
+  "pattern": ["III", "ICI", "III"],
   "key": {
     "I": { "item": "minecraft:iron_ingot" },
-    "M": { "item": "minecraft:smooth_stone" }
+    "C": { "item": "minecraft:cauldron" }
   },
   "result": {
     "item": "skofcraft:manual_mixer"

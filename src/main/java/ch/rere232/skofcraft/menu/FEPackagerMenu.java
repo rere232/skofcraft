@@ -6,6 +6,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
@@ -13,6 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class FEPackagerMenu extends AbstractContainerMenu {
+    private static final int POUCH_SLOT = 0;
+
     private final FEPackagerBlockEntity blockEntity;
     private final ContainerData data;
 
@@ -83,9 +86,31 @@ public class FEPackagerMenu extends AbstractContainerMenu {
     }
 
     @Override
+    public void clicked(int slotId, int button, ClickType clickType, Player player) {
+        if (slotId == POUCH_SLOT && PouchCounters.handleClick(this, slots.get(slotId), clickType, player, true)) {
+            return;
+        }
+        super.clicked(slotId, button, clickType, player);
+    }
+
+    @Override
     public ItemStack quickMoveStack(Player player, int slotIndex) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = slots.get(slotIndex);
+
+        if (slotIndex >= 3 && slot.hasItem() && PouchCounters.isPouch(slot.getItem())) {
+            ItemStack moved = slot.getItem();
+            ItemStack before = moved.copy();
+            if (!PouchCounters.insertOne(slots.get(POUCH_SLOT), moved)) {
+                return ItemStack.EMPTY;
+            }
+            if (moved.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+            return before;
+        }
 
         if (slot.hasItem()) {
             ItemStack itemStack1 = slot.getItem();

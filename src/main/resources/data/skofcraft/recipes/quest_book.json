@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:book" },
+    { "item": "skofcraft:tobacco_seeds" }
+  ],
+  "result": {
+    "item": "skofcraft:quest_book"
+  }
+}

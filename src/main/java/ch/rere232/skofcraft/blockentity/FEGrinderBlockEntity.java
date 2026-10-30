@@ -22,9 +22,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class FEGrinderBlockEntity extends BlockEntity {
     private static final int CAPACITY = 10000;
-    private static final int MAX_RECEIVE = 100;
+    private static final int MAX_RECEIVE = 500;
     private static final int PROCESSING_TIME = 150;
-    private static final int ENERGY_PER_TICK = 20;
+    private static final int ENERGY_PER_TICK = 40;
 
     private final boolean requiresEnergy;
 

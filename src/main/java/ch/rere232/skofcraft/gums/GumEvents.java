@@ -35,14 +35,16 @@ public class GumEvents {
         int[] ticks = new int[GumSlotData.SLOT_COUNT];
         String[] itemIds = new String[GumSlotData.SLOT_COUNT];
         String[] flavorIds = new String[GumSlotData.SLOT_COUNT];
+        int[] strengths = new int[GumSlotData.SLOT_COUNT];
 
         for (int i = 0; i < GumSlotData.SLOT_COUNT; i++) {
             ticks[i] = data.getRemainingTicks(i);
             ItemStack item = data.getSlotItem(i);
             itemIds[i] = item.isEmpty() ? "" : net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item.getItem()).toString();
             flavorIds[i] = item.isEmpty() ? "" : GumConsumableItem.getFlavorId(item);
+            strengths[i] = item.isEmpty() ? 0 : GumConsumableItem.getStrength(item);
         }
 
-        SkofcraftNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new GumSyncS2CPacket(ticks, itemIds, flavorIds));
+        SkofcraftNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new GumSyncS2CPacket(ticks, itemIds, flavorIds, strengths, data.getTolerance(), data.getAddiction()));
     }
 }

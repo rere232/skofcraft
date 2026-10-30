@@ -2,6 +2,62 @@
   "itemGroup.skofcraft.skofcraft": "SKOFCRAFT",
   "message.skofcraft.gums_full": "Tous les slots de gencives sont occupes.",
   "tooltip.skofcraft.remaining": "Contenu restant : %s/%s",
+  "tooltip.skofcraft.strength": "Force : %s",
+  "tooltip.skofcraft.strength.1": "Forte",
+  "tooltip.skofcraft.strength.2": "Extra forte",
+  "tooltip.skofcraft.strength.3": "Premium",
+
+  "item.skofcraft.quest_book": "Livre de quetes",
+
+  "questbook.skofcraft.heading": "Guide SKOFCRAFT",
+  "questbook.skofcraft.intro.title": "Pour commencer",
+  "questbook.skofcraft.intro.p1": "Bienvenue ! Ce livre explique comment tout fabriquer dans SKOFCRAFT. Choisissez un chapitre a gauche et faites defiler avec la molette.",
+  "questbook.skofcraft.intro.p2": "Voie du snus : Graines > Feuille fraiche > Feuille sechee > Tabac moulu > Sachet de snus > Boite de snus.",
+  "questbook.skofcraft.intro.p3": "Voie nicotine : Feuille sechee > Extrait de nicotine > Nicotine pouch (avec un arome) > Boite de pouches.",
+  "questbook.skofcraft.intro.p4": "Les machines manuelles s'actionnent a la main (Maj + clic droit). Les machines FE utilisent de l'energie Forge.",
+
+  "questbook.skofcraft.farming.title": "Culture du tabac",
+  "questbook.skofcraft.farming.p1": "Fabriquez des graines de tabac avec des feuilles de chene, ou achetez-en a un tabacologue.",
+  "questbook.skofcraft.farming.p2": "Plantez les graines sur de la terre labouree et attendez que la plante soit mature (8 stades).",
+  "questbook.skofcraft.farming.p3": "Cassez une plante mature pour obtenir des feuilles fraiches. Cassee trop tot, elle ne rend que la graine.",
+  "questbook.skofcraft.farming.p4": "Les tabacologues rachetent aussi les feuilles fraiches contre des emeraudes.",
+
+  "questbook.skofcraft.drying.title": "Sechage",
+  "questbook.skofcraft.drying.p1": "Le sechoir manuel transforme les feuilles fraiches en feuilles sechees.",
+  "questbook.skofcraft.drying.p2": "Clic droit sur la machine pour l'ouvrir et mettez les feuilles dans la case de gauche. Puis Maj + clic droit pour actionner : chaque tour ajoute 1 seconde de travail et une feuille en demande 10. Recuperez le resultat dans la case de droite.",
+
+  "questbook.skofcraft.grinding.title": "Broyage",
+  "questbook.skofcraft.grinding.p1": "Le broyeur manuel ecrase les feuilles sechees en tabac moulu.",
+  "questbook.skofcraft.grinding.p2": "Une feuille donne 2 tabacs moulus. Actionnez-le comme le sechoir ; une feuille demande environ 8 tours.",
+
+  "questbook.skofcraft.snus.title": "Sachets de snus",
+  "questbook.skofcraft.snus.p1": "La presse manuelle remplit des sachets vides avec du tabac moulu. Les sachets vides ne se fabriquent pas : achetez-les a un tabacologue.",
+  "questbook.skofcraft.snus.p2": "Mettez le tabac moulu dans la case du milieu et un sachet vide dans celle de droite, puis actionnez. Vous obtenez un sachet de snus. La case de gauche est un booster optionnel : l'extrait de nicotine donne du snus fort, 1 cristal extra fort, et 2 cristaux premium.",
+
+  "questbook.skofcraft.nicotine.title": "Nicotine pouches",
+  "questbook.skofcraft.nicotine.p1": "Un nicotine pouch demande 3 etapes : le melangeur combine base neutre, nicotine et arome en un melange de nicotine, puis la presse transforme le melange et un sachet vide en nicotine pouch.",
+  "questbook.skofcraft.nicotine.p2": "Fibre vegetale : 3 cannes a sucre donnent 2 fibres. Base neutre : 4 fibres et un seau d'eau donnent 4 bases (vous gardez le seau).",
+  "questbook.skofcraft.nicotine.p3": "L'extrait de nicotine vient de l'extracteur FE. Il demande de l'energie : construisez d'abord un sechoir FE (voir Machines electriques). Faites cuire un extrait au four pour obtenir un cristal de nicotine, plus fort.",
+  "questbook.skofcraft.nicotine.p4": "Cases du melangeur : base neutre, nicotine, arome. L'extrait donne un pouch normal, 1 cristal fort, 2 cristaux extra fort. L'arome change le bonus (la menthe donne plus de vitesse). L'arome menthe s'achete chez un tabacologue ; les autres aromes n'ont pas encore de recette en survie.",
+
+  "questbook.skofcraft.packaging.title": "Boites",
+  "questbook.skofcraft.packaging.p1": "Fabriquez d'abord des boites vides : en bois pour le snus, en papier pour les nicotine pouches.",
+  "questbook.skofcraft.packaging.p2": "L'emballeuse FE remplit une boite avec un lot complet de sachets du meme type (20 par defaut). Les sachets de snus vont dans les boites de snus, les nicotine pouches dans les boites de pouches. L'arome et la force sont conserves. Les sachets ne s'empilent pas, donc la case de sachets de l'emballeuse sert de compteur : ajoutez-les un par un (elle affiche 5/20) et elle emballe une boite une fois pleine. La sortie de la presse compte de la meme facon : cliquez pour sortir les sachets un par un, Maj + clic pour tout prendre.",
+  "questbook.skofcraft.packaging.p3": "Clic droit sur une boite remplie pour sortir un sachet a la fois. Elle devient une boite vide quand elle est epuisee.",
+
+  "questbook.skofcraft.power.title": "Machines electriques",
+  "questbook.skofcraft.power.p1": "Chaque machine FE est une amelioration d'une machine manuelle : placez la machine manuelle au centre de la recette.",
+  "questbook.skofcraft.power.p2": "Les machines FE travaillent seules, sans manivelle. Chacune stocke 10 000 FE et accepte jusqu'a 500 FE/t. Consommation par tick : sechoir 20, broyeur 40, melangeur 60, presse 60, emballeuse 80, extracteur 100, machines industrielles 200. Survolez la barre orange pour voir la charge. L'emballeuse demande toujours de l'energie.",
+
+  "questbook.skofcraft.industrial.title": "Machines industrielles",
+  "questbook.skofcraft.industrial.p1": "Les machines industrielles sont des ameliorations des machines FE, plus rapides.",
+  "questbook.skofcraft.industrial.p2": "La ligne de snus fonctionne comme un melangeur (6 s au lieu de 10 s) et la ligne de pouches comme une presse (4,5 s au lieu de 7,5 s). L'extracteur prend 6 s au lieu de 9 s et l'emballeuse 4 s au lieu de 8 s.",
+
+  "questbook.skofcraft.using.title": "Utilisation",
+  "questbook.skofcraft.using.p1": "Clic droit sur un sachet pour le placer dans l'un de vos 4 slots de gencive. Il dure plusieurs minutes (15 par defaut).",
+  "questbook.skofcraft.using.p2": "Appuyez sur G (touche par defaut) pour ouvrir l'ecran des gencives, voir le temps restant et faire un clic droit sur un slot pour jeter son sachet.",
+  "questbook.skofcraft.using.p3": "Les sachets actifs donnent Vitesse et Celerite, plus fortes avec 2 sachets ou plus. Les sachets forts ajoutent +1 et les extra forts ou premium +2, mais creent tolerance et dependance plus vite. Les nicotine pouches ajoutent un bonus selon leur arome.",
+  "questbook.skofcraft.using.p4": "Attention : 3 sachets a la fois causent des nausees et 4 vous ralentissent (les premium evitent cela). Une forte consommation cree de la tolerance, et arreter apres etre devenu dependant provoque du manque (faiblesse, fatigue). Tout cela se desactive dans la config.",
 
   "item.skofcraft.tobacco_seeds": "Graines de tabac",
   "item.skofcraft.tobacco_leaf_fresh": "Feuille de tabac fraiche",
@@ -11,6 +67,7 @@
   "item.skofcraft.neutral_base": "Base neutre",
   "item.skofcraft.nicotine_extract": "Extrait de nicotine",
   "item.skofcraft.nicotine_crystals": "Cristaux de nicotine",
+  "item.skofcraft.nicotine_mix": "Melange de nicotine",
   "item.skofcraft.salt": "Sel",
   "item.skofcraft.flavor_mint": "Arome menthe",
   "item.skofcraft.flavor_ice_mint": "Arome ice mint",
@@ -58,6 +115,16 @@
   "advancements.skofcraft.nicotine_chain.description": "Fabriquer un nicotine pouch.",
   "advancements.skofcraft.boxed_production.title": "Production en boites",
   "advancements.skofcraft.boxed_production.description": "Remplir une boite de snus et une boite de pouches.",
+  "advancements.skofcraft.first_drying.title": "Premier sechage",
+  "advancements.skofcraft.first_drying.description": "Secher une feuille de tabac.",
+  "advancements.skofcraft.first_tobacconist.title": "Ouvert aux affaires",
+  "advancements.skofcraft.first_tobacconist.description": "Faire un echange avec un tabacologue.",
+  "advancements.skofcraft.automated_production.title": "Production automatisee",
+  "advancements.skofcraft.automated_production.description": "Construire une emballeuse FE.",
+  "advancements.skofcraft.industry.title": "Industrie SKOFCRAFT",
+  "advancements.skofcraft.industry.description": "Construire une machine industrielle.",
+  "advancements.skofcraft.snus_kingdom.title": "Royaume du Snus",
+  "advancements.skofcraft.snus_kingdom.description": "Posseder une emballeuse industrielle ainsi que des boites de snus et de pouches remplies.",
 
   "entity.minecraft.villager.skofcraft.tobacconist": "Tabacologue"
 }

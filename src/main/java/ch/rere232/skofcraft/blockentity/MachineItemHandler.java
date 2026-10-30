@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.blockentity;
 
+import ch.rere232.skofcraft.item.GumConsumableItem;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -41,7 +42,9 @@ public class MachineItemHandler implements IItemHandlerModifiable {
         Container container = getContainerForSlot(slot);
         int containerSlot = getContainerSlot(slot);
         ItemStack existing = container.getItem(containerSlot);
-        int limit = Math.min(container.getMaxStackSize(), stack.getMaxStackSize());
+        int limit = stack.getItem() instanceof GumConsumableItem
+                ? container.getMaxStackSize()
+                : Math.min(container.getMaxStackSize(), stack.getMaxStackSize());
 
         if (!existing.isEmpty()) {
             if (!ItemStack.isSameItemSameTags(existing, stack)) {
@@ -84,7 +87,7 @@ public class MachineItemHandler implements IItemHandlerModifiable {
             return ItemStack.EMPTY;
         }
 
-        int toExtract = Math.min(amount, existing.getCount());
+        int toExtract = Math.min(Math.min(amount, existing.getCount()), existing.getMaxStackSize());
         ItemStack result = existing.copyWithCount(toExtract);
         if (!simulate) {
             existing.shrink(toExtract);

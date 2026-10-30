@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": { "item": "skofcraft:nicotine_extract" },
+  "result": "skofcraft:nicotine_crystals",
+  "experience": 0.3,
+  "cookingtime": 200
+}

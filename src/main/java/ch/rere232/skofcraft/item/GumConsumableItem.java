@@ -17,6 +17,8 @@ import java.util.function.Supplier;
 
 public class GumConsumableItem extends Item {
     public static final String TAG_FLAVOR = "SkofcraftFlavor";
+    public static final String TAG_STRENGTH = "SkofcraftStrength";
+    public static final int MAX_STRENGTH = 3;
 
     private final Supplier<Integer> durationMinutesSupplier;
 
@@ -43,12 +45,42 @@ public class GumConsumableItem extends Item {
         return stack.getTag().getString(TAG_FLAVOR);
     }
 
-    @Override
-    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+    public static int getStrength(ItemStack stack) {
+        if (!stack.hasTag()) {
+            return 0;
+        }
+        return Math.max(0, Math.min(MAX_STRENGTH, stack.getTag().getInt(TAG_STRENGTH)));
+    }
+
+    public static void setStrength(ItemStack stack, int strength) {
+        if (strength > 0) {
+            stack.getOrCreateTag().putInt(TAG_STRENGTH, Math.min(MAX_STRENGTH, strength));
+        }
+    }
+
+    /** Copies flavor and strength from one stack to another. */
+    public static void copyTraits(ItemStack from, ItemStack to) {
+        String flavor = getFlavorId(from);
+        if (!flavor.isEmpty()) {
+            to.getOrCreateTag().putString(TAG_FLAVOR, flavor);
+        }
+        setStrength(to, getStrength(from));
+    }
+
+    public static void addTraitTooltip(ItemStack stack, List<Component> tooltip) {
         String flavorId = getFlavorId(stack);
         if (!flavorId.isEmpty()) {
             tooltip.add(Component.literal("Flavor: " + flavorId.replace("skofcraft:flavor_", "").replace('_', ' ')));
         }
+        int strength = getStrength(stack);
+        if (strength > 0) {
+            tooltip.add(Component.translatable("tooltip.skofcraft.strength", Component.translatable("tooltip.skofcraft.strength." + strength)));
+        }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+        addTraitTooltip(stack, tooltip);
         super.appendHoverText(stack, level, tooltip, flag);
     }
 

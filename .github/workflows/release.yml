@@ -1,0 +1,61 @@
+
+name: Automatic Mod Release
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Build mod
+        run: bash ./gradlew build
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="build-${GITHUB_RUN_NUMBER}"
+
+          mapfile -t JARS < <(
+            find build/libs -maxdepth 1 -type f \
+              -name '*.jar' \
+              ! -name '*-sources.jar' \
+              ! -name '*-dev.jar' \
+              ! -name '*-javadoc.jar'
+          )
+
+          if [ ${#JARS[@]} -eq 0 ]; then
+            echo "No compiled JAR found!"
+            exit 1
+          fi
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "${JARS[@]}" --clobber
+          else
+            gh release create "$TAG" "${JARS[@]}" \
+              --target "$GITHUB_SHA" \
+              --title "Build #${GITHUB_RUN_NUMBER}" \
+              --generate-notes \
+              --prerelease
+          fi

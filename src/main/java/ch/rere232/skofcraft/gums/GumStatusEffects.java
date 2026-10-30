@@ -13,9 +13,11 @@ public class GumStatusEffects {
 
     public static void apply(Player player, GumSlotData data, boolean enableNegativeEffects, boolean enableTolerance, int toleranceLevel) {
         int activeSlots = 0;
+        int maxStrength = 0;
         for (int i = 0; i < GumSlotData.SLOT_COUNT; i++) {
             if (data.getRemainingTicks(i) > 0) {
                 activeSlots++;
+                maxStrength = Math.max(maxStrength, GumConsumableItem.getStrength(data.getSlotItem(i)));
             }
         }
 
@@ -25,7 +27,8 @@ public class GumStatusEffects {
 
         int baseAmplifier = Math.min(1, activeSlots - 1);
         int tolerancePenalty = enableTolerance ? toleranceLevel / 40 : 0;
-        int positiveAmplifier = Math.max(0, baseAmplifier - tolerancePenalty);
+        int positiveAmplifier = Math.max(0, baseAmplifier + Math.min(2, maxStrength) - tolerancePenalty);
+        boolean premium = maxStrength >= 3;
 
         player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 120, positiveAmplifier, true, false, true));
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 120, positiveAmplifier, true, false, true));
@@ -43,10 +46,10 @@ public class GumStatusEffects {
             applyFlavorEffect(player, flavor);
         }
 
-        if (enableNegativeEffects && activeSlots >= 3) {
+        if (enableNegativeEffects && !premium && activeSlots >= 3) {
             player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 80, 0, true, false, true));
         }
-        if (enableNegativeEffects && activeSlots >= 4) {
+        if (enableNegativeEffects && !premium && activeSlots >= 4) {
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 0, true, false, true));
         }
     }

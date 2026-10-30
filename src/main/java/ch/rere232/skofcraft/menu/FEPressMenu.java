@@ -6,6 +6,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
@@ -13,6 +14,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class FEPressMenu extends AbstractContainerMenu {
+    private static final int OUTPUT_SLOT = 3;
+
     private final FEPressBlockEntity blockEntity;
     private final ContainerData data;
 
@@ -48,6 +51,7 @@ public class FEPressMenu extends AbstractContainerMenu {
 
         addSlot(new Slot(blockEntity.getInputSlots(), 0, 44, 35));
         addSlot(new Slot(blockEntity.getInputSlots(), 1, 62, 35));
+        addSlot(new Slot(blockEntity.getInputSlots(), 2, 26, 35));
         addSlot(new Slot(blockEntity.getOutputSlots(), 0, 116, 35) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
@@ -84,6 +88,14 @@ public class FEPressMenu extends AbstractContainerMenu {
     }
 
     @Override
+    public void clicked(int slotId, int button, ClickType clickType, Player player) {
+        if (slotId == OUTPUT_SLOT && PouchCounters.handleClick(this, slots.get(slotId), clickType, player, false)) {
+            return;
+        }
+        super.clicked(slotId, button, clickType, player);
+    }
+
+    @Override
     public ItemStack quickMoveStack(Player player, int slotIndex) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = slots.get(slotIndex);
@@ -92,8 +104,8 @@ public class FEPressMenu extends AbstractContainerMenu {
             ItemStack itemStack1 = slot.getItem();
             itemStack = itemStack1.copy();
 
-            if (slotIndex < 3) {
-                if (!moveItemStackTo(itemStack1, 3, 39, true)) {
+            if (slotIndex < 4) {
+                if (!moveItemStackTo(itemStack1, 4, 40, true)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!moveItemStackTo(itemStack1, 0, 3, false)) {

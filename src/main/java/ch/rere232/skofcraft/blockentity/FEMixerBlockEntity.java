@@ -23,12 +23,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class FEMixerBlockEntity extends BlockEntity {
     private static final int CAPACITY = 10000;
-    private static final int MAX_RECEIVE = 100;
-    private static final int ENERGY_PER_TICK = 20;
+    private static final int MAX_RECEIVE = 500;
 
     private final boolean requiresEnergy;
     private final boolean industrial;
     private final int processingTime;
+    private final int energyCost;
 
     private final EnergyStorage energy = new EnergyStorage(CAPACITY, MAX_RECEIVE, 0, 0) {
         @Override
@@ -45,9 +45,9 @@ public class FEMixerBlockEntity extends BlockEntity {
     private final SimpleContainer inputSlots = new SimpleContainer(3);
     private final SimpleContainer outputSlots = new SimpleContainer(1);
     private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> switch (slot) {
-        case 0 -> stack.is(SkofcraftItems.NICOTINE_EXTRACT.get());
-        case 1 -> isFlavorItem(stack.getItem());
-        case 2 -> stack.is(SkofcraftItems.EMPTY_POUCH.get());
+        case 0 -> stack.is(SkofcraftItems.NEUTRAL_BASE.get());
+        case 1 -> isNicotineSource(stack.getItem());
+        case 2 -> isFlavorItem(stack.getItem());
         default -> false;
     }));
 
@@ -64,6 +64,7 @@ public class FEMixerBlockEntity extends BlockEntity {
         this.requiresEnergy = requiresEnergy && !isManualBlock(blockState.getBlock());
         this.industrial = blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_SNUS_LINE.get();
         this.processingTime = industrial ? 120 : 200;
+        this.energyCost = industrial ? 200 : 60;
     }
 
     private static boolean isManualBlock(Block block) {
@@ -80,7 +81,7 @@ public class FEMixerBlockEntity extends BlockEntity {
 
         if (isProcessing) {
             if (requiresEnergy) {
-                int energyPerTick = Math.max(1, (int) Math.round(ENERGY_PER_TICK * ch.rere232.skofcraft.config.SkofcraftConfig.machineEnergyMultiplier));
+                int energyPerTick = Math.max(1, (int) Math.round(energyCost * ch.rere232.skofcraft.config.SkofcraftConfig.machineEnergyMultiplier));
                 if (energy.getEnergyStored() < energyPerTick) {
                     return;
                 }
@@ -102,39 +103,61 @@ public class FEMixerBlockEntity extends BlockEntity {
     }
 
     private boolean canProcess() {
-        ItemStack extract = inputSlots.getItem(0);
-        ItemStack flavor = inputSlots.getItem(1);
-        ItemStack pouch = inputSlots.getItem(2);
         ItemStack output = outputSlots.getItem(0);
-
-        if (extract.isEmpty() || extract.getItem() != SkofcraftItems.NICOTINE_EXTRACT.get()) return false;
-        if (flavor.isEmpty() || !isFlavorItem(flavor.getItem())) return false;
-        if (pouch.isEmpty() || pouch.getItem() != SkofcraftItems.EMPTY_POUCH.get()) return false;
+        ItemStack result = buildResult();
+        if (result.isEmpty()) return false;
 
         if (output.isEmpty()) return true;
-        return output.getCount() < 64;
+        return ItemStack.isSameItemSameTags(output, result) && output.getCount() < 64;
+    }
+
+    /** Nicotine mix for the current inputs, or empty if the inputs are invalid. */
+    private ItemStack buildResult() {
+        ItemStack base = inputSlots.getItem(0);
+        ItemStack nicotine = inputSlots.getItem(1);
+        ItemStack flavor = inputSlots.getItem(2);
+
+        if (base.isEmpty() || base.getItem() != SkofcraftItems.NEUTRAL_BASE.get()) return ItemStack.EMPTY;
+        if (nicotine.isEmpty() || !isNicotineSource(nicotine.getItem())) return ItemStack.EMPTY;
+        if (flavor.isEmpty() || !isFlavorItem(flavor.getItem())) return ItemStack.EMPTY;
+
+        ItemStack result = new ItemStack(SkofcraftItems.NICOTINE_MIX.get());
+        GumConsumableItem.setFlavor(result, flavor);
+        GumConsumableItem.setStrength(result, nicotineStrength(nicotine));
+        return result;
+    }
+
+    /** Extract gives a normal mix, one crystal a strong one, two or more crystals an extra strong one. */
+    private static int nicotineStrength(ItemStack nicotine) {
+        if (nicotine.getItem() == SkofcraftItems.NICOTINE_CRYSTALS.get()) {
+            return nicotine.getCount() >= 2 ? 2 : 1;
+        }
+        return 0;
+    }
+
+    private static boolean isNicotineSource(Object item) {
+        return item == SkofcraftItems.NICOTINE_EXTRACT.get() || item == SkofcraftItems.NICOTINE_CRYSTALS.get();
     }
 
     private void finishProcessing() {
-        ItemStack extract = inputSlots.getItem(0);
-        ItemStack flavor = inputSlots.getItem(1);
-        ItemStack pouch = inputSlots.getItem(2);
+        ItemStack base = inputSlots.getItem(0);
+        ItemStack nicotine = inputSlots.getItem(1);
+        ItemStack flavor = inputSlots.getItem(2);
         ItemStack output = outputSlots.getItem(0);
 
-        if (extract.isEmpty() || flavor.isEmpty() || pouch.isEmpty()) return;
-
-        ItemStack result = new ItemStack(SkofcraftItems.NICOTINE_POUCH.get());
-        GumConsumableItem.setFlavor(result, flavor);
+        ItemStack result = buildResult();
+        if (result.isEmpty()) return;
+        int nicotineCost = nicotineStrength(nicotine) == 2 ? 2 : 1;
 
         if (output.isEmpty()) {
             outputSlots.setItem(0, result);
-        } else if (output.getCount() < 64) {
+        } else if (ItemStack.isSameItemSameTags(output, result) && output.getCount() < 64) {
             output.grow(1);
         }
 
-        extract.shrink(1);
+        base.shrink(1);
+        nicotine.shrink(nicotineCost);
         flavor.shrink(1);
-        pouch.shrink(1);
     }
 
     private boolean isFlavorItem(Object item) {

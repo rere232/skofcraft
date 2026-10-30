@@ -17,12 +17,13 @@ public class GumSlotData {
     private static final String SLOT_PREFIX = "Slot";
     private static final String ITEM_PREFIX = "SlotItem";
     private static final String FLAVOR_PREFIX = "SlotFlavor";
+    private static final String STRENGTH_PREFIX = "SlotStrength";
     private static final String TOLERANCE_KEY = "Tolerance";
     private static final String ADDICTION_KEY = "Addiction";
     private static final String CRAVING_TICKS_KEY = "CravingTicks";
 
-    private static final int MAX_TOLERANCE = 100;
-    private static final int MAX_ADDICTION = 100;
+    public static final int MAX_TOLERANCE = 100;
+    public static final int MAX_ADDICTION = 100;
 
     private final Player player;
 
@@ -48,6 +49,7 @@ public class GumSlotData {
                     if (!flavorId.isEmpty()) {
                         stack.getOrCreateTag().putString(GumConsumableItem.TAG_FLAVOR, flavorId);
                     }
+                    GumConsumableItem.setStrength(stack, rootTag.getInt(STRENGTH_PREFIX + index));
                     return stack;
                 }
             }
@@ -61,11 +63,20 @@ public class GumSlotData {
         return rootTag.getInt(SLOT_PREFIX + index);
     }
 
+    public int getTolerance() {
+        return getRootTag().getInt(TOLERANCE_KEY);
+    }
+
+    public int getAddiction() {
+        return getRootTag().getInt(ADDICTION_KEY);
+    }
+
     public void removeSlot(int index) {
         CompoundTag rootTag = getRootTag();
         rootTag.putInt(SLOT_PREFIX + index, 0);
         rootTag.remove(ITEM_PREFIX + index);
         rootTag.remove(FLAVOR_PREFIX + index);
+        rootTag.remove(STRENGTH_PREFIX + index);
     }
 
     public void tryInsert(int slotIndex, ItemStack stack) {
@@ -84,7 +95,8 @@ public class GumSlotData {
             if (!flavorId.isEmpty()) {
                 rootTag.putString(FLAVOR_PREFIX + slotIndex, flavorId);
             }
-            onProductInserted(rootTag);
+            rootTag.putInt(STRENGTH_PREFIX + slotIndex, GumConsumableItem.getStrength(stack));
+            onProductInserted(rootTag, GumConsumableItem.getStrength(stack));
         }
     }
 
@@ -105,7 +117,8 @@ public class GumSlotData {
                 if (!flavorId.isEmpty()) {
                     rootTag.putString(FLAVOR_PREFIX + i, flavorId);
                 }
-                onProductInserted(rootTag);
+                rootTag.putInt(STRENGTH_PREFIX + i, GumConsumableItem.getStrength(stack));
+                onProductInserted(rootTag, GumConsumableItem.getStrength(stack));
                 return true;
             }
         }
@@ -124,6 +137,7 @@ public class GumSlotData {
                 if (nextTicks <= 0) {
                     rootTag.remove(ITEM_PREFIX + i);
                     rootTag.remove(FLAVOR_PREFIX + i);
+                    rootTag.remove(STRENGTH_PREFIX + i);
                 }
                 active++;
             }
@@ -161,25 +175,27 @@ public class GumSlotData {
         }
     }
 
-    private static void onProductInserted(CompoundTag rootTag) {
+    private static void onProductInserted(CompoundTag rootTag, int strength) {
         rootTag.putInt(CRAVING_TICKS_KEY, 0);
 
         if (SkofcraftConfig.enableTolerance) {
             int tolerance = rootTag.getInt(TOLERANCE_KEY);
-            rootTag.putInt(TOLERANCE_KEY, Math.min(MAX_TOLERANCE, tolerance + 2));
+            rootTag.putInt(TOLERANCE_KEY, Math.min(MAX_TOLERANCE, tolerance + 2 + strength));
         }
 
         if (SkofcraftConfig.enableAddiction) {
             int addiction = rootTag.getInt(ADDICTION_KEY);
-            rootTag.putInt(ADDICTION_KEY, Math.min(MAX_ADDICTION, addiction + 3));
+            rootTag.putInt(ADDICTION_KEY, Math.min(MAX_ADDICTION, addiction + 3 + strength));
         }
     }
 
-    public static void applySyncData(Player player, int[] ticks, String[] itemIds, String[] flavorIds) {
-        if (ticks == null || itemIds == null || flavorIds == null || ticks.length < SLOT_COUNT || itemIds.length < SLOT_COUNT || flavorIds.length < SLOT_COUNT) {
+    public static void applySyncData(Player player, int[] ticks, String[] itemIds, String[] flavorIds, int[] strengths, int tolerance, int addiction) {
+        if (ticks == null || itemIds == null || flavorIds == null || strengths == null || ticks.length < SLOT_COUNT || itemIds.length < SLOT_COUNT || flavorIds.length < SLOT_COUNT || strengths.length < SLOT_COUNT) {
             return;
         }
         CompoundTag rootTag = getRootTag(player);
+        rootTag.putInt(TOLERANCE_KEY, tolerance);
+        rootTag.putInt(ADDICTION_KEY, addiction);
         for (int i = 0; i < SLOT_COUNT; i++) {
             String tickKey = SLOT_PREFIX + i;
             String itemKey = ITEM_PREFIX + i;
@@ -187,6 +203,7 @@ public class GumSlotData {
             rootTag.putInt(tickKey, value);
             if (value > 0 && !itemIds[i].isEmpty()) {
                 rootTag.putString(itemKey, itemIds[i]);
+                rootTag.putInt(STRENGTH_PREFIX + i, strengths[i]);
                 if (!flavorIds[i].isEmpty()) {
                     rootTag.putString(FLAVOR_PREFIX + i, flavorIds[i]);
                 } else {
@@ -195,6 +212,7 @@ public class GumSlotData {
             } else {
                 rootTag.remove(itemKey);
                 rootTag.remove(FLAVOR_PREFIX + i);
+                rootTag.remove(STRENGTH_PREFIX + i);
             }
         }
     }

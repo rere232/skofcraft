@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.blockentity;
 
+import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.registry.SkofcraftBlocks;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
@@ -22,11 +23,11 @@ import org.jetbrains.annotations.Nullable;
 
 public class FEPackagerBlockEntity extends BlockEntity {
     private static final int CAPACITY = 10000;
-    private static final int MAX_RECEIVE = 100;
-    private static final int ENERGY_PER_TICK = 20;
+    private static final int MAX_RECEIVE = 500;
 
     private final boolean industrial;
     private final int processingTime;
+    private final int energyCost;
 
     private final EnergyStorage energy = new EnergyStorage(CAPACITY, MAX_RECEIVE, 0, 0) {
         @Override
@@ -51,6 +52,7 @@ public class FEPackagerBlockEntity extends BlockEntity {
         super(SkofcraftBlockEntities.FE_PACKAGER.get(), blockPos, blockState);
         this.industrial = blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_PACKAGER.get();
         this.processingTime = industrial ? 80 : 160;
+        this.energyCost = industrial ? 200 : 80;
     }
 
     public void tick() {
@@ -62,7 +64,7 @@ public class FEPackagerBlockEntity extends BlockEntity {
         }
 
         if (isProcessing) {
-            int energyPerTick = Math.max(1, (int) Math.round(ENERGY_PER_TICK * ch.rere232.skofcraft.config.SkofcraftConfig.machineEnergyMultiplier));
+            int energyPerTick = Math.max(1, (int) Math.round(energyCost * ch.rere232.skofcraft.config.SkofcraftConfig.machineEnergyMultiplier));
             if (energy.getEnergyStored() < energyPerTick) return;
             energy.extractEnergy(energyPerTick, false);
             processingProgress++;
@@ -85,7 +87,7 @@ public class FEPackagerBlockEntity extends BlockEntity {
             int capacity = Math.max(1, SkofcraftConfig.boxCapacity);
             if (pouchStack.isEmpty() || pouchStack.getCount() < capacity || box.isEmpty() || result.isEmpty()) return false;
         if (output.isEmpty()) return true;
-        return output.getItem() == result.getItem() && output.getCount() < 64;
+        return ItemStack.isSameItemSameTags(output, result) && output.getCount() < 64;
     }
 
     private void finishProcessing() {
@@ -99,7 +101,7 @@ public class FEPackagerBlockEntity extends BlockEntity {
 
         if (output.isEmpty()) {
             outputSlots.setItem(0, result.copy());
-        } else if (output.getItem() == result.getItem() && output.getCount() < 64) {
+        } else if (ItemStack.isSameItemSameTags(output, result) && output.getCount() < 64) {
             output.grow(1);
         }
 
@@ -109,12 +111,17 @@ public class FEPackagerBlockEntity extends BlockEntity {
 
     private ItemStack getResultForInputs(ItemStack pouchStack, ItemStack box) {
         if (pouchStack.getItem() == SkofcraftItems.SNUS_POUCH.get() && box.getItem() == SkofcraftItems.EMPTY_SNUS_BOX.get()) {
-            return new ItemStack(SkofcraftItems.FILLED_SNUS_BOX.get());
+            return withTraits(new ItemStack(SkofcraftItems.FILLED_SNUS_BOX.get()), pouchStack);
         }
         if (pouchStack.getItem() == SkofcraftItems.NICOTINE_POUCH.get() && box.getItem() == SkofcraftItems.EMPTY_POUCH_BOX.get()) {
-            return new ItemStack(SkofcraftItems.FILLED_POUCH_BOX.get());
+            return withTraits(new ItemStack(SkofcraftItems.FILLED_POUCH_BOX.get()), pouchStack);
         }
         return ItemStack.EMPTY;
+    }
+
+    private static ItemStack withTraits(ItemStack box, ItemStack pouches) {
+        GumConsumableItem.copyTraits(pouches, box);
+        return box;
     }
 
     @Override

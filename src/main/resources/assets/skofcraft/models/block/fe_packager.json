@@ -1,6 +1,12 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "all": "minecraft:block/iron_block"
+    "particle": "skofcraft:block/fe_machine_side",
+    "down": "skofcraft:block/fe_machine_bottom",
+    "up": "skofcraft:block/fe_packager_top",
+    "north": "skofcraft:block/fe_packager_front",
+    "south": "skofcraft:block/fe_machine_side",
+    "east": "skofcraft:block/fe_machine_side",
+    "west": "skofcraft:block/fe_machine_side"
   }
 }

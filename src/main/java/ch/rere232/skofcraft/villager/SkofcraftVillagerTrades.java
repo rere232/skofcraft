@@ -38,12 +38,12 @@ public class SkofcraftVillagerTrades {
         level3.add(sellForEmeralds(SkofcraftItems.FLAVOR_MINT.get(), 4, 2, 8, 15));
 
         List<VillagerTrades.ItemListing> level4 = event.getTrades().get(4);
-        level4.add(sellForEmeralds(SkofcraftItems.SNUS_POUCH.get(), 5, 4, 8, 20));
+        level4.add(sellForEmeralds(SkofcraftItems.SNUS_POUCH.get(), 2, 1, 16, 20));
         level4.add(sellForEmeralds(SkofcraftItems.EMPTY_SNUS_BOX.get(), 7, 2, 6, 20));
 
         List<VillagerTrades.ItemListing> level5 = event.getTrades().get(5);
         level5.add(sellForEmeralds(SkofcraftItems.FILLED_SNUS_BOX.get(), 18, 1, 4, 30));
-        level5.add(sellForEmeralds(SkofcraftItems.NICOTINE_POUCH.get(), 9, 2, 6, 30));
+        level5.add(sellForEmeralds(SkofcraftItems.NICOTINE_POUCH.get(), 4, 1, 12, 30));
     }
 
     private static VillagerTrades.ItemListing sellForEmeralds(Item item, int emeraldCost, int itemCount, int maxUses, int villagerXp) {

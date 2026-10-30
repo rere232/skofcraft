@@ -37,6 +37,7 @@ public class SkofcraftBoxItem extends Item {
             }
 
             ItemStack singleUnit = new ItemStack(unitItem.get());
+            GumConsumableItem.copyTraits(boxStack, singleUnit);
             if (!player.addItem(singleUnit)) {
                 player.drop(singleUnit, false);
             }
@@ -57,6 +58,7 @@ public class SkofcraftBoxItem extends Item {
         int capacity = SkofcraftConfig.boxCapacity;
         int usesLeft = getUsesLeft(stack);
         tooltip.add(Component.translatable("tooltip.skofcraft.remaining", usesLeft, capacity));
+        GumConsumableItem.addTraitTooltip(stack, tooltip);
     }
 
     private int getUsesLeft(ItemStack stack) {

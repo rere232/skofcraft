@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.blockentity;
 
+import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.registry.SkofcraftBlocks;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import net.minecraft.core.BlockPos;
@@ -22,12 +23,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class FEPressBlockEntity extends BlockEntity {
     private static final int CAPACITY = 10000;
-    private static final int MAX_RECEIVE = 100;
-    private static final int ENERGY_PER_TICK = 20;
+    private static final int MAX_RECEIVE = 500;
 
     private final boolean requiresEnergy;
     private final boolean industrial;
     private final int processingTime;
+    private final int energyCost;
 
     private final EnergyStorage energy = new EnergyStorage(CAPACITY, MAX_RECEIVE, 0, 0) {
         @Override
@@ -41,9 +42,14 @@ public class FEPressBlockEntity extends BlockEntity {
     };
     private final LazyOptional<EnergyStorage> energyHandler = LazyOptional.of(() -> energy);
 
-    private final SimpleContainer inputSlots = new SimpleContainer(2);
+    private final SimpleContainer inputSlots = new SimpleContainer(3);
     private final SimpleContainer outputSlots = new SimpleContainer(1);
-    private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> slot == 0 ? stack.is(SkofcraftItems.TOBACCO_DUST.get()) : slot == 1 && stack.is(SkofcraftItems.EMPTY_POUCH.get())));
+    private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> switch (slot) {
+        case 0 -> stack.is(SkofcraftItems.TOBACCO_DUST.get()) || stack.is(SkofcraftItems.NICOTINE_MIX.get());
+        case 1 -> stack.is(SkofcraftItems.EMPTY_POUCH.get());
+        case 2 -> stack.is(SkofcraftItems.NICOTINE_EXTRACT.get()) || stack.is(SkofcraftItems.NICOTINE_CRYSTALS.get());
+        default -> false;
+    }));
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
@@ -58,6 +64,7 @@ public class FEPressBlockEntity extends BlockEntity {
         this.requiresEnergy = requiresEnergy && !isManualBlock(blockState.getBlock());
         this.industrial = blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_POUCH_LINE.get();
         this.processingTime = industrial ? 90 : 150;
+        this.energyCost = industrial ? 200 : 60;
     }
 
     private static boolean isManualBlock(Block block) {
@@ -74,7 +81,7 @@ public class FEPressBlockEntity extends BlockEntity {
 
         if (isProcessing) {
             if (requiresEnergy) {
-                int energyPerTick = Math.max(1, (int) Math.round(ENERGY_PER_TICK * ch.rere232.skofcraft.config.SkofcraftConfig.machineEnergyMultiplier));
+                int energyPerTick = Math.max(1, (int) Math.round(energyCost * ch.rere232.skofcraft.config.SkofcraftConfig.machineEnergyMultiplier));
                 if (energy.getEnergyStored() < energyPerTick) {
                     return;
                 }
@@ -96,33 +103,63 @@ public class FEPressBlockEntity extends BlockEntity {
     }
 
     private boolean canProcess() {
-        ItemStack dust = inputSlots.getItem(0);
-        ItemStack pouch = inputSlots.getItem(1);
         ItemStack output = outputSlots.getItem(0);
-
-        if (dust.isEmpty() || dust.getItem() != SkofcraftItems.TOBACCO_DUST.get()) return false;
-        if (pouch.isEmpty() || pouch.getItem() != SkofcraftItems.EMPTY_POUCH.get()) return false;
+        ItemStack result = buildResult();
+        if (result.isEmpty()) return false;
 
         if (output.isEmpty()) return true;
-        return output.getItem() == SkofcraftItems.SNUS_POUCH.get() && output.getCount() < 64;
+        return ItemStack.isSameItemSameTags(output, result) && output.getCount() < 64;
+    }
+
+    /** Nicotine mix becomes a nicotine pouch; ground tobacco becomes snus, strengthened by the booster slot. */
+    private ItemStack buildResult() {
+        ItemStack material = inputSlots.getItem(0);
+        ItemStack pouch = inputSlots.getItem(1);
+        ItemStack booster = inputSlots.getItem(2);
+
+        if (material.isEmpty() || pouch.isEmpty() || pouch.getItem() != SkofcraftItems.EMPTY_POUCH.get()) return ItemStack.EMPTY;
+
+        if (material.getItem() == SkofcraftItems.NICOTINE_MIX.get()) {
+            ItemStack result = new ItemStack(SkofcraftItems.NICOTINE_POUCH.get());
+            GumConsumableItem.copyTraits(material, result);
+            return result;
+        }
+        if (material.getItem() == SkofcraftItems.TOBACCO_DUST.get()) {
+            ItemStack result = new ItemStack(SkofcraftItems.SNUS_POUCH.get());
+            GumConsumableItem.setStrength(result, boosterStrength(booster));
+            return result;
+        }
+        return ItemStack.EMPTY;
+    }
+
+    /** Extract gives strong snus, one crystal extra strong, two or more crystals premium. */
+    private static int boosterStrength(ItemStack booster) {
+        if (booster.isEmpty()) return 0;
+        if (booster.getItem() == SkofcraftItems.NICOTINE_EXTRACT.get()) return 1;
+        if (booster.getItem() == SkofcraftItems.NICOTINE_CRYSTALS.get()) return booster.getCount() >= 2 ? 3 : 2;
+        return 0;
     }
 
     private void finishProcessing() {
-        ItemStack dust = inputSlots.getItem(0);
+        ItemStack material = inputSlots.getItem(0);
         ItemStack pouch = inputSlots.getItem(1);
+        ItemStack booster = inputSlots.getItem(2);
         ItemStack output = outputSlots.getItem(0);
 
-        if (dust.isEmpty() || pouch.isEmpty()) return;
+        ItemStack result = buildResult();
+        if (result.isEmpty()) return;
 
-        ItemStack result = new ItemStack(SkofcraftItems.SNUS_POUCH.get());
+        if (material.getItem() == SkofcraftItems.TOBACCO_DUST.get()) {
+            booster.shrink(boosterStrength(booster) == 3 ? 2 : (boosterStrength(booster) > 0 ? 1 : 0));
+        }
 
         if (output.isEmpty()) {
             outputSlots.setItem(0, result);
-        } else if (output.getItem() == result.getItem() && output.getCount() < 64) {
+        } else if (ItemStack.isSameItemSameTags(output, result) && output.getCount() < 64) {
             output.grow(1);
         }
 
-        dust.shrink(1);
+        material.shrink(1);
         pouch.shrink(1);
     }
 
