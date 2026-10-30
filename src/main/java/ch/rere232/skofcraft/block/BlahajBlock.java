@@ -28,8 +28,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 /** The famous soft shark. Hugging it, placed or in hand, calms you down. */
 public class BlahajBlock extends HorizontalDirectionalBlock {
-    private static final VoxelShape SHAPE_NS = Block.box(1.0D, 0.0D, 0.0D, 15.0D, 10.0D, 16.0D);
-    private static final VoxelShape SHAPE_EW = Block.box(0.0D, 0.0D, 1.0D, 16.0D, 10.0D, 15.0D);
+    private static final VoxelShape SHAPE_NS = Block.box(1.0D, 0.0D, 0.0D, 15.0D, 11.0D, 16.0D);
+    private static final VoxelShape SHAPE_EW = Block.box(0.0D, 0.0D, 1.0D, 16.0D, 11.0D, 15.0D);
     private static final int HUG_COOLDOWN_TICKS = 60;
     private static final int HUG_ADDICTION_RELIEF = 5;
     private static final int HUG_MESSAGES = 4;
