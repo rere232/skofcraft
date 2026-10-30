@@ -38,6 +38,17 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.EMPTY_POUCH.get());
                 output.accept(SkofcraftItems.SNUS_POUCH.get());
                 output.accept(SkofcraftItems.NICOTINE_POUCH.get());
+                output.accept(SkofcraftItems.CHEWING_TOBACCO.get());
+                output.accept(SkofcraftItems.SNUFF.get());
+                output.accept(SkofcraftItems.EMPTY_VAPE.get());
+                output.accept(SkofcraftItems.VAPE.get());
+                output.accept(SkofcraftItems.CIGARETTE.get());
+                output.accept(SkofcraftItems.CIGARILLO.get());
+                output.accept(SkofcraftItems.CIGAR.get());
+                output.accept(SkofcraftItems.EMPTY_CIGARETTE_PACK.get());
+                output.accept(SkofcraftItems.CIGARETTE_PACK.get());
+                output.accept(SkofcraftItems.CHICHA.get());
+                output.accept(SkofcraftItems.ADDICTOL.get());
                 output.accept(SkofcraftItems.EMPTY_SNUS_BOX.get());
                 output.accept(SkofcraftItems.FILLED_SNUS_BOX.get());
                 output.accept(SkofcraftItems.EMPTY_POUCH_BOX.get());

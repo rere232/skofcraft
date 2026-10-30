@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:fe_upgrade",
+  "display": {
+    "icon": {
+      "item": "skofcraft:fe_nicotine_extractor"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.fe_extractor.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.fe_extractor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_extractor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:fe_nicotine_extractor"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

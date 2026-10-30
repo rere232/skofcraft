@@ -1,0 +1,30 @@
+{
+  "parent": "skofcraft:nicotine_chain",
+  "display": {
+    "icon": {
+      "item": "skofcraft:addictol"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.clean_slate.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.clean_slate.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "used_addictol": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "skofcraft:addictol"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["F", "D", "P"],
+  "key": {
+    "F": { "item": "skofcraft:vegetal_fiber" },
+    "D": { "item": "skofcraft:tobacco_dust" },
+    "P": { "item": "minecraft:paper" }
+  },
+  "result": {
+    "item": "skofcraft:cigarette",
+    "count": 2
+  }
+}

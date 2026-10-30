@@ -1,0 +1,30 @@
+{
+  "parent": "skofcraft:hookah_bar",
+  "display": {
+    "icon": {
+      "item": "skofcraft:chicha_pipe"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.smoke_ring.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.smoke_ring.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "used_pipe": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "skofcraft:chicha_pipe"
+          ]
+        }
+      }
+    }
+  }
+}

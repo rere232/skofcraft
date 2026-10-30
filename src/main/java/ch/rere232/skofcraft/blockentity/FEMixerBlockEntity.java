@@ -45,8 +45,8 @@ public class FEMixerBlockEntity extends BlockEntity {
     private final SimpleContainer inputSlots = new SimpleContainer(3);
     private final SimpleContainer outputSlots = new SimpleContainer(1);
     private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> switch (slot) {
-        case 0 -> stack.is(SkofcraftItems.NEUTRAL_BASE.get());
-        case 1 -> isNicotineSource(stack.getItem());
+        case 0 -> stack.is(SkofcraftItems.NEUTRAL_BASE.get()) || stack.is(SkofcraftItems.TOBACCO_DUST.get()) || stack.is(SkofcraftItems.EMPTY_VAPE.get());
+        case 1 -> isNicotineSource(stack.getItem()) || stack.is(SkofcraftItems.NICOTINE_MIX.get());
         case 2 -> isFlavorItem(stack.getItem());
         default -> false;
     }));
@@ -111,15 +111,32 @@ public class FEMixerBlockEntity extends BlockEntity {
         return ItemStack.isSameItemSameTags(output, result) && output.getCount() < 64;
     }
 
-    /** Nicotine mix for the current inputs, or empty if the inputs are invalid. */
+    /** Vape, snuff or nicotine mix for the current inputs; empty if the inputs are invalid. */
     private ItemStack buildResult() {
         ItemStack base = inputSlots.getItem(0);
         ItemStack nicotine = inputSlots.getItem(1);
         ItemStack flavor = inputSlots.getItem(2);
 
-        if (base.isEmpty() || base.getItem() != SkofcraftItems.NEUTRAL_BASE.get()) return ItemStack.EMPTY;
-        if (nicotine.isEmpty() || !isNicotineSource(nicotine.getItem())) return ItemStack.EMPTY;
+        if (base.isEmpty()) return ItemStack.EMPTY;
+
+        if (base.getItem() == SkofcraftItems.EMPTY_VAPE.get()) {
+            if (!flavor.isEmpty() || nicotine.getItem() != SkofcraftItems.NICOTINE_MIX.get()) return ItemStack.EMPTY;
+            ItemStack vape = new ItemStack(SkofcraftItems.VAPE.get());
+            GumConsumableItem.copyTraits(nicotine, vape);
+            return vape;
+        }
+
         if (flavor.isEmpty() || !isFlavorItem(flavor.getItem())) return ItemStack.EMPTY;
+
+        if (base.getItem() == SkofcraftItems.TOBACCO_DUST.get()) {
+            if (!nicotine.isEmpty()) return ItemStack.EMPTY;
+            ItemStack snuff = new ItemStack(SkofcraftItems.SNUFF.get());
+            GumConsumableItem.setFlavor(snuff, flavor);
+            return snuff;
+        }
+
+        if (base.getItem() != SkofcraftItems.NEUTRAL_BASE.get()) return ItemStack.EMPTY;
+        if (nicotine.isEmpty() || !isNicotineSource(nicotine.getItem())) return ItemStack.EMPTY;
 
         ItemStack result = new ItemStack(SkofcraftItems.NICOTINE_MIX.get());
         GumConsumableItem.setFlavor(result, flavor);
@@ -156,8 +173,12 @@ public class FEMixerBlockEntity extends BlockEntity {
         }
 
         base.shrink(1);
-        nicotine.shrink(nicotineCost);
-        flavor.shrink(1);
+        if (!nicotine.isEmpty()) {
+            nicotine.shrink(nicotineCost);
+        }
+        if (!flavor.isEmpty()) {
+            flavor.shrink(1);
+        }
     }
 
     private boolean isFlavorItem(Object item) {

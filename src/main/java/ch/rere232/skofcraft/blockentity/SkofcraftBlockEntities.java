@@ -42,6 +42,12 @@ public class SkofcraftBlockEntities {
                     SkofcraftBlocks.INDUSTRIAL_POUCH_LINE.get()
             ).build(null));
 
+    public static final RegistryObject<BlockEntityType<ChichaBlockEntity>> CHICHA = BLOCK_ENTITIES.register("chicha",
+            () -> BlockEntityType.Builder.of(
+                    ChichaBlockEntity::new,
+                    SkofcraftBlocks.CHICHA.get()
+            ).build(null));
+
     public static final RegistryObject<BlockEntityType<FEPackagerBlockEntity>> FE_PACKAGER = BLOCK_ENTITIES.register("fe_packager",
             () -> BlockEntityType.Builder.of(
                     FEPackagerBlockEntity::new,

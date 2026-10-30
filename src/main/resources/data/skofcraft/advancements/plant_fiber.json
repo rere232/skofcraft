@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:vegetal_fiber"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.plant_fiber.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.plant_fiber.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_fiber": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:vegetal_fiber"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

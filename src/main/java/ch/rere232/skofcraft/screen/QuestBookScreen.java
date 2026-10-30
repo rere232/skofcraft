@@ -10,6 +10,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -35,6 +36,7 @@ public class QuestBookScreen extends Screen {
     private int leftPos;
     private int topPos;
     private int scroll;
+    private int sidebarScroll;
     private int contentHeight;
     private ItemStack hovered = ItemStack.EMPTY;
 
@@ -47,6 +49,11 @@ public class QuestBookScreen extends Screen {
         super.init();
         leftPos = (this.width - PANEL_W) / 2;
         topPos = (this.height - PANEL_H) / 2;
+        sidebarScroll = Mth.clamp(selected * ROW_H - VIEW_H / 2 + ROW_H, 0, sidebarMax());
+    }
+
+    private int sidebarMax() {
+        return Math.max(0, chapters.size() * ROW_H + 4 - VIEW_H);
     }
 
     @Override
@@ -69,11 +76,16 @@ public class QuestBookScreen extends Screen {
     private void renderSidebar(GuiGraphics g, int mouseX, int mouseY) {
         int x = leftPos + 6;
         int y = topPos + TOP_PAD;
-        MachineScreenHelper.fillRounded(g, x, y, x + SIDEBAR_W, topPos + PANEL_H - 6, MachineScreenHelper.COLOR_WELL);
+        MachineScreenHelper.fillRounded(g, x, y, x + SIDEBAR_W, y + VIEW_H, MachineScreenHelper.COLOR_WELL);
 
+        g.enableScissor(x, y, x + SIDEBAR_W, y + VIEW_H);
+        boolean mouseInSidebar = mouseX >= x && mouseX < x + SIDEBAR_W && mouseY >= y && mouseY < y + VIEW_H;
         for (int i = 0; i < chapters.size(); i++) {
-            int rowY = y + 2 + i * ROW_H;
-            boolean over = mouseX >= x && mouseX < x + SIDEBAR_W && mouseY >= rowY && mouseY < rowY + ROW_H;
+            int rowY = y + 2 + i * ROW_H - sidebarScroll;
+            if (rowY + ROW_H < y || rowY > y + VIEW_H) {
+                continue;
+            }
+            boolean over = mouseInSidebar && mouseY >= rowY && mouseY < rowY + ROW_H;
             if (i == selected) {
                 g.fill(x + 2, rowY, x + SIDEBAR_W - 2, rowY + ROW_H, 0xFF2B3039);
                 g.fill(x + 2, rowY, x + 4, rowY + ROW_H, MachineScreenHelper.COLOR_ACCENT);
@@ -90,6 +102,15 @@ public class QuestBookScreen extends Screen {
             String title = this.font.plainSubstrByWidth(chapters.get(i).title().getString(), SIDEBAR_W - 28);
             int color = i == selected ? MachineScreenHelper.COLOR_TEXT : MachineScreenHelper.COLOR_TEXT_DIM;
             g.drawString(this.font, title, x + 22, rowY + 4, color, false);
+        }
+        g.disableScissor();
+
+        int max = sidebarMax();
+        if (max > 0) {
+            int thumbH = Math.max(12, VIEW_H * VIEW_H / (VIEW_H + max));
+            int thumbY = y + (VIEW_H - thumbH) * sidebarScroll / max;
+            g.fill(x + SIDEBAR_W - 3, y + 2, x + SIDEBAR_W - 1, y + VIEW_H - 2, MachineScreenHelper.COLOR_BORDER);
+            g.fill(x + SIDEBAR_W - 3, thumbY, x + SIDEBAR_W - 1, thumbY + thumbH, MachineScreenHelper.COLOR_ACCENT);
         }
     }
 
@@ -194,9 +215,9 @@ public class QuestBookScreen extends Screen {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         int x = leftPos + 6;
         int y = topPos + TOP_PAD + 2;
-        if (button == 0 && mouseX >= x && mouseX < x + SIDEBAR_W) {
-            int index = (int) ((mouseY - y) / ROW_H);
-            if (mouseY >= y && index >= 0 && index < chapters.size()) {
+        if (button == 0 && mouseX >= x && mouseX < x + SIDEBAR_W && mouseY >= topPos + TOP_PAD && mouseY < topPos + TOP_PAD + VIEW_H) {
+            int index = (int) ((mouseY - y + sidebarScroll) / ROW_H);
+            if (index >= 0 && index < chapters.size()) {
                 selectChapter(index);
                 return true;
             }
@@ -206,6 +227,10 @@ public class QuestBookScreen extends Screen {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+        if (mouseX < leftPos + 6 + SIDEBAR_W + 3) {
+            sidebarScroll = (int) Mth.clamp(sidebarScroll - delta * ROW_H, 0, sidebarMax());
+            return true;
+        }
         scroll = (int) Math.max(0, Math.min(scroll - delta * 14, Math.max(0, contentHeight - VIEW_H)));
         return true;
     }

@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:extract_nicotine",
+  "display": {
+    "icon": {
+      "item": "skofcraft:nicotine_crystals"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.crystallized.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.crystallized.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_crystals": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:nicotine_crystals"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "parent": "skofcraft:fe_upgrade",
+  "display": {
+    "icon": {
+      "item": "skofcraft:fe_mixer"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.all_fe.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.all_fe.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_fe_dryer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:fe_dryer"
+            ]
+          }
+        ]
+      }
+    },
+    "has_fe_grinder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:fe_grinder"
+            ]
+          }
+        ]
+      }
+    },
+    "has_fe_mixer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:fe_mixer"
+            ]
+          }
+        ]
+      }
+    },
+    "has_fe_press": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:fe_press"
+            ]
+          }
+        ]
+      }
+    },
+    "has_fe_nicotine_extractor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:fe_nicotine_extractor"
+            ]
+          }
+        ]
+      }
+    },
+    "has_fe_packager": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:fe_packager"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

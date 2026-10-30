@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:extract_nicotine",
+  "display": {
+    "icon": {
+      "item": "skofcraft:nicotine_mix"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.first_mix.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.first_mix.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_mix": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:nicotine_mix"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

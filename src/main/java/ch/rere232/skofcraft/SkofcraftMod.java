@@ -7,6 +7,8 @@ import ch.rere232.skofcraft.menu.SkofcraftMenus;
 import ch.rere232.skofcraft.network.SkofcraftNetwork;
 import ch.rere232.skofcraft.registry.SkofcraftBlocks;
 import ch.rere232.skofcraft.registry.SkofcraftCreativeTabs;
+import ch.rere232.skofcraft.registry.SkofcraftEffects;
+import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import ch.rere232.skofcraft.registry.SkofcraftVillagers;
 import com.mojang.logging.LogUtils;
@@ -26,6 +28,8 @@ public class SkofcraftMod {
         IEventBus modEventBus = context.getModEventBus();
 
         SkofcraftBlocks.BLOCKS.register(modEventBus);
+        SkofcraftEffects.EFFECTS.register(modEventBus);
+        SkofcraftEntities.ENTITIES.register(modEventBus);
         SkofcraftItems.ITEMS.register(modEventBus);
         SkofcraftCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         SkofcraftBlockEntities.BLOCK_ENTITIES.register(modEventBus);

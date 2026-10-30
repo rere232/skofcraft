@@ -1,0 +1,39 @@
+{
+  "parent": "skofcraft:first_tobacconist",
+  "display": {
+    "icon": {
+      "item": "skofcraft:snus_pouch"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.regular_customer.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.regular_customer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "bought_snus": {
+      "trigger": "minecraft:villager_trade",
+      "conditions": {
+        "villager": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "nbt": "{VillagerData:{profession:\"skofcraft:tobacconist\"}}"
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "skofcraft:snus_pouch"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "parent": "skofcraft:first_mix",
+  "display": {
+    "icon": {
+      "item": "skofcraft:vape"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.first_puff.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.first_puff.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "used_vape": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "skofcraft:vape"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "DDD",
+    " G "
+  ],
+  "key": {
+    "L": {
+      "item": "skofcraft:tobacco_leaf_dry"
+    },
+    "D": {
+      "item": "skofcraft:tobacco_dust"
+    },
+    "G": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "result": {
+    "item": "skofcraft:cigar"
+  }
+}

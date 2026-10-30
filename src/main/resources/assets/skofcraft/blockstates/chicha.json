@@ -1,0 +1,44 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "skofcraft:block/chicha"
+      }
+    },
+    {
+      "when": {
+        "tube_0": "true"
+      },
+      "apply": {
+        "model": "skofcraft:block/chicha_tube"
+      }
+    },
+    {
+      "when": {
+        "tube_1": "true"
+      },
+      "apply": {
+        "model": "skofcraft:block/chicha_tube",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "tube_2": "true"
+      },
+      "apply": {
+        "model": "skofcraft:block/chicha_tube",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "tube_3": "true"
+      },
+      "apply": {
+        "model": "skofcraft:block/chicha_tube",
+        "y": 270
+      }
+    }
+  ]
+}

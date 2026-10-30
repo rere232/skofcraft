@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:first_drying",
+  "display": {
+    "icon": {
+      "item": "skofcraft:tobacco_dust"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.first_grind.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.first_grind.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:tobacco_dust"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

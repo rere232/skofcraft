@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["PP", "PP"],
+  "key": {
+    "P": { "item": "minecraft:paper" }
+  },
+  "result": {
+    "item": "skofcraft:empty_cigarette_pack"
+  }
+}

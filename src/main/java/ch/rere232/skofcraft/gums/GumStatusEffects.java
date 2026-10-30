@@ -38,6 +38,11 @@ public class GumStatusEffects {
                 continue;
             }
             ItemStack slotItem = data.getSlotItem(i);
+            if (slotItem.getItem() == SkofcraftItems.CHEWING_TOBACCO.get()) {
+                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 120, 0, true, false, true));
+                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 260, 0, true, false, true));
+                continue;
+            }
             if (slotItem.getItem() != SkofcraftItems.NICOTINE_POUCH.get()) {
                 continue;
             }
@@ -54,8 +59,47 @@ public class GumStatusEffects {
         }
     }
 
+    /** One puff from a chicha: a longer, steady boost plus the loaded flavor's effect. */
+    public static void applyChicha(Player player, String flavorId) {
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 600, 0, true, false, true));
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 600, 0, true, false, true));
+        applyFlavorEffect(player, flavorId);
+    }
+
+    /** Smoked tobacco: a long boost with a weakening cost when negative effects are on. */
+    public static void applySmoke(Player player, int effectTicks, int amplifier, boolean resistance, int weaknessTicks, boolean enableNegativeEffects) {
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, effectTicks, amplifier, true, false, true));
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, effectTicks, amplifier, true, false, true));
+        if (resistance) {
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, effectTicks, 0, true, false, true));
+        }
+        if (enableNegativeEffects) {
+            player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, weaknessTicks, 0, true, false, true));
+        }
+    }
+
+    /** One puff from a vape: a lighter, shorter boost than snuff, scaled by the liquid's strength. */
+    public static void applyVape(Player player, String flavorId, int strength) {
+        int amplifier = Math.min(2, strength);
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 400, amplifier, true, false, true));
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 400, amplifier, true, false, true));
+        applyFlavorEffect(player, flavorId);
+    }
+
+    /** Short, strong burst from a pinch of snuff, plus the flavor's own effect. */
+    public static void applySnuff(Player player, String flavorId, boolean enableNegativeEffects) {
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 600, 1, true, false, true));
+        player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 600, 1, true, false, true));
+        applyFlavorEffect(player, flavorId);
+        if (enableNegativeEffects) {
+            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 80, 0, true, false, true));
+        }
+    }
+
+    private static final int WITHDRAWAL_THRESHOLD = 70;
+
     public static void applyCraving(Player player, int addictionLevel, int cravingTicks, boolean enableNegativeEffects) {
-        if (!enableNegativeEffects || addictionLevel <= 0 || cravingTicks < 20 * 30) {
+        if (!enableNegativeEffects || addictionLevel <= WITHDRAWAL_THRESHOLD || cravingTicks < 20 * 30) {
             return;
         }
 
@@ -68,7 +112,7 @@ public class GumStatusEffects {
             stage = 1;
         }
 
-        int severity = Math.min(2, addictionLevel / 35);
+        int severity = Math.min(2, (addictionLevel - WITHDRAWAL_THRESHOLD) / 10);
         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 120, Math.min(1 + severity, 2), true, false, true));
         player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 120, severity, true, false, true));
 

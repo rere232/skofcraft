@@ -1,0 +1,39 @@
+{
+  "parent": "skofcraft:regular_customer",
+  "display": {
+    "icon": {
+      "item": "skofcraft:filled_snus_box"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.big_spender.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.big_spender.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "bought_box": {
+      "trigger": "minecraft:villager_trade",
+      "conditions": {
+        "villager": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "nbt": "{VillagerData:{profession:\"skofcraft:tobacconist\"}}"
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "skofcraft:filled_snus_box"
+          ]
+        }
+      }
+    }
+  }
+}

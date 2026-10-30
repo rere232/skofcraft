@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SBS",
+    "SGS",
+    "III"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "B": {
+      "item": "minecraft:bowl"
+    },
+    "G": {
+      "item": "minecraft:glass_bottle"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "skofcraft:chicha"
+  }
+}

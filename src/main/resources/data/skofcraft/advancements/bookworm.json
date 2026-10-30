@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:quest_book"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.bookworm.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.bookworm.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_book": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:quest_book"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

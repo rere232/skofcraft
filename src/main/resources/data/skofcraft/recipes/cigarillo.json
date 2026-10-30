@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "L",
+    "D",
+    "L"
+  ],
+  "key": {
+    "L": {
+      "item": "skofcraft:tobacco_leaf_dry"
+    },
+    "D": {
+      "item": "skofcraft:tobacco_dust"
+    }
+  },
+  "result": {
+    "item": "skofcraft:cigarillo",
+    "count": 2
+  }
+}

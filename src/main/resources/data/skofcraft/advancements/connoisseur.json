@@ -1,0 +1,80 @@
+{
+  "parent": "skofcraft:cigar_lounge",
+  "display": {
+    "icon": {
+      "item": "skofcraft:snuff"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.connoisseur.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.connoisseur.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "snuff": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "skofcraft:snuff"
+          ]
+        }
+      }
+    },
+    "vape": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "skofcraft:vape"
+          ]
+        }
+      }
+    },
+    "cigarette": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "skofcraft:cigarette"
+          ]
+        }
+      }
+    },
+    "cigarillo": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "skofcraft:cigarillo"
+          ]
+        }
+      }
+    },
+    "cigar": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "skofcraft:cigar"
+          ]
+        }
+      }
+    },
+    "pipe": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "skofcraft:chicha_pipe"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -2,6 +2,8 @@ package ch.rere232.skofcraft.client;
 
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.keybind.SkofcraftKeybinds;
+import ch.rere232.skofcraft.network.SkofcraftNetwork;
+import ch.rere232.skofcraft.network.SpitC2SPacket;
 import ch.rere232.skofcraft.screen.GumScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
@@ -18,6 +20,9 @@ public class ClientEvents {
             if (mc.player != null) {
                 mc.setScreen(new GumScreen(mc.player));
             }
+        }
+        while (SkofcraftKeybinds.SPIT.consumeClick()) {
+            SkofcraftNetwork.CHANNEL.sendToServer(new SpitC2SPacket());
         }
     }
 }

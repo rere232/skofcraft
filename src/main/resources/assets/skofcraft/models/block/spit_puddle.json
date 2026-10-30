@@ -1,0 +1,22 @@
+{
+  "render_type": "minecraft:cutout",
+  "ambientocclusion": false,
+  "textures": {
+    "puddle": "skofcraft:block/spit_puddle",
+    "particle": "skofcraft:block/spit_puddle"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 1, 16],
+      "faces": {
+        "down": { "uv": [0, 0, 16, 16], "texture": "#puddle", "cullface": "down" },
+        "up": { "uv": [0, 0, 16, 16], "texture": "#puddle" },
+        "north": { "uv": [0, 15, 16, 16], "texture": "#puddle" },
+        "south": { "uv": [0, 15, 16, 16], "texture": "#puddle" },
+        "west": { "uv": [0, 15, 16, 16], "texture": "#puddle" },
+        "east": { "uv": [0, 15, 16, 16], "texture": "#puddle" }
+      }
+    }
+  ]
+}

@@ -98,6 +98,65 @@ final class QuestBookContent {
         )));
 
         int capacity = Math.max(1, SkofcraftConfig.boxCapacity);
+        ItemStack mintSnuff = stack(SkofcraftItems.SNUFF.get());
+        GumConsumableItem.setFlavor(mintSnuff, stack(SkofcraftItems.FLAVOR_MINT.get()));
+        chapters.add(new Chapter(t("snuff.title"), mintSnuff, List.of(
+                text("snuff.p1"),
+                process(SkofcraftItems.MANUAL_MIXER.get(), mintSnuff,
+                        stack(SkofcraftItems.TOBACCO_DUST.get()), ItemStack.EMPTY, stack(SkofcraftItems.FLAVOR_MINT.get())),
+                text("snuff.p2"), text("snuff.p3")
+        )));
+
+        chapters.add(new Chapter(t("cigar.title"), stack(SkofcraftItems.CIGAR.get()), List.of(
+                text("cigar.p1"),
+                craft(new ItemStack(SkofcraftItems.CIGARILLO.get(), 2), new String[] {" L ", " D ", " L "},
+                        'L', SkofcraftItems.TOBACCO_LEAF_DRY.get(), 'D', SkofcraftItems.TOBACCO_DUST.get()),
+                text("cigar.p2"),
+                craft(stack(SkofcraftItems.CIGAR.get()), new String[] {"LLL", "DDD", " G "},
+                        'L', SkofcraftItems.TOBACCO_LEAF_DRY.get(), 'D', SkofcraftItems.TOBACCO_DUST.get(), 'G', Items.GOLD_NUGGET),
+                text("cigar.p3")
+        )));
+
+        chapters.add(new Chapter(t("chew.title"), stack(SkofcraftItems.CHEWING_TOBACCO.get()), List.of(
+                text("chew.p1"),
+                craft(new ItemStack(SkofcraftItems.CHEWING_TOBACCO.get(), 2), new String[] {"LL ", "LS ", "   "},
+                        'L', SkofcraftItems.TOBACCO_LEAF_DRY.get(), 'S', Items.SUGAR),
+                text("chew.p2"), text("chew.p3"), text("chew.p4")
+        )));
+
+        chapters.add(new Chapter(t("chicha.title"), stack(SkofcraftItems.CHICHA.get()), List.of(
+                text("chicha.p1"),
+                craft(stack(SkofcraftItems.CHICHA.get()), new String[] {"SBS", "SGS", "III"},
+                        'S', Items.STRING, 'B', Items.BOWL, 'G', Items.GLASS_BOTTLE, 'I', Items.IRON_INGOT),
+                text("chicha.p2"), text("chicha.p3"), text("chicha.p4")
+        )));
+
+        ItemStack mintVape = stack(SkofcraftItems.VAPE.get());
+        GumConsumableItem.setFlavor(mintVape, stack(SkofcraftItems.FLAVOR_MINT.get()));
+        chapters.add(new Chapter(t("vape.title"), stack(SkofcraftItems.VAPE.get()), List.of(
+                text("vape.p1"),
+                craft(stack(SkofcraftItems.EMPTY_VAPE.get()), new String[] {" N ", " G ", " C "},
+                        'N', Items.IRON_NUGGET, 'G', Items.GLASS_PANE, 'C', Items.COPPER_INGOT),
+                text("vape.p2"),
+                process(SkofcraftItems.MANUAL_MIXER.get(), mintVape,
+                        stack(SkofcraftItems.EMPTY_VAPE.get()), mintMix),
+                text("vape.p3")
+        )));
+
+        chapters.add(new Chapter(t("cigarette.title"), stack(SkofcraftItems.CIGARETTE.get()), List.of(
+                text("cigarette.p1"),
+                craft(new ItemStack(SkofcraftItems.CIGARETTE.get(), 2), new String[] {" F ", " D ", " P "},
+                        'F', SkofcraftItems.VEGETAL_FIBER.get(), 'D', SkofcraftItems.TOBACCO_DUST.get(), 'P', Items.PAPER),
+                text("cigarette.p2"),
+                text("cigarette.p3"),
+                craft(stack(SkofcraftItems.EMPTY_CIGARETTE_PACK.get()), new String[] {"PP ", "PP ", "   "},
+                        'P', Items.PAPER),
+                process(SkofcraftItems.FE_PACKAGER.get(), stack(SkofcraftItems.CIGARETTE_PACK.get()),
+                        new ItemStack(SkofcraftItems.CIGARETTE.get(), capacity),
+                        stack(SkofcraftItems.EMPTY_CIGARETTE_PACK.get())),
+                text("cigarette.p4")
+        )));
+
         chapters.add(new Chapter(t("packaging.title"), stack(SkofcraftItems.FILLED_SNUS_BOX.get()), List.of(
                 text("packaging.p1"),
                 craft(stack(SkofcraftItems.EMPTY_SNUS_BOX.get()), new String[] {"PPP", "PCP", "PPP"},
@@ -132,6 +191,13 @@ final class QuestBookContent {
                 craft(stack(SkofcraftItems.INDUSTRIAL_SNUS_LINE.get()), new String[] {"RMR", "RER", "RRR"},
                         'R', Items.REDSTONE, 'M', SkofcraftItems.FE_MIXER.get(), 'E', SkofcraftItems.FE_NICOTINE_EXTRACTOR.get()),
                 text("industrial.p2")
+        )));
+
+        chapters.add(new Chapter(t("addictol.title"), stack(SkofcraftItems.ADDICTOL.get()), List.of(
+                text("addictol.p1"),
+                craft(stack(SkofcraftItems.ADDICTOL.get()), new String[] {"G G", " M ", "G G"},
+                        'G', Items.GOLDEN_APPLE, 'M', Items.MILK_BUCKET),
+                text("addictol.p2")
         )));
 
         chapters.add(new Chapter(t("using.title"), stack(SkofcraftItems.SNUS_POUCH.get()), List.of(

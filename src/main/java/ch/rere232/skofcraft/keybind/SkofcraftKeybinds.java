@@ -10,10 +10,13 @@ import net.minecraft.client.KeyMapping;
 @Mod.EventBusSubscriber(modid = SkofcraftMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SkofcraftKeybinds {
     public static KeyMapping OPEN_GUMS_SCREEN;
+    public static KeyMapping SPIT;
 
     @SubscribeEvent
     public static void registerKeybinds(RegisterKeyMappingsEvent event) {
         OPEN_GUMS_SCREEN = new KeyMapping("key.skofcraft.open_gums", com.mojang.blaze3d.platform.InputConstants.KEY_G, "key.categories.gameplay");
         event.register(OPEN_GUMS_SCREEN);
+        SPIT = new KeyMapping("key.skofcraft.spit", com.mojang.blaze3d.platform.InputConstants.KEY_V, "key.categories.gameplay");
+        event.register(SPIT);
     }
 }

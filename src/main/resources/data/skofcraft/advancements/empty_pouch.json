@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:first_tobacconist",
+  "display": {
+    "icon": {
+      "item": "skofcraft:empty_pouch"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.empty_pouch.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.empty_pouch.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_pouch": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:empty_pouch"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

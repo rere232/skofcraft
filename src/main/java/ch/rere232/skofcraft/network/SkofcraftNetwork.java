@@ -19,5 +19,6 @@ public class SkofcraftNetwork {
     public static void register() {
         CHANNEL.registerMessage(packetId++, GumSyncS2CPacket.class, GumSyncS2CPacket::encode, GumSyncS2CPacket::decode, GumSyncS2CPacket::handle);
         CHANNEL.registerMessage(packetId++, GumRemoveC2SPacket.class, GumRemoveC2SPacket::encode, GumRemoveC2SPacket::decode, GumRemoveC2SPacket::handle);
+        CHANNEL.registerMessage(packetId++, SpitC2SPacket.class, SpitC2SPacket::encode, SpitC2SPacket::decode, SpitC2SPacket::handle);
     }
 }

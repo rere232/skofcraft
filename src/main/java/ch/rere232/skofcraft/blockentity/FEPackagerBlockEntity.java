@@ -43,7 +43,7 @@ public class FEPackagerBlockEntity extends BlockEntity {
 
     private final SimpleContainer inputSlots = new SimpleContainer(2);
     private final SimpleContainer outputSlots = new SimpleContainer(1);
-    private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> slot == 0 ? stack.is(SkofcraftItems.SNUS_POUCH.get()) || stack.is(SkofcraftItems.NICOTINE_POUCH.get()) : slot == 1 && (stack.is(SkofcraftItems.EMPTY_SNUS_BOX.get()) || stack.is(SkofcraftItems.EMPTY_POUCH_BOX.get()))));
+    private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> slot == 0 ? stack.is(SkofcraftItems.SNUS_POUCH.get()) || stack.is(SkofcraftItems.NICOTINE_POUCH.get()) || stack.is(SkofcraftItems.CIGARETTE.get()) : slot == 1 && (stack.is(SkofcraftItems.EMPTY_SNUS_BOX.get()) || stack.is(SkofcraftItems.EMPTY_POUCH_BOX.get()) || stack.is(SkofcraftItems.EMPTY_CIGARETTE_PACK.get()))));
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
@@ -115,6 +115,9 @@ public class FEPackagerBlockEntity extends BlockEntity {
         }
         if (pouchStack.getItem() == SkofcraftItems.NICOTINE_POUCH.get() && box.getItem() == SkofcraftItems.EMPTY_POUCH_BOX.get()) {
             return withTraits(new ItemStack(SkofcraftItems.FILLED_POUCH_BOX.get()), pouchStack);
+        }
+        if (pouchStack.getItem() == SkofcraftItems.CIGARETTE.get() && box.getItem() == SkofcraftItems.EMPTY_CIGARETTE_PACK.get()) {
+            return new ItemStack(SkofcraftItems.CIGARETTE_PACK.get());
         }
         return ItemStack.EMPTY;
     }

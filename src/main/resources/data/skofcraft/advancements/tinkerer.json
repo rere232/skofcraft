@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:first_mix",
+  "display": {
+    "icon": {
+      "item": "skofcraft:empty_vape"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.tinkerer.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.tinkerer.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_empty_vape": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:empty_vape"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

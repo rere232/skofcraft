@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G G",
+    " M ",
+    "G G"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:golden_apple"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    }
+  },
+  "result": {
+    "item": "skofcraft:addictol"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "skofcraft:strong_stuff",
+  "display": {
+    "icon": {
+      "item": "skofcraft:nicotine_pouch"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.extra_strong.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.extra_strong.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "extra": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:snus_pouch",
+              "skofcraft:nicotine_pouch"
+            ],
+            "nbt": "{SkofcraftStrength:2}"
+          }
+        ]
+      }
+    }
+  }
+}

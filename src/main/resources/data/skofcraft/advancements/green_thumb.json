@@ -1,0 +1,26 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:tobacco_plant"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.green_thumb.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.green_thumb.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "planted": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "skofcraft:tobacco_plant"
+      }
+    }
+  }
+}

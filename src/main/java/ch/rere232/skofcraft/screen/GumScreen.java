@@ -171,7 +171,7 @@ public class GumScreen extends Screen {
         } else if (mouseX >= addX && mouseX < addX + STATS_BAR_W) {
             lines = List.of(
                     Component.literal("Addiction"),
-                    Component.literal("Withdrawal effects appear when you").withStyle(ChatFormatting.GRAY),
+                    Component.literal("Above 70%, withdrawal effects appear").withStyle(ChatFormatting.GRAY),
                     Component.literal("go without a pouch for too long.").withStyle(ChatFormatting.GRAY));
         }
         if (lines != null) {

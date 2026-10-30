@@ -1,0 +1,30 @@
+{
+  "parent": "skofcraft:smoke_break",
+  "display": {
+    "icon": {
+      "item": "skofcraft:cigarillo"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.little_luxury.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.little_luxury.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "used_cigarillo": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "skofcraft:cigarillo"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "parent": "skofcraft:manual_line",
+  "display": {
+    "icon": {
+      "item": "skofcraft:manual_mixer"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.all_manual.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.all_manual.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_manual_dryer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:manual_dryer"
+            ]
+          }
+        ]
+      }
+    },
+    "has_manual_grinder": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:manual_grinder"
+            ]
+          }
+        ]
+      }
+    },
+    "has_manual_mixer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:manual_mixer"
+            ]
+          }
+        ]
+      }
+    },
+    "has_manual_pouch_press": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:manual_pouch_press"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

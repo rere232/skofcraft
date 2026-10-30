@@ -28,8 +28,12 @@ public class SkofcraftConfig {
             .defineInRange("snusDurationMinutes", 15, 1, 120);
     private static final ForgeConfigSpec.IntValue POUCH_DURATION_MINUTES = BUILDER.comment("Pouch duration in minutes")
             .defineInRange("pouchDurationMinutes", 15, 1, 120);
+    private static final ForgeConfigSpec.IntValue CHEW_DURATION_MINUTES = BUILDER.comment("Chewing tobacco duration in minutes")
+            .defineInRange("chewDurationMinutes", 30, 1, 240);
     private static final ForgeConfigSpec.IntValue BOX_CAPACITY = BUILDER.comment("Units per box")
             .defineInRange("boxCapacity", 20, 1, 64);
+    private static final ForgeConfigSpec.IntValue VAPE_USES = BUILDER.comment("Puffs per filled vape")
+            .defineInRange("vapeUses", 30, 1, 200);
 
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
@@ -43,7 +47,9 @@ public class SkofcraftConfig {
 
     public static int snusDurationMinutes;
     public static int pouchDurationMinutes;
+    public static int chewDurationMinutes = 30;
     public static int boxCapacity;
+    public static int vapeUses = 30;
 
     @SubscribeEvent
     public static void onLoad(final ModConfigEvent event) {
@@ -57,6 +63,8 @@ public class SkofcraftConfig {
 
         snusDurationMinutes = SNUS_DURATION_MINUTES.get();
         pouchDurationMinutes = POUCH_DURATION_MINUTES.get();
+        chewDurationMinutes = CHEW_DURATION_MINUTES.get();
         boxCapacity = BOX_CAPACITY.get();
+        vapeUses = VAPE_USES.get();
     }
 }

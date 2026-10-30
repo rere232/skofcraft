@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["N", "G", "C"],
+  "key": {
+    "N": { "item": "minecraft:iron_nugget" },
+    "G": { "item": "minecraft:glass_pane" },
+    "C": { "item": "minecraft:copper_ingot" }
+  },
+  "result": {
+    "item": "skofcraft:empty_vape"
+  }
+}

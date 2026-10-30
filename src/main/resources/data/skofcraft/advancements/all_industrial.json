@@ -1,0 +1,68 @@
+{
+  "parent": "skofcraft:industry",
+  "display": {
+    "icon": {
+      "item": "skofcraft:industrial_extractor"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.all_industrial.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.all_industrial.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_industrial_snus_line": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:industrial_snus_line"
+            ]
+          }
+        ]
+      }
+    },
+    "has_industrial_pouch_line": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:industrial_pouch_line"
+            ]
+          }
+        ]
+      }
+    },
+    "has_industrial_packager": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:industrial_packager"
+            ]
+          }
+        ]
+      }
+    },
+    "has_industrial_extractor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:industrial_extractor"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

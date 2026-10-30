@@ -6,10 +6,14 @@ import ch.rere232.skofcraft.block.FEGrinderBlock;
 import ch.rere232.skofcraft.block.FEMixerBlock;
 import ch.rere232.skofcraft.block.FEPackagerBlock;
 import ch.rere232.skofcraft.block.FEPressBlock;
+import ch.rere232.skofcraft.block.ChichaBlock;
+import ch.rere232.skofcraft.block.SpitPuddleBlock;
 import ch.rere232.skofcraft.crop.TobaccoPlantBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -18,6 +22,8 @@ public class SkofcraftBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SkofcraftMod.MODID);
 
     public static final RegistryObject<Block> TOBACCO_PLANT = BLOCKS.register("tobacco_plant", () -> new TobaccoPlantBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().noOcclusion()));
+    public static final RegistryObject<Block> CHICHA = BLOCKS.register("chicha", () -> new ChichaBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(1.5F, 3.0F).noOcclusion().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> SPIT_PUDDLE = BLOCKS.register("spit_puddle", () -> new SpitPuddleBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).noCollission().noOcclusion().instabreak().replaceable().pushReaction(PushReaction.DESTROY).sound(SoundType.SLIME_BLOCK)));
 
     public static final RegistryObject<Block> MANUAL_DRYER = BLOCKS.register("manual_dryer", () -> new FEDryerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(3.0F, 6.0F), false));
     public static final RegistryObject<Block> MANUAL_GRINDER = BLOCKS.register("manual_grinder", () -> new FEGrinderBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0F, 6.0F), false));

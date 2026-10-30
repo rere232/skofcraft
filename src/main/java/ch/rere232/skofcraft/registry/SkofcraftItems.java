@@ -3,12 +3,18 @@ package ch.rere232.skofcraft.registry;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.item.GumConsumableItem;
+import ch.rere232.skofcraft.item.AddictolItem;
+import ch.rere232.skofcraft.item.ChichaPipeItem;
 import ch.rere232.skofcraft.item.PouchMixItem;
+import ch.rere232.skofcraft.item.SnuffItem;
+import ch.rere232.skofcraft.item.VapeItem;
 import ch.rere232.skofcraft.item.QuestBookItem;
 import ch.rere232.skofcraft.item.SkofcraftBoxItem;
+import ch.rere232.skofcraft.item.SmokeItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.Rarity;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -33,6 +39,23 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> NICOTINE_CRYSTALS = item("nicotine_crystals");
     public static final RegistryObject<Item> NICOTINE_MIX = ITEMS.register("nicotine_mix",
             () -> new PouchMixItem(new Item.Properties()));
+    public static final RegistryObject<Item> SNUFF = ITEMS.register("snuff",
+            () -> new SnuffItem(new Item.Properties()));
+    public static final RegistryObject<Item> EMPTY_VAPE = ITEMS.register("empty_vape",
+            () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> VAPE = ITEMS.register("vape",
+            () -> new VapeItem(new Item.Properties()));
+
+    public static final RegistryObject<Item> CIGARETTE = ITEMS.register("cigarette",
+            () -> new SmokeItem(new Item.Properties(), SmokeItem.CIGARETTE));
+    public static final RegistryObject<Item> CIGARILLO = ITEMS.register("cigarillo",
+            () -> new SmokeItem(new Item.Properties(), SmokeItem.CIGARILLO));
+    public static final RegistryObject<Item> CIGAR = ITEMS.register("cigar",
+            () -> new SmokeItem(new Item.Properties().stacksTo(16), SmokeItem.CIGAR));
+    public static final RegistryObject<Item> EMPTY_CIGARETTE_PACK = ITEMS.register("empty_cigarette_pack",
+            () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> CIGARETTE_PACK = ITEMS.register("cigarette_pack",
+            () -> new SkofcraftBoxItem(new Item.Properties(), CIGARETTE::get, EMPTY_CIGARETTE_PACK::get));
 
     public static final RegistryObject<Item> FLAVOR_MINT = item("flavor_mint");
     public static final RegistryObject<Item> FLAVOR_ICE_MINT = item("flavor_ice_mint");
@@ -46,6 +69,13 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> EMPTY_POUCH = item("empty_pouch");
     public static final RegistryObject<Item> SNUS_POUCH = gumItem("snus_pouch", () -> SkofcraftConfig.snusDurationMinutes);
     public static final RegistryObject<Item> NICOTINE_POUCH = gumItem("nicotine_pouch", () -> SkofcraftConfig.pouchDurationMinutes);
+    public static final RegistryObject<Item> SPIT = ITEMS.register("spit", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ADDICTOL = ITEMS.register("addictol",
+            () -> new AddictolItem(new Item.Properties().stacksTo(4).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> CHICHA_PIPE = ITEMS.register("chicha_pipe",
+            () -> new ChichaPipeItem(new Item.Properties()));
+    public static final RegistryObject<Item> CHEWING_TOBACCO = ITEMS.register("chewing_tobacco",
+            () -> new GumConsumableItem(new Item.Properties().stacksTo(16), () -> SkofcraftConfig.chewDurationMinutes));
 
     public static final RegistryObject<Item> EMPTY_SNUS_BOX = item("empty_snus_box");
     public static final RegistryObject<Item> FILLED_SNUS_BOX = ITEMS.register("filled_snus_box",
@@ -56,6 +86,7 @@ public class SkofcraftItems {
             () -> new SkofcraftBoxItem(new Item.Properties(), NICOTINE_POUCH::get, EMPTY_POUCH_BOX::get));
 
     public static final RegistryObject<Item> TOBACCO_PLANT = blockItem("tobacco_plant", SkofcraftBlocks.TOBACCO_PLANT);
+    public static final RegistryObject<Item> CHICHA = blockItem("chicha", SkofcraftBlocks.CHICHA);
     public static final RegistryObject<Item> MANUAL_DRYER = blockItem("manual_dryer", SkofcraftBlocks.MANUAL_DRYER);
     public static final RegistryObject<Item> MANUAL_GRINDER = blockItem("manual_grinder", SkofcraftBlocks.MANUAL_GRINDER);
     public static final RegistryObject<Item> MANUAL_MIXER = blockItem("manual_mixer", SkofcraftBlocks.MANUAL_MIXER);

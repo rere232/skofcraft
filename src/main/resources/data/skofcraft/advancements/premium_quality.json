@@ -1,0 +1,33 @@
+{
+  "parent": "skofcraft:extra_strong",
+  "display": {
+    "icon": {
+      "item": "skofcraft:snus_pouch"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.premium_quality.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.premium_quality.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "premium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:snus_pouch"
+            ],
+            "nbt": "{SkofcraftStrength:3}"
+          }
+        ]
+      }
+    }
+  }
+}

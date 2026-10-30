@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:first_drying",
+  "display": {
+    "icon": {
+      "item": "skofcraft:chewing_tobacco"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.chewing.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.chewing.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_chew": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:chewing_tobacco"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

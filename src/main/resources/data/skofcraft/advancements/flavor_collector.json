@@ -1,0 +1,116 @@
+{
+  "parent": "skofcraft:mint_condition",
+  "display": {
+    "icon": {
+      "item": "skofcraft:flavor_nature"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.flavor_collector.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.flavor_collector.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_flavor_mint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:flavor_mint"
+            ]
+          }
+        ]
+      }
+    },
+    "has_flavor_ice_mint": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:flavor_ice_mint"
+            ]
+          }
+        ]
+      }
+    },
+    "has_flavor_berry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:flavor_berry"
+            ]
+          }
+        ]
+      }
+    },
+    "has_flavor_citrus": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:flavor_citrus"
+            ]
+          }
+        ]
+      }
+    },
+    "has_flavor_licorice": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:flavor_licorice"
+            ]
+          }
+        ]
+      }
+    },
+    "has_flavor_cola": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:flavor_cola"
+            ]
+          }
+        ]
+      }
+    },
+    "has_flavor_coffee": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:flavor_coffee"
+            ]
+          }
+        ]
+      }
+    },
+    "has_flavor_nature": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:flavor_nature"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

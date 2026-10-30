@@ -87,8 +87,12 @@ public class FEPackagerMenu extends AbstractContainerMenu {
 
     @Override
     public void clicked(int slotId, int button, ClickType clickType, Player player) {
-        if (slotId == POUCH_SLOT && PouchCounters.handleClick(this, slots.get(slotId), clickType, player, true)) {
-            return;
+        if (slotId == POUCH_SLOT) {
+            Slot pouchSlot = slots.get(slotId);
+            boolean pouches = PouchCounters.isPouch(pouchSlot.getItem()) || PouchCounters.isPouch(getCarried());
+            if (pouches && PouchCounters.handleClick(this, pouchSlot, clickType, player, true)) {
+                return;
+            }
         }
         super.clicked(slotId, button, clickType, player);
     }
