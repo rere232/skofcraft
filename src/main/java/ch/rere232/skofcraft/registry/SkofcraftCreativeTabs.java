@@ -21,6 +21,16 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.TOBACCO_LEAF_DRY.get());
                 output.accept(SkofcraftItems.TOBACCO_DUST.get());
 
+                output.accept(SkofcraftItems.SKOFEE_SEEDS.get());
+                output.accept(SkofcraftItems.SKOFEE_BEANS_FRESH.get());
+                output.accept(SkofcraftItems.SKOFEE_BEANS_DRY.get());
+                output.accept(SkofcraftItems.SKOFEE_BEANS_ROASTED.get());
+                output.accept(SkofcraftItems.SKOFEE_GROUND.get());
+                output.accept(SkofcraftItems.SKOFEE_CUP.get());
+                output.accept(SkofcraftItems.SKOFEE.get());
+                output.accept(SkofcraftItems.SKOFEE_LATTE.get());
+                output.accept(SkofcraftItems.SKOFEE_MACHINE.get());
+
                 output.accept(SkofcraftItems.VEGETAL_FIBER.get());
                 output.accept(SkofcraftItems.NICOTINE_EXTRACT.get());
                 output.accept(SkofcraftItems.NICOTINE_CRYSTALS.get());
@@ -52,8 +62,25 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.ADDICTOL.get());
                 output.accept(SkofcraftItems.PHONE.get());
                 output.accept(SkofcraftItems.BLAHAJ.get());
+                output.accept(SkofcraftItems.AIRCRAFT_WORKBENCH.get());
+                output.accept(SkofcraftItems.GEAR.get());
+                output.accept(SkofcraftItems.AIRCRAFT_PLATE.get());
+                output.accept(SkofcraftItems.TURBINE_BLADE.get());
+                output.accept(SkofcraftItems.ROTOR_BLADE.get());
+                output.accept(SkofcraftItems.AVIONICS.get());
+                output.accept(SkofcraftItems.JET_ENGINE.get());
+                output.accept(SkofcraftItems.WEAPON_SYSTEM.get());
+                output.accept(SkofcraftItems.EMPTY_FUEL_CANISTER.get());
+                output.accept(SkofcraftItems.JET_FUEL_CANISTER.get());
                 output.accept(SkofcraftItems.APACHE.get());
                 output.accept(SkofcraftItems.F14.get());
+                output.accept(SkofcraftItems.NUCLEAR_REACTOR.get());
+                output.accept(SkofcraftItems.CARRIER_HELM.get());
+                output.accept(SkofcraftItems.RADAR.get());
+                output.accept(SkofcraftItems.CATAPULT.get());
+                output.accept(SkofcraftItems.ARRESTING_WIRE.get());
+                output.accept(SkofcraftItems.AIRCRAFT_CARRIER.get());
+                output.accept(SkofcraftItems.DAMAGE_CONTROL_KIT.get());
                 output.accept(SkofcraftItems.EMPTY_SNUS_BOX.get());
                 output.accept(SkofcraftItems.FILLED_SNUS_BOX.get());
                 output.accept(SkofcraftItems.EMPTY_POUCH_BOX.get());

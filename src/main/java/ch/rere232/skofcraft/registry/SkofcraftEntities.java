@@ -1,6 +1,7 @@
 package ch.rere232.skofcraft.registry;
 
 import ch.rere232.skofcraft.SkofcraftMod;
+import ch.rere232.skofcraft.entity.AircraftCarrier;
 import ch.rere232.skofcraft.entity.ApacheBullet;
 import ch.rere232.skofcraft.entity.ApacheHelicopter;
 import ch.rere232.skofcraft.entity.ApacheRocket;
@@ -53,6 +54,14 @@ public class SkofcraftEntities {
                     .clientTrackingRange(16)
                     .updateInterval(1)
                     .build("f14"));
+
+    public static final RegistryObject<EntityType<AircraftCarrier>> AIRCRAFT_CARRIER = ENTITIES.register("aircraft_carrier",
+            () -> EntityType.Builder.<AircraftCarrier>of(AircraftCarrier::new, MobCategory.MISC)
+                    .sized(1.0F, 12.0F)
+                    .clientTrackingRange(16)
+                    .updateInterval(1)
+                    .fireImmune()
+                    .build("aircraft_carrier"));
 
     public static final RegistryObject<EntityType<ApacheBullet>> APACHE_BULLET = ENTITIES.register("apache_bullet",
             () -> EntityType.Builder.<ApacheBullet>of(ApacheBullet::new, MobCategory.MISC)

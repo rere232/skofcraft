@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "skofcraft:block/nuclear_reactor_top",
+    "side": "skofcraft:block/nuclear_reactor_side",
+    "bottom": "skofcraft:block/nuclear_reactor_top"
+  }
+}

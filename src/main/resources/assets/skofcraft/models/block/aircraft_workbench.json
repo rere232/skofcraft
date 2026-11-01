@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "skofcraft:block/aircraft_workbench_top",
+    "front": "skofcraft:block/aircraft_workbench_front",
+    "side": "skofcraft:block/aircraft_workbench_side"
+  }
+}

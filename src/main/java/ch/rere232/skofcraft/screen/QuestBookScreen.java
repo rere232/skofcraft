@@ -159,16 +159,18 @@ public class QuestBookScreen extends Screen {
     }
 
     private int drawCraft(GuiGraphics g, Craft craft, int x, int y, int mouseX, int mouseY, boolean mouseInView) {
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                drawItemSlot(g, craft.grid()[row * 3 + col], x + col * 18, y + row * 18, mouseX, mouseY, mouseInView);
+        for (int row = 0; row < craft.height(); row++) {
+            for (int col = 0; col < craft.width(); col++) {
+                drawItemSlot(g, craft.grid()[row * craft.width() + col], x + col * 18, y + row * 18, mouseX, mouseY, mouseInView);
             }
         }
-        MachineScreenHelper.drawArrow(g, x + 62, y + 18, 1, 1, 8);
-        int resultX = x + 62 + 13 + 8;
-        MachineScreenHelper.drawOutputSlot(g, resultX, y + 18);
-        drawItem(g, craft.result(), resultX, y + 18, mouseX, mouseY, mouseInView);
-        return y + 54 + BLOCK_GAP;
+        int arrowX = x + craft.width() * 18 + 8;
+        int middleY = y + (craft.height() - 1) * 9;
+        MachineScreenHelper.drawArrow(g, arrowX, middleY, 1, 1, 8);
+        int resultX = arrowX + 13 + 8;
+        MachineScreenHelper.drawOutputSlot(g, resultX, middleY);
+        drawItem(g, craft.result(), resultX, middleY, mouseX, mouseY, mouseInView);
+        return y + craft.height() * 18 + BLOCK_GAP;
     }
 
     private int drawProcess(GuiGraphics g, Process process, int x, int y, int mouseX, int mouseY, boolean mouseInView) {

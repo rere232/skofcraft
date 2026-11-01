@@ -10,6 +10,12 @@ import net.minecraftforge.registries.RegistryObject;
 public class SkofcraftBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, SkofcraftMod.MODID);
 
+    public static final RegistryObject<BlockEntityType<NuclearReactorBlockEntity>> NUCLEAR_REACTOR = BLOCK_ENTITIES.register("nuclear_reactor",
+            () -> BlockEntityType.Builder.of(NuclearReactorBlockEntity::new, SkofcraftBlocks.NUCLEAR_REACTOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<RadarBlockEntity>> RADAR = BLOCK_ENTITIES.register("radar",
+            () -> BlockEntityType.Builder.of(RadarBlockEntity::new, SkofcraftBlocks.RADAR.get()).build(null));
+
     public static final RegistryObject<BlockEntityType<FEDryerBlockEntity>> FE_DRYER = BLOCK_ENTITIES.register("fe_dryer",
             () -> BlockEntityType.Builder.of(
                     FEDryerBlockEntity::new,
@@ -46,6 +52,12 @@ public class SkofcraftBlockEntities {
             () -> BlockEntityType.Builder.of(
                     ChichaBlockEntity::new,
                     SkofcraftBlocks.CHICHA.get()
+            ).build(null));
+
+    public static final RegistryObject<BlockEntityType<SkofeeMachineBlockEntity>> SKOFEE_MACHINE = BLOCK_ENTITIES.register("skofee_machine",
+            () -> BlockEntityType.Builder.of(
+                    SkofeeMachineBlockEntity::new,
+                    SkofcraftBlocks.SKOFEE_MACHINE.get()
             ).build(null));
 
     public static final RegistryObject<BlockEntityType<FEPackagerBlockEntity>> FE_PACKAGER = BLOCK_ENTITIES.register("fe_packager",

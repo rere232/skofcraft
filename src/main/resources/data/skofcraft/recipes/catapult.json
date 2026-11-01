@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PPP",
+    "GXG",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "G": {
+      "item": "skofcraft:gear"
+    },
+    "X": {
+      "item": "minecraft:piston"
+    }
+  },
+  "result": {
+    "item": "skofcraft:catapult",
+    "count": 4
+  }
+}

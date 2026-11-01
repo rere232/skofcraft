@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:anchors_aweigh",
+  "display": {
+    "icon": {
+      "item": "skofcraft:catapult"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.cat_shot.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.cat_shot.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

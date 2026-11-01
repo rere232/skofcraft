@@ -14,6 +14,13 @@
     "skofcraft:industrial_snus_line",
     "skofcraft:industrial_pouch_line",
     "skofcraft:industrial_packager",
-    "skofcraft:industrial_extractor"
+    "skofcraft:industrial_extractor",
+    "skofcraft:skofee_machine",
+    "skofcraft:aircraft_workbench",
+    "skofcraft:carrier_helm",
+    "skofcraft:catapult",
+    "skofcraft:arresting_wire",
+    "skofcraft:nuclear_reactor",
+    "skofcraft:radar"
   ]
 }

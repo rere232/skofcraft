@@ -8,6 +8,10 @@ import net.minecraft.world.entity.Entity;
 public final class AircraftClient {
     /** Game time of the last secondary weapon shot the client asked for, to draw the reload bar. */
     static long lastSecondaryTick = Long.MIN_VALUE / 2;
+    /** Game time the local player last took the controls; weapons stay safe for {@link PilotedAircraft#BOARDING_LOCKOUT_TICKS}. */
+    static long boardedTick = Long.MIN_VALUE / 2;
+    /** The aircraft piloted last tick, to notice boarding. */
+    static PilotedAircraft lastPiloted;
 
     private AircraftClient() {}
 

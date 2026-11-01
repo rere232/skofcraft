@@ -1,0 +1,28 @@
+{
+  "type": "skofcraft:aircraft_assembly",
+  "pattern": [
+    "PPPPP",
+    "DGTGD",
+    "PRRRP"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "D": {
+      "item": "minecraft:dispenser"
+    },
+    "G": {
+      "item": "skofcraft:gear"
+    },
+    "T": {
+      "item": "minecraft:tnt"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    }
+  },
+  "result": {
+    "item": "skofcraft:weapon_system"
+  }
+}

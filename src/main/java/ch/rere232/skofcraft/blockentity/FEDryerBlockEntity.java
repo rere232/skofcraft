@@ -10,6 +10,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -62,7 +63,7 @@ public class FEDryerBlockEntity extends BlockEntity {
         this.industrial = blockState.getBlock() == SkofcraftBlocks.INDUSTRIAL_EXTRACTOR.get();
         this.processingTime = industrial ? 120 : (extractorMode ? 180 : 200);
         this.energyCost = industrial ? 200 : (extractorMode ? 100 : 20);
-        this.itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> extractorMode ? stack.is(SkofcraftItems.TOBACCO_LEAF_DRY.get()) : isFreshTobacco(stack.getItem())));
+        this.itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> extractorMode ? stack.is(SkofcraftItems.TOBACCO_LEAF_DRY.get()) : dryingResult(stack.getItem()) != null));
     }
 
     private static boolean isManualBlock(Block block) {
@@ -116,7 +117,8 @@ public class FEDryerBlockEntity extends BlockEntity {
             return output.getItem() == SkofcraftItems.NICOTINE_EXTRACT.get() && output.getCount() < 64;
         }
 
-        if (input.isEmpty() || !isFreshTobacco(input.getItem())) {
+        Item result = input.isEmpty() ? null : dryingResult(input.getItem());
+        if (result == null) {
             return false;
         }
 
@@ -124,7 +126,7 @@ public class FEDryerBlockEntity extends BlockEntity {
             return true;
         }
 
-        return output.getItem() == SkofcraftItems.TOBACCO_LEAF_DRY.get() && output.getCount() < 64;
+        return output.getItem() == result && output.getCount() < 64;
     }
 
     private void finishProcessing() {
@@ -145,9 +147,10 @@ public class FEDryerBlockEntity extends BlockEntity {
             return;
         }
 
-        if (input.isEmpty() || !isFreshTobacco(input.getItem())) return;
+        Item dried = input.isEmpty() ? null : dryingResult(input.getItem());
+        if (dried == null) return;
 
-        ItemStack result = new ItemStack(SkofcraftItems.TOBACCO_LEAF_DRY.get());
+        ItemStack result = new ItemStack(dried);
 
         if (output.isEmpty()) {
             outputSlots.setItem(0, result);
@@ -171,8 +174,15 @@ public class FEDryerBlockEntity extends BlockEntity {
         return true;
     }
 
-    private boolean isFreshTobacco(Object item) {
-        return item == SkofcraftItems.TOBACCO_LEAF_FRESH.get();
+    @Nullable
+    private static Item dryingResult(Item input) {
+        if (input == SkofcraftItems.TOBACCO_LEAF_FRESH.get()) {
+            return SkofcraftItems.TOBACCO_LEAF_DRY.get();
+        }
+        if (input == SkofcraftItems.SKOFEE_BEANS_FRESH.get()) {
+            return SkofcraftItems.SKOFEE_BEANS_DRY.get();
+        }
+        return null;
     }
 
     public boolean isExtractorMode() {

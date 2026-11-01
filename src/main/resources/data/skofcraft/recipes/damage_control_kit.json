@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "tools",
+  "pattern": [
+    "GPG",
+    "PIP",
+    "PPP"
+  ],
+  "key": {
+    "G": {
+      "item": "skofcraft:gear"
+    },
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "skofcraft:damage_control_kit"
+  }
+}

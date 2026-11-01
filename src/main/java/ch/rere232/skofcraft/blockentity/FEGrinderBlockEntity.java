@@ -9,6 +9,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -42,7 +43,7 @@ public class FEGrinderBlockEntity extends BlockEntity {
 
     private final SimpleContainer inputSlots = new SimpleContainer(1);
     private final SimpleContainer outputSlots = new SimpleContainer(1);
-    private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> stack.is(SkofcraftItems.TOBACCO_LEAF_DRY.get())));
+    private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> grindingResult(stack.getItem()) != null));
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
@@ -96,7 +97,8 @@ public class FEGrinderBlockEntity extends BlockEntity {
         ItemStack input = inputSlots.getItem(0);
         ItemStack output = outputSlots.getItem(0);
 
-        if (input.isEmpty() || input.getItem() != SkofcraftItems.TOBACCO_LEAF_DRY.get()) {
+        Item result = input.isEmpty() ? null : grindingResult(input.getItem());
+        if (result == null) {
             return false;
         }
 
@@ -104,16 +106,17 @@ public class FEGrinderBlockEntity extends BlockEntity {
             return true;
         }
 
-        return output.getItem() == SkofcraftItems.TOBACCO_DUST.get() && output.getCount() < 64;
+        return output.getItem() == result && output.getCount() < 64;
     }
 
     private void finishProcessing() {
         ItemStack input = inputSlots.getItem(0);
         ItemStack output = outputSlots.getItem(0);
 
-        if (input.isEmpty() || input.getItem() != SkofcraftItems.TOBACCO_LEAF_DRY.get()) return;
+        Item ground = input.isEmpty() ? null : grindingResult(input.getItem());
+        if (ground == null) return;
 
-        ItemStack result = new ItemStack(SkofcraftItems.TOBACCO_DUST.get(), 2);
+        ItemStack result = new ItemStack(ground, 2);
 
         if (output.isEmpty()) {
             outputSlots.setItem(0, result);
@@ -122,6 +125,17 @@ public class FEGrinderBlockEntity extends BlockEntity {
         }
 
         input.shrink(1);
+    }
+
+    @Nullable
+    private static Item grindingResult(Item input) {
+        if (input == SkofcraftItems.TOBACCO_LEAF_DRY.get()) {
+            return SkofcraftItems.TOBACCO_DUST.get();
+        }
+        if (input == SkofcraftItems.SKOFEE_BEANS_ROASTED.get()) {
+            return SkofcraftItems.SKOFEE_GROUND.get();
+        }
+        return null;
     }
 
     public boolean manualCrank() {

@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:skofee_harvest",
+  "display": {
+    "icon": {
+      "item": "skofcraft:skofee_beans_roasted"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.skofee_roast.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.skofee_roast.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_roasted": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:skofee_beans_roasted"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

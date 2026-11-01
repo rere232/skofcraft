@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:refuel",
+  "display": {
+    "icon": {
+      "item": "skofcraft:empty_fuel_canister"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.running_on_fumes.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.running_on_fumes.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

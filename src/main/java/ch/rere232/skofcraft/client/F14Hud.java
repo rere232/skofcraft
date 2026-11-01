@@ -7,7 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 
-/** Fighter HUD: pitch ladder, flight data, throttle, stall warning, weapons and hull. */
+/** Fighter HUD: pitch ladder, flight data, throttle, stall warning, weapons, hull and fuel. */
 public final class F14Hud {
     private static final int GREEN = 0xFF55FF88;
     private static final int GREEN_DIM = 0xFF2E9E50;
@@ -119,5 +119,14 @@ public final class F14Hud {
         g.drawString(mc.font, Component.translatable("hud.skofcraft.f14.hull"), cx + 54, y, hullColor, false);
         g.fill(cx + 54, y + 10, cx + 114, y + 13, 0xFF0A0C0A);
         g.fill(cx + 54, y + 10, cx + 54 + (int) (60 * hull), y + 13, hullColor);
+
+        float fuel = Mth.clamp(jet.getFuel() / (float) jet.getMaxFuel(), 0.0F, 1.0F);
+        int fuelColor = fuel > 0.25F ? GREEN : (fuel > 0.1F ? AMBER : RED);
+        g.drawString(mc.font, Component.translatable("hud.skofcraft.f14.fuel"), cx - 162, y, fuelColor, false);
+        g.fill(cx - 162, y + 10, cx - 102, y + 13, 0xFF0A0C0A);
+        g.fill(cx - 162, y + 10, cx - 162 + (int) (60 * fuel), y + 13, fuelColor);
+        if (jet.getFuel() <= 0 && now / 4 % 2 == 0) {
+            g.drawCenteredString(mc.font, Component.translatable("hud.skofcraft.f14.no_fuel"), cx, y - 14, RED);
+        }
     }
 }

@@ -21,9 +21,19 @@ public class ApacheClientEvents {
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         Minecraft mc = Minecraft.getInstance();
+        if (event.phase != TickEvent.Phase.END || mc.level == null) {
+            return;
+        }
         PilotedAircraft aircraft = AircraftClient.piloted();
-        if (event.phase != TickEvent.Phase.END || aircraft == null || mc.screen != null
-                || !mc.mouseHandler.isMouseGrabbed() || mc.level == null) {
+        long now = mc.level.getGameTime();
+        if (aircraft != null && aircraft != AircraftClient.lastPiloted) {
+            // Just took the controls: hold fire, and let the reload bar fill as the weapons arm
+            AircraftClient.boardedTick = now;
+            AircraftClient.lastSecondaryTick = now + PilotedAircraft.BOARDING_LOCKOUT_TICKS - aircraft.secondaryCooldownTicks();
+        }
+        AircraftClient.lastPiloted = aircraft;
+        if (aircraft == null || mc.screen != null || !mc.mouseHandler.isMouseGrabbed()
+                || now - AircraftClient.boardedTick < PilotedAircraft.BOARDING_LOCKOUT_TICKS) {
             return;
         }
         if (mc.options.keyAttack.isDown()) {
@@ -31,7 +41,6 @@ public class ApacheClientEvents {
         }
         if (mc.options.keyUse.isDown()) {
             SkofcraftNetwork.CHANNEL.sendToServer(new ApacheFireC2SPacket(PilotedAircraft.WEAPON_MISSILE));
-            long now = mc.level.getGameTime();
             if (now - AircraftClient.lastSecondaryTick >= aircraft.secondaryCooldownTicks()) {
                 AircraftClient.lastSecondaryTick = now;
             }

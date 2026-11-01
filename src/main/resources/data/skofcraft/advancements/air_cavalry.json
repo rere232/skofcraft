@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:turbine_time",
+  "display": {
+    "icon": {
+      "item": "skofcraft:apache"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.air_cavalry.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.air_cavalry.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_apache": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:apache"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

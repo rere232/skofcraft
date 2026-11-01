@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:cat_shot",
+  "display": {
+    "icon": {
+      "item": "skofcraft:arresting_wire"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.trap.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.trap.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

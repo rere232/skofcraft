@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:turbine_time",
+  "display": {
+    "icon": {
+      "item": "skofcraft:f14"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.fly_boy.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.fly_boy.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_f14": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:f14"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

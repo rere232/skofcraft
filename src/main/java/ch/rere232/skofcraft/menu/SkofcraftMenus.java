@@ -26,4 +26,7 @@ public class SkofcraftMenus {
 
     public static final RegistryObject<MenuType<FEPackagerMenu>> FE_PACKAGER = MENUS.register("fe_packager",
             () -> IForgeMenuType.create((windowId, playerInventory, packetBuffer) -> new FEPackagerMenu(windowId, playerInventory, packetBuffer)));
+
+    public static final RegistryObject<MenuType<AircraftWorkbenchMenu>> AIRCRAFT_WORKBENCH = MENUS.register("aircraft_workbench",
+            () -> IForgeMenuType.create((windowId, playerInventory, packetBuffer) -> new AircraftWorkbenchMenu(windowId, playerInventory, packetBuffer)));
 }

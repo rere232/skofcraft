@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "skofcraft:block/aircraft_workbench"
+    },
+    "facing=east": {
+      "model": "skofcraft:block/aircraft_workbench",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "skofcraft:block/aircraft_workbench",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "skofcraft:block/aircraft_workbench",
+      "y": 270
+    }
+  }
+}

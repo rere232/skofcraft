@@ -1,29 +1,32 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "type": "skofcraft:aircraft_assembly",
   "pattern": [
-    "IGI",
-    "BDB",
-    "RTR"
+    "PPCPP",
+    "WPAPW",
+    "PJGJP",
+    "GPBPG"
   ],
   "key": {
-    "I": {
-      "item": "minecraft:iron_ingot"
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "C": {
+      "item": "minecraft:glass"
+    },
+    "W": {
+      "item": "skofcraft:weapon_system"
+    },
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "J": {
+      "item": "skofcraft:jet_engine"
     },
     "G": {
-      "item": "minecraft:glass_pane"
+      "item": "skofcraft:gear"
     },
     "B": {
       "item": "minecraft:iron_block"
-    },
-    "D": {
-      "item": "minecraft:diamond"
-    },
-    "R": {
-      "item": "minecraft:redstone_block"
-    },
-    "T": {
-      "item": "minecraft:tnt"
     }
   },
   "result": {

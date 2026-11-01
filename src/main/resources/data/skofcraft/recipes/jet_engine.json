@@ -1,0 +1,32 @@
+{
+  "type": "skofcraft:aircraft_assembly",
+  "pattern": [
+    "PPPPP",
+    "TGBGT",
+    "TFDFT",
+    "PPPPP"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "T": {
+      "item": "skofcraft:turbine_blade"
+    },
+    "G": {
+      "item": "skofcraft:gear"
+    },
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "F": {
+      "item": "minecraft:fire_charge"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "skofcraft:jet_engine"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CCC",
+    "PPP"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:chain"
+    },
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    }
+  },
+  "result": {
+    "item": "skofcraft:arresting_wire",
+    "count": 4
+  }
+}

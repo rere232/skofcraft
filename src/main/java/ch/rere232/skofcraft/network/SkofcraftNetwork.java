@@ -31,5 +31,9 @@ public class SkofcraftNetwork {
         CHANNEL.registerMessage(packetId++, PhoneAddictionS2CPacket.class, PhoneAddictionS2CPacket::encode, PhoneAddictionS2CPacket::decode, PhoneAddictionS2CPacket::handle);
         CHANNEL.registerMessage(packetId++, ApacheFireC2SPacket.class, ApacheFireC2SPacket::encode, ApacheFireC2SPacket::decode, ApacheFireC2SPacket::handle);
         CHANNEL.registerMessage(packetId++, JetCrashC2SPacket.class, JetCrashC2SPacket::encode, JetCrashC2SPacket::decode, JetCrashC2SPacket::handle);
+        CHANNEL.registerMessage(packetId++, SkofeeBrewC2SPacket.class, SkofeeBrewC2SPacket::encode, SkofeeBrewC2SPacket::decode, SkofeeBrewC2SPacket::handle);
+        CHANNEL.registerMessage(packetId++, FlightDeckC2SPacket.class, FlightDeckC2SPacket::encode, FlightDeckC2SPacket::decode, FlightDeckC2SPacket::handle);
+        CHANNEL.registerMessage(packetId++, RadarScanC2SPacket.class, RadarScanC2SPacket::encode, RadarScanC2SPacket::decode, RadarScanC2SPacket::handle);
+        CHANNEL.registerMessage(packetId++, RadarContactsS2CPacket.class, RadarContactsS2CPacket::encode, RadarContactsS2CPacket::decode, RadarContactsS2CPacket::handle);
     }
 }

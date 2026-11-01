@@ -2,7 +2,7 @@
   "parent": "skofcraft:root",
   "display": {
     "icon": {
-      "item": "skofcraft:tobacco_plant"
+      "item": "skofcraft:tobacco_seeds"
     },
     "title": {
       "translate": "advancements.skofcraft.green_thumb.title"
@@ -19,7 +19,12 @@
     "planted": {
       "trigger": "minecraft:placed_block",
       "conditions": {
-        "block": "skofcraft:tobacco_plant"
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "skofcraft:tobacco_plant"
+          }
+        ]
       }
     }
   }

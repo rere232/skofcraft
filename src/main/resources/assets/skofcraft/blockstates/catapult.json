@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "skofcraft:block/catapult"
+    },
+    "facing=east": {
+      "model": "skofcraft:block/catapult",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "skofcraft:block/catapult",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "skofcraft:block/catapult",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:hangar",
+  "display": {
+    "icon": {
+      "item": "skofcraft:jet_engine"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.turbine_time.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.turbine_time.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_engine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:jet_engine"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

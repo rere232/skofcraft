@@ -1,0 +1,29 @@
+{
+  "type": "skofcraft:aircraft_assembly",
+  "pattern": [
+    "BBBBB",
+    "JNHNJ",
+    "WBBBW",
+    "BBBBB"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "J": {
+      "item": "skofcraft:jet_engine"
+    },
+    "N": {
+      "item": "skofcraft:nuclear_reactor"
+    },
+    "H": {
+      "item": "skofcraft:carrier_helm"
+    },
+    "W": {
+      "item": "skofcraft:weapon_system"
+    }
+  },
+  "result": {
+    "item": "skofcraft:aircraft_carrier"
+  }
+}

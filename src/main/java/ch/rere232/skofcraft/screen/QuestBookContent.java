@@ -22,7 +22,7 @@ final class QuestBookContent {
     record Text(Component text) implements Entry {}
 
     /** Crafting grid; empty cells are ItemStack.EMPTY. */
-    record Craft(ItemStack[] grid, ItemStack result) implements Entry {}
+    record Craft(ItemStack[] grid, int width, int height, ItemStack result) implements Entry {}
 
     /** Inputs processed by a machine into one output. */
     record Process(List<ItemStack> inputs, ItemStack machine, ItemStack output) implements Entry {}
@@ -193,6 +193,35 @@ final class QuestBookContent {
                 text("industrial.p2")
         )));
 
+        chapters.add(new Chapter(t("skofee.title"), stack(SkofcraftItems.SKOFEE.get()), List.of(
+                text("skofee.p1"),
+                craft(new ItemStack(SkofcraftItems.SKOFEE_SEEDS.get(), 2), new String[] {"   ", " CW", "   "},
+                        'C', Items.COCOA_BEANS, 'W', Items.WHEAT_SEEDS),
+                text("skofee.p2"),
+                process(SkofcraftItems.MANUAL_DRYER.get(), stack(SkofcraftItems.SKOFEE_BEANS_DRY.get()),
+                        stack(SkofcraftItems.SKOFEE_BEANS_FRESH.get())),
+                text("skofee.p3"),
+                process(Items.FURNACE, stack(SkofcraftItems.SKOFEE_BEANS_ROASTED.get()),
+                        stack(SkofcraftItems.SKOFEE_BEANS_DRY.get())),
+                process(SkofcraftItems.MANUAL_GRINDER.get(), new ItemStack(SkofcraftItems.SKOFEE_GROUND.get(), 2),
+                        stack(SkofcraftItems.SKOFEE_BEANS_ROASTED.get())),
+                text("skofee.p4"),
+                craft(new ItemStack(SkofcraftItems.SKOFEE_CUP.get(), 4), new String[] {"B B", " B ", "   "},
+                        'B', Items.BRICK),
+                craft(stack(SkofcraftItems.SKOFEE_MACHINE.get()), new String[] {"IBI", "GFG", "III"},
+                        'I', Items.IRON_INGOT, 'B', Items.BUCKET, 'G', Items.GLASS_PANE, 'F', Items.FURNACE),
+                text("skofee.p5"),
+                process(SkofcraftItems.SKOFEE_MACHINE.get(), stack(SkofcraftItems.SKOFEE.get()),
+                        stack(SkofcraftItems.SKOFEE_CUP.get()), stack(SkofcraftItems.SKOFEE_GROUND.get()),
+                        stack(Items.WATER_BUCKET)),
+                text("skofee.p6"),
+                craft(stack(SkofcraftItems.SKOFEE_LATTE.get()), new String[] {"   ", " SM", "   "},
+                        'S', SkofcraftItems.SKOFEE.get(), 'M', Items.MILK_BUCKET),
+                craft(new ItemStack(SkofcraftItems.FLAVOR_COFFEE.get(), 2), new String[] {"   ", " GS", "   "},
+                        'G', SkofcraftItems.SKOFEE_GROUND.get(), 'S', Items.SUGAR),
+                text("skofee.p7")
+        )));
+
         chapters.add(new Chapter(t("phone.title"), stack(SkofcraftItems.PHONE.get()), List.of(
                 text("phone.p1"),
                 craft(stack(SkofcraftItems.PHONE.get()), new String[] {"NNN", "NGN", "CRC"},
@@ -200,19 +229,78 @@ final class QuestBookContent {
                 text("phone.p2"), text("phone.p3"), text("phone.p4")
         )));
 
+        chapters.add(new Chapter(t("aircraft.title"), stack(SkofcraftItems.AIRCRAFT_WORKBENCH.get()), List.of(
+                text("aircraft.p1"),
+                craft(stack(SkofcraftItems.AIRCRAFT_WORKBENCH.get()), new String[] {"PPP", "GTG", "IBI"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'G', SkofcraftItems.GEAR.get(), 'T', Items.CRAFTING_TABLE,
+                        'I', Items.IRON_INGOT, 'B', Items.IRON_BLOCK),
+                text("aircraft.p2"),
+                craft(new ItemStack(SkofcraftItems.GEAR.get(), 2), new String[] {" N ", "NIN", " N "},
+                        'N', Items.IRON_NUGGET, 'I', Items.IRON_INGOT),
+                craft(new ItemStack(SkofcraftItems.AIRCRAFT_PLATE.get(), 2), new String[] {"ICI"},
+                        'I', Items.IRON_INGOT, 'C', Items.COPPER_INGOT),
+                craft(new ItemStack(SkofcraftItems.TURBINE_BLADE.get(), 2), new String[] {"  P", " P ", "G  "},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'G', Items.GOLD_INGOT),
+                craft(stack(SkofcraftItems.ROTOR_BLADE.get()), new String[] {"PPP", " I "},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'I', Items.IRON_INGOT),
+                craft(stack(SkofcraftItems.AVIONICS.get()), new String[] {"QRQ", "COC", "GRG"},
+                        'Q', Items.QUARTZ, 'R', Items.REDSTONE, 'C', Items.COMPARATOR, 'O', Items.OBSERVER, 'G', Items.GOLD_INGOT),
+                text("aircraft.p3"),
+                craft(stack(SkofcraftItems.JET_ENGINE.get()), new String[] {"PPPPP", "TGBGT", "TFDFT", "PPPPP"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'T', SkofcraftItems.TURBINE_BLADE.get(), 'G', SkofcraftItems.GEAR.get(),
+                        'B', Items.BLAZE_ROD, 'F', Items.FIRE_CHARGE, 'D', Items.DIAMOND),
+                craft(stack(SkofcraftItems.WEAPON_SYSTEM.get()), new String[] {"PPPPP", "DGTGD", "PRRRP"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'D', Items.DISPENSER, 'G', SkofcraftItems.GEAR.get(),
+                        'T', Items.TNT, 'R', Items.REDSTONE_BLOCK),
+                text("aircraft.p4"),
+                craft(new ItemStack(SkofcraftItems.EMPTY_FUEL_CANISTER.get(), 2), new String[] {" C ", "I I", "III"},
+                        'C', Items.COPPER_INGOT, 'I', Items.IRON_INGOT),
+                craft(stack(SkofcraftItems.JET_FUEL_CANISTER.get()), new String[] {"EL", "BC"},
+                        'E', SkofcraftItems.EMPTY_FUEL_CANISTER.get(), 'L', Items.LAVA_BUCKET, 'B', Items.BLAZE_POWDER, 'C', Items.COAL),
+                text("aircraft.p5")
+        )));
+
         chapters.add(new Chapter(t("apache.title"), stack(SkofcraftItems.APACHE.get()), List.of(
                 text("apache.p1"),
-                craft(stack(SkofcraftItems.APACHE.get()), new String[] {"III", "BDB", "ITI"},
-                        'I', Items.IRON_INGOT, 'B', Items.IRON_BLOCK, 'D', Items.DISPENSER, 'T', Items.TNT),
+                craft(stack(SkofcraftItems.APACHE.get()), new String[] {"RRRRR", "GPAPG", "WPJPW", "PCBCP"},
+                        'R', SkofcraftItems.ROTOR_BLADE.get(), 'G', SkofcraftItems.GEAR.get(), 'P', SkofcraftItems.AIRCRAFT_PLATE.get(),
+                        'A', SkofcraftItems.AVIONICS.get(), 'W', SkofcraftItems.WEAPON_SYSTEM.get(), 'J', SkofcraftItems.JET_ENGINE.get(),
+                        'C', Items.GLASS, 'B', Items.IRON_BLOCK),
                 text("apache.p2"), text("apache.p3")
         )));
 
         chapters.add(new Chapter(t("f14.title"), stack(SkofcraftItems.F14.get()), List.of(
                 text("f14.p1"),
-                craft(stack(SkofcraftItems.F14.get()), new String[] {"IGI", "BDB", "RTR"},
-                        'I', Items.IRON_INGOT, 'G', Items.GLASS_PANE, 'B', Items.IRON_BLOCK, 'D', Items.DIAMOND,
-                        'R', Items.REDSTONE_BLOCK, 'T', Items.TNT),
+                craft(stack(SkofcraftItems.F14.get()), new String[] {"PPCPP", "WPAPW", "PJGJP", "GPBPG"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'C', Items.GLASS, 'W', SkofcraftItems.WEAPON_SYSTEM.get(),
+                        'A', SkofcraftItems.AVIONICS.get(), 'J', SkofcraftItems.JET_ENGINE.get(), 'G', SkofcraftItems.GEAR.get(),
+                        'B', Items.IRON_BLOCK),
                 text("f14.p2"), text("f14.p3")
+        )));
+
+        chapters.add(new Chapter(t("carrier.title"), stack(SkofcraftItems.AIRCRAFT_CARRIER.get()), List.of(
+                text("carrier.p1"),
+                craft(stack(SkofcraftItems.NUCLEAR_REACTOR.get()), new String[] {"IGRGI", "RANAR", "IGRGI"},
+                        'I', Items.IRON_BLOCK, 'G', Items.GLOWSTONE, 'R', Items.REDSTONE_BLOCK,
+                        'A', SkofcraftItems.AVIONICS.get(), 'N', Items.NETHER_STAR),
+                text("carrier.p2"),
+                craft(stack(SkofcraftItems.CARRIER_HELM.get()), new String[] {" A ", "PCP", "PPP"},
+                        'A', SkofcraftItems.AVIONICS.get(), 'C', Items.COMPASS, 'P', SkofcraftItems.AIRCRAFT_PLATE.get()),
+                craft(new ItemStack(SkofcraftItems.CATAPULT.get(), 4), new String[] {"PPP", "GXG", "PPP"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'G', SkofcraftItems.GEAR.get(), 'X', Items.PISTON),
+                craft(new ItemStack(SkofcraftItems.ARRESTING_WIRE.get(), 4), new String[] {"CCC", "PPP"},
+                        'C', Items.CHAIN, 'P', SkofcraftItems.AIRCRAFT_PLATE.get()),
+                text("carrier.p3"),
+                craft(stack(SkofcraftItems.AIRCRAFT_CARRIER.get()), new String[] {"BBBBB", "JNHNJ", "WBBBW", "BBBBB"},
+                        'B', Items.IRON_BLOCK, 'J', SkofcraftItems.JET_ENGINE.get(), 'N', SkofcraftItems.NUCLEAR_REACTOR.get(),
+                        'H', SkofcraftItems.CARRIER_HELM.get(), 'W', SkofcraftItems.WEAPON_SYSTEM.get()),
+                text("carrier.p4"), text("carrier.rooms"), text("carrier.p5"),
+                text("carrier.repair"),
+                craft(stack(SkofcraftItems.DAMAGE_CONTROL_KIT.get()), new String[] {"GPG", "PIP", "PPP"},
+                        'G', SkofcraftItems.GEAR.get(), 'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'I', Items.IRON_INGOT),
+                text("carrier.radar"),
+                craft(stack(SkofcraftItems.RADAR.get()), new String[] {" C ", "RAR", "PPP"},
+                        'C', Items.COMPASS, 'R', Items.REDSTONE, 'A', SkofcraftItems.AVIONICS.get(), 'P', SkofcraftItems.AIRCRAFT_PLATE.get())
         )));
 
         chapters.add(new Chapter(t("blahaj.title"), stack(SkofcraftItems.BLAHAJ.get()), List.of(
@@ -253,14 +341,16 @@ final class QuestBookContent {
         for (int i = 0; i + 1 < keyPairs.length; i += 2) {
             key.put((Character) keyPairs[i], (ItemLike) keyPairs[i + 1]);
         }
-        ItemStack[] grid = new ItemStack[9];
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
+        int width = pattern[0].length();
+        int height = pattern.length;
+        ItemStack[] grid = new ItemStack[width * height];
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
                 ItemLike item = key.get(pattern[row].charAt(col));
-                grid[row * 3 + col] = item == null ? ItemStack.EMPTY : new ItemStack(item);
+                grid[row * width + col] = item == null ? ItemStack.EMPTY : new ItemStack(item);
             }
         }
-        return new Craft(grid, result);
+        return new Craft(grid, width, height, result);
     }
 
     private static Process process(ItemLike machine, ItemStack output, ItemStack... inputs) {

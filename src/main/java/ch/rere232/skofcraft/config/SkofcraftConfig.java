@@ -21,6 +21,8 @@ public class SkofcraftConfig {
 
     private static final ForgeConfigSpec.DoubleValue TOBACCO_GROWTH_SPEED = BUILDER.comment("Tobacco growth speed multiplier")
             .defineInRange("tobaccoGrowthSpeed", 1.0D, 0.1D, 10.0D);
+    private static final ForgeConfigSpec.DoubleValue SKOFEE_GROWTH_SPEED = BUILDER.comment("SKOFee growth speed multiplier")
+            .defineInRange("skofeeGrowthSpeed", 1.0D, 0.1D, 10.0D);
     private static final ForgeConfigSpec.DoubleValue MACHINE_ENERGY_MULTIPLIER = BUILDER.comment("Machine FE/t multiplier")
             .defineInRange("machineEnergyMultiplier", 1.0D, 0.1D, 10.0D);
 
@@ -34,6 +36,8 @@ public class SkofcraftConfig {
             .defineInRange("boxCapacity", 20, 1, 64);
     private static final ForgeConfigSpec.IntValue VAPE_USES = BUILDER.comment("Puffs per filled vape")
             .defineInRange("vapeUses", 30, 1, 200);
+    private static final ForgeConfigSpec.IntValue SKOFEE_DURATION_SECONDS = BUILDER.comment("Speed and Haste duration of a cup of SKOFee in seconds")
+            .defineInRange("skofeeDurationSeconds", 180, 10, 1200);
 
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
@@ -43,6 +47,7 @@ public class SkofcraftConfig {
     public static boolean enableVillager;
 
     public static double tobaccoGrowthSpeed;
+    public static double skofeeGrowthSpeed = 1.0D;
     public static double machineEnergyMultiplier;
 
     public static int snusDurationMinutes;
@@ -50,6 +55,7 @@ public class SkofcraftConfig {
     public static int chewDurationMinutes = 30;
     public static int boxCapacity;
     public static int vapeUses = 30;
+    public static int skofeeDurationSeconds = 180;
 
     @SubscribeEvent
     public static void onLoad(final ModConfigEvent event) {
@@ -59,6 +65,7 @@ public class SkofcraftConfig {
         enableVillager = ENABLE_VILLAGER.get();
 
         tobaccoGrowthSpeed = TOBACCO_GROWTH_SPEED.get();
+        skofeeGrowthSpeed = SKOFEE_GROWTH_SPEED.get();
         machineEnergyMultiplier = MACHINE_ENERGY_MULTIPLIER.get();
 
         snusDurationMinutes = SNUS_DURATION_MINUTES.get();
@@ -66,5 +73,6 @@ public class SkofcraftConfig {
         chewDurationMinutes = CHEW_DURATION_MINUTES.get();
         boxCapacity = BOX_CAPACITY.get();
         vapeUses = VAPE_USES.get();
+        skofeeDurationSeconds = SKOFEE_DURATION_SECONDS.get();
     }
 }

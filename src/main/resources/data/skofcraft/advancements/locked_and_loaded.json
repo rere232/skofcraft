@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:hangar",
+  "display": {
+    "icon": {
+      "item": "skofcraft:weapon_system"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.locked_and_loaded.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.locked_and_loaded.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_weapons": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:weapon_system"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

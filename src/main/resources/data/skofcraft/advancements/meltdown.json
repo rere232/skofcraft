@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:nuclear_reactor",
+  "display": {
+    "icon": {
+      "item": "minecraft:tnt"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.meltdown.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.meltdown.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

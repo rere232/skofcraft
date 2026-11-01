@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.entity.AircraftFuel;
 import ch.rere232.skofcraft.entity.F14Tomcat;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -35,6 +36,7 @@ public class F14Item extends Item {
         if (!level.noCollision(jet, jet.getBoundingBox())) {
             return InteractionResult.FAIL;
         }
+        jet.setFuel(AircraftFuel.fuelOf(context.getItemInHand()));
         level.addFreshEntity(jet);
         if (player == null || !player.getAbilities().instabuild) {
             context.getItemInHand().shrink(1);
@@ -45,5 +47,6 @@ public class F14Item extends Item {
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable("tooltip.skofcraft.f14").withStyle(ChatFormatting.GRAY));
+        tooltip.add(AircraftFuel.tooltip(stack, F14Tomcat.MAX_FUEL));
     }
 }

@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:nuclear_navy",
+  "display": {
+    "icon": {
+      "item": "skofcraft:carrier_helm"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.anchors_aweigh.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.anchors_aweigh.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

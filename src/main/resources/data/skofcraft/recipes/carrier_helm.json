@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " A ",
+    "PCP",
+    "PPP"
+  ],
+  "key": {
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "C": {
+      "item": "minecraft:compass"
+    },
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    }
+  },
+  "result": {
+    "item": "skofcraft:carrier_helm"
+  }
+}

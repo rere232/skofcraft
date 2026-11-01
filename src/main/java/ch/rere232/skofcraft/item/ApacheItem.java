@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.entity.AircraftFuel;
 import ch.rere232.skofcraft.entity.ApacheHelicopter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -36,6 +37,7 @@ public class ApacheItem extends Item {
         if (!level.noCollision(helicopter, helicopter.getBoundingBox())) {
             return InteractionResult.FAIL;
         }
+        helicopter.setFuel(AircraftFuel.fuelOf(context.getItemInHand()));
         level.addFreshEntity(helicopter);
         if (player == null || !player.getAbilities().instabuild) {
             context.getItemInHand().shrink(1);
@@ -46,5 +48,6 @@ public class ApacheItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable("tooltip.skofcraft.apache").withStyle(ChatFormatting.GRAY));
+        tooltip.add(AircraftFuel.tooltip(stack, ApacheHelicopter.MAX_FUEL));
     }
 }

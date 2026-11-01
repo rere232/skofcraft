@@ -52,6 +52,10 @@ public class SkofcraftVillagerTrades {
                 sell(SkofcraftItems.CIGARETTE, 4, 1, 16, 8),
                 sell(SkofcraftItems.FLAVOR_MINT, 2, 4, 8, 8),
                 buy(SkofcraftItems.TOBACCO_DUST, 12, 12, 8)));
+        level2.add(bundle(
+                sell(SkofcraftItems.SKOFEE_SEEDS, 8, 1, 16, 8),
+                sell(SkofcraftItems.SKOFEE, 1, 2, 12, 8),
+                buy(SkofcraftItems.SKOFEE_BEANS_ROASTED, 12, 12, 8)));
 
         List<VillagerTrades.ItemListing> level3 = event.getTrades().get(3);
         level3.add(bundle(
@@ -63,6 +67,10 @@ public class SkofcraftVillagerTrades {
                 sell(SkofcraftItems.FLAVOR_COLA, 2, 5, 8, 15),
                 sell(SkofcraftItems.CIGARILLO, 3, 4, 12, 15),
                 sell(SkofcraftItems.CHEWING_TOBACCO, 2, 3, 12, 15)));
+        level3.add(bundle(
+                sell(SkofcraftItems.SKOFEE_MACHINE, 1, 12, 4, 15),
+                sell(SkofcraftItems.SKOFEE_LATTE, 1, 3, 12, 15),
+                buy(SkofcraftItems.SKOFEE_GROUND, 16, 12, 15)));
 
         List<VillagerTrades.ItemListing> level4 = event.getTrades().get(4);
         level4.add(bundle(
@@ -99,6 +107,7 @@ public class SkofcraftVillagerTrades {
             return;
         }
         event.getGenericTrades().add(sell(SkofcraftItems.TOBACCO_SEEDS, 4, 1, 8, 1));
+        event.getGenericTrades().add(sell(SkofcraftItems.SKOFEE_SEEDS, 4, 1, 8, 1));
         event.getRareTrades().add(sell(SkofcraftItems.ADDICTOL, 1, 20, 1, 5));
     }
 

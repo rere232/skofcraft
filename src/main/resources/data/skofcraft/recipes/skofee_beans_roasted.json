@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "ingredient": {
+    "item": "skofcraft:skofee_beans_dry"
+  },
+  "result": "skofcraft:skofee_beans_roasted",
+  "experience": 0.35,
+  "cookingtime": 200
+}

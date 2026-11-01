@@ -6,6 +6,8 @@ import net.minecraft.server.level.ServerPlayer;
 public interface PilotedAircraft {
     int WEAPON_GUN = 0;
     int WEAPON_MISSILE = 1;
+    /** Weapons stay safe this long after a pilot climbs in, so the right-click used to board never fires a missile. */
+    int BOARDING_LOCKOUT_TICKS = 40;
 
     /** Called on the server for the pilot's fire packets. */
     void fire(ServerPlayer pilot, int weapon);
@@ -16,4 +18,11 @@ public interface PilotedAircraft {
     float getHealth();
 
     float getMaxHealth();
+
+    /** Fuel in ticks of engine time; see {@link AircraftFuel}. */
+    int getFuel();
+
+    int getMaxFuel();
+
+    void setFuel(int fuel);
 }

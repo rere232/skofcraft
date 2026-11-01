@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:aircraft_workbench"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.hangar.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.hangar.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_workbench": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:aircraft_workbench"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

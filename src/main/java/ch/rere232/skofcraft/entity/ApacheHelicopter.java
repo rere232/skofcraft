@@ -33,7 +33,8 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * A rideable attack helicopter. The first rider flies: look to turn, W/S forward and back, A/D strafe,
- * Space climbs, C descends, attack fires the chain gun and use fires rockets. The flying client
+ * Space climbs, C descends, attack fires the chain gun and use fires rockets. The engine burns fuel while
+ * someone is at the controls; with an empty tank the rotor spins down and it sinks. The flying client
  * simulates the movement and the server accepts it through the vehicle move packet.
  */
 public class ApacheHelicopter extends Entity implements PilotedAircraft {
@@ -47,9 +48,12 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
     private static final int GUN_COOLDOWN = 2;
     public static final int ROCKET_COOLDOWN = 15;
     public static final float MAX_HEALTH = 40.0F;
+    public static final int MAX_FUEL = AircraftFuel.PER_CANISTER * 3;
     private static final double[] SEAT_FORWARD = {0.25D, 1.4D};
     private static final EntityDataAccessor<Float> DATA_HEALTH =
             SynchedEntityData.defineId(ApacheHelicopter.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Integer> DATA_FUEL =
+            SynchedEntityData.defineId(ApacheHelicopter.class, EntityDataSerializers.INT);
 
     private long nextGunTick;
     private long nextRocketTick;
@@ -82,9 +86,10 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
         super.tick();
         LivingEntity pilot = getControllingPassenger();
         boolean piloted = pilot != null;
+        boolean running = piloted && getFuel() > 0;
 
         if (isControlledByLocalInstance()) {
-            if (piloted) {
+            if (running) {
                 fly(pilot);
             } else {
                 settle();
@@ -102,10 +107,13 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
             passenger.resetFallDistance();
         }
         resetFallDistance();
-        animate(piloted);
+        animate(running);
 
-        if (!level().isClientSide && piloted && tickCount % 4 == 0) {
-            level().playSound(null, getX(), getY(), getZ(), SoundEvents.PHANTOM_FLAP, SoundSource.NEUTRAL, 1.4F, 0.45F);
+        if (!level().isClientSide && piloted) {
+            AircraftFuel.burn(this, pilot);
+            if (running && tickCount % 4 == 0) {
+                level().playSound(null, getX(), getY(), getZ(), SoundEvents.PHANTOM_FLAP, SoundSource.NEUTRAL, 1.4F, 0.45F);
+            }
         }
     }
 
@@ -136,15 +144,15 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
         }
     }
 
-    /** Without a pilot the helicopter coasts to a stop and sinks to the ground. */
+    /** Without a pilot or fuel the helicopter coasts to a stop and sinks to the ground. */
     private void settle() {
         Vec3 v = getDeltaMovement();
         setDeltaMovement(v.x * 0.9D, Math.max(v.y - 0.04D, -0.5D) * 0.98D, v.z * 0.9D);
     }
 
-    private void animate(boolean piloted) {
+    private void animate(boolean running) {
         rotorAngleO = rotorAngle;
-        rotorSpeed += ((piloted ? 60.0F : 0.0F) - rotorSpeed) * (piloted ? 0.08F : 0.03F);
+        rotorSpeed += ((running ? 60.0F : 0.0F) - rotorSpeed) * (running ? 0.08F : 0.03F);
         rotorAngle += rotorSpeed;
 
         double yawRad = Math.toRadians(getYRot());
@@ -198,7 +206,20 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
     }
 
     @Override
+    protected void addPassenger(Entity passenger) {
+        super.addPassenger(passenger);
+        if (!level().isClientSide && getControllingPassenger() == passenger) {
+            long armed = level().getGameTime() + BOARDING_LOCKOUT_TICKS;
+            nextGunTick = Math.max(nextGunTick, armed);
+            nextRocketTick = Math.max(nextRocketTick, armed);
+        }
+    }
+
+    @Override
     public InteractionResult interact(Player player, InteractionHand hand) {
+        if (AircraftFuel.tryRefuel(this, this, player, hand)) {
+            return InteractionResult.sidedSuccess(level().isClientSide);
+        }
         if (player.isSecondaryUseActive() || getPassengers().size() >= SEATS) {
             return InteractionResult.PASS;
         }
@@ -216,7 +237,7 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
         }
         if (source.getDirectEntity() instanceof Player player && !isVehicle()) {
             if (!player.getAbilities().instabuild) {
-                spawnAtLocation(new ItemStack(SkofcraftItems.APACHE.get()));
+                spawnAtLocation(AircraftFuel.withFuel(new ItemStack(SkofcraftItems.APACHE.get()), getFuel()));
             }
             discard();
             return true;
@@ -224,9 +245,12 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
         float remaining = getHealth() - amount;
         entityData.set(DATA_HEALTH, remaining);
         if (remaining <= 0.0F) {
+            AircraftWreck.awardCrew(this);
+            ejectPassengers();
             // Removed first: the blast would otherwise hurt this entity again and recurse.
             discard();
             level().explode(null, getX(), getY(), getZ(), 2.5F, Level.ExplosionInteraction.NONE);
+            AircraftWreck.scatterApache(this);
         }
         return true;
     }
@@ -243,6 +267,21 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
     @Override
     public int secondaryCooldownTicks() {
         return ROCKET_COOLDOWN;
+    }
+
+    @Override
+    public int getFuel() {
+        return entityData.get(DATA_FUEL);
+    }
+
+    @Override
+    public int getMaxFuel() {
+        return MAX_FUEL;
+    }
+
+    @Override
+    public void setFuel(int fuel) {
+        entityData.set(DATA_FUEL, Mth.clamp(fuel, 0, MAX_FUEL));
     }
 
     @Override
@@ -296,16 +335,19 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
     @Override
     protected void defineSynchedData() {
         entityData.define(DATA_HEALTH, MAX_HEALTH);
+        entityData.define(DATA_FUEL, 0);
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag tag) {
         entityData.set(DATA_HEALTH, tag.contains("Health") ? tag.getFloat("Health") : MAX_HEALTH);
+        setFuel(tag.getInt(AircraftFuel.TAG));
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag tag) {
         tag.putFloat("Health", getHealth());
+        tag.putInt(AircraftFuel.TAG, getFuel());
     }
 
     @Override

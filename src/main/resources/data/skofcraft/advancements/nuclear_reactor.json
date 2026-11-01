@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:hangar",
+  "display": {
+    "icon": {
+      "item": "skofcraft:nuclear_reactor"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.nuclear_reactor.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.nuclear_reactor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_reactor": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:nuclear_reactor"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

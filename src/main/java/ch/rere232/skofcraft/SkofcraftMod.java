@@ -1,6 +1,7 @@
 package ch.rere232.skofcraft;
 
 import ch.rere232.skofcraft.blockentity.SkofcraftBlockEntities;
+import ch.rere232.skofcraft.carrier.CarrierEvents;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.gums.GumEvents;
 import ch.rere232.skofcraft.menu.SkofcraftMenus;
@@ -10,6 +11,7 @@ import ch.rere232.skofcraft.registry.SkofcraftCreativeTabs;
 import ch.rere232.skofcraft.registry.SkofcraftEffects;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
+import ch.rere232.skofcraft.registry.SkofcraftRecipes;
 import ch.rere232.skofcraft.registry.SkofcraftVillagers;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,6 +36,8 @@ public class SkofcraftMod {
         SkofcraftCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         SkofcraftBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         SkofcraftMenus.MENUS.register(modEventBus);
+        SkofcraftRecipes.RECIPE_TYPES.register(modEventBus);
+        SkofcraftRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         SkofcraftVillagers.POI_TYPES.register(modEventBus);
         SkofcraftVillagers.PROFESSIONS.register(modEventBus);
         SkofcraftNetwork.register();
@@ -41,6 +45,7 @@ public class SkofcraftMod {
         context.registerConfig(ModConfig.Type.COMMON, SkofcraftConfig.SPEC, "skofcraft-common.toml");
 
         MinecraftForge.EVENT_BUS.register(new GumEvents());
+        MinecraftForge.EVENT_BUS.register(new CarrierEvents());
 
         LOGGER.info("SKOFCRAFT initialized");
     }

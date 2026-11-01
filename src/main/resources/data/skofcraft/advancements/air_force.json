@@ -1,0 +1,52 @@
+{
+  "parent": "skofcraft:fly_boy",
+  "display": {
+    "icon": {
+      "item": "skofcraft:avionics"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.air_force.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.air_force.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_apache": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:apache"
+            ]
+          }
+        ]
+      }
+    },
+    "has_f14": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:f14"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_apache"
+    ],
+    [
+      "has_f14"
+    ]
+  ]
+}

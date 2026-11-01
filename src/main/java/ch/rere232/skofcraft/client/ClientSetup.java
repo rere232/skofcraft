@@ -9,6 +9,7 @@ import ch.rere232.skofcraft.menu.FEPressMenu;
 import ch.rere232.skofcraft.menu.FEPackagerMenu;
 import ch.rere232.skofcraft.menu.SkofcraftMenus;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
+import ch.rere232.skofcraft.screen.AircraftWorkbenchScreen;
 import ch.rere232.skofcraft.screen.FEDryerScreen;
 import ch.rere232.skofcraft.screen.FEGrinderScreen;
 import ch.rere232.skofcraft.screen.FEMixerScreen;
@@ -32,6 +33,7 @@ public class ClientSetup {
         MenuScreens.register(SkofcraftMenus.FE_MIXER.get(), FEMixerScreen::new);
         MenuScreens.register(SkofcraftMenus.FE_PRESS.get(), FEPressScreen::new);
         MenuScreens.register(SkofcraftMenus.FE_PACKAGER.get(), FEPackagerScreen::new);
+        MenuScreens.register(SkofcraftMenus.AIRCRAFT_WORKBENCH.get(), AircraftWorkbenchScreen::new);
     }
 
     @SubscribeEvent
@@ -41,6 +43,7 @@ public class ClientSetup {
         event.registerEntityRenderer(SkofcraftEntities.DELIVERY_CRATE.get(), DeliveryCrateRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.APACHE.get(), ApacheRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.F14.get(), F14Renderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.AIRCRAFT_CARRIER.get(), AircraftCarrierRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.APACHE_BULLET.get(), ctx -> new ThrownItemRenderer<>(ctx, 0.6F, true));
         event.registerEntityRenderer(SkofcraftEntities.APACHE_ROCKET.get(), ctx -> new ThrownItemRenderer<>(ctx, 1.0F, true));
         event.registerBlockEntityRenderer(SkofcraftBlockEntities.CHICHA.get(), ChichaRenderer::new);

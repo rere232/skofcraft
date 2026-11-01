@@ -1,0 +1,28 @@
+{
+  "type": "skofcraft:aircraft_assembly",
+  "pattern": [
+    "IGRGI",
+    "RANAR",
+    "IGRGI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "skofcraft:nuclear_reactor"
+  }
+}

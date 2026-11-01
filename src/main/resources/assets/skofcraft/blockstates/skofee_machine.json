@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "skofcraft:block/skofee_machine"
+    },
+    "facing=east": {
+      "model": "skofcraft:block/skofee_machine",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "skofcraft:block/skofee_machine",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "skofcraft:block/skofee_machine",
+      "y": 270
+    }
+  }
+}

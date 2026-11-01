@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:skofee_roast",
+  "display": {
+    "icon": {
+      "item": "skofcraft:skofee_machine"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.skofee_barista.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.skofee_barista.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_machine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:skofee_machine"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

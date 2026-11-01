@@ -117,9 +117,10 @@ repositories {
 
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
-    // flatDir {
-    //     dir 'libs'
-    // }
+    // Debug-only mods (JEI, Mekanism) dropped in ./libs; see runtimeOnly below
+    flatDir {
+        dir 'libs'
+    }
 }
 
 dependencies {
@@ -129,6 +130,11 @@ dependencies {
     // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // Not dependencies of the mod, only loaded in runClient to help debugging.
+    // Release jars must go through fg.deobf to match the dev mappings; putting them in run/mods crashes on launch.
+    runtimeOnly fg.deobf("blank:jei-1.20.1-forge:15.20.0.130")
+    runtimeOnly fg.deobf("blank:Mekanism-1.20.1:10.4.16.80")
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

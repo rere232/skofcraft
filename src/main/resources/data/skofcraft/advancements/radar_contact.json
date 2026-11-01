@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:hangar",
+  "display": {
+    "icon": {
+      "item": "skofcraft:radar"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.radar_contact.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.radar_contact.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

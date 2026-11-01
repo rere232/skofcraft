@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "skofcraft:block/carrier_helm"
+    },
+    "facing=east": {
+      "model": "skofcraft:block/carrier_helm",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "skofcraft:block/carrier_helm",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "skofcraft:block/carrier_helm",
+      "y": 270
+    }
+  }
+}

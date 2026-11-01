@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:nuclear_reactor",
+  "display": {
+    "icon": {
+      "item": "skofcraft:aircraft_carrier"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.nuclear_navy.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.nuclear_navy.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

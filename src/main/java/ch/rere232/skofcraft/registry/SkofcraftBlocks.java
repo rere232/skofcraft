@@ -1,6 +1,11 @@
 package ch.rere232.skofcraft.registry;
 
 import ch.rere232.skofcraft.SkofcraftMod;
+import ch.rere232.skofcraft.block.AircraftWorkbenchBlock;
+import ch.rere232.skofcraft.block.CarrierHelmBlock;
+import ch.rere232.skofcraft.block.DeckFixtureBlock;
+import ch.rere232.skofcraft.block.NuclearReactorBlock;
+import ch.rere232.skofcraft.block.RadarBlock;
 import ch.rere232.skofcraft.block.FEDryerBlock;
 import ch.rere232.skofcraft.block.FEGrinderBlock;
 import ch.rere232.skofcraft.block.FEMixerBlock;
@@ -8,8 +13,10 @@ import ch.rere232.skofcraft.block.FEPackagerBlock;
 import ch.rere232.skofcraft.block.FEPressBlock;
 import ch.rere232.skofcraft.block.ChichaBlock;
 import ch.rere232.skofcraft.block.BlahajBlock;
+import ch.rere232.skofcraft.block.SkofeeMachineBlock;
 import ch.rere232.skofcraft.block.SpitPuddleBlock;
 import ch.rere232.skofcraft.block.TobacconistCounterBlock;
+import ch.rere232.skofcraft.crop.SkofeePlantBlock;
 import ch.rere232.skofcraft.crop.TobaccoPlantBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -24,6 +31,14 @@ public class SkofcraftBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SkofcraftMod.MODID);
 
     public static final RegistryObject<Block> TOBACCO_PLANT = BLOCKS.register("tobacco_plant", () -> new TobaccoPlantBlock(BlockBehaviour.Properties.of().noCollission().randomTicks().instabreak().noOcclusion()));
+    public static final RegistryObject<Block> SKOFEE_PLANT = BLOCKS.register("skofee_plant", () -> new SkofeePlantBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().noOcclusion().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> SKOFEE_MACHINE = BLOCKS.register("skofee_machine", () -> new SkofeeMachineBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(2.5F, 6.0F).noOcclusion().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> AIRCRAFT_WORKBENCH = BLOCKS.register("aircraft_workbench", () -> new AircraftWorkbenchBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> CARRIER_HELM = BLOCKS.register("carrier_helm", () -> new CarrierHelmBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> CATAPULT = BLOCKS.register("catapult", () -> new DeckFixtureBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(5.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> ARRESTING_WIRE = BLOCKS.register("arresting_wire", () -> new DeckFixtureBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(5.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> NUCLEAR_REACTOR = BLOCKS.register("nuclear_reactor", () -> new NuclearReactorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(8.0F, 12.0F).requiresCorrectToolForDrops().lightLevel(state -> 15).sound(SoundType.NETHERITE_BLOCK)));
+    public static final RegistryObject<Block> RADAR = BLOCKS.register("radar", () -> new RadarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).requiresCorrectToolForDrops().lightLevel(state -> 7).sound(SoundType.METAL)));
     public static final RegistryObject<Block> TOBACCONIST_COUNTER = BLOCKS.register("tobacconist_counter", () -> new TobacconistCounterBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> BLAHAJ = BLOCKS.register("blahaj", () -> new BlahajBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(0.8F).noOcclusion().sound(SoundType.WOOL)));
     public static final RegistryObject<Block> CHICHA = BLOCKS.register("chicha", () -> new ChichaBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(1.5F, 3.0F).noOcclusion().sound(SoundType.METAL)));
