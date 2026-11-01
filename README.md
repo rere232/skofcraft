@@ -276,7 +276,7 @@ All keys can be rebound in the controls menu.
 
 ## Building from source
 
-Put the Curios jar (`curios-forge-5.14.1+1.20.1.jar`) in `libs/`, then:
+Curios and JEI are downloaded from their mavens automatically.
 
 ```bash
 ./gradlew build          # jar in build/libs
