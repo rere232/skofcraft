@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "skofcraft:block/big_red_button"
+    },
+    "powered=true": {
+      "model": "skofcraft:block/big_red_button_pressed"
+    }
+  }
+}

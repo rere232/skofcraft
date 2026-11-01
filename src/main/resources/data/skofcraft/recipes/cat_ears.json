@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "B B",
+    "P P"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "P": {
+      "item": "minecraft:pink_wool"
+    }
+  },
+  "result": {
+    "item": "skofcraft:cat_ears"
+  }
+}

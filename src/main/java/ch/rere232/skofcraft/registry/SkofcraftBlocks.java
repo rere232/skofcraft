@@ -2,8 +2,11 @@ package ch.rere232.skofcraft.registry;
 
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.block.AircraftWorkbenchBlock;
+import ch.rere232.skofcraft.block.BigRedButtonBlock;
 import ch.rere232.skofcraft.block.CarrierHelmBlock;
 import ch.rere232.skofcraft.block.DeckFixtureBlock;
+import ch.rere232.skofcraft.block.EvilLeverBlock;
+import ch.rere232.skofcraft.block.EvilPressurePlateBlock;
 import ch.rere232.skofcraft.block.NuclearReactorBlock;
 import ch.rere232.skofcraft.block.RadarBlock;
 import ch.rere232.skofcraft.block.DefenseTurretBlock;
@@ -45,6 +48,9 @@ public class SkofcraftBlocks {
     public static final RegistryObject<Block> SAM_LAUNCHER = BLOCKS.register("sam_launcher", () -> new DefenseTurretBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.METAL), DefenseTurretBlock.Weapon.SAM));
     public static final RegistryObject<Block> LAUNCH_PAD = BLOCKS.register("launch_pad", () -> new LaunchPadBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 12.0F).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.METAL)));
     public static final RegistryObject<Block> TOBACCONIST_COUNTER = BLOCKS.register("tobacconist_counter", () -> new TobacconistCounterBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> BIG_RED_BUTTON = BLOCKS.register("big_red_button", () -> new BigRedButtonBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(3.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> EVIL_PRESSURE_PLATE = BLOCKS.register("evil_pressure_plate", () -> new EvilPressurePlateBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).forceSolidOn().requiresCorrectToolForDrops().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> EVIL_LEVER = BLOCKS.register("evil_lever", () -> new EvilLeverBlock(BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.STONE).pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> BLAHAJ = BLOCKS.register("blahaj", () -> new BlahajBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(0.8F).noOcclusion().sound(SoundType.WOOL)));
     public static final RegistryObject<Block> CHICHA = BLOCKS.register("chicha", () -> new ChichaBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(1.5F, 3.0F).noOcclusion().sound(SoundType.METAL)));
     public static final RegistryObject<Block> SPIT_PUDDLE = BLOCKS.register("spit_puddle", () -> new SpitPuddleBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).noCollission().noOcclusion().instabreak().replaceable().pushReaction(PushReaction.DESTROY).sound(SoundType.SLIME_BLOCK)));

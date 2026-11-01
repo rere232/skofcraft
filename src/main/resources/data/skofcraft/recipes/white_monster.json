@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SBW",
+    " C "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "B": {
+      "item": "skofcraft:skofee_beans_roasted"
+    },
+    "C": {
+      "item": "skofcraft:empty_can"
+    },
+    "W": {
+      "item": "minecraft:white_dye"
+    }
+  },
+  "result": {
+    "item": "skofcraft:white_monster"
+  }
+}

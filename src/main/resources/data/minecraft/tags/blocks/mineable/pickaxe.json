@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "skofcraft:big_red_button",
+    "skofcraft:evil_pressure_plate",
     "skofcraft:manual_dryer",
     "skofcraft:manual_grinder",
     "skofcraft:manual_mixer",

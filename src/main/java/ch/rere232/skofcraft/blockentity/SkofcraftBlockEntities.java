@@ -22,6 +22,9 @@ public class SkofcraftBlockEntities {
     public static final RegistryObject<BlockEntityType<LaunchPadBlockEntity>> LAUNCH_PAD = BLOCK_ENTITIES.register("launch_pad",
             () -> BlockEntityType.Builder.of(LaunchPadBlockEntity::new, SkofcraftBlocks.LAUNCH_PAD.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<BigRedButtonBlockEntity>> BIG_RED_BUTTON = BLOCK_ENTITIES.register("big_red_button",
+            () -> BlockEntityType.Builder.of(BigRedButtonBlockEntity::new, SkofcraftBlocks.BIG_RED_BUTTON.get()).build(null));
+
     public static final RegistryObject<BlockEntityType<FEDryerBlockEntity>> FE_DRYER = BLOCK_ENTITIES.register("fe_dryer",
             () -> BlockEntityType.Builder.of(
                     FEDryerBlockEntity::new,

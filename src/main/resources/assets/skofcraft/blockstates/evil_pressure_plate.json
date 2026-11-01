@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "skofcraft:block/evil_pressure_plate"
+    },
+    "powered=true": {
+      "model": "skofcraft:block/evil_pressure_plate_down"
+    }
+  }
+}

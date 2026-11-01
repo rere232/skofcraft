@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PSL"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:pink_dye"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "L": {
+      "item": "minecraft:light_blue_dye"
+    }
+  },
+  "result": {
+    "item": "skofcraft:estrogen_pill",
+    "count": 4
+  }
+}

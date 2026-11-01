@@ -21,6 +21,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
@@ -31,7 +32,7 @@ import java.util.Locale;
 /**
  * Draws a piece of clothing on whoever wears it in a Curios slot. Each piece's parts are built in the space of the
  * humanoid part they follow (the body for the choker, crop top and skirt, the legs for the thigh highs, the arms for
- * the hand warmers, the head for the face mask) and copy that part's pose every frame, so they move, sneak and swim with the wearer.
+ * the hand warmers, the head for the face mask and cat ears, the body for the tail) and copy that part's pose every frame, so they move, sneak and swim with the wearer.
  */
 public class ClothingRenderer implements ICurioRenderer {
     public enum Piece {
@@ -42,7 +43,13 @@ public class ClothingRenderer implements ICurioRenderer {
         HAND_WARMERS(64, 32),
         // Drawn at four times this resolution, so the printed faces can have some detail
         MASK(32, 16),
-        TACTICAL_GLOVES(64, 16);
+        TACTICAL_GLOVES(64, 16),
+        CAT_EARS(32, 16),
+        CAT_TAIL(32, 16);
+
+        /** How far the tail bends at each joint, from the base up to the curled tip. */
+        private static final float[] TAIL_BENDS = {2.0F, 0.4F, 0.4F, 0.5F};
+        private static final float TAIL_SEGMENT = 3.0F;
 
         /** The open heart ring on the choker, drawn in half-pixel cells. */
         private static final String[] HEART = {
@@ -115,6 +122,30 @@ public class ClothingRenderer implements ICurioRenderer {
                         .texOffs(0, 0).addBox(-4.5F, -3.0F, -5.0F, 9.0F, 3.0F, 0.5F)
                         .texOffs(0, 8).addBox(-4.75F, -2.4F, -4.8F, 0.25F, 0.4F, 4.3F)
                         .texOffs(0, 8).addBox(4.5F, -2.4F, -4.8F, 0.25F, 0.4F, 4.3F), PartPose.ZERO);
+                // Two pointed ears on top of the head (over the hat layer), tilted a little outwards, pink inside
+                case CAT_EARS -> {
+                    PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);
+                    for (int side = -1; side <= 1; side += 2) {
+                        head.addOrReplaceChild(side < 0 ? "right_ear" : "left_ear", CubeListBuilder.create()
+                                        .texOffs(0, 0).addBox(-1.5F, -1.5F, -0.5F, 3.0F, 1.5F, 1.0F)
+                                        .texOffs(0, 0).addBox(-1.0F, -2.5F, -0.5F, 2.0F, 1.0F, 1.0F)
+                                        .texOffs(0, 0).addBox(-0.5F, -3.5F, -0.5F, 1.0F, 1.0F, 1.0F)
+                                        .texOffs(0, 8).addBox(-0.75F, -1.5F, -0.75F, 1.5F, 1.5F, 0.25F)
+                                        .texOffs(0, 8).addBox(-0.5F, -2.5F, -0.75F, 1.0F, 1.0F, 0.25F),
+                                PartPose.offsetAndRotation(side * 2.5F, -8.5F, -1.0F, 0.0F, 0.0F, side * 0.25F));
+                    }
+                }
+                // A tail from the small of the back, a chain of segments curving back and up, with a white tip
+                case CAT_TAIL -> {
+                    PartDefinition parent = root.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.ZERO);
+                    for (int i = 0; i < TAIL_BENDS.length; i++) {
+                        boolean tip = i == TAIL_BENDS.length - 1;
+                        parent = parent.addOrReplaceChild("tail_" + i, CubeListBuilder.create()
+                                        .texOffs(0, tip ? 8 : 0).addBox(-0.75F, 0.0F, -0.75F, 1.5F, TAIL_SEGMENT, 1.5F),
+                                PartPose.offsetAndRotation(0.0F, i == 0 ? 10.5F : TAIL_SEGMENT - 0.3F, i == 0 ? 2.0F : 0.0F,
+                                        TAIL_BENDS[i], 0.0F, 0.0F));
+                    }
+                }
             }
             return LayerDefinition.create(mesh, textureW, textureH);
         }
@@ -159,7 +190,13 @@ public class ClothingRenderer implements ICurioRenderer {
                 draw(root.getChild("left_leg"), humanoid.leftLeg, poseStack, consumer, light);
             }
             case HAND_WARMERS, TACTICAL_GLOVES -> drawArms(slotContext, humanoid, poseStack, consumer, light);
-            case MASK -> draw(root.getChild("head"), humanoid.head, poseStack, consumer, light);
+            case MASK, CAT_EARS -> draw(root.getChild("head"), humanoid.head, poseStack, consumer, light);
+            case CAT_TAIL -> {
+                // A lazy side to side sway, faster while walking
+                ModelPart base = root.getChild("body").getChild("tail_0");
+                base.zRot = Mth.sin(ageInTicks * 0.08F + limbSwing * 0.5F) * (0.15F + limbSwingAmount * 0.3F);
+                draw(root.getChild("body"), humanoid.body, poseStack, consumer, light);
+            }
             case CROP_TOP -> {
                 draw(root.getChild("body"), humanoid.body, poseStack, consumer, light);
                 drawArms(slotContext, humanoid, poseStack, consumer, light);

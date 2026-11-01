@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pressure_plate_down",
+  "textures": {
+    "texture": "skofcraft:block/evil_pressure_plate"
+  }
+}

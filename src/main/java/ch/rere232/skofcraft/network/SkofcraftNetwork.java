@@ -38,5 +38,7 @@ public class SkofcraftNetwork {
         CHANNEL.registerMessage(packetId++, MushroomCloudS2CPacket.class, MushroomCloudS2CPacket::encode, MushroomCloudS2CPacket::decode, MushroomCloudS2CPacket::handle);
         CHANNEL.registerMessage(packetId++, SatelliteLinkC2SPacket.class, SatelliteLinkC2SPacket::encode, SatelliteLinkC2SPacket::decode, SatelliteLinkC2SPacket::handle);
         CHANNEL.registerMessage(packetId++, SatelliteLinkS2CPacket.class, SatelliteLinkS2CPacket::encode, SatelliteLinkS2CPacket::decode, SatelliteLinkS2CPacket::handle);
+        CHANNEL.registerMessage(packetId++, ButtonCrashS2CPacket.class, ButtonCrashS2CPacket::encode, ButtonCrashS2CPacket::decode, ButtonCrashS2CPacket::handle);
+        CHANNEL.registerMessage(packetId++, ScreenFlipS2CPacket.class, ScreenFlipS2CPacket::encode, ScreenFlipS2CPacket::decode, ScreenFlipS2CPacket::handle);
     }
 }

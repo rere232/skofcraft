@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SBF",
+    " C "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "B": {
+      "item": "skofcraft:skofee_beans_roasted"
+    },
+    "C": {
+      "item": "skofcraft:empty_can"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "skofcraft:red_bull"
+  }
+}

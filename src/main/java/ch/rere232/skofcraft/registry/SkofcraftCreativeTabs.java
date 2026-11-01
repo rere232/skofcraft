@@ -29,6 +29,9 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.SKOFEE_CUP.get());
                 output.accept(SkofcraftItems.SKOFEE.get());
                 output.accept(SkofcraftItems.SKOFEE_LATTE.get());
+                output.accept(SkofcraftItems.EMPTY_CAN.get());
+                output.accept(SkofcraftItems.WHITE_MONSTER.get());
+                output.accept(SkofcraftItems.RED_BULL.get());
                 output.accept(SkofcraftItems.SKOFEE_MACHINE.get());
 
                 output.accept(SkofcraftItems.VEGETAL_FIBER.get());
@@ -68,6 +71,14 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.CROP_TOP.get());
                 output.accept(SkofcraftItems.HAND_WARMERS.get());
                 output.accept(SkofcraftItems.FACE_MASK.get());
+                output.accept(SkofcraftItems.CAT_EARS.get());
+                output.accept(SkofcraftItems.CAT_TAIL.get());
+                output.accept(SkofcraftItems.OUTFIT_BOX.get());
+                output.accept(SkofcraftItems.ESTROGEN_PILL.get());
+                output.accept(SkofcraftItems.FEMBOY_SPAWN_EGG.get());
+                output.accept(SkofcraftItems.BIG_RED_BUTTON.get());
+                output.accept(SkofcraftItems.EVIL_PRESSURE_PLATE.get());
+                output.accept(SkofcraftItems.EVIL_LEVER.get());
                 output.accept(SkofcraftItems.AIRCRAFT_WORKBENCH.get());
                 output.accept(SkofcraftItems.GEAR.get());
                 output.accept(SkofcraftItems.AIRCRAFT_PLATE.get());

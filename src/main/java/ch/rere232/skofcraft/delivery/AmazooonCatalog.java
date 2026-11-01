@@ -25,6 +25,9 @@ public final class AmazooonCatalog {
             new Product(SkofcraftItems.FILLED_POUCH_BOX, 1, 4),
             new Product(SkofcraftItems.VAPE, 1, 5),
             new Product(SkofcraftItems.CHICHA, 1, 8),
+            new Product(SkofcraftItems.WHITE_MONSTER, 4, 3),
+            new Product(SkofcraftItems.RED_BULL, 4, 3),
+            new Product(SkofcraftItems.OUTFIT_BOX, 1, 6),
             new Product(SkofcraftItems.ADDICTOL, 1, 10)
     );
 

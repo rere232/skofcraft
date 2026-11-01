@@ -7,6 +7,7 @@ import ch.rere232.skofcraft.entity.ApacheHelicopter;
 import ch.rere232.skofcraft.entity.ApacheRocket;
 import ch.rere232.skofcraft.entity.DeliveryCrate;
 import ch.rere232.skofcraft.entity.F14Tomcat;
+import ch.rere232.skofcraft.entity.Femboy;
 import ch.rere232.skofcraft.entity.DeliveryPlane;
 import ch.rere232.skofcraft.entity.SpitProjectile;
 import ch.rere232.skofcraft.entity.GigaIcbm;
@@ -112,6 +113,13 @@ public class SkofcraftEntities {
                     .updateInterval(1)
                     .fireImmune()
                     .build("icbm_warhead"));
+
+    public static final RegistryObject<EntityType<Femboy>> FEMBOY = ENTITIES.register("femboy",
+            () -> EntityType.Builder.<Femboy>of(Femboy::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.8F)
+                    .fireImmune()
+                    .clientTrackingRange(10)
+                    .build("femboy"));
 
     private SkofcraftEntities() {}
 }

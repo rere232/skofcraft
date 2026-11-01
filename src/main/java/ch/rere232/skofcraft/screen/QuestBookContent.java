@@ -231,7 +231,15 @@ final class QuestBookContent {
                         'S', SkofcraftItems.SKOFEE.get(), 'M', Items.MILK_BUCKET),
                 craft(new ItemStack(SkofcraftItems.FLAVOR_COFFEE.get(), 2), new String[] {"   ", " GS", "   "},
                         'G', SkofcraftItems.SKOFEE_GROUND.get(), 'S', Items.SUGAR),
-                text("skofee.p7")
+                text("skofee.p7"),
+                text("skofee.cans"),
+                craft(stack(SkofcraftItems.EMPTY_CAN.get()), new String[] {"N N", " N "}, 'N', Items.IRON_NUGGET),
+                text("skofee.white_monster"),
+                craft(stack(SkofcraftItems.WHITE_MONSTER.get()), new String[] {"SBW", " C "},
+                        'S', Items.SUGAR, 'B', SkofcraftItems.SKOFEE_BEANS_ROASTED.get(), 'W', Items.WHITE_DYE, 'C', SkofcraftItems.EMPTY_CAN.get()),
+                text("skofee.red_bull"),
+                craft(stack(SkofcraftItems.RED_BULL.get()), new String[] {"SBF", " C "},
+                        'S', Items.SUGAR, 'B', SkofcraftItems.SKOFEE_BEANS_ROASTED.get(), 'F', Items.FEATHER, 'C', SkofcraftItems.EMPTY_CAN.get())
         )));
 
         chapters.add(new Chapter(t("phone.title"), stack(SkofcraftItems.PHONE.get()), List.of(
@@ -397,6 +405,10 @@ final class QuestBookContent {
 
         chapters.add(new Chapter(t("wardrobe.title"), stack(SkofcraftItems.CHOKER.get()), List.of(
                 text("wardrobe.p1"),
+                text("wardrobe.femboys"),
+                text("wardrobe.estrogen"),
+                craft(new ItemStack(SkofcraftItems.ESTROGEN_PILL.get(), 4), new String[] {"PSL"},
+                        'P', Items.PINK_DYE, 'S', Items.SUGAR, 'L', Items.LIGHT_BLUE_DYE),
                 text("wardrobe.mask"),
                 craft(stack(SkofcraftItems.FACE_MASK.get()), new String[] {"SBS", "BWB"},
                         'S', Items.STRING, 'B', Items.BLACK_WOOL, 'W', Items.WHITE_DYE),
@@ -415,6 +427,12 @@ final class QuestBookContent {
                 text("wardrobe.thigh_highs"),
                 craft(stack(SkofcraftItems.THIGH_HIGHS.get()), new String[] {"WSW", "B B", "B B"},
                         'W', Items.WHITE_DYE, 'S', Items.STRING, 'B', Items.BLACK_WOOL),
+                text("wardrobe.cat_ears"),
+                craft(stack(SkofcraftItems.CAT_EARS.get()), new String[] {"B B", "P P"},
+                        'B', Items.BLACK_WOOL, 'P', Items.PINK_WOOL),
+                text("wardrobe.cat_tail"),
+                craft(stack(SkofcraftItems.CAT_TAIL.get()), new String[] {"S", "B", "W"},
+                        'S', Items.STRING, 'B', Items.BLACK_WOOL, 'W', Items.WHITE_WOOL),
                 text("wardrobe.p2")
         )));
 

@@ -20,8 +20,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.List;
 
 /**
- * A piece of clothing worn in a Curios slot: the Face Mask (head), Choker (necklace), Crop Top (body), Hand Warmers
- * (hands), Skirt (belt) and Thigh Highs (legs).
+ * A piece of clothing worn in a Curios slot: the Face Mask and Cat Ears (head), Choker (necklace), Crop Top (body),
+ * Hand Warmers (hands), Skirt (belt), Thigh Highs (legs) and Cat Tail (back).
  * Which slot each goes in is set by the curios item tags; {@link ch.rere232.skofcraft.client.ClothingRenderer} draws
  * them on the wearer. Right-click to put one on.
  */

@@ -79,7 +79,7 @@ public class SkofeeItem extends Item {
                 if (nutrition > 0) {
                     player.getFoodData().eat(nutrition, saturation);
                 }
-                applyStreak(player, level);
+                applyStreak(player, level, "message.skofcraft.skofee_jitters");
             }
             level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.GENERIC_DRINK, SoundSource.PLAYERS, 0.6F, 1.1F);
         }
@@ -98,7 +98,8 @@ public class SkofeeItem extends Item {
         return stack;
     }
 
-    private static void applyStreak(Player player, Level level) {
+    /** Counts a caffeinated drink (SKOFee or an energy drink) toward the jitters. */
+    static void applyStreak(Player player, Level level, String jittersMessage) {
         CompoundTag data = player.getPersistentData();
         long now = level.getGameTime();
         int cups = now - data.getLong(TAG_LAST_CUP) <= STREAK_TICKS ? data.getInt(TAG_CUPS) + 1 : 1;
@@ -108,7 +109,7 @@ public class SkofeeItem extends Item {
             int extra = cups - JITTERS_AFTER;
             player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 20 * (8 + extra * 4), 0));
             player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 20 * (15 + extra * 5), Math.min(2, extra)));
-            player.displayClientMessage(Component.translatable("message.skofcraft.skofee_jitters"), true);
+            player.displayClientMessage(Component.translatable(jittersMessage), true);
         }
     }
 

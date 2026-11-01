@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:evil_pressure_plate"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.roof_access.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.roof_access.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "stepped": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

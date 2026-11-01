@@ -8,7 +8,10 @@ import ch.rere232.skofcraft.item.AircraftCarrierItem;
 import ch.rere232.skofcraft.item.ApacheItem;
 import ch.rere232.skofcraft.item.DamageControlKitItem;
 import ch.rere232.skofcraft.item.ClothingItem;
+import ch.rere232.skofcraft.item.EnergyDrinkItem;
+import ch.rere232.skofcraft.item.EstrogenPillItem;
 import ch.rere232.skofcraft.item.MaskItem;
+import ch.rere232.skofcraft.item.OutfitBoxItem;
 import ch.rere232.skofcraft.item.TacticalArmorItem;
 import ch.rere232.skofcraft.item.TacticalGlovesItem;
 import net.minecraft.world.item.ArmorItem;
@@ -33,6 +36,7 @@ import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
@@ -61,6 +65,11 @@ public class SkofcraftItems {
             () -> new SkofeeItem(new Item.Properties().stacksTo(16), 0, 0.0F, 1.0F));
     public static final RegistryObject<Item> SKOFEE_LATTE = ITEMS.register("skofee_latte",
             () -> new SkofeeItem(new Item.Properties().stacksTo(16), 4, 0.6F, 0.75F));
+    public static final RegistryObject<Item> EMPTY_CAN = item("empty_can");
+    public static final RegistryObject<Item> WHITE_MONSTER = ITEMS.register("white_monster",
+            () -> new EnergyDrinkItem(new Item.Properties().stacksTo(16), EnergyDrinkItem.Kind.WHITE_MONSTER));
+    public static final RegistryObject<Item> RED_BULL = ITEMS.register("red_bull",
+            () -> new EnergyDrinkItem(new Item.Properties().stacksTo(16), EnergyDrinkItem.Kind.RED_BULL));
 
     public static final RegistryObject<Item> VEGETAL_FIBER = item("vegetal_fiber");
     public static final RegistryObject<Item> NEUTRAL_BASE = item("neutral_base");
@@ -182,9 +191,22 @@ public class SkofcraftItems {
             () -> new ClothingItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> FACE_MASK = ITEMS.register("face_mask",
             () -> new MaskItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> CAT_EARS = ITEMS.register("cat_ears",
+            () -> new ClothingItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> CAT_TAIL = ITEMS.register("cat_tail",
+            () -> new ClothingItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> OUTFIT_BOX = ITEMS.register("outfit_box",
+            () -> new OutfitBoxItem(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> ESTROGEN_PILL = ITEMS.register("estrogen_pill",
+            () -> new EstrogenPillItem(new Item.Properties()));
+    public static final RegistryObject<Item> FEMBOY_SPAWN_EGG = ITEMS.register("femboy_spawn_egg",
+            () -> new ForgeSpawnEggItem(SkofcraftEntities.FEMBOY, 0xF5A9B8, 0x1C1C1C, new Item.Properties()));
     public static final RegistryObject<Item> BLAHAJ = ITEMS.register("blahaj",
             () -> new BlahajItem(SkofcraftBlocks.BLAHAJ.get(), new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> CHICHA = blockItem("chicha", SkofcraftBlocks.CHICHA);
+    public static final RegistryObject<Item> BIG_RED_BUTTON = blockItem("big_red_button", SkofcraftBlocks.BIG_RED_BUTTON);
+    public static final RegistryObject<Item> EVIL_PRESSURE_PLATE = blockItem("evil_pressure_plate", SkofcraftBlocks.EVIL_PRESSURE_PLATE);
+    public static final RegistryObject<Item> EVIL_LEVER = blockItem("evil_lever", SkofcraftBlocks.EVIL_LEVER);
     public static final RegistryObject<Item> SKOFEE_MACHINE = blockItem("skofee_machine", SkofcraftBlocks.SKOFEE_MACHINE);
     public static final RegistryObject<Item> AIRCRAFT_WORKBENCH = blockItem("aircraft_workbench", SkofcraftBlocks.AIRCRAFT_WORKBENCH);
     public static final RegistryObject<Item> CARRIER_HELM = blockItem("carrier_helm", SkofcraftBlocks.CARRIER_HELM);

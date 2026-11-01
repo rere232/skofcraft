@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    " D ",
+    "IBI",
+    "IRI"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:red_dye"
+    },
+    "B": {
+      "item": "minecraft:stone_button"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "skofcraft:big_red_button"
+  }
+}

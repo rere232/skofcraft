@@ -1,0 +1,164 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "skofcraft:block/big_red_button_red",
+    "hazard": "skofcraft:block/big_red_button_hazard",
+    "metal": "skofcraft:block/big_red_button_metal",
+    "red": "skofcraft:block/big_red_button_red"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        3,
+        15
+      ],
+      "faces": {
+        "north": {
+          "texture": "#hazard",
+          "uv": [
+            1,
+            6,
+            15,
+            9
+          ]
+        },
+        "south": {
+          "texture": "#hazard",
+          "uv": [
+            1,
+            6,
+            15,
+            9
+          ]
+        },
+        "east": {
+          "texture": "#hazard",
+          "uv": [
+            1,
+            6,
+            15,
+            9
+          ]
+        },
+        "west": {
+          "texture": "#hazard",
+          "uv": [
+            1,
+            6,
+            15,
+            9
+          ]
+        },
+        "up": {
+          "texture": "#hazard"
+        },
+        "down": {
+          "texture": "#metal",
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        3
+      ],
+      "to": [
+        13,
+        4,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#metal"
+        },
+        "south": {
+          "texture": "#metal"
+        },
+        "east": {
+          "texture": "#metal"
+        },
+        "west": {
+          "texture": "#metal"
+        },
+        "up": {
+          "texture": "#metal"
+        },
+        "down": {
+          "texture": "#metal"
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        4,
+        4
+      ],
+      "to": [
+        12,
+        8,
+        12
+      ],
+      "faces": {
+        "north": {
+          "texture": "#red"
+        },
+        "south": {
+          "texture": "#red"
+        },
+        "east": {
+          "texture": "#red"
+        },
+        "west": {
+          "texture": "#red"
+        },
+        "up": {
+          "texture": "#red"
+        },
+        "down": {
+          "texture": "#red"
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        8,
+        5
+      ],
+      "to": [
+        11,
+        9,
+        11
+      ],
+      "faces": {
+        "north": {
+          "texture": "#red"
+        },
+        "south": {
+          "texture": "#red"
+        },
+        "east": {
+          "texture": "#red"
+        },
+        "west": {
+          "texture": "#red"
+        },
+        "up": {
+          "texture": "#red"
+        },
+        "down": {
+          "texture": "#red"
+        }
+      }
+    }
+  ]
+}

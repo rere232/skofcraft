@@ -23,6 +23,10 @@ public final class SkofcraftAdvancements {
     public static final String GIGA_ICBM = "giga_icbm";
     public static final String FULL_OUTFIT = "full_outfit";
     public static final String FULLY_KITTED = "fully_kitted";
+    public static final String HEADPATS = "headpats";
+    public static final String TOLD_YOU_SO = "told_you_so";
+    public static final String ROOF_ACCESS = "roof_access";
+    public static final String UPSIDE_DOWN = "upside_down";
 
     private SkofcraftAdvancements() {}
 

@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:big_red_button"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.told_you_so.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.told_you_so.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "pressed": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "S",
+    "B",
+    "W"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "B": {
+      "item": "minecraft:black_wool"
+    },
+    "W": {
+      "item": "minecraft:white_wool"
+    }
+  },
+  "result": {
+    "item": "skofcraft:cat_tail"
+  }
+}

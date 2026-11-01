@@ -45,6 +45,8 @@ public class ClientSetup {
         CuriosRendererRegistry.register(SkofcraftItems.CROP_TOP.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.CROP_TOP));
         CuriosRendererRegistry.register(SkofcraftItems.HAND_WARMERS.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.HAND_WARMERS));
         CuriosRendererRegistry.register(SkofcraftItems.FACE_MASK.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.MASK));
+        CuriosRendererRegistry.register(SkofcraftItems.CAT_EARS.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.CAT_EARS));
+        CuriosRendererRegistry.register(SkofcraftItems.CAT_TAIL.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.CAT_TAIL));
         CuriosRendererRegistry.register(SkofcraftItems.TACTICAL_GLOVES.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.TACTICAL_GLOVES));
         // The face mask icon follows its style: 0, 1/3, 2/3, 1 (item properties are clamped to 0..1)
         event.enqueueWork(() -> ItemProperties.register(SkofcraftItems.FACE_MASK.get(),
@@ -55,6 +57,7 @@ public class ClientSetup {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(SkofcraftEntities.SPIT.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.FEMBOY.get(), FemboyRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.DELIVERY_PLANE.get(), DeliveryPlaneRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.DELIVERY_CRATE.get(), DeliveryCrateRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.APACHE.get(), ApacheRenderer::new);
@@ -63,6 +66,7 @@ public class ClientSetup {
         event.registerEntityRenderer(SkofcraftEntities.APACHE_BULLET.get(), ctx -> new ThrownItemRenderer<>(ctx, 0.6F, true));
         event.registerEntityRenderer(SkofcraftEntities.APACHE_ROCKET.get(), ctx -> new ThrownItemRenderer<>(ctx, 1.0F, true));
         event.registerBlockEntityRenderer(SkofcraftBlockEntities.CHICHA.get(), ChichaRenderer::new);
+        event.registerBlockEntityRenderer(SkofcraftBlockEntities.BIG_RED_BUTTON.get(), BigRedButtonRenderer::new);
         event.registerBlockEntityRenderer(SkofcraftBlockEntities.DEFENSE_TURRET.get(), DefenseTurretRenderer::new);
         event.registerBlockEntityRenderer(SkofcraftBlockEntities.LAUNCH_PAD.get(), SpaceRenderers.PadRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.LAUNCH_ROCKET.get(), SpaceRenderers.RocketRenderer::new);

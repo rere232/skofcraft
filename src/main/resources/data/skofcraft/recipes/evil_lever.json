@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "R",
+    "B"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:blaze_rod"
+    },
+    "B": {
+      "item": "minecraft:polished_blackstone"
+    }
+  },
+  "result": {
+    "item": "skofcraft:evil_lever"
+  }
+}

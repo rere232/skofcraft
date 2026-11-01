@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:femboy_spawn_egg"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.headpats.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.headpats.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "patted": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
