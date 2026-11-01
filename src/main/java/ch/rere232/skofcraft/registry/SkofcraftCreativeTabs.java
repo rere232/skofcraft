@@ -77,6 +77,16 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.NUCLEAR_REACTOR.get());
                 output.accept(SkofcraftItems.CARRIER_HELM.get());
                 output.accept(SkofcraftItems.RADAR.get());
+                output.accept(SkofcraftItems.CIWS.get());
+                output.accept(SkofcraftItems.SAM_LAUNCHER.get());
+                output.accept(SkofcraftItems.LAUNCH_PAD.get());
+                output.accept(SkofcraftItems.RECON_SATELLITE.get());
+                output.accept(SkofcraftItems.STRIKE_SATELLITE.get());
+                output.accept(SkofcraftItems.ORBITAL_DESIGNATOR.get());
+                output.accept(SkofcraftItems.DRACONIC_WARHEAD.get());
+                output.accept(SkofcraftItems.ICBM_GUIDANCE.get());
+                output.accept(SkofcraftItems.ICBM_BOOSTER.get());
+                output.accept(SkofcraftItems.GIGA_ICBM.get());
                 output.accept(SkofcraftItems.CATAPULT.get());
                 output.accept(SkofcraftItems.ARRESTING_WIRE.get());
                 output.accept(SkofcraftItems.AIRCRAFT_CARRIER.get());

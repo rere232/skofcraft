@@ -25,7 +25,7 @@ import net.minecraftforge.network.PacketDistributor;
 public final class PhoneAddiction {
     public static final int MAX = 100;
     /** Highest app id the client may report; 0 is the home screen. */
-    public static final int APP_COUNT = 5;
+    public static final int APP_COUNT = 6;
 
     private static final String ROOT = "SkofcraftPhone";
     private static final String LEVEL = "Level";
@@ -33,8 +33,8 @@ public final class PhoneAddiction {
     private static final String GRASS = "GrassTicks";
     private static final String LAST_USE = "LastUse";
 
-    /** Addiction gained per usage beat: home, Scrollr, Amazooon, Flappy Block, Lucky Creeper. */
-    private static final int[] APP_GAIN = {0, 1, 1, 1, 2};
+    /** Addiction gained per usage beat: home, Scrollr, Amazooon, Flappy Block, Lucky Creeper, Sat Map (a tool, not a habit). */
+    private static final int[] APP_GAIN = {0, 1, 1, 1, 2, 0};
     private static final int MIN_BEAT_TICKS = 50;
     private static final int DECAY_IDLE_TICKS = 20 * 60 * 2;
     private static final int GRASS_DECAY_TICKS = 200;

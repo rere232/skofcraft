@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PJP",
+    "GBG",
+    "BBB"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "J": {
+      "item": "skofcraft:jet_engine"
+    },
+    "G": {
+      "item": "skofcraft:gear"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "skofcraft:launch_pad"
+  }
+}

@@ -20,6 +20,11 @@ public interface PhoneApp {
         return false;
     }
 
+    /** Apps that pan in two directions override this; the rest only scroll vertically. */
+    default boolean mouseDragged(double dragX, double dragY) {
+        return mouseDragged(dragY);
+    }
+
     default void mouseReleased() {}
 
     default boolean mouseScrolled(double delta) {

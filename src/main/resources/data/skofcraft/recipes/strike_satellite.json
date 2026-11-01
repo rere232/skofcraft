@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "combat",
+  "pattern": [
+    "DAD",
+    "PWP",
+    "DND"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:daylight_detector"
+    },
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "W": {
+      "item": "skofcraft:weapon_system"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "result": {
+    "item": "skofcraft:strike_satellite"
+  }
+}

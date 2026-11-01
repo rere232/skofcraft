@@ -3,9 +3,12 @@ package ch.rere232.skofcraft.blockentity;
 import ch.rere232.skofcraft.radar.RadarCategory;
 import ch.rere232.skofcraft.radar.RadarContact;
 import ch.rere232.skofcraft.radar.RadarMode;
+import ch.rere232.skofcraft.space.OrbitData;
+import ch.rere232.skofcraft.space.SatelliteType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,11 +27,13 @@ import java.util.List;
 
 /**
  * Scans for entities around the block. Unpowered it sees {@link #BASE_RANGE} blocks; fed FE it sees
- * {@link #POWERED_RANGE}. It outputs a redstone signal that grows as the nearest contact in its filter closes in.
+ * {@link #POWERED_RANGE}, more with recon satellites in orbit. It outputs a redstone signal that grows as the nearest contact in its filter closes in.
  */
 public class RadarBlockEntity extends BlockEntity {
     public static final int BASE_RANGE = 64;
     public static final int POWERED_RANGE = 256;
+    public static final int SATELLITE_BONUS = 256;
+    public static final int MAX_SATELLITES = 2;
     public static final int ENERGY_PER_TICK = 40;
     public static final int CAPACITY = 20000;
     public static final int MAX_CONTACTS = 64;
@@ -112,8 +117,13 @@ public class RadarBlockEntity extends BlockEntity {
         return contacts.size() > MAX_CONTACTS ? new ArrayList<>(contacts.subList(0, MAX_CONTACTS)) : contacts;
     }
 
+    /** Powered radars also get {@link #SATELLITE_BONUS} per recon satellite in orbit, up to {@link #MAX_SATELLITES}. */
     public int range() {
-        return powered ? POWERED_RANGE : BASE_RANGE;
+        if (!powered) {
+            return BASE_RANGE;
+        }
+        int satellites = level instanceof ServerLevel serverLevel ? Math.min(MAX_SATELLITES, OrbitData.get(serverLevel).count(SatelliteType.RECON)) : 0;
+        return POWERED_RANGE + satellites * SATELLITE_BONUS;
     }
 
     public boolean isPowered() {

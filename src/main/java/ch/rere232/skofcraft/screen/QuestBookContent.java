@@ -300,7 +300,32 @@ final class QuestBookContent {
                         'G', SkofcraftItems.GEAR.get(), 'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'I', Items.IRON_INGOT),
                 text("carrier.radar"),
                 craft(stack(SkofcraftItems.RADAR.get()), new String[] {" C ", "RAR", "PPP"},
-                        'C', Items.COMPASS, 'R', Items.REDSTONE, 'A', SkofcraftItems.AVIONICS.get(), 'P', SkofcraftItems.AIRCRAFT_PLATE.get())
+                        'C', Items.COMPASS, 'R', Items.REDSTONE, 'A', SkofcraftItems.AVIONICS.get(), 'P', SkofcraftItems.AIRCRAFT_PLATE.get()),
+                text("carrier.defense"),
+                craft(stack(SkofcraftItems.CIWS.get()), new String[] {" W ", "GAG", "PBP"},
+                        'W', SkofcraftItems.WEAPON_SYSTEM.get(), 'G', SkofcraftItems.GEAR.get(), 'A', SkofcraftItems.AVIONICS.get(),
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'B', Items.IRON_BLOCK),
+                craft(stack(SkofcraftItems.SAM_LAUNCHER.get()), new String[] {"TWT", "PAP", "PBP"},
+                        'T', Items.TNT, 'W', SkofcraftItems.WEAPON_SYSTEM.get(), 'A', SkofcraftItems.AVIONICS.get(),
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'B', Items.IRON_BLOCK)
+        )));
+
+        chapters.add(new Chapter(t("space.title"), stack(SkofcraftItems.RECON_SATELLITE.get()), List.of(
+                text("space.p1"),
+                craft(stack(SkofcraftItems.LAUNCH_PAD.get()), new String[] {"PJP", "GBG", "BBB"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'J', SkofcraftItems.JET_ENGINE.get(),
+                        'G', SkofcraftItems.GEAR.get(), 'B', Items.IRON_BLOCK),
+                text("space.p2"),
+                craft(stack(SkofcraftItems.RECON_SATELLITE.get()), new String[] {"DAD", "PRP", "DAD"},
+                        'D', Items.DAYLIGHT_DETECTOR, 'A', SkofcraftItems.AVIONICS.get(),
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'R', SkofcraftItems.RADAR.get()),
+                text("space.p3"),
+                craft(stack(SkofcraftItems.STRIKE_SATELLITE.get()), new String[] {"DAD", "PWP", "DND"},
+                        'D', Items.DAYLIGHT_DETECTOR, 'A', SkofcraftItems.AVIONICS.get(), 'P', SkofcraftItems.AIRCRAFT_PLATE.get(),
+                        'W', SkofcraftItems.WEAPON_SYSTEM.get(), 'N', Items.NETHERITE_INGOT),
+                craft(stack(SkofcraftItems.ORBITAL_DESIGNATOR.get()), new String[] {" S ", "RAR", " I "},
+                        'S', Items.SPYGLASS, 'R', Items.REDSTONE, 'A', SkofcraftItems.AVIONICS.get(), 'I', Items.IRON_INGOT),
+                text("space.p4")
         )));
 
         chapters.add(new Chapter(t("blahaj.title"), stack(SkofcraftItems.BLAHAJ.get()), List.of(

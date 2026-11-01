@@ -7,6 +7,10 @@ import ch.rere232.skofcraft.item.AddictolItem;
 import ch.rere232.skofcraft.item.AircraftCarrierItem;
 import ch.rere232.skofcraft.item.ApacheItem;
 import ch.rere232.skofcraft.item.DamageControlKitItem;
+import ch.rere232.skofcraft.item.GigaIcbmItem;
+import ch.rere232.skofcraft.item.OrbitalDesignatorItem;
+import ch.rere232.skofcraft.item.SatelliteItem;
+import ch.rere232.skofcraft.space.SatelliteType;
 import ch.rere232.skofcraft.item.BlahajItem;
 import ch.rere232.skofcraft.item.F14Item;
 import ch.rere232.skofcraft.item.ChichaPipeItem;
@@ -114,6 +118,20 @@ public class SkofcraftItems {
             () -> new Item(new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> DAMAGE_CONTROL_KIT = ITEMS.register("damage_control_kit",
             () -> new DamageControlKitItem(new Item.Properties().durability(512)));
+    public static final RegistryObject<Item> RECON_SATELLITE = ITEMS.register("recon_satellite",
+            () -> new SatelliteItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE), SatelliteType.RECON));
+    public static final RegistryObject<Item> STRIKE_SATELLITE = ITEMS.register("strike_satellite",
+            () -> new SatelliteItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), SatelliteType.STRIKE));
+    public static final RegistryObject<Item> ORBITAL_DESIGNATOR = ITEMS.register("orbital_designator",
+            () -> new OrbitalDesignatorItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> DRACONIC_WARHEAD = ITEMS.register("draconic_warhead",
+            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+    public static final RegistryObject<Item> ICBM_GUIDANCE = ITEMS.register("icbm_guidance",
+            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> ICBM_BOOSTER = ITEMS.register("icbm_booster",
+            () -> new Item(new Item.Properties().stacksTo(4).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> GIGA_ICBM = ITEMS.register("giga_icbm",
+            () -> new GigaIcbmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
     public static final RegistryObject<Item> AIRCRAFT_CARRIER = ITEMS.register("aircraft_carrier",
             () -> new AircraftCarrierItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> ADDICTOL = ITEMS.register("addictol",
@@ -139,6 +157,9 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> AIRCRAFT_WORKBENCH = blockItem("aircraft_workbench", SkofcraftBlocks.AIRCRAFT_WORKBENCH);
     public static final RegistryObject<Item> CARRIER_HELM = blockItem("carrier_helm", SkofcraftBlocks.CARRIER_HELM);
     public static final RegistryObject<Item> RADAR = blockItem("radar", SkofcraftBlocks.RADAR);
+    public static final RegistryObject<Item> CIWS = blockItem("ciws", SkofcraftBlocks.CIWS);
+    public static final RegistryObject<Item> SAM_LAUNCHER = blockItem("sam_launcher", SkofcraftBlocks.SAM_LAUNCHER);
+    public static final RegistryObject<Item> LAUNCH_PAD = blockItem("launch_pad", SkofcraftBlocks.LAUNCH_PAD);
     public static final RegistryObject<Item> CATAPULT = blockItem("catapult", SkofcraftBlocks.CATAPULT);
     public static final RegistryObject<Item> ARRESTING_WIRE = blockItem("arresting_wire", SkofcraftBlocks.ARRESTING_WIRE);
     public static final RegistryObject<Item> NUCLEAR_REACTOR = ITEMS.register("nuclear_reactor",

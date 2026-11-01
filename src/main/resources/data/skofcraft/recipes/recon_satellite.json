@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "DAD",
+    "PRP",
+    "DAD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:daylight_detector"
+    },
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "R": {
+      "item": "skofcraft:radar"
+    }
+  },
+  "result": {
+    "item": "skofcraft:recon_satellite"
+  }
+}

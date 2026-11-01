@@ -47,6 +47,12 @@ public class ClientSetup {
         event.registerEntityRenderer(SkofcraftEntities.APACHE_BULLET.get(), ctx -> new ThrownItemRenderer<>(ctx, 0.6F, true));
         event.registerEntityRenderer(SkofcraftEntities.APACHE_ROCKET.get(), ctx -> new ThrownItemRenderer<>(ctx, 1.0F, true));
         event.registerBlockEntityRenderer(SkofcraftBlockEntities.CHICHA.get(), ChichaRenderer::new);
+        event.registerBlockEntityRenderer(SkofcraftBlockEntities.DEFENSE_TURRET.get(), DefenseTurretRenderer::new);
+        event.registerBlockEntityRenderer(SkofcraftBlockEntities.LAUNCH_PAD.get(), SpaceRenderers.PadRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.LAUNCH_ROCKET.get(), SpaceRenderers.RocketRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.ORBITAL_ROD.get(), SpaceRenderers.RodRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.GIGA_ICBM.get(), SpaceRenderers.RocketRenderer::icbm);
+        event.registerEntityRenderer(SkofcraftEntities.ICBM_WARHEAD.get(), SpaceRenderers.WarheadRenderer::new);
     }
 
     @SubscribeEvent
@@ -55,6 +61,10 @@ public class ClientSetup {
         event.registerLayerDefinition(DeliveryCrateModel.LAYER, DeliveryCrateModel::createBodyLayer);
         event.registerLayerDefinition(ApacheModel.LAYER, ApacheModel::createBodyLayer);
         event.registerLayerDefinition(F14Model.LAYER, F14Model::createBodyLayer);
+        event.registerLayerDefinition(DefenseTurretModel.CIWS_LAYER, DefenseTurretModel::createCiwsLayer);
+        event.registerLayerDefinition(DefenseTurretModel.SAM_LAYER, DefenseTurretModel::createSamLayer);
+        event.registerLayerDefinition(SpaceModels.ROCKET, SpaceModels::createRocketLayer);
+        event.registerLayerDefinition(SpaceModels.ROD, SpaceModels::createRodLayer);
     }
 
     @SubscribeEvent
@@ -62,5 +72,6 @@ public class ClientSetup {
         event.registerAboveAll("spit_overlay", SpitOverlay::render);
         event.registerAboveAll("apache_hud", ApacheHud::render);
         event.registerAboveAll("f14_hud", F14Hud::render);
+        event.registerAboveAll("nuclear_flash", NuclearBlastClient::renderFlash);
     }
 }

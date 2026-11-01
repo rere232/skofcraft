@@ -3,6 +3,8 @@ package ch.rere232.skofcraft.block;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.blockentity.NuclearReactorBlockEntity;
 import ch.rere232.skofcraft.blockentity.SkofcraftBlockEntities;
+import ch.rere232.skofcraft.network.MushroomCloudS2CPacket;
+import ch.rere232.skofcraft.network.SkofcraftNetwork;
 import ch.rere232.skofcraft.registry.SkofcraftBlocks;
 import ch.rere232.skofcraft.SkofcraftMod;
 import net.minecraft.core.BlockPos;
@@ -30,6 +32,7 @@ import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -95,7 +98,7 @@ public class NuclearReactorBlock extends BaseEntityBlock {
     }
 
     /** Takes the reactor out now, so nothing triggers it twice, and blows it a few ticks later. */
-    private static void scheduleMeltdown(ServerLevel level, BlockPos pos) {
+    public static void scheduleMeltdown(ServerLevel level, BlockPos pos) {
         if (level.getBlockState(pos).is(SkofcraftBlocks.NUCLEAR_REACTOR.get())) {
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
         }
@@ -113,6 +116,8 @@ public class NuclearReactorBlock extends BaseEntityBlock {
         level.sendParticles(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, x, y + 4.0D, z, 120, 6.0D, 10.0D, 6.0D, 0.05D);
         level.playSound(null, x, y, z, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 16.0F, 0.4F);
         level.playSound(null, x, y, z, SoundEvents.WITHER_DEATH, SoundSource.BLOCKS, 8.0F, 0.5F);
+        SkofcraftNetwork.CHANNEL.send(PacketDistributor.NEAR.with(PacketDistributor.TargetPoint.p(x, y, z, MushroomCloudS2CPacket.RANGE, level.dimension())),
+                new MushroomCloudS2CPacket(x, y, z));
         for (ServerPlayer player : level.players()) {
             if (player.blockPosition().closerThan(pos, MELTDOWN_WITNESS_RADIUS)) {
                 SkofcraftAdvancements.award(player, SkofcraftAdvancements.MELTDOWN);

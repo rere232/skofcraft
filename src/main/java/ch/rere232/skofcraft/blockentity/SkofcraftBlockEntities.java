@@ -16,6 +16,12 @@ public class SkofcraftBlockEntities {
     public static final RegistryObject<BlockEntityType<RadarBlockEntity>> RADAR = BLOCK_ENTITIES.register("radar",
             () -> BlockEntityType.Builder.of(RadarBlockEntity::new, SkofcraftBlocks.RADAR.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<DefenseTurretBlockEntity>> DEFENSE_TURRET = BLOCK_ENTITIES.register("defense_turret",
+            () -> BlockEntityType.Builder.of(DefenseTurretBlockEntity::new, SkofcraftBlocks.CIWS.get(), SkofcraftBlocks.SAM_LAUNCHER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<LaunchPadBlockEntity>> LAUNCH_PAD = BLOCK_ENTITIES.register("launch_pad",
+            () -> BlockEntityType.Builder.of(LaunchPadBlockEntity::new, SkofcraftBlocks.LAUNCH_PAD.get()).build(null));
+
     public static final RegistryObject<BlockEntityType<FEDryerBlockEntity>> FE_DRYER = BLOCK_ENTITIES.register("fe_dryer",
             () -> BlockEntityType.Builder.of(
                     FEDryerBlockEntity::new,

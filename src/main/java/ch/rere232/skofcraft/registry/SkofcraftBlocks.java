@@ -6,6 +6,8 @@ import ch.rere232.skofcraft.block.CarrierHelmBlock;
 import ch.rere232.skofcraft.block.DeckFixtureBlock;
 import ch.rere232.skofcraft.block.NuclearReactorBlock;
 import ch.rere232.skofcraft.block.RadarBlock;
+import ch.rere232.skofcraft.block.DefenseTurretBlock;
+import ch.rere232.skofcraft.block.LaunchPadBlock;
 import ch.rere232.skofcraft.block.FEDryerBlock;
 import ch.rere232.skofcraft.block.FEGrinderBlock;
 import ch.rere232.skofcraft.block.FEMixerBlock;
@@ -39,6 +41,9 @@ public class SkofcraftBlocks {
     public static final RegistryObject<Block> ARRESTING_WIRE = BLOCKS.register("arresting_wire", () -> new DeckFixtureBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(5.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.METAL)));
     public static final RegistryObject<Block> NUCLEAR_REACTOR = BLOCKS.register("nuclear_reactor", () -> new NuclearReactorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).strength(8.0F, 12.0F).requiresCorrectToolForDrops().lightLevel(state -> 15).sound(SoundType.NETHERITE_BLOCK)));
     public static final RegistryObject<Block> RADAR = BLOCKS.register("radar", () -> new RadarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).requiresCorrectToolForDrops().lightLevel(state -> 7).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> CIWS = BLOCKS.register("ciws", () -> new DefenseTurretBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.METAL), DefenseTurretBlock.Weapon.CIWS));
+    public static final RegistryObject<Block> SAM_LAUNCHER = BLOCKS.register("sam_launcher", () -> new DefenseTurretBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.METAL), DefenseTurretBlock.Weapon.SAM));
+    public static final RegistryObject<Block> LAUNCH_PAD = BLOCKS.register("launch_pad", () -> new LaunchPadBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 12.0F).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.METAL)));
     public static final RegistryObject<Block> TOBACCONIST_COUNTER = BLOCKS.register("tobacconist_counter", () -> new TobacconistCounterBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> BLAHAJ = BLOCKS.register("blahaj", () -> new BlahajBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(0.8F).noOcclusion().sound(SoundType.WOOL)));
     public static final RegistryObject<Block> CHICHA = BLOCKS.register("chicha", () -> new ChichaBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(1.5F, 3.0F).noOcclusion().sound(SoundType.METAL)));

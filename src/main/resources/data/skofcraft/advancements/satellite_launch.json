@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:radar_contact",
+  "display": {
+    "icon": {
+      "item": "skofcraft:recon_satellite"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.satellite_launch.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.satellite_launch.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

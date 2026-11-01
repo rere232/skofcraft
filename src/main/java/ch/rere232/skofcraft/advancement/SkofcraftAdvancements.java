@@ -18,6 +18,9 @@ public final class SkofcraftAdvancements {
     public static final String TRAP = "trap";
     public static final String MELTDOWN = "meltdown";
     public static final String RADAR_CONTACT = "radar_contact";
+    public static final String SATELLITE_LAUNCH = "satellite_launch";
+    public static final String ORBITAL_STRIKE = "orbital_strike";
+    public static final String GIGA_ICBM = "giga_icbm";
 
     private SkofcraftAdvancements() {}
 

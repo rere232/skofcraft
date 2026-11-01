@@ -35,5 +35,8 @@ public class SkofcraftNetwork {
         CHANNEL.registerMessage(packetId++, FlightDeckC2SPacket.class, FlightDeckC2SPacket::encode, FlightDeckC2SPacket::decode, FlightDeckC2SPacket::handle);
         CHANNEL.registerMessage(packetId++, RadarScanC2SPacket.class, RadarScanC2SPacket::encode, RadarScanC2SPacket::decode, RadarScanC2SPacket::handle);
         CHANNEL.registerMessage(packetId++, RadarContactsS2CPacket.class, RadarContactsS2CPacket::encode, RadarContactsS2CPacket::decode, RadarContactsS2CPacket::handle);
+        CHANNEL.registerMessage(packetId++, MushroomCloudS2CPacket.class, MushroomCloudS2CPacket::encode, MushroomCloudS2CPacket::decode, MushroomCloudS2CPacket::handle);
+        CHANNEL.registerMessage(packetId++, SatelliteLinkC2SPacket.class, SatelliteLinkC2SPacket::encode, SatelliteLinkC2SPacket::decode, SatelliteLinkC2SPacket::handle);
+        CHANNEL.registerMessage(packetId++, SatelliteLinkS2CPacket.class, SatelliteLinkS2CPacket::encode, SatelliteLinkS2CPacket::decode, SatelliteLinkS2CPacket::handle);
     }
 }

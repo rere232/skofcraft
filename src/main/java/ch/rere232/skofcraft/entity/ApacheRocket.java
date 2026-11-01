@@ -60,6 +60,12 @@ public class ApacheRocket extends ThrowableItemProjectile {
         this.homing = homing;
     }
 
+    /** Homes on this target from launch instead of locking whatever is ahead; used by SAM launchers. */
+    public void lockOn(Entity target) {
+        this.homing = true;
+        this.target = target;
+    }
+
     /** Locks the closest living entity inside a cone ahead, then bends toward it. */
     private void steer() {
         Vec3 motion = getDeltaMovement();

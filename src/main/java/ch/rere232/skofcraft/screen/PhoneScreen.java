@@ -30,7 +30,8 @@ public class PhoneScreen extends Screen {
         SCROLLR("phone.skofcraft.app", ScrollrApp::new),
         AMAZOOON("phone.skofcraft.amazooon", AmazooonApp::new),
         FLAPPY("phone.skofcraft.flappy", FlappyApp::new),
-        CASINO("phone.skofcraft.casino", CasinoApp::new);
+        CASINO("phone.skofcraft.casino", CasinoApp::new),
+        MAP("phone.skofcraft.map", MapApp::new);
 
         final String nameKey;
         final Function<Font, PhoneApp> factory;
@@ -294,6 +295,18 @@ public class PhoneScreen extends Screen {
             g.fill(x + 14, y + 10, x + 15, y + 11, 0xFF000000);
             g.fill(x + 14, y + 12, x + 18, y + 15, 0xFFE0502C);
             g.fill(x + 7, y + 11, x + 11, y + 14, 0xFFFFFFFF);
+        } else if (icon == AppIcon.MAP) {
+            // Satellite imagery: sea, land, a road and a red pin
+            MachineScreenHelper.fillRounded(g, x, y, x + ICON_SIZE, y + ICON_SIZE, 0xFF2F6FB0);
+            g.fill(x + 1, y + 9, x + 18, y + ICON_SIZE - 1, 0xFF5E9C3A);
+            g.fill(x + 18, y + 14, x + 26, y + ICON_SIZE - 3, 0xFF7DB04A);
+            g.fill(x + 4, y + 18, x + 24, y + 20, 0xFFD8C38A);
+            g.fill(x + 12, y + 4, x + 18, y + 10, 0xFF7A1521);
+            g.fill(x + 13, y + 5, x + 17, y + 9, 0xFFE5484D);
+            g.fill(x + 14, y + 10, x + 16, y + 14, 0xFFE5484D);
+            g.fill(x + 3, y + 3, x + 7, y + 5, 0xFFC8A030);
+            g.fill(x + 1, y + 3, x + 3, y + 5, 0xFF9CC4F0);
+            g.fill(x + 7, y + 3, x + 9, y + 5, 0xFF9CC4F0);
         } else if (icon == AppIcon.CASINO) {
             MachineScreenHelper.fillRounded(g, x, y, x + ICON_SIZE, y + ICON_SIZE, 0xFFF2C14E);
             MachineScreenHelper.fillRounded(g, x + 2, y + 2, x + ICON_SIZE - 2, y + ICON_SIZE - 2, 0xFF7A1521);
@@ -357,7 +370,7 @@ public class PhoneScreen extends Screen {
         if (isDead() || app == null) {
             return false;
         }
-        return app.mouseDragged(dragY);
+        return app.mouseDragged(dragX, dragY);
     }
 
     @Override

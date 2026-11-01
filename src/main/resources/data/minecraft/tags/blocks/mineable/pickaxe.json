@@ -21,6 +21,9 @@
     "skofcraft:catapult",
     "skofcraft:arresting_wire",
     "skofcraft:nuclear_reactor",
-    "skofcraft:radar"
+    "skofcraft:radar",
+    "skofcraft:ciws",
+    "skofcraft:sam_launcher",
+    "skofcraft:launch_pad"
   ]
 }

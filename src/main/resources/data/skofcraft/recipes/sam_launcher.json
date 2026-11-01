@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "combat",
+  "pattern": [
+    "TWT",
+    "PAP",
+    "PBP"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:tnt"
+    },
+    "W": {
+      "item": "skofcraft:weapon_system"
+    },
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "skofcraft:sam_launcher"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:satellite_launch",
+  "display": {
+    "icon": {
+      "item": "skofcraft:orbital_designator"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.orbital_strike.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.orbital_strike.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

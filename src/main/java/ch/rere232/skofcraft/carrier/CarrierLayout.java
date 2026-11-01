@@ -156,6 +156,7 @@ public final class CarrierLayout {
         buildLowerDeck(map);
         buildHangar(map);
         buildIsland(map, island, air);
+        buildDefenses(map);
         return map;
     }
 
@@ -363,6 +364,17 @@ public final class CarrierLayout {
         CompoundTag tag = new CompoundTag();
         tag.put("Items", list);
         contents.put(pos, tag);
+    }
+
+    /** Gatling cannons and missile launchers on the four deck corners and the island roof, clear of the runways. */
+    private static void buildDefenses(Map<BlockPos, BlockState> map) {
+        BlockState ciws = SkofcraftBlocks.CIWS.get().defaultBlockState();
+        BlockState sam = SkofcraftBlocks.SAM_LAUNCHER.get().defaultBlockState();
+        map.put(new BlockPos(-8, DECK + 1, -26), ciws);
+        map.put(new BlockPos(8, DECK + 1, -26), sam);
+        map.put(new BlockPos(-8, DECK + 1, 34), sam);
+        map.put(new BlockPos(8, DECK + 1, 34), ciws);
+        map.put(new BlockPos(6, DECK + 8, 12), ciws);
     }
 
     /** Starboard island: two levels, the bridge with the helm on top, and a mast. */

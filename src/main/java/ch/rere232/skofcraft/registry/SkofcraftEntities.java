@@ -9,6 +9,10 @@ import ch.rere232.skofcraft.entity.DeliveryCrate;
 import ch.rere232.skofcraft.entity.F14Tomcat;
 import ch.rere232.skofcraft.entity.DeliveryPlane;
 import ch.rere232.skofcraft.entity.SpitProjectile;
+import ch.rere232.skofcraft.entity.GigaIcbm;
+import ch.rere232.skofcraft.entity.IcbmWarhead;
+import ch.rere232.skofcraft.entity.LaunchRocket;
+import ch.rere232.skofcraft.entity.OrbitalRod;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
@@ -76,6 +80,38 @@ public class SkofcraftEntities {
                     .clientTrackingRange(8)
                     .updateInterval(1)
                     .build("apache_rocket"));
+
+    public static final RegistryObject<EntityType<LaunchRocket>> LAUNCH_ROCKET = ENTITIES.register("launch_rocket",
+            () -> EntityType.Builder.<LaunchRocket>of(LaunchRocket::new, MobCategory.MISC)
+                    .sized(1.0F, 5.5F)
+                    .clientTrackingRange(32)
+                    .updateInterval(1)
+                    .fireImmune()
+                    .build("launch_rocket"));
+
+    public static final RegistryObject<EntityType<OrbitalRod>> ORBITAL_ROD = ENTITIES.register("orbital_rod",
+            () -> EntityType.Builder.<OrbitalRod>of(OrbitalRod::new, MobCategory.MISC)
+                    .sized(0.4F, 3.0F)
+                    .clientTrackingRange(32)
+                    .updateInterval(1)
+                    .fireImmune()
+                    .build("orbital_rod"));
+
+    public static final RegistryObject<EntityType<GigaIcbm>> GIGA_ICBM = ENTITIES.register("giga_icbm",
+            () -> EntityType.Builder.<GigaIcbm>of(GigaIcbm::new, MobCategory.MISC)
+                    .sized(1.6F, 8.8F)
+                    .clientTrackingRange(48)
+                    .updateInterval(1)
+                    .fireImmune()
+                    .build("giga_icbm"));
+
+    public static final RegistryObject<EntityType<IcbmWarhead>> ICBM_WARHEAD = ENTITIES.register("icbm_warhead",
+            () -> EntityType.Builder.<IcbmWarhead>of(IcbmWarhead::new, MobCategory.MISC)
+                    .sized(1.6F, 8.8F)
+                    .clientTrackingRange(48)
+                    .updateInterval(1)
+                    .fireImmune()
+                    .build("icbm_warhead"));
 
     private SkofcraftEntities() {}
 }
