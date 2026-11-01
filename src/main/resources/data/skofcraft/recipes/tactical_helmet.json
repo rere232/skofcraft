@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "PTP",
+    "PHP",
+    "FGF"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:composite_plate"
+    },
+    "T": {
+      "item": "skofcraft:tactical_core"
+    },
+    "H": {
+      "item": "minecraft:netherite_helmet"
+    },
+    "F": {
+      "item": "skofcraft:gas_filter"
+    },
+    "G": {
+      "item": "minecraft:tinted_glass"
+    }
+  },
+  "result": {
+    "item": "skofcraft:tactical_helmet",
+    "count": 1
+  }
+}

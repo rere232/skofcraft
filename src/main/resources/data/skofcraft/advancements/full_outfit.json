@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:choker"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.full_outfit.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.full_outfit.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

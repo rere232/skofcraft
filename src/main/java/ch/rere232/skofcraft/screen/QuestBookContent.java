@@ -94,7 +94,19 @@ final class QuestBookContent {
                         stack(SkofcraftItems.FLAVOR_MINT.get())),
                 process(SkofcraftItems.MANUAL_POUCH_PRESS.get(), mintPouch,
                         mintMix, stack(SkofcraftItems.EMPTY_POUCH.get())),
-                text("nicotine.p4")
+                text("nicotine.p4"),
+                process(Items.FURNACE, stack(SkofcraftItems.NICOTINE_CRYSTALS.get()),
+                        stack(SkofcraftItems.NICOTINE_EXTRACT.get())),
+                text("nicotine.p5")
+        )));
+
+        chapters.add(new Chapter(t("flavors.title"), stack(SkofcraftItems.FLAVOR_BERRY.get()), List.of(
+                text("flavors.p1"),
+                text("flavors.mint"), text("flavors.ice_mint"), text("flavors.berry"), text("flavors.citrus"),
+                text("flavors.cola"), text("flavors.licorice"), text("flavors.coffee"), text("flavors.nature"),
+                craft(new ItemStack(SkofcraftItems.FLAVOR_COFFEE.get(), 2), new String[] {"   ", " GS", "   "},
+                        'G', SkofcraftItems.SKOFEE_GROUND.get(), 'S', Items.SUGAR),
+                text("flavors.p2")
         )));
 
         int capacity = Math.max(1, SkofcraftConfig.boxCapacity);
@@ -337,7 +349,43 @@ final class QuestBookContent {
                         'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'J', SkofcraftItems.JET_ENGINE.get(), 'N', Items.NETHERITE_INGOT),
                 craft(stack(SkofcraftItems.GIGA_ICBM.get()), new String[] {"PWP", "BGB", "PBP"},
                         'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'W', SkofcraftItems.DRACONIC_WARHEAD.get(),
-                        'G', SkofcraftItems.ICBM_GUIDANCE.get(), 'B', SkofcraftItems.ICBM_BOOSTER.get())
+                        'G', SkofcraftItems.ICBM_GUIDANCE.get(), 'B', SkofcraftItems.ICBM_BOOSTER.get()),
+                text("space.p6"),
+                text("space.p7")
+        )));
+
+        chapters.add(new Chapter(t("tactical.title"), stack(SkofcraftItems.TACTICAL_HELMET.get()), List.of(
+                text("tactical.p1"),
+                craft(new ItemStack(SkofcraftItems.COMPOSITE_PLATE.get(), 2), new String[] {"PSP", "SDS", "PSP"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'S', Items.NETHERITE_SCRAP, 'D', Items.DIAMOND),
+                craft(stack(SkofcraftItems.TACTICAL_CORE.get()), new String[] {"ANA", "WSW", "ANA"},
+                        'A', SkofcraftItems.AVIONICS.get(), 'N', Items.NETHERITE_INGOT,
+                        'W', SkofcraftItems.WEAPON_SYSTEM.get(), 'S', Items.NETHER_STAR),
+                craft(stack(SkofcraftItems.GAS_FILTER.get()), new String[] {" I ", "CHC", " I "},
+                        'I', Items.IRON_INGOT, 'C', Items.CHARCOAL, 'H', Items.HONEYCOMB),
+                text("tactical.p2"),
+                text("tactical.helmet"),
+                craft(stack(SkofcraftItems.TACTICAL_HELMET.get()), new String[] {"PTP", "PHP", "FGF"},
+                        'P', SkofcraftItems.COMPOSITE_PLATE.get(), 'T', SkofcraftItems.TACTICAL_CORE.get(),
+                        'H', Items.NETHERITE_HELMET, 'F', SkofcraftItems.GAS_FILTER.get(), 'G', Items.TINTED_GLASS),
+                text("tactical.chestplate"),
+                craft(stack(SkofcraftItems.TACTICAL_CHESTPLATE.get()), new String[] {"PTP", "PCP", "PPP"},
+                        'P', SkofcraftItems.COMPOSITE_PLATE.get(), 'T', SkofcraftItems.TACTICAL_CORE.get(),
+                        'C', Items.NETHERITE_CHESTPLATE),
+                text("tactical.leggings"),
+                craft(stack(SkofcraftItems.TACTICAL_LEGGINGS.get()), new String[] {"PTP", "PLP", "P P"},
+                        'P', SkofcraftItems.COMPOSITE_PLATE.get(), 'T', SkofcraftItems.TACTICAL_CORE.get(),
+                        'L', Items.NETHERITE_LEGGINGS),
+                text("tactical.boots"),
+                craft(stack(SkofcraftItems.TACTICAL_BOOTS.get()), new String[] {" T ", "PBP", "P P"},
+                        'P', SkofcraftItems.COMPOSITE_PLATE.get(), 'T', SkofcraftItems.TACTICAL_CORE.get(),
+                        'B', Items.NETHERITE_BOOTS),
+                text("tactical.gloves"),
+                craft(stack(SkofcraftItems.TACTICAL_GLOVES.get()), new String[] {"PTP", "NLN"},
+                        'P', SkofcraftItems.COMPOSITE_PLATE.get(), 'T', SkofcraftItems.TACTICAL_CORE.get(),
+                        'N', Items.NETHERITE_INGOT, 'L', Items.LEATHER),
+                text("tactical.set"),
+                text("tactical.p3")
         )));
 
         chapters.add(new Chapter(t("blahaj.title"), stack(SkofcraftItems.BLAHAJ.get()), List.of(
@@ -345,6 +393,29 @@ final class QuestBookContent {
                 craft(stack(SkofcraftItems.BLAHAJ.get()), new String[] {"BBB", "WLW", "BDB"},
                         'B', Items.BLUE_WOOL, 'W', Items.WHITE_WOOL, 'L', Items.LIGHT_BLUE_WOOL, 'D', Items.BLACK_DYE),
                 text("blahaj.p2")
+        )));
+
+        chapters.add(new Chapter(t("wardrobe.title"), stack(SkofcraftItems.CHOKER.get()), List.of(
+                text("wardrobe.p1"),
+                text("wardrobe.mask"),
+                craft(stack(SkofcraftItems.FACE_MASK.get()), new String[] {"SBS", "BWB"},
+                        'S', Items.STRING, 'B', Items.BLACK_WOOL, 'W', Items.WHITE_DYE),
+                text("wardrobe.choker"),
+                craft(stack(SkofcraftItems.CHOKER.get()), new String[] {"SBS", "L L", " I "},
+                        'S', Items.STRING, 'B', Items.BLACK_DYE, 'L', Items.LEATHER, 'I', Items.IRON_NUGGET),
+                text("wardrobe.crop_top"),
+                craft(stack(SkofcraftItems.CROP_TOP.get()), new String[] {"B B", "BWB"},
+                        'B', Items.BLACK_WOOL, 'W', Items.WHITE_DYE),
+                text("wardrobe.hand_warmers"),
+                craft(stack(SkofcraftItems.HAND_WARMERS.get()), new String[] {"W W", "B B", "B B"},
+                        'W', Items.WHITE_DYE, 'B', Items.BLACK_WOOL),
+                text("wardrobe.skirt"),
+                craft(stack(SkofcraftItems.SKIRT.get()), new String[] {" S ", "BBB", "BWB"},
+                        'S', Items.STRING, 'B', Items.BLACK_WOOL, 'W', Items.WHITE_DYE),
+                text("wardrobe.thigh_highs"),
+                craft(stack(SkofcraftItems.THIGH_HIGHS.get()), new String[] {"WSW", "B B", "B B"},
+                        'W', Items.WHITE_DYE, 'S', Items.STRING, 'B', Items.BLACK_WOOL),
+                text("wardrobe.p2")
         )));
 
         chapters.add(new Chapter(t("tobacconist.title"), stack(SkofcraftItems.TOBACCONIST_COUNTER.get()), List.of(

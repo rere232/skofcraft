@@ -1,0 +1,7 @@
+{
+  "order": 185,
+  "icon": "skofcraft:slot/empty_legs_slot",
+  "validators": [
+    "curios:tag"
+  ]
+}

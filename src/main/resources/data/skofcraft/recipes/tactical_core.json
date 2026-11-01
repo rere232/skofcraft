@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "ANA",
+    "WSW",
+    "ANA"
+  ],
+  "key": {
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "W": {
+      "item": "skofcraft:weapon_system"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "skofcraft:tactical_core",
+    "count": 1
+  }
+}

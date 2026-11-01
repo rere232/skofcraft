@@ -62,6 +62,12 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.ADDICTOL.get());
                 output.accept(SkofcraftItems.PHONE.get());
                 output.accept(SkofcraftItems.BLAHAJ.get());
+                output.accept(SkofcraftItems.CHOKER.get());
+                output.accept(SkofcraftItems.SKIRT.get());
+                output.accept(SkofcraftItems.THIGH_HIGHS.get());
+                output.accept(SkofcraftItems.CROP_TOP.get());
+                output.accept(SkofcraftItems.HAND_WARMERS.get());
+                output.accept(SkofcraftItems.FACE_MASK.get());
                 output.accept(SkofcraftItems.AIRCRAFT_WORKBENCH.get());
                 output.accept(SkofcraftItems.GEAR.get());
                 output.accept(SkofcraftItems.AIRCRAFT_PLATE.get());
@@ -88,6 +94,14 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.ICBM_BOOSTER.get());
                 output.accept(SkofcraftItems.GIGA_ICBM.get());
                 output.accept(SkofcraftItems.DOOMSDAY_MISSILE.get());
+                output.accept(SkofcraftItems.COMPOSITE_PLATE.get());
+                output.accept(SkofcraftItems.TACTICAL_CORE.get());
+                output.accept(SkofcraftItems.GAS_FILTER.get());
+                output.accept(SkofcraftItems.TACTICAL_HELMET.get());
+                output.accept(SkofcraftItems.TACTICAL_CHESTPLATE.get());
+                output.accept(SkofcraftItems.TACTICAL_LEGGINGS.get());
+                output.accept(SkofcraftItems.TACTICAL_BOOTS.get());
+                output.accept(SkofcraftItems.TACTICAL_GLOVES.get());
                 output.accept(SkofcraftItems.CATAPULT.get());
                 output.accept(SkofcraftItems.ARRESTING_WIRE.get());
                 output.accept(SkofcraftItems.AIRCRAFT_CARRIER.get());

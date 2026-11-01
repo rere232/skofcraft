@@ -21,6 +21,8 @@ public final class SkofcraftAdvancements {
     public static final String SATELLITE_LAUNCH = "satellite_launch";
     public static final String ORBITAL_STRIKE = "orbital_strike";
     public static final String GIGA_ICBM = "giga_icbm";
+    public static final String FULL_OUTFIT = "full_outfit";
+    public static final String FULLY_KITTED = "fully_kitted";
 
     private SkofcraftAdvancements() {}
 

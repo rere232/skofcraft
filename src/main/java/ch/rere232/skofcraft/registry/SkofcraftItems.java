@@ -7,6 +7,11 @@ import ch.rere232.skofcraft.item.AddictolItem;
 import ch.rere232.skofcraft.item.AircraftCarrierItem;
 import ch.rere232.skofcraft.item.ApacheItem;
 import ch.rere232.skofcraft.item.DamageControlKitItem;
+import ch.rere232.skofcraft.item.ClothingItem;
+import ch.rere232.skofcraft.item.MaskItem;
+import ch.rere232.skofcraft.item.TacticalArmorItem;
+import ch.rere232.skofcraft.item.TacticalGlovesItem;
+import net.minecraft.world.item.ArmorItem;
 import ch.rere232.skofcraft.item.GigaIcbmItem;
 import ch.rere232.skofcraft.item.OrbitalDesignatorItem;
 import ch.rere232.skofcraft.item.SatelliteItem;
@@ -135,6 +140,18 @@ public class SkofcraftItems {
     /** Creative only: five times the Giga ICBM in every direction. */
     public static final RegistryObject<Item> DOOMSDAY_MISSILE = ITEMS.register("doomsday_missile",
             () -> new GigaIcbmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), 5.0F));
+    public static final RegistryObject<Item> COMPOSITE_PLATE = ITEMS.register("composite_plate",
+            () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
+    public static final RegistryObject<Item> TACTICAL_CORE = ITEMS.register("tactical_core",
+            () -> new Item(new Item.Properties().stacksTo(16).rarity(Rarity.EPIC).fireResistant()));
+    public static final RegistryObject<Item> GAS_FILTER = ITEMS.register("gas_filter",
+            () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> TACTICAL_HELMET = tacticalArmor("tactical_helmet", ArmorItem.Type.HELMET);
+    public static final RegistryObject<Item> TACTICAL_CHESTPLATE = tacticalArmor("tactical_chestplate", ArmorItem.Type.CHESTPLATE);
+    public static final RegistryObject<Item> TACTICAL_LEGGINGS = tacticalArmor("tactical_leggings", ArmorItem.Type.LEGGINGS);
+    public static final RegistryObject<Item> TACTICAL_BOOTS = tacticalArmor("tactical_boots", ArmorItem.Type.BOOTS);
+    public static final RegistryObject<Item> TACTICAL_GLOVES = ITEMS.register("tactical_gloves",
+            () -> new TacticalGlovesItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
     public static final RegistryObject<Item> AIRCRAFT_CARRIER = ITEMS.register("aircraft_carrier",
             () -> new AircraftCarrierItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> ADDICTOL = ITEMS.register("addictol",
@@ -153,6 +170,18 @@ public class SkofcraftItems {
             () -> new SkofcraftBoxItem(new Item.Properties(), NICOTINE_POUCH::get, EMPTY_POUCH_BOX::get));
 
     public static final RegistryObject<Item> TOBACCO_PLANT = blockItem("tobacco_plant", SkofcraftBlocks.TOBACCO_PLANT);
+    public static final RegistryObject<Item> CHOKER = ITEMS.register("choker",
+            () -> new ClothingItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> SKIRT = ITEMS.register("skirt",
+            () -> new ClothingItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> THIGH_HIGHS = ITEMS.register("thigh_highs",
+            () -> new ClothingItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> CROP_TOP = ITEMS.register("crop_top",
+            () -> new ClothingItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> HAND_WARMERS = ITEMS.register("hand_warmers",
+            () -> new ClothingItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> FACE_MASK = ITEMS.register("face_mask",
+            () -> new MaskItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BLAHAJ = ITEMS.register("blahaj",
             () -> new BlahajItem(SkofcraftBlocks.BLAHAJ.get(), new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> CHICHA = blockItem("chicha", SkofcraftBlocks.CHICHA);
@@ -191,6 +220,10 @@ public class SkofcraftItems {
 
     private static RegistryObject<Item> gumItem(String name, Supplier<Integer> durationSupplier) {
         return ITEMS.register(name, () -> new GumConsumableItem(new Item.Properties().stacksTo(1), durationSupplier));
+    }
+
+    private static RegistryObject<Item> tacticalArmor(String name, ArmorItem.Type type) {
+        return ITEMS.register(name, () -> new TacticalArmorItem(type, new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
     }
 
     private static RegistryObject<Item> blockItem(String name, Supplier<? extends net.minecraft.world.level.block.Block> block) {

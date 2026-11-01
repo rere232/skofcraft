@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:hangar",
+  "display": {
+    "icon": {
+      "item": "skofcraft:tactical_helmet"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.fully_kitted.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.fully_kitted.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

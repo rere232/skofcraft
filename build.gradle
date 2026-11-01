@@ -74,6 +74,10 @@ minecraft {
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
 
+            // Mod jars from ./libs (Curios) ship mixins with SRG names: remap their refmaps to the dev mappings
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
             mods {
                 "${mod_id}" {
                     source sourceSets.main
@@ -131,10 +135,16 @@ dependencies {
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    // Not dependencies of the mod, only loaded in runClient to help debugging.
+    // JEI (./libs): optional. The plugin in compat/jei is only loaded by JEI, so the mod still runs without it.
     // Release jars must go through fg.deobf to match the dev mappings; putting them in run/mods crashes on launch.
+    compileOnly fg.deobf("blank:jei-1.20.1-forge:15.20.0.130")
     runtimeOnly fg.deobf("blank:jei-1.20.1-forge:15.20.0.130")
+
+    // Not a dependency of the mod, only loaded in runClient to help debugging.
     runtimeOnly fg.deobf("blank:Mekanism-1.20.1:10.4.16.80")
+
+    // Curios (./libs): accessory slots, used for the Femboy Choker necklace
+    implementation fg.deobf("blank:curios-forge:5.14.1+1.20.1")
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

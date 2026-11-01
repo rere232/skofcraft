@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "PTP",
+    "PLP",
+    "P P"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:composite_plate"
+    },
+    "T": {
+      "item": "skofcraft:tactical_core"
+    },
+    "L": {
+      "item": "minecraft:netherite_leggings"
+    }
+  },
+  "result": {
+    "item": "skofcraft:tactical_leggings",
+    "count": 1
+  }
+}

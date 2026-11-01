@@ -9,6 +9,11 @@ import ch.rere232.skofcraft.menu.FEPressMenu;
 import ch.rere232.skofcraft.menu.FEPackagerMenu;
 import ch.rere232.skofcraft.menu.SkofcraftMenus;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
+import ch.rere232.skofcraft.registry.SkofcraftItems;
+import ch.rere232.skofcraft.item.MaskItem;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 import ch.rere232.skofcraft.screen.AircraftWorkbenchScreen;
 import ch.rere232.skofcraft.screen.FEDryerScreen;
 import ch.rere232.skofcraft.screen.FEGrinderScreen;
@@ -34,6 +39,17 @@ public class ClientSetup {
         MenuScreens.register(SkofcraftMenus.FE_PRESS.get(), FEPressScreen::new);
         MenuScreens.register(SkofcraftMenus.FE_PACKAGER.get(), FEPackagerScreen::new);
         MenuScreens.register(SkofcraftMenus.AIRCRAFT_WORKBENCH.get(), AircraftWorkbenchScreen::new);
+        CuriosRendererRegistry.register(SkofcraftItems.CHOKER.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.CHOKER));
+        CuriosRendererRegistry.register(SkofcraftItems.SKIRT.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.SKIRT));
+        CuriosRendererRegistry.register(SkofcraftItems.THIGH_HIGHS.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.THIGH_HIGHS));
+        CuriosRendererRegistry.register(SkofcraftItems.CROP_TOP.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.CROP_TOP));
+        CuriosRendererRegistry.register(SkofcraftItems.HAND_WARMERS.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.HAND_WARMERS));
+        CuriosRendererRegistry.register(SkofcraftItems.FACE_MASK.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.MASK));
+        CuriosRendererRegistry.register(SkofcraftItems.TACTICAL_GLOVES.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.TACTICAL_GLOVES));
+        // The face mask icon follows its style: 0, 1/3, 2/3, 1 (item properties are clamped to 0..1)
+        event.enqueueWork(() -> ItemProperties.register(SkofcraftItems.FACE_MASK.get(),
+                ResourceLocation.fromNamespaceAndPath(SkofcraftMod.MODID, "style"),
+                (stack, level, entity, seed) -> MaskItem.style(stack).ordinal() / (float) (MaskItem.Style.values().length - 1)));
     }
 
     @SubscribeEvent
@@ -65,6 +81,11 @@ public class ClientSetup {
         event.registerLayerDefinition(DefenseTurretModel.SAM_LAYER, DefenseTurretModel::createSamLayer);
         event.registerLayerDefinition(SpaceModels.ROCKET, SpaceModels::createRocketLayer);
         event.registerLayerDefinition(SpaceModels.ROD, SpaceModels::createRodLayer);
+        event.registerLayerDefinition(TacticalArmorModel.OUTER, TacticalArmorModel::createOuterLayer);
+        event.registerLayerDefinition(TacticalArmorModel.INNER, TacticalArmorModel::createInnerLayer);
+        for (ClothingRenderer.Piece piece : ClothingRenderer.Piece.values()) {
+            event.registerLayerDefinition(piece.layer, piece::createLayer);
+        }
     }
 
     @SubscribeEvent

@@ -1,1111 +1,308 @@
-# SKOFCRAFT
-
-## Snus Kingdom Of Freedom Craft
-
-### General information
-
-| Item                    | Value                                          |
-| ----------------------- | ---------------------------------------------- |
-| Mod name                | SKOFCRAFT                                      |
-| Meaning                 | Snus Kingdom Of Freedom Craft                  |
-| Java package            | `ch.rere232.skofcraft`                         |
-| Target Minecraft version | 1.20.1                                         |
-| Loader                  | Forge                                          |
-| Energy                  | Forge Energy (FE)                              |
-| Type                    | Agriculture, industry, economy, consumption    |
-
----
-
-# Objective
-
-SKOFCRAFT adds a complete snus and nicotine pouch production chain.
-
-The player must be able to:
-
-* Grow tobacco
-* Produce snus
-* Produce nicotine pouches
-* Use FE-powered machines
-* Automate production
-* Fill snus tins
-* Consume products through a gum interface
-* Build a complete tobacco industry
-
----
-
-# Progression
-
-There is no research system.
-
-Progression is based exclusively on crafting.
-
-Each advanced machine must use previous machines in its recipe.
-
-Example:
-
-```text
-FE Grinder
- └─ requires Manual Grinder
-
-FE Mixer
- └─ requires Manual Mixer
-
-FE Packer
- └─ requires FE Press
-
-Industrial Machine
- └─ requires FE Machine
-```
-
-The player progresses naturally through resources and recipes.
-
----
-
-# Resources
-
-## Agriculture
-
-* Tobacco seed
-* Tobacco plant
-* Fresh tobacco leaf
-* Dried tobacco leaf
-* Ground tobacco
-
-## Nicotine
-
-* Plant fiber
-* Neutral base
-* Nicotine extract
-* Nicotine crystals
-
-## Flavors
-
-* Mint
-* Ice Mint
-* Berry
-* Citrus
-* Licorice
-* Cola
-* Coffee
-* Natural
-
-## Packaging
-
-* Empty pouch
-* Snus pouch
-* Nicotine pouch
-* Empty tin
-* Snus tin
-* Nicotine pouch tin
-
----
-
-# Machines
-
-## Manual machines
-
-* Manual Dryer
-* Manual Grinder
-* Manual Mixer
-* Manual Pouch Press
-
-## FE machines
-
-* FE Dryer
-* FE Grinder
-* FE Mixer
-* FE Press
-* FE Nicotine Extractor
-* FE Packer
-
-## Industrial machines
-
-* Snus production line
-* Pouch production line
-* Industrial Packer
-* Industrial Extractor
-
----
-
-# Energy consumption
-
-## Balancing example
-
-| Machine       | FE/t |
-| ------------- | ---- |
-| FE Dryer      | 20   |
-| FE Grinder    | 40   |
-| FE Mixer      | 60   |
-| FE Press      | 60   |
-| FE Packer     | 80   |
-| FE Extractor  | 100  |
-| Industrial    | 200  |
-
-All machines must be compatible with:
-
-* Forge Energy
-* Hoppers
-* Pipes
-* FE cables
-
----
-
-# Snus production
-
-```text
-Fresh tobacco
-↓
-Drying
-↓
-Dried leaf
-↓
-Grinding
-↓
-Ground tobacco
-↓
-Add salt + flavor
-↓
-Snus mixture
-↓
-Pouch press
-↓
-Snus
-↓
-Packer
-↓
-Filled tin
-```
-
-## Variants
-
-* Natural
-* Mint
-* Ice Mint
-* Berry
-* Licorice
-* Strong
-* Extra Strong
-* Premium
-
----
-
-# Nicotine pouch production
-
-```text
-Plant fiber
-↓
-Neutral base
-↓
-Add nicotine
-↓
-Add flavor
-↓
-Mixing
-↓
-Pressing
-↓
-Pouch
-↓
-Packer
-↓
-Filled tin
-```
-
-## Variants
-
-* Mint
-* Ice Mint
-* Berry
-* Citrus
-* Cola
-* Coffee
-* Strong
-* Extra Strong
-
----
-
-# Snus and pouch tins
-
-## Capacity
-
-Each tin contains:
-
-```text
-20 units
-```
-
-## Manufacturing
-
-A tin can only be filled using a packer.
-
----
-
-# Snus and pouch tins
-
-## Operation
-
-When the player right-clicks:
-
-* One unit is removed from the tin
-* One snus pouch or nicotine pouch is added to the inventory
-* The tin loses 1 durability point
-
-Example:
-
-```text
-20/20
-19/20
-18/20
-...
-0/20
-```
-
-When the tin is empty:
-
-* It becomes an empty tin
-
-## Displayed information
-
-Tooltip:
-
-```text
-Remaining contents: 13/20
-```
-
----
-
-# Gum interface
-
-## Opening
-
-Configurable key:
-
-```text
-G
-```
-
-## Number of slots
-
-```text
-4 slots
-```
-
-Layout:
-
-```text
-Top Left
-Top Right
-
-Bottom Left
-Bottom Right
-```
-
----
-
-# Placing a snus pouch or nicotine pouch
-
-The player can drag a snus pouch or nicotine pouch into an empty slot.
-
-When a product is placed:
-
-* It becomes active
-* A timer starts
-* The product can no longer be removed
-
----
-
-# Usage duration
-
-Default duration:
-
-```text
-15 minutes
-```
-
-Each product has a progress bar similar to a durability bar.
-
-Example:
-
-```text
-██████████ 100%
-██████░░░░ 60%
-██░░░░░░░░ 20%
-```
-
-This bar represents the time remaining in the gum.
-
----
-
-# Locking
-
-For 15 minutes:
-
-* The snus pouch cannot be removed
-* The snus pouch cannot be moved
-* The snus pouch cannot be replaced
-
-The slot remains locked.
-
----
-
-# End of use
-
-When the timer reaches 0:
-
-* The product disappears
-* The slot is released automatically
-* The effects stop
-
----
-
-# Effects
-
-## Positive
-
-* Slight Speed
-* Slight Haste
-* Focus
-* Reduced fatigue
-
-## Negative
-
-* Nausea
-* Fatigue
-* Slowness
-
----
-
-# Tolerance
-
-Configurable option.
-
-The more the player consumes:
-
-* The more tolerance increases
-* The more bonuses decrease
-
----
-
-# Addiction
-
-Configurable option.
-
-It can cause:
-
-* Fatigue
-* Slowness
-* Temporary reduction of bonuses
-
----
-
-# Villagers
-
-## Profession
-
-Tobacconist
-
-## Job site block
-
-Tobacconist's Counter
-
-## Selling
-
-* Tobacco seeds
-* Flavors
-* Empty pouches
-* Empty tins
-* Basic products
-
-## Buying
-
-* Dried leaves
-* Ground tobacco
-* Filled tins
-* Premium products
-
----
-
-# Compatibility
-
-## Forge tags
-
-```text
-forge:crops/tobacco
-forge:seeds/tobacco
-forge:dusts/tobacco
-forge:salt
-forge:fibers
-forge:flavors
-forge:nuggets/nicotine
-forge:storage_blocks/tobacco
-```
-
-## SKOFCRAFT tags
-
-```text
-skofcraft:snus
-skofcraft:nicotine_pouches
-skofcraft:snus_boxes
-skofcraft:pouch_boxes
-skofcraft:machines
-skofcraft:tobacco_products
-skofcraft:flavors
-```
-
-## Targeted compatible mods
-
-* JEI
-* EMI
-* REI
-* Mekanism
-* Thermal
-* Pipez
-* Farmer's Delight
-* Create (future compatibility)
-
----
-
-# Graphical interfaces
-
-Machines:
-
-* Dryer
-* Grinder
-* Mixer
-* Press
-* Packer
-* Extractor
-
-Special interface:
-
-* Gum interface
-
-All interfaces display:
-
-* Progress
-* Stored FE
-* Input
-* Output
-
----
-
-# Configuration
-
-File:
-
-```text
-skofcraft-common.toml
-```
-
-Options:
-
-```text
-enableAddiction=true
-enableTolerance=true
-enableNegativeEffects=true
-
-tobaccoGrowthSpeed=1.0
-
-machineEnergyMultiplier=1.0
-
-snusDurationMinutes=15
-pouchDurationMinutes=15
-
-boxCapacity=20
-
-enableVillager=true
-```
-
----
-
-# Creative tab
-
-Name:
-
-```text
-SKOFCRAFT
-```
-
-Categories:
-
-* Agriculture
-* Resources
-* Machines
-* Flavors
-* Snus
-* Pouches
-* Tins
-
----
-
-# Advancements
-
-* Welcome to SKOFCRAFT
-* First harvest
-* First drying
-* First snus
-* First pouch
-* First filled tin
-* First tobacconist
-* Automated production
-* SKOFCRAFT industry
-* Snus Kingdom
-
-```
-```
-
-# Version francaise
-
----
+<div align="center">
 
 # SKOFCRAFT
 
-## Snus Kingdom Of Freedom Craft
+### Snus Kingdom Of Freedom Craft
 
-### Informations générales
+*Grow it. Dry it. Grind it. Pack it. Then build an aircraft carrier and put satellites in orbit.*
 
-| Élément                 | Valeur                                         |
-| ----------------------- | ---------------------------------------------- |
-| Nom du mod              | SKOFCRAFT                                      |
-| Signification           | Snus Kingdom Of Freedom Craft                  |
-| Package Java            | `ch.rere232.skofcraft`                         |
-| Version Minecraft cible | 1.20.1                                         |
-| Loader                  | Forge                                          |
-| Énergie                 | Forge Energy (FE)                              |
-| Type                    | Agriculture, industrie, économie, consommation |
+![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-62B47A)
+![Forge](https://img.shields.io/badge/Forge-47.4+-1E2A3A)
+![Curios](https://img.shields.io/badge/Requires-Curios%205.14+-8A5CF6)
+![Version](https://img.shields.io/badge/version-0.1.0--alpha-orange)
+
+</div>
 
 ---
 
-# Objectif
+SKOFCRAFT started as a snus and nicotine pouch mod: a full production chain from a tobacco seed to a filled tin, powered
+by hand cranks and then by Forge Energy. It did not stop there. Today it also has a coffee industry, a smartphone with a
+casino and a delivery service, flyable jets and helicopters, a nuclear aircraft carrier, a space program and an
+intercontinental missile that leaves a crater 140 blocks wide.
 
-SKOFCRAFT ajoute une chaîne de production complète de snus et de nicotine pouches.
+Everything is explained in game in the **Quest Book**, sold by the Tobacconist or crafted.
 
-Le joueur doit pouvoir :
+## Contents
 
-* Cultiver du tabac
-* Produire du snus
-* Produire des nicotine pouches
-* Utiliser des machines alimentées en FE
-* Automatiser sa production
-* Remplir des boîtes de snus
-* Consommer les produits via une interface de gencives
-* Développer une industrie complète autour du tabac
+- [SKOFCRAFT](#skofcraft)
+    - [Snus Kingdom Of Freedom Craft](#snus-kingdom-of-freedom-craft)
+  - [Contents](#contents)
+  - [Installation](#installation)
+  - [The tobacco industry](#the-tobacco-industry)
+    - [Snus](#snus)
+    - [Nicotine pouches](#nicotine-pouches)
+    - [More ways to get your fix](#more-ways-to-get-your-fix)
+    - [Flavors](#flavors)
+  - [Consuming](#consuming)
+  - [SKOFee](#skofee)
+  - [The Tobacconist](#the-tobacconist)
+  - [The Phone](#the-phone)
+  - [Aviation](#aviation)
+  - [The Nuclear Aircraft Carrier](#the-nuclear-aircraft-carrier)
+  - [Space Program](#space-program)
+  - [Tactical Armor](#tactical-armor)
+  - [Controls](#controls)
+  - [Configuration](#configuration)
+  - [Building from source](#building-from-source)
+  - [En bref (français)](#en-bref-français)
 
 ---
 
-# Progression
+## Installation
 
-Aucun système de recherche.
+| Requirement | Version |
+| --- | --- |
+| Minecraft | 1.20.1 |
+| Forge | 47.4 or newer |
+| [Curios API](https://www.curseforge.com/minecraft/mc-mods/curios) | 5.14 or newer (required) |
+| [JEI](https://www.curseforge.com/minecraft/mc-mods/jei) | 15.x (optional) |
 
-La progression se fait uniquement par les crafts.
+Drop the SKOFCRAFT jar and Curios into your `mods` folder.
 
-Chaque machine avancée doit utiliser les machines précédentes dans sa recette.
+With **JEI** installed, every machine gets its own recipe tab (drying, extraction, grinding, mixing, pressing, packaging,
+SKOFee brewing and the 5×4 Aircraft Workbench), with flavored products cycling in step with their flavor, the machines
+listed as catalysts, and info pages on how to get each flavor.
 
-Exemple :
+---
+
+## The tobacco industry
+
+Progression is pure crafting, no research tree: every advanced machine is built from the one before it.
 
 ```text
-Broyeur FE
- └─ nécessite Broyeur Manuel
-
-Mélangeur FE
- └─ nécessite Mélangeur Manuel
-
-Emballeuse FE
- └─ nécessite Presse FE
-
-Machine Industrielle
- └─ nécessite Machine FE
+Manual (hand-cranked)  ──►  FE (Forge Energy)  ──►  Industrial (one block, whole line)
+ Manual Dryer               FE Dryer                Industrial Snus Line
+ Manual Grinder             FE Grinder              Industrial Pouch Line
+ Manual Mixer               FE Mixer                Industrial Packager
+ Manual Pouch Press         FE Press                Industrial Extractor
+                            FE Nicotine Extractor
+                            FE Packager
 ```
 
-Le joueur progresse naturellement grâce aux ressources et aux recettes.
+Manual machines are cranked with **Shift + right-click**. FE machines accept power from any Forge Energy source and
+work with hoppers and pipes.
 
----
-
-# Ressources
-
-## Agriculture
-
-* Graine de tabac
-* Plant de tabac
-* Feuille de tabac fraîche
-* Feuille de tabac séchée
-* Tabac moulu
-
-## Nicotine
-
-* Fibre végétale
-* Base neutre
-* Extrait de nicotine
-* Cristaux de nicotine
-
-## Arômes
-
-* Menthe
-* Ice Mint
-* Berry
-* Citrus
-* Réglisse
-* Cola
-* Café
-* Nature
-
-## Emballage
-
-* Sachet vide
-* Sachet de snus
-* Nicotine pouch
-* Boîte vide
-* Boîte de snus
-* Boîte de nicotine pouches
-
----
-
-# Machines
-
-## Machines manuelles
-
-* Séchoir manuel
-* Broyeur manuel
-* Mélangeur manuel
-* Presse à sachets manuelle
-
-## Machines FE
-
-* Séchoir FE
-* Broyeur FE
-* Mélangeur FE
-* Presse FE
-* Extracteur de nicotine FE
-* Emballeuse FE
-
-## Machines industrielles
-
-* Ligne de production de snus
-* Ligne de production de pouches
-* Emballeuse industrielle
-* Extracteur industriel
-
----
-
-# Consommation énergétique
-
-## Exemple d'équilibrage
-
-| Machine       | FE/t |
-| ------------- | ---- |
-| Séchoir FE    | 20   |
-| Broyeur FE    | 40   |
-| Mélangeur FE  | 60   |
-| Presse FE     | 60   |
-| Emballeuse FE | 80   |
-| Extracteur FE | 100  |
-| Industrielle  | 200  |
-
-Toutes les machines doivent être compatibles :
-
-* Forge Energy
-* Hoppers
-* Pipes
-* Câbles FE
-
----
-
-# Production du Snus
+### Snus
 
 ```text
-Tabac frais
-↓
-Séchage
-↓
-Feuille séchée
-↓
-Broyage
-↓
-Tabac moulu
-↓
-Ajout sel + arôme
-↓
-Mélange de snus
-↓
-Presse à sachets
-↓
-Snus
-↓
-Emballeuse
-↓
-Boîte remplie
+Tobacco Seeds ─► Fresh Leaf ─► Dried Leaf ─► Ground Tobacco ─► Snus Pouch ─► Snus Box
+                (harvest)     (dryer)       (grinder)          (press +       (packager,
+                                                                empty pouch)   20 pouches)
 ```
 
-## Variantes
-
-* Nature
-* Mint
-* Ice Mint
-* Berry
-* Réglisse
-* Strong
-* Extra Strong
-* Premium
-
----
-
-# Production des Nicotine Pouches
+### Nicotine pouches
 
 ```text
-Fibre végétale
-↓
-Base neutre
-↓
-Ajout nicotine
-↓
-Ajout arôme
-↓
-Mélange
-↓
-Presse
-↓
-Pouch
-↓
-Emballeuse
-↓
-Boîte remplie
+Sugar Cane ─► Plant Fiber ─► Neutral Base ─┐
+Dried Leaf ─► Nicotine Extract ────────────┼─► Mixer ─► Nicotine Mix ─► Press ─► Nicotine Pouch ─► Pouch Box
+Flavor ────────────────────────────────────┘
 ```
 
-## Variantes
+Strength comes from the nicotine you put in: **Extract** for a normal pouch, one **Nicotine Crystal** (smelted extract)
+for Strong, two for Extra Strong.
 
-* Mint
-* Ice Mint
-* Berry
-* Citrus
-* Cola
-* Coffee
-* Strong
-* Extra Strong
+### More ways to get your fix
+
+| Product | How |
+| --- | --- |
+| Snuff | Ground tobacco + flavor in the mixer |
+| Cigarillo, Cigar | Dried leaves and ground tobacco on the crafting table |
+| Cigarettes | Plant fiber, ground tobacco and paper; packed 20 to a pack by the packager |
+| Chewing Tobacco | Dried leaves and sugar. You have to spit (V) at least every 5 minutes |
+| Vape | An empty vape filled with nicotine mix in the mixer, 30 puffs |
+| Chicha | A placeable hookah with 4 hoses, so up to 4 players can share it |
+
+### Flavors
+
+| Flavor | Bonus | Flavor | Bonus |
+| --- | --- | --- | --- |
+| Mint | Speed | Cola | Jump Boost |
+| Ice Mint | Speed II, Haste II | Licorice | Resistance |
+| Berry | Regeneration | Coffee | Haste II, Speed |
+| Citrus | Haste II | Nature | Luck |
+
+Coffee can be crafted from ground SKOFee. The others are sold by the Tobacconist as he levels up.
 
 ---
 
-# Boîtes de Snus et Pouches
+## Consuming
 
-## Capacité
+Press **G** to open your **gum**: four slots where pouches, snus and chewing tobacco sit while they are active.
 
-Chaque boîte contient :
+- A pouch lasts **15 minutes** (chewing tobacco 30) and gives **Speed** and **Haste**, more with two or more active.
+- Strong, Extra Strong and Premium pouches hit harder but build **tolerance** and **addiction** faster.
+- Three pouches at once cause nausea; four slow you down.
+- Quit with a heavy addiction and you get **withdrawal**: weakness and mining fatigue.
+- **Addictol** (golden apples and milk) wipes tolerance and addiction clean.
 
-```text
-20 unités
-```
-
-## Fabrication
-
-Une boîte ne peut être remplie que via une emballeuse.
-
-## Fonctionnement
-
-Lorsque le joueur fait clic droit :
-
-* Une unité est retirée de la boîte
-* Une snus ou pouch est ajoutée à l'inventaire
-* La boîte perd 1 point de durabilité
-
-Exemple :
-
-```text
-20/20
-19/20
-18/20
-...
-0/20
-```
-
-Lorsque la boîte est vide :
-
-* Elle devient une boîte vide
-
-## Informations affichées
-
-Tooltip :
-
-```text
-Contenu restant : 13/20
-```
+Every penalty can be turned off in the config.
 
 ---
 
-# Interface des Gencives
+## SKOFee
 
-## Ouverture
+A second crop: plant SKOFee seeds, dry the beans, roast them, grind them and brew them in the **SKOFee Machine** with a cup
+and a water bucket. A cup gives three minutes of Speed and Haste. Add milk for a latte.
 
-Touche configurable :
+---
 
-```text
-G
+## The Tobacconist
+
+Place a **Tobacconist Counter** next to an unemployed villager. He sells seeds, flavors, packaging, finished products,
+Addictol and the Quest Book, and buys leaves, ground tobacco, extract and filled boxes. Five levels of trades to unlock.
+Some plains villages spawn with a tobacco house already built.
+
+---
+
+## The Phone
+
+A working smartphone with a battery, a home screen and five apps:
+
+| App | What it does |
+| --- | --- |
+| **Scrollr** | An endless feed to doomscroll and like |
+| **Amazooon** | Buy finished products for diamonds; a cargo plane airdrops the crate on your head |
+| **Flappy Block** | Tap to fly through the pipes |
+| **Lucky Creeper** | A casino: slots, blackjack and roulette, all rolled server-side, with real diamonds |
+| **Sat Map** | Live satellite imagery, unlocked by a recon satellite in orbit |
+
+Screen time builds a **phone addiction**: notification badges, a feed that scrolls itself, phantom notifications and,
+eventually, real withdrawal. Touch grass in daylight to get over it.
+
+---
+
+## Aviation
+
+Aircraft are built on the **Aircraft Workbench** (a 5×4 grid) from parts made on a crafting table: gears, aircraft
+plates, turbine and rotor blades, avionics, jet engines and weapon systems. They run on **Jet Fuel Canisters**.
+
+| Aircraft | Role | Armament |
+| --- | --- | --- |
+| **AH-64 Apache** | Attack helicopter, hovers and strafes, two seats | Chain gun and rockets |
+| **F-14 Tomcat** | Swing-wing fighter, carrier capable | Vulcan cannon and heat-seeking Sidewinders |
+
+Crash at speed and you get an explosion and some salvage.
+
+---
+
+## The Nuclear Aircraft Carrier
+
+The biggest thing in the mod. Build a **Naval Nuclear Reactor** (it needs a nether star), a Carrier Helm, catapults and
+arresting wires, then assemble the carrier and place it on open water.
+
+- At anchor it is ordinary blocks: walk around, build on it, park your jets.
+- Take the helm and it sails as one ship.
+- Launch F-14s from the **steam catapults** and land them on the **arresting wires**.
+- Defend it with **Radar**, a **CIWS** gun and **SAM launchers**, and fix it with **Damage Control Kits**.
+- Mind the reactor. It can melt down.
+
+---
+
+## Space Program
+
+Build a **Launch Pad** under open sky, load a satellite and 8 fuel canisters, and launch.
+
+| Payload | Effect |
+| --- | --- |
+| **Recon Satellite** | +256 blocks to every radar in the dimension, and unlocks the Sat Map phone app |
+| **Strike Satellite** | Mark a target with the **Orbital Designator** and a tungsten rod falls from orbit. One minute per satellite to recharge |
+| **Giga ICBM** | The end of the tech tree |
+
+The **Giga ICBM** needs a draconic warhead (a dragon head, a nether star, end crystals, netherite blocks and a whole
+nuclear reactor), a guidance unit and boosters, and 32 fuel canisters. Mark a target on the Sat Map or with the
+designator, launch, and listen to ten seconds of sirens. It leaves the world and comes back down: a white flash, a crater
+140 blocks wide lined with obsidian and lava, a rim of rubble, scorched land and a purple mushroom cloud you can see from
+anywhere. The blast is spread over several ticks so the server survives it.
+
+Creative mode also has the **Doomsday Missile**, at five times the yield.
+
+---
+
+## Tactical Armor
+
+A military set beyond netherite. Each piece upgrades its netherite counterpart with composite plates and a **Tactical
+Core** built around a nether star.
+
+| Piece | Bonus |
+| --- | --- |
+| **Helmet** | Gas mask and thermal visor: night vision, water breathing, immune to poison, wither, nausea, blindness, darkness and hunger |
+| **Plate Carrier** | +4 hearts; arrows and bullets do 60% less |
+| **Leggings** | +15% movement speed |
+| **Boots** | Step up full blocks; 80% less fall damage |
+| **Gloves** (Curios hands slot) | +3 attack damage, +15% attack speed, +2 armor |
+
+**Full set:** immune to fire and falls, 70% less explosion damage, and an **auto-medkit** that heals you when you drop
+low. 28 armor and toughness 5 per piece.
+
+---
+
+## Controls
+
+| Key | Action |
+| --- | --- |
+| **G** | Open the gum |
+| **V** | Spit (while chewing tobacco) |
+| **Shift + right-click** | Crank a manual machine |
+| **W / S** | Throttle (F-14) or forward / back (Apache) |
+| **A / D** | Rudder (F-14) or strafe (Apache) |
+| **Space / C** | Climb / descend (Apache) |
+| **Attack / Use** | Guns / missiles and rockets |
+
+All keys can be rebound in the controls menu.
+
+---
+
+## Configuration
+
+`config/skofcraft-common.toml`
+
+| Option | Default | |
+| --- | --- | --- |
+| `enableAddiction` | `true` | Addiction penalties |
+| `enableTolerance` | `true` | Tolerance system |
+| `enableNegativeEffects` | `true` | Nausea, slowness and other side effects |
+| `enableVillager` | `true` | The Tobacconist |
+| `tobaccoGrowthSpeed` | `1.0` | Tobacco growth multiplier (0.1 – 10) |
+| `skofeeGrowthSpeed` | `1.0` | SKOFee growth multiplier (0.1 – 10) |
+| `machineEnergyMultiplier` | `1.0` | FE/t multiplier for all machines |
+| `snusDurationMinutes` | `15` | How long a snus pouch lasts |
+| `pouchDurationMinutes` | `15` | How long a nicotine pouch lasts |
+| `chewDurationMinutes` | `30` | How long chewing tobacco lasts |
+| `boxCapacity` | `20` | Pouches per box, cigarettes per pack |
+| `vapeUses` | `30` | Puffs per vape |
+| `skofeeDurationSeconds` | `180` | Effect length of a cup of SKOFee |
+
+---
+
+## Building from source
+
+Put the Curios jar (`curios-forge-5.14.1+1.20.1.jar`) in `libs/`, then:
+
+```bash
+./gradlew build          # jar in build/libs
+./gradlew runClient      # dev client
 ```
 
-## Nombre de slots
-
-```text
-4 slots
-```
-
-Disposition :
-
-```text
-Haut Gauche
-Haut Droite
-
-Bas Gauche
-Bas Droite
-```
+Requires Java 17.
 
 ---
 
-# Placement d'une Snus ou d'une Pouch
+## En bref (français)
 
-Le joueur peut glisser une snus ou une pouch dans un slot libre.
+SKOFCRAFT est un mod Forge 1.20.1 (Curios requis). Il propose :
 
-Lorsqu'un produit est placé :
+- Une chaîne complète de production de **snus** et de **nicotine pouches**, des machines manuelles jusqu'aux lignes
+  industrielles en FE, plus cigares, cigarettes, tabac à chiquer, vapes et chicha.
+- Le **SKOFee**, un **Buraliste** villageois et un **téléphone** avec casino, livraison par avion et carte satellite.
+- L'**Apache**, le **F-14**, un **porte-avions nucléaire**, un **programme spatial**, l'**ICBM géant** et une **armure
+  tactique** au-delà de la netherite.
 
-* Il devient actif
-* Un timer démarre
-* Le produit ne peut plus être retiré
-
----
-
-# Durée d'utilisation
-
-Durée par défaut :
-
-```text
-15 minutes
-```
-
-Chaque produit possède une barre de progression similaire à une durabilité.
-
-Exemple :
-
-```text
-██████████ 100%
-██████░░░░ 60%
-██░░░░░░░░ 20%
-```
-
-Cette barre représente le temps restant dans la gencive.
+Tout est expliqué en jeu dans le **Livre de quêtes**. Touche **G** pour les gencives, **V** pour cracher.
 
 ---
 
-# Verrouillage
+<div align="center">
 
-Pendant les 15 minutes :
+Made by **Rere232** and **I_Honza_I** · All Rights Reserved
 
-* Impossible de retirer la snus
-* Impossible de déplacer la snus
-* Impossible de remplacer la snus
-
-Le slot reste verrouillé.
-
----
-
-# Fin d'utilisation
-
-Lorsque le timer atteint 0 :
-
-* Le produit disparaît
-* Le slot se libère automatiquement
-* Les effets cessent
-
----
-
-# Effets
-
-## Positifs
-
-* Speed léger
-* Haste léger
-* Focus
-* Réduction fatigue
-
-## Négatifs
-
-* Nausée
-* Fatigue
-* Lenteur
-
----
-
-# Tolérance
-
-Option configurable.
-
-Plus le joueur consomme :
-
-* Plus la tolérance augmente
-* Plus les bonus diminuent
-
----
-
-# Addiction
-
-Option configurable.
-
-Peut provoquer :
-
-* Fatigue
-* Lenteur
-* Réduction temporaire des bonus
-
----
-
-# Villageois
-
-## Profession
-
-Buraliste
-
-## Bloc de métier
-
-Comptoir de Buraliste
-
-## Vente
-
-* Graines de tabac
-* Arômes
-* Sachets vides
-* Boîtes vides
-* Produits simples
-
-## Achat
-
-* Feuilles séchées
-* Tabac moulu
-* Boîtes remplies
-* Produits premium
-
----
-
-# Compatibilité
-
-## Forge Tags
-
-```text
-forge:crops/tobacco
-forge:seeds/tobacco
-forge:dusts/tobacco
-forge:salt
-forge:fibers
-forge:flavors
-forge:nuggets/nicotine
-forge:storage_blocks/tobacco
-```
-
-## Tags SKOFCRAFT
-
-```text
-skofcraft:snus
-skofcraft:nicotine_pouches
-skofcraft:snus_boxes
-skofcraft:pouch_boxes
-skofcraft:machines
-skofcraft:tobacco_products
-skofcraft:flavors
-```
-
-## Mods compatibles visés
-
-* JEI
-* EMI
-* REI
-* Mekanism
-* Thermal
-* Pipez
-* Farmer's Delight
-* Create (compatibilité future)
-
----
-
-# Interfaces Graphiques
-
-Machines :
-
-* Séchoir
-* Broyeur
-* Mélangeur
-* Presse
-* Emballeuse
-* Extracteur
-
-Interface spéciale :
-
-* Interface des gencives
-
-Toutes les interfaces affichent :
-
-* Progression
-* FE stockée
-* Input
-* Output
-
----
-
-# Configuration
-
-Fichier :
-
-```text
-skofcraft-common.toml
-```
-
-Options :
-
-```text
-enableAddiction=true
-enableTolerance=true
-enableNegativeEffects=true
-
-tobaccoGrowthSpeed=1.0
-
-machineEnergyMultiplier=1.0
-
-snusDurationMinutes=15
-pouchDurationMinutes=15
-
-boxCapacity=20
-
-enableVillager=true
-```
-
----
-
-# Onglet Créatif
-
-Nom :
-
-```text
-SKOFCRAFT
-```
-
-Catégories :
-
-* Agriculture
-* Ressources
-* Machines
-* Arômes
-* Snus
-* Pouches
-* Boîtes
-
----
-
-# Advancements
-
-* Bienvenue dans SKOFCRAFT
-* Première récolte
-* Premier séchage
-* Premier snus
-* Première pouch
-* Première boîte remplie
-* Premier buraliste
-* Production automatisée
-* Industrie SKOFCRAFT
-* Royaume du Snus
-
-```
-```
+</div>
