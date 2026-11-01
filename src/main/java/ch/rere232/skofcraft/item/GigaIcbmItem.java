@@ -10,10 +10,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-/** The Giga ICBM, loaded onto a Launch Pad like a satellite but flown to a target instead of into orbit. */
+/**
+ * The Giga ICBM (and the creative Doomsday Missile, which is the same missile with a bigger yield), loaded onto a
+ * Launch Pad like a satellite but flown to a target instead of into orbit.
+ */
 public class GigaIcbmItem extends Item {
-    public GigaIcbmItem(Properties properties) {
+    /** Blast size relative to the Giga ICBM. */
+    public final float yieldScale;
+
+    public GigaIcbmItem(Properties properties, float yieldScale) {
         super(properties);
+        this.yieldScale = yieldScale;
     }
 
     @Override
@@ -23,7 +30,8 @@ public class GigaIcbmItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.skofcraft.giga_icbm").withStyle(ChatFormatting.LIGHT_PURPLE));
+        // item.skofcraft.<name> -> tooltip.skofcraft.<name>
+        tooltip.add(Component.translatable("tooltip" + getDescriptionId().substring("item".length())).withStyle(ChatFormatting.LIGHT_PURPLE));
         tooltip.add(Component.translatable("tooltip.skofcraft.giga_icbm.how").withStyle(ChatFormatting.GRAY));
     }
 }

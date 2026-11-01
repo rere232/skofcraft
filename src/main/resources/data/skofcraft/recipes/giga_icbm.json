@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "combat",
+  "pattern": [
+    "PWP",
+    "BGB",
+    "PBP"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "W": {
+      "item": "skofcraft:draconic_warhead"
+    },
+    "G": {
+      "item": "skofcraft:icbm_guidance"
+    },
+    "B": {
+      "item": "skofcraft:icbm_booster"
+    }
+  },
+  "result": {
+    "item": "skofcraft:giga_icbm"
+  }
+}

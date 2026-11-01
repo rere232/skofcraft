@@ -72,6 +72,11 @@ public final class NuclearBlastClient {
     private static final List<Blast> BLASTS = new ArrayList<>();
     private static ClientLevel blastLevel;
     private static float flash;
+    /** Ticks the flash stays at full strength before it starts to fade. */
+    private static int flashHold;
+    private static float flashFade = 0.92F;
+    /** Pure white for the ICBM; the reactor flash is a warmer white. */
+    private static int flashColor = 0xFFF8E8;
     private static int shakeTicks;
     private static float shakeStrength;
 
@@ -153,7 +158,20 @@ public final class NuclearBlastClient {
         double flashRange = FLASH_RANGE * scale;
         double shakeRange = SHAKE_RANGE * scale;
         if (distance < flashRange) {
-            flash = Math.max(flash, (float) Mth.clamp(1.0D - distance / flashRange, 0.25D, 1.0D));
+            if (scale > 2.0F) {
+                // Giga blast: the whole sky goes white wherever you are, holds, then fades slowly
+                float strength = (float) Mth.clamp(1.4D - distance / flashRange, 0.6D, 1.0D);
+                flash = Math.max(flash, strength);
+                flashHold = Math.max(flashHold, (int) (30 * strength));
+                flashFade = 0.965F;
+                flashColor = 0xFFFFFF;
+            } else {
+                flash = Math.max(flash, (float) Mth.clamp(1.0D - distance / flashRange, 0.25D, 1.0D));
+                if (flashHold <= 0) {
+                    flashFade = 0.92F;
+                    flashColor = 0xFFF8E8;
+                }
+            }
         }
         if (distance < shakeRange) {
             shakeStrength = Math.max(shakeTicks > 0 ? shakeStrength : 0.0F, (float) (1.0D - distance / shakeRange) * 4.0F * Math.min(2.0F, scale));
@@ -171,10 +189,15 @@ public final class NuclearBlastClient {
         if (mc.level == null || mc.level != blastLevel) {
             BLASTS.clear();
             flash = 0.0F;
+            flashHold = 0;
             shakeTicks = 0;
             return;
         }
-        flash *= 0.92F;
+        if (flashHold > 0) {
+            flashHold--;
+        } else {
+            flash *= flashFade;
+        }
         if (shakeTicks > 0) {
             shakeTicks--;
         }
@@ -445,7 +468,7 @@ public final class NuclearBlastClient {
         }
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        g.fill(0, 0, width, height, ((int) (Mth.clamp(flash, 0.0F, 1.0F) * 255.0F) << 24) | 0xFFF8E8);
+        g.fill(0, 0, width, height, ((int) (Mth.clamp(flash, 0.0F, 1.0F) * 255.0F) << 24) | flashColor);
         RenderSystem.disableBlend();
     }
 }

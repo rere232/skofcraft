@@ -27,16 +27,18 @@ public class IcbmWarhead extends Entity {
     private static final double VIEW_RANGE = 768.0D;
 
     private UUID owner = new UUID(0L, 0L);
+    private float yieldScale = 1.0F;
 
     public IcbmWarhead(EntityType<? extends IcbmWarhead> type, Level level) {
         super(type, level);
         this.noPhysics = true;
     }
 
-    public static IcbmWarhead create(ServerLevel level, double x, double z, UUID owner) {
+    public static IcbmWarhead create(ServerLevel level, double x, double z, UUID owner, float yieldScale) {
         IcbmWarhead warhead = new IcbmWarhead(SkofcraftEntities.ICBM_WARHEAD.get(), level);
         warhead.setPos(x, level.getMaxBuildHeight() + SPAWN_ABOVE_BUILD_LIMIT, z);
         warhead.owner = owner;
+        warhead.yieldScale = yieldScale;
         return warhead;
     }
 
@@ -57,12 +59,12 @@ public class IcbmWarhead extends Entity {
         Vec3 to = from.add(0.0D, -SPEED, 0.0D);
         BlockHitResult hit = level.clip(new ClipContext(from, to, ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, this));
         if (hit.getType() != HitResult.Type.MISS) {
-            GigaBlast.detonate(level, hit.getBlockPos().above(), owner);
+            GigaBlast.detonate(level, hit.getBlockPos().above(), owner, yieldScale);
             discard();
             return;
         }
         if (to.y < level.getMinBuildHeight()) {
-            GigaBlast.detonate(level, net.minecraft.core.BlockPos.containing(to.x, level.getMinBuildHeight() + 1, to.z), owner);
+            GigaBlast.detonate(level, net.minecraft.core.BlockPos.containing(to.x, level.getMinBuildHeight() + 1, to.z), owner, yieldScale);
             discard();
             return;
         }
@@ -98,11 +100,13 @@ public class IcbmWarhead extends Entity {
         if (tag.hasUUID("Owner")) {
             owner = tag.getUUID("Owner");
         }
+        yieldScale = tag.contains("Yield") ? tag.getFloat("Yield") : 1.0F;
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag tag) {
         tag.putUUID("Owner", owner);
+        tag.putFloat("Yield", yieldScale);
     }
 
     @Override

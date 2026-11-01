@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:satellite_launch",
+  "display": {
+    "icon": {
+      "item": "skofcraft:giga_icbm"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.giga_icbm.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.giga_icbm.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "code": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

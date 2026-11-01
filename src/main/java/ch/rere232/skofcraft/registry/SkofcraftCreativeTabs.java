@@ -87,6 +87,7 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.ICBM_GUIDANCE.get());
                 output.accept(SkofcraftItems.ICBM_BOOSTER.get());
                 output.accept(SkofcraftItems.GIGA_ICBM.get());
+                output.accept(SkofcraftItems.DOOMSDAY_MISSILE.get());
                 output.accept(SkofcraftItems.CATAPULT.get());
                 output.accept(SkofcraftItems.ARRESTING_WIRE.get());
                 output.accept(SkofcraftItems.AIRCRAFT_CARRIER.get());

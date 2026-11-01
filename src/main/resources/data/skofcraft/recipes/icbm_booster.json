@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "combat",
+  "pattern": [
+    "PJP",
+    "PNP",
+    "JJJ"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "J": {
+      "item": "skofcraft:jet_engine"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "result": {
+    "item": "skofcraft:icbm_booster"
+  }
+}

@@ -325,7 +325,19 @@ final class QuestBookContent {
                         'W', SkofcraftItems.WEAPON_SYSTEM.get(), 'N', Items.NETHERITE_INGOT),
                 craft(stack(SkofcraftItems.ORBITAL_DESIGNATOR.get()), new String[] {" S ", "RAR", " I "},
                         'S', Items.SPYGLASS, 'R', Items.REDSTONE, 'A', SkofcraftItems.AVIONICS.get(), 'I', Items.IRON_INGOT),
-                text("space.p4")
+                text("space.p4"),
+                text("space.p5"),
+                craft(stack(SkofcraftItems.DRACONIC_WARHEAD.get()), new String[] {"BSB", "NDN", "ERE"},
+                        'B', Items.DRAGON_BREATH, 'S', Items.NETHER_STAR, 'N', Items.NETHERITE_BLOCK,
+                        'D', Items.DRAGON_HEAD, 'E', Items.END_CRYSTAL, 'R', SkofcraftItems.NUCLEAR_REACTOR.get()),
+                craft(stack(SkofcraftItems.ICBM_GUIDANCE.get()), new String[] {"ARA", "CEC", "AWA"},
+                        'A', SkofcraftItems.AVIONICS.get(), 'R', SkofcraftItems.RADAR.get(), 'C', Items.RECOVERY_COMPASS,
+                        'E', Items.ENDER_EYE, 'W', SkofcraftItems.WEAPON_SYSTEM.get()),
+                craft(stack(SkofcraftItems.ICBM_BOOSTER.get()), new String[] {"PJP", "PNP", "JJJ"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'J', SkofcraftItems.JET_ENGINE.get(), 'N', Items.NETHERITE_INGOT),
+                craft(stack(SkofcraftItems.GIGA_ICBM.get()), new String[] {"PWP", "BGB", "PBP"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'W', SkofcraftItems.DRACONIC_WARHEAD.get(),
+                        'G', SkofcraftItems.ICBM_GUIDANCE.get(), 'B', SkofcraftItems.ICBM_BOOSTER.get())
         )));
 
         chapters.add(new Chapter(t("blahaj.title"), stack(SkofcraftItems.BLAHAJ.get()), List.of(

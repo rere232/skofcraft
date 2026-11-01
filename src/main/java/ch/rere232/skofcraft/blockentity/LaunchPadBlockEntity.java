@@ -110,8 +110,8 @@ public class LaunchPadBlockEntity extends BlockEntity {
         int burned = fuelNeeded();
         if (satellite.getItem() instanceof SatelliteItem item) {
             level.addFreshEntity(LaunchRocket.create(level, worldPosition, LaunchPadBlock.TOP, item.type, owner));
-        } else if (hasIcbm() && target != null) {
-            level.addFreshEntity(GigaIcbm.create(level, worldPosition, LaunchPadBlock.TOP, target, owner));
+        } else if (satellite.getItem() instanceof GigaIcbmItem icbm && target != null) {
+            level.addFreshEntity(GigaIcbm.create(level, worldPosition, LaunchPadBlock.TOP, target, owner, icbm.yieldScale));
         } else {
             return false;
         }

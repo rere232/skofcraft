@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "combat",
+  "pattern": [
+    "BSB",
+    "NDN",
+    "ERE"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:dragon_breath"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    },
+    "N": {
+      "item": "minecraft:netherite_block"
+    },
+    "D": {
+      "item": "minecraft:dragon_head"
+    },
+    "E": {
+      "item": "minecraft:end_crystal"
+    },
+    "R": {
+      "item": "skofcraft:nuclear_reactor"
+    }
+  },
+  "result": {
+    "item": "skofcraft:draconic_warhead"
+  }
+}

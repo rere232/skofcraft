@@ -131,7 +131,10 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> ICBM_BOOSTER = ITEMS.register("icbm_booster",
             () -> new Item(new Item.Properties().stacksTo(4).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> GIGA_ICBM = ITEMS.register("giga_icbm",
-            () -> new GigaIcbmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+            () -> new GigaIcbmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), 1.0F));
+    /** Creative only: five times the Giga ICBM in every direction. */
+    public static final RegistryObject<Item> DOOMSDAY_MISSILE = ITEMS.register("doomsday_missile",
+            () -> new GigaIcbmItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), 5.0F));
     public static final RegistryObject<Item> AIRCRAFT_CARRIER = ITEMS.register("aircraft_carrier",
             () -> new AircraftCarrierItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> ADDICTOL = ITEMS.register("addictol",

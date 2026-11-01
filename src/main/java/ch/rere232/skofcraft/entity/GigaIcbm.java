@@ -25,17 +25,19 @@ public class GigaIcbm extends LaunchRocket {
 
     private int targetX;
     private int targetZ;
+    private float yieldScale = 1.0F;
 
     public GigaIcbm(EntityType<? extends GigaIcbm> type, Level level) {
         super(type, level);
     }
 
-    public static GigaIcbm create(ServerLevel level, BlockPos pad, double padTop, BlockPos target, UUID owner) {
+    public static GigaIcbm create(ServerLevel level, BlockPos pad, double padTop, BlockPos target, UUID owner, float yieldScale) {
         GigaIcbm missile = new GigaIcbm(SkofcraftEntities.GIGA_ICBM.get(), level);
         missile.setPos(pad.getX() + 0.5D, pad.getY() + padTop, pad.getZ() + 0.5D);
         missile.targetX = target.getX();
         missile.targetZ = target.getZ();
         missile.owner = owner;
+        missile.yieldScale = yieldScale;
         return missile;
     }
 
@@ -68,7 +70,7 @@ public class GigaIcbm extends LaunchRocket {
 
     @Override
     protected void reachOrbit(ServerLevel level) {
-        int ticks = GigaBlast.scheduleReentry(level, getX(), getZ(), targetX, targetZ, owner);
+        int ticks = GigaBlast.scheduleReentry(level, getX(), getZ(), targetX, targetZ, owner, yieldScale);
         ServerPlayer player = level.getServer().getPlayerList().getPlayer(owner);
         if (player != null) {
             player.displayClientMessage(Component.translatable("message.skofcraft.icbm_midcourse", targetX, targetZ, ticks / 20)
@@ -82,6 +84,7 @@ public class GigaIcbm extends LaunchRocket {
         super.readAdditionalSaveData(tag);
         targetX = tag.getInt("TargetX");
         targetZ = tag.getInt("TargetZ");
+        yieldScale = tag.contains("Yield") ? tag.getFloat("Yield") : 1.0F;
     }
 
     @Override
@@ -89,5 +92,6 @@ public class GigaIcbm extends LaunchRocket {
         super.addAdditionalSaveData(tag);
         tag.putInt("TargetX", targetX);
         tag.putInt("TargetZ", targetZ);
+        tag.putFloat("Yield", yieldScale);
     }
 }
