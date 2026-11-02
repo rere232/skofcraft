@@ -44,7 +44,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * An adult tank mechanic drawn in an anime style. Spot a Maus with room on it and they'll walk over and climb on,
+ * An adult tank mechanic drawn in an anime style. Spot a tank with room on it and they'll walk over and climb on,
  * and stay until they're asked to get off. Turn up near tanks, and now and then in villages.
  */
 public class AnimeCrew extends PathfinderMob {
@@ -100,7 +100,7 @@ public class AnimeCrew extends PathfinderMob {
     @Override
     public void tick() {
         super.tick();
-        if (getVehicle() instanceof MausTank tank) {
+        if (getVehicle() instanceof Tank tank) {
             // Facing the way the tank is going
             setYRot(tank.getYRot());
             setYBodyRot(tank.getYRot());
@@ -117,7 +117,7 @@ public class AnimeCrew extends PathfinderMob {
     }
 
     private void headForTank() {
-        List<MausTank> tanks = level().getEntitiesOfClass(MausTank.class, getBoundingBox().inflate(NOTICE_RANGE), MausTank::hasCrewSeat);
+        List<Tank> tanks = level().getEntitiesOfClass(Tank.class, getBoundingBox().inflate(NOTICE_RANGE), Tank::hasCrewSeat);
         tanks.stream().min(Comparator.comparingDouble(this::distanceToSqr)).ifPresent(tank -> {
             if (distanceTo(tank) <= BOARD_RANGE) {
                 board(tank);
@@ -127,7 +127,7 @@ public class AnimeCrew extends PathfinderMob {
         });
     }
 
-    private void board(MausTank tank) {
+    private void board(Tank tank) {
         if (!startRiding(tank)) {
             return;
         }
@@ -189,7 +189,7 @@ public class AnimeCrew extends PathfinderMob {
         }
     }
 
-    /** Once a minute, each player near a Maus with room on it has a fair chance of company; in a village, a small one. */
+    /** Once a minute, each player near a tank with room on it has a fair chance of company; in a village, a small one. */
     @Mod.EventBusSubscriber(modid = SkofcraftMod.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static final class AnimeCrewSpawner {
         private static final int INTERVAL_TICKS = 20 * 60;
@@ -213,7 +213,7 @@ public class AnimeCrew extends PathfinderMob {
                 if (player.isSpectator()) {
                     continue;
                 }
-                boolean nearTank = !level.getEntitiesOfClass(MausTank.class, player.getBoundingBox().inflate(TANK_RANGE), MausTank::hasCrewSeat).isEmpty();
+                boolean nearTank = !level.getEntitiesOfClass(Tank.class, player.getBoundingBox().inflate(TANK_RANGE), Tank::hasCrewSeat).isEmpty();
                 float chance = nearTank ? TANK_CHANCE : level.isVillage(player.blockPosition()) ? VILLAGE_CHANCE : 0.0F;
                 if (level.random.nextFloat() < chance) {
                     trySpawnNear(level, player);

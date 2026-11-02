@@ -64,7 +64,9 @@ public class ClientSetup {
         event.registerEntityRenderer(SkofcraftEntities.DELIVERY_CRATE.get(), DeliveryCrateRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.APACHE.get(), ApacheRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.F14.get(), F14Renderer::new);
-        event.registerEntityRenderer(SkofcraftEntities.MAUS.get(), MausRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.MAUS.get(), ctx -> new TankRenderer<>(ctx, new MausModel(ctx.bakeLayer(MausModel.LAYER)), "maus", 3.0F));
+        event.registerEntityRenderer(SkofcraftEntities.LEOPARD_1.get(), ctx -> new TankRenderer<>(ctx, new Leopard1Model(ctx.bakeLayer(Leopard1Model.LAYER)), "leopard_1", 2.5F));
+        event.registerEntityRenderer(SkofcraftEntities.TIGER_2.get(), ctx -> new TankRenderer<>(ctx, new Tiger2Model(ctx.bakeLayer(Tiger2Model.LAYER)), "tiger_2", 2.8F));
         event.registerEntityRenderer(SkofcraftEntities.TANK_SHELL.get(), ctx -> new ThrownItemRenderer<>(ctx, 1.0F, true));
         event.registerEntityRenderer(SkofcraftEntities.POSTBUS.get(), PostbusRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.AIRCRAFT_CARRIER.get(), AircraftCarrierRenderer::new);
@@ -87,6 +89,8 @@ public class ClientSetup {
         event.registerLayerDefinition(ApacheModel.LAYER, ApacheModel::createBodyLayer);
         event.registerLayerDefinition(F14Model.LAYER, F14Model::createBodyLayer);
         event.registerLayerDefinition(MausModel.LAYER, MausModel::createBodyLayer);
+        event.registerLayerDefinition(Leopard1Model.LAYER, Leopard1Model::createBodyLayer);
+        event.registerLayerDefinition(Tiger2Model.LAYER, Tiger2Model::createBodyLayer);
         event.registerLayerDefinition(PostbusModel.LAYER, PostbusModel::createBodyLayer);
         event.registerLayerDefinition(PostbusInteriorModel.LAYER, PostbusInteriorModel::createBodyLayer);
         event.registerLayerDefinition(DefenseTurretModel.CIWS_LAYER, DefenseTurretModel::createCiwsLayer);
@@ -105,7 +109,7 @@ public class ClientSetup {
         event.registerAboveAll("spit_overlay", SpitOverlay::render);
         event.registerAboveAll("apache_hud", ApacheHud::render);
         event.registerAboveAll("f14_hud", F14Hud::render);
-        event.registerAboveAll("maus_hud", MausHud::render);
+        event.registerAboveAll("maus_hud", TankHud::render);
         event.registerAboveAll("nuclear_flash", NuclearBlastClient::renderFlash);
     }
 }

@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:tiger_2"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.king_tiger.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.king_tiger.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "boarded": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,5 +1,8 @@
 package ch.rere232.skofcraft.registry;
 
+import ch.rere232.skofcraft.entity.Leopard1Tank;
+import ch.rere232.skofcraft.entity.MausTank;
+import ch.rere232.skofcraft.entity.Tiger2Tank;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.item.GumConsumableItem;
@@ -8,7 +11,7 @@ import ch.rere232.skofcraft.item.AircraftCarrierItem;
 import ch.rere232.skofcraft.item.ApacheItem;
 import ch.rere232.skofcraft.item.PostbusItem;
 import ch.rere232.skofcraft.item.ItemScannerItem;
-import ch.rere232.skofcraft.item.MausItem;
+import ch.rere232.skofcraft.item.TankItem;
 import ch.rere232.skofcraft.item.DamageControlKitItem;
 import ch.rere232.skofcraft.item.ClothingItem;
 import ch.rere232.skofcraft.item.EnergyDrinkItem;
@@ -121,7 +124,11 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> F14 = ITEMS.register("f14",
             () -> new F14Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> MAUS = ITEMS.register("maus",
-            () -> new MausItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+            () -> new TankItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), SkofcraftEntities.MAUS, "tooltip.skofcraft.maus", MausTank.SPEC.maxFuel()));
+    public static final RegistryObject<Item> LEOPARD_1 = ITEMS.register("leopard_1",
+            () -> new TankItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), SkofcraftEntities.LEOPARD_1, "tooltip.skofcraft.leopard_1", Leopard1Tank.SPEC.maxFuel()));
+    public static final RegistryObject<Item> TIGER_2 = ITEMS.register("tiger_2",
+            () -> new TankItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), SkofcraftEntities.TIGER_2, "tooltip.skofcraft.tiger_2", Tiger2Tank.SPEC.maxFuel()));
     public static final RegistryObject<Item> POSTBUS = ITEMS.register("postbus",
             () -> new PostbusItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> ITEM_SCANNER = ITEMS.register("item_scanner",

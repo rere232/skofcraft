@@ -15,8 +15,10 @@ import ch.rere232.skofcraft.entity.GigaIcbm;
 import ch.rere232.skofcraft.entity.HrRepresentative;
 import ch.rere232.skofcraft.entity.IcbmWarhead;
 import ch.rere232.skofcraft.entity.LaunchRocket;
+import ch.rere232.skofcraft.entity.Leopard1Tank;
 import ch.rere232.skofcraft.entity.MausTank;
 import ch.rere232.skofcraft.entity.TankShell;
+import ch.rere232.skofcraft.entity.Tiger2Tank;
 import ch.rere232.skofcraft.entity.OrbitalRod;
 import ch.rere232.skofcraft.entity.Postbus;
 import net.minecraft.world.entity.EntityType;
@@ -140,6 +142,22 @@ public class SkofcraftEntities {
                     .updateInterval(1)
                     .fireImmune()
                     .build("maus"));
+
+    public static final RegistryObject<EntityType<Leopard1Tank>> LEOPARD_1 = ENTITIES.register("leopard_1",
+            () -> EntityType.Builder.<Leopard1Tank>of(Leopard1Tank::new, MobCategory.MISC)
+                    .sized(3.3F, 2.5F)
+                    .clientTrackingRange(12)
+                    .updateInterval(1)
+                    .fireImmune()
+                    .build("leopard_1"));
+
+    public static final RegistryObject<EntityType<Tiger2Tank>> TIGER_2 = ENTITIES.register("tiger_2",
+            () -> EntityType.Builder.<Tiger2Tank>of(Tiger2Tank::new, MobCategory.MISC)
+                    .sized(3.7F, 2.9F)
+                    .clientTrackingRange(12)
+                    .updateInterval(1)
+                    .fireImmune()
+                    .build("tiger_2"));
 
     public static final RegistryObject<EntityType<TankShell>> TANK_SHELL = ENTITIES.register("tank_shell",
             () -> EntityType.Builder.<TankShell>of(TankShell::new, MobCategory.MISC)

@@ -1,7 +1,7 @@
 package ch.rere232.skofcraft.client;
 
 import ch.rere232.skofcraft.entity.AircraftFuel;
-import ch.rere232.skofcraft.entity.MausTank;
+import ch.rere232.skofcraft.entity.Tank;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -17,7 +17,7 @@ import net.minecraftforge.client.gui.overlay.ForgeGui;
  * square marks where the barrel really points, so you can watch it catch up. Top right, a plan view shows which way the
  * hull and turret face; bottom left, the tank's state; above the hotbar, the main gun's reload.
  */
-public final class MausHud {
+public final class TankHud {
     private static final int GREEN = 0xFF55FF88;
     private static final int GREEN_DIM = 0xAA2E9E50;
     private static final int AMBER = 0xFFFFB347;
@@ -32,11 +32,11 @@ public final class MausHud {
     private static final int MARGIN = 6;
     private static final int BRACKET = 22;
 
-    private MausHud() {}
+    private TankHud() {}
 
     public static void render(ForgeGui gui, GuiGraphics g, float partialTick, int width, int height) {
         Minecraft mc = Minecraft.getInstance();
-        if (!(AircraftClient.piloted() instanceof MausTank tank) || mc.options.hideGui || mc.player == null || mc.level == null) {
+        if (!(AircraftClient.piloted() instanceof Tank tank) || mc.options.hideGui || mc.player == null || mc.level == null) {
             return;
         }
         int cx = width / 2;
@@ -64,7 +64,7 @@ public final class MausHud {
         g.fill(width - m - 1, height - m - BRACKET, width - m, height - m, GREEN_DIM);
     }
 
-    private static void drawAim(GuiGraphics g, Minecraft mc, MausTank tank, int cx, int cy, int height, float partialTick) {
+    private static void drawAim(GuiGraphics g, Minecraft mc, Tank tank, int cx, int cy, int height, float partialTick) {
         float yawError = Mth.wrapDegrees(Mth.rotLerp(partialTick, tank.turretYawO, tank.turretYaw) - mc.player.getViewYRot(partialTick));
         float pitchError = Mth.lerp(partialTick, tank.gunPitchO, tank.gunPitch) - mc.player.getViewXRot(partialTick);
         boolean aligned = Math.abs(yawError) <= ALIGNED_DEGREES && Math.abs(pitchError) <= ALIGNED_DEGREES;
@@ -96,7 +96,7 @@ public final class MausHud {
         g.drawString(mc.font, Component.translatable("hud.skofcraft.maus.range", range), cx + 14, cy + 6, GREEN, true);
     }
 
-    private static void drawStatus(GuiGraphics g, Minecraft mc, MausTank tank, int height) {
+    private static void drawStatus(GuiGraphics g, Minecraft mc, Tank tank, int height) {
         int x = MARGIN + 6;
         int y = height - MARGIN - 40;
         g.fill(x - 4, y - 4, x + STATUS_BAR_WIDTH + 34, y + 36, PANEL);
@@ -121,7 +121,7 @@ public final class MausHud {
     }
 
     /** Seen from above with your view pointing up: the hull turns under you, and the line is the barrel. */
-    private static void drawPlan(GuiGraphics g, Minecraft mc, MausTank tank, int width, float partialTick) {
+    private static void drawPlan(GuiGraphics g, Minecraft mc, Tank tank, int width, float partialTick) {
         int size = PLAN_SIZE;
         int centerX = width - MARGIN - 8 - size / 2;
         int centerY = MARGIN + 8 + size / 2;
@@ -141,7 +141,7 @@ public final class MausHud {
         g.pose().popPose();
     }
 
-    private static void drawReload(GuiGraphics g, Minecraft mc, MausTank tank, int cx, int height) {
+    private static void drawReload(GuiGraphics g, Minecraft mc, Tank tank, int cx, int height) {
         long sinceShot = mc.level.getGameTime() - AircraftClient.lastSecondaryTick;
         float reload = Mth.clamp((float) sinceShot / tank.secondaryCooldownTicks(), 0.0F, 1.0F);
         boolean ready = reload >= 1.0F;

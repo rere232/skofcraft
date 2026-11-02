@@ -1,0 +1,32 @@
+{
+  "type": "skofcraft:aircraft_assembly",
+  "pattern": [
+    "PPWPP",
+    "PAJAP",
+    "IPPPI",
+    "GGGGG"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "W": {
+      "item": "skofcraft:weapon_system"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "J": {
+      "item": "skofcraft:jet_engine"
+    },
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "G": {
+      "item": "skofcraft:gear"
+    }
+  },
+  "result": {
+    "item": "skofcraft:leopard_1"
+  }
+}

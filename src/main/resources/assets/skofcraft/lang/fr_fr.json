@@ -959,5 +959,21 @@
   "entity.skofcraft.anime_crew": "Equipage de char anime",
   "item.skofcraft.anime_crew_spawn_egg": "Oeuf d'apparition d'equipage de char anime",
   "advancements.skofcraft.tank_crew.title": "Equipage",
-  "advancements.skofcraft.tank_crew.description": "Voir une mecanicienne anime monter sur votre Maus. Personne ne lui a rien demande."
+  "advancements.skofcraft.tank_crew.description": "Voir une mecanicienne anime monter sur votre char. Personne ne lui a rien demande.",
+  "item.skofcraft.leopard_1": "Leopard 1",
+  "entity.skofcraft.leopard_1": "Leopard 1",
+  "tooltip.skofcraft.leopard_1": "Clic droit sur un bloc pour le poser, puis clic droit dessus pour monter. 42 tonnes, 65 km/h. Le blindage est surtout une suggestion.",
+  "questbook.skofcraft.leopard_1.title": "Leopard 1",
+  "questbook.skofcraft.leopard_1.p1": "L'Allemagne de l'Ouest a regarde les obus des annees 1960, a decide qu'aucun blindage ne les arreterait de toute facon, et a construit quelque chose de rapide : 42 tonnes, 65 km/h et un canon de 105 mm. Assemblez-le sur l'etabli aeronautique et faites le plein avec des bidons de carburant. Le reservoir en contient quatre.",
+  "questbook.skofcraft.leopard_1.p2": "Il se conduit comme le Maus, en bien plus rapide, et la tourelle suit votre regard sans peine. Le canon se recharge en 5 secondes. Les mitrailleuses traversent ce blindage, alors restez en mouvement. Quatre personnes peuvent monter dessus.",
+  "advancements.skofcraft.speed_is_armor.title": "La vitesse comme blindage",
+  "advancements.skofcraft.speed_is_armor.description": "Monter dans un Leopard 1. Il vaut mieux que ca marche.",
+  "item.skofcraft.tiger_2": "Tiger II",
+  "entity.skofcraft.tiger_2": "Tiger II",
+  "tooltip.skofcraft.tiger_2": "Clic droit sur un bloc pour le poser, puis clic droit dessus pour monter. 70 tonnes. Assoiffe. La tourelle n'est pas pressee.",
+  "questbook.skofcraft.tiger_2.title": "Tiger II",
+  "questbook.skofcraft.tiger_2.p1": "Environ 70 tonnes, un long canon de 88 mm et moins de 500 exemplaires, sur un moteur prevu pour plus leger. Assemblez-le sur l'etabli aeronautique et faites le plein avec des bidons de carburant. Le reservoir n'en contient que deux, alors prevoyez : la panne seche a mis fin a beaucoup des vrais.",
+  "questbook.skofcraft.tiger_2.p2": "Il se conduit comme le Maus, presque deux fois plus vite. La tourelle tourne lentement, alors visez a l'avance. Le canon se recharge en 6 secondes et les petits calibres ricochent sur le blindage. Six personnes peuvent monter dessus.",
+  "advancements.skofcraft.king_tiger.title": "Tigre royal",
+  "advancements.skofcraft.king_tiger.description": "Monter dans un Tiger II. Prevoyez un mecanicien."
 }

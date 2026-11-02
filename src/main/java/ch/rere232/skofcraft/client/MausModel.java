@@ -1,10 +1,6 @@
 package ch.rere232.skofcraft.client;
 
 import ch.rere232.skofcraft.SkofcraftMod;
-import ch.rere232.skofcraft.entity.MausTank;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -13,13 +9,9 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 
-/**
- * Panzer VIII Maus, from its real proportions: about 10 by 3.7 by 3.6 metres at one block to the metre. The nose points
- * to -Z, the tracks sit on y = 24, and each box takes its texture from a large swatch of one material.
- */
-public class MausModel extends EntityModel<MausTank> {
+/** Panzer VIII Maus, from its real proportions: about 10 by 3.7 by 3.6 metres. */
+public class MausModel extends TankModel {
     public static final ModelLayerLocation LAYER =
             new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(SkofcraftMod.MODID, "maus"), "main");
 
@@ -29,18 +21,8 @@ public class MausModel extends EntityModel<MausTank> {
     private static final int[] BARREL = {200, 100};
     private static final int[] HATCH = {300, 100};
 
-    private final ModelPart root;
-    private final ModelPart turret;
-    private final ModelPart gun;
-
     public MausModel(ModelPart root) {
-        this.root = root;
-        this.turret = root.getChild("turret");
-        this.gun = turret.getChild("gun");
-    }
-
-    private static CubeListBuilder box(int[] swatch, float x, float y, float z, float w, float h, float d) {
-        return CubeListBuilder.create().texOffs(swatch[0], swatch[1]).addBox(x, y, z, w, h, d);
+        super(root);
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -83,19 +65,5 @@ public class MausModel extends EntityModel<MausTank> {
                 .addBox(3.5F, -0.5F, -14, 1, 1, 12),
                 PartPose.offset(0, -6, -13));
         return LayerDefinition.create(mesh, 512, 256);
-    }
-
-    @Override
-    public void setupAnim(MausTank tank, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        float partial = ageInTicks - tank.tickCount;
-        float yaw = Mth.rotLerp(partial, tank.turretYawO, tank.turretYaw);
-        turret.yRot = (float) Math.toRadians(Mth.wrapDegrees(yaw - tank.getViewYRot(partial)));
-        gun.xRot = (float) Math.toRadians(Mth.lerp(partial, tank.gunPitchO, tank.gunPitch));
-    }
-
-    @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int light, int overlay,
-                               float red, float green, float blue, float alpha) {
-        root.render(poseStack, buffer, light, overlay, red, green, blue, alpha);
     }
 }

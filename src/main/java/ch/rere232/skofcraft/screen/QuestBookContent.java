@@ -309,6 +309,22 @@ final class QuestBookContent {
                 text("maus.p2"), text("maus.p3")
         )));
 
+        chapters.add(new Chapter(t("tiger_2.title"), stack(SkofcraftItems.TIGER_2.get()), List.of(
+                text("tiger_2.p1"),
+                craft(stack(SkofcraftItems.TIGER_2.get()), new String[] {"PPWPP", "IPJPI", "IIIII", "GGGGG"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'W', SkofcraftItems.WEAPON_SYSTEM.get(), 'I', Items.IRON_BLOCK,
+                        'J', SkofcraftItems.JET_ENGINE.get(), 'G', SkofcraftItems.GEAR.get()),
+                text("tiger_2.p2")
+        )));
+
+        chapters.add(new Chapter(t("leopard_1.title"), stack(SkofcraftItems.LEOPARD_1.get()), List.of(
+                text("leopard_1.p1"),
+                craft(stack(SkofcraftItems.LEOPARD_1.get()), new String[] {"PPWPP", "PAJAP", "IPPPI", "GGGGG"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'W', SkofcraftItems.WEAPON_SYSTEM.get(), 'I', Items.IRON_BLOCK,
+                        'J', SkofcraftItems.JET_ENGINE.get(), 'A', SkofcraftItems.AVIONICS.get(), 'G', SkofcraftItems.GEAR.get()),
+                text("leopard_1.p2")
+        )));
+
         chapters.add(new Chapter(t("postbus.title"), stack(SkofcraftItems.POSTBUS.get()), List.of(
                 text("postbus.p1"),
                 craft(stack(SkofcraftItems.POSTBUS.get()), new String[] {"YYYYY", "CCNCC", "PPJAP", "GPPPG"},

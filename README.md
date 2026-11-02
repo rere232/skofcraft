@@ -188,6 +188,8 @@ Crash at speed and you get an explosion and some salvage.
 
 On the ground there is also the **Panzer VIII Maus**: 188 tons, a turret that follows your view, an 8-second main gun, and the ability to drive through a fence without slowing down. Built on the same workbench and run on the same fuel.
 
+Two more share its controls. The **Tiger II** has heavy armor, a long 88 mm gun, a slow turret and a small fuel tank. The **Leopard 1** does 65 km/h and reloads in 5 seconds, but its armor won't stop a machine gun.
+
 ---
 
 ## The Swiss Postbus

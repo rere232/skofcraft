@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:leopard_1"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.speed_is_armor.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.speed_is_armor.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "boarded": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

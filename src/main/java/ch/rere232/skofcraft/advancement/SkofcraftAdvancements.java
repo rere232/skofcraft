@@ -35,6 +35,8 @@ public final class SkofcraftAdvancements {
     public static final String MANDATORY_FUN = "mandatory_fun";
     public static final String ONE_HUNDRED_EIGHTY_EIGHT_TONS = "188_tons";
     public static final String TANK_CREW = "tank_crew";
+    public static final String SPEED_IS_ARMOR = "speed_is_armor";
+    public static final String KING_TIGER = "king_tiger";
 
     private SkofcraftAdvancements() {}
 

@@ -959,5 +959,21 @@
   "entity.skofcraft.anime_crew": "Anime Tank Crew",
   "item.skofcraft.anime_crew_spawn_egg": "Anime Tank Crew Spawn Egg",
   "advancements.skofcraft.tank_crew.title": "Tank Crew",
-  "advancements.skofcraft.tank_crew.description": "Have an anime mechanic climb onto your Maus. Nobody asked them to."
+  "advancements.skofcraft.tank_crew.description": "Have an anime mechanic climb onto your tank. Nobody asked them to.",
+  "item.skofcraft.leopard_1": "Leopard 1",
+  "entity.skofcraft.leopard_1": "Leopard 1",
+  "tooltip.skofcraft.leopard_1": "Right-click a block to place it, then right-click it to board. 42 tons, 65 km/h. The armor is mostly a suggestion.",
+  "questbook.skofcraft.leopard_1.title": "Leopard 1",
+  "questbook.skofcraft.leopard_1.p1": "West Germany looked at the shells of the 1960s, decided no armor would stop them anyway, and built something fast instead: 42 tons, 65 km/h and a 105 mm gun. Assemble it on the Aircraft Workbench and fuel it with Jet Fuel Canisters. The tank holds four.",
+  "questbook.skofcraft.leopard_1.p2": "It drives like the Maus, only much faster, and the turret keeps up with your view. The main gun reloads in 5 seconds. Machine guns will get through this armor, so keep moving. Four can ride on the outside.",
+  "advancements.skofcraft.speed_is_armor.title": "Speed Is Armor",
+  "advancements.skofcraft.speed_is_armor.description": "Climb into a Leopard 1. It had better be.",
+  "item.skofcraft.tiger_2": "Tiger II",
+  "entity.skofcraft.tiger_2": "Tiger II",
+  "tooltip.skofcraft.tiger_2": "Right-click a block to place it, then right-click it to board. 70 tons. Thirsty. The turret is in no hurry.",
+  "questbook.skofcraft.tiger_2.title": "Tiger II",
+  "questbook.skofcraft.tiger_2.p1": "About 70 tons, a long 88 mm gun, and fewer than 500 built, on an engine meant for something lighter. Assemble it on the Aircraft Workbench and fuel it with Jet Fuel Canisters. The tank only holds two, so plan ahead: running out is how a lot of the real ones ended.",
+  "questbook.skofcraft.tiger_2.p2": "It drives like the Maus, at nearly twice the speed. The turret turns slowly, so start aiming early. The main gun reloads in 6 seconds and small arms bounce off the armor. Six can ride on the outside.",
+  "advancements.skofcraft.king_tiger.title": "King Tiger",
+  "advancements.skofcraft.king_tiger.description": "Climb into a Tiger II. Bring a mechanic."
 }
