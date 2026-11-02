@@ -193,8 +193,11 @@ plates, turbine and rotor blades, avionics, jet engines and weapon systems. They
 | --- | --- | --- |
 | **AH-64 Apache** | Attack helicopter, hovers and strafes, two seats | Chain gun and rockets |
 | **F-14 Tomcat** | Swing-wing fighter, carrier capable | Vulcan cannon and heat-seeking Sidewinders |
+| **FPV Drone** | Remote-piloted kamikaze quad, crafted by twos on a crafting table, needs no fuel | Itself |
 
 Crash at speed and you get an explosion and some salvage.
+
+An FPV Drone puts your camera on the drone and leaves your body standing around unattended, so pick a safe spot. The signal reaches about as far as your view distance, the battery lasts four minutes, and a direct hit goes through tank armor.
 
 On the ground there is also the **Panzer VIII Maus**: 188 tons, a turret that follows your view, an 8-second main gun, and the ability to drive through a fence without slowing down. Built on the same workbench and run on the same fuel.
 
@@ -284,10 +287,11 @@ low. 28 armor and toughness 5 per piece.
 | **Shift + right-click** | Crank a manual machine |
 | **W / S** | Throttle (F-14) or forward / back (Apache) |
 | **A / D** | Rudder (F-14) or strafe (Apache) |
-| **Space / C** | Climb / descend (Apache) |
+| **Space / C** | Climb / descend (Apache, FPV Drone) |
+| **Sneak** | Cut the link (FPV Drone) |
 | **H** | Sound the horn (Postbus) |
 | **N** | Launch a missile (Submarine) |
-| **Attack / Use** | Guns / missiles and rockets |
+| **Attack / Use** | Guns / missiles and rockets; Attack detonates an FPV Drone |
 
 All keys can be rebound in the controls menu.
 

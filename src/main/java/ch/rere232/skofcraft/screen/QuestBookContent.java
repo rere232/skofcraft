@@ -292,6 +292,13 @@ final class QuestBookContent {
                 text("apache.p2"), text("apache.p3")
         )));
 
+        chapters.add(new Chapter(t("fpv_drone.title"), stack(SkofcraftItems.FPV_DRONE.get()), List.of(
+                text("fpv_drone.p1"),
+                craft(new ItemStack(SkofcraftItems.FPV_DRONE.get(), 2), new String[] {"I I", "RAR", "ITI"},
+                        'I', Items.IRON_INGOT, 'R', SkofcraftItems.ROTOR_BLADE.get(), 'A', SkofcraftItems.AVIONICS.get(), 'T', Items.TNT),
+                text("fpv_drone.p2"), text("fpv_drone.p3"), text("fpv_drone.p4")
+        )));
+
         chapters.add(new Chapter(t("f14.title"), stack(SkofcraftItems.F14.get()), List.of(
                 text("f14.p1"),
                 craft(stack(SkofcraftItems.F14.get()), new String[] {"PPCPP", "WPAPW", "PJGJP", "GPBPG"},

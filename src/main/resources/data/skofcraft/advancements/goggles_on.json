@@ -1,0 +1,32 @@
+{
+  "parent": "skofcraft:turbine_time",
+  "display": {
+    "icon": {
+      "item": "skofcraft:fpv_drone"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.goggles_on.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.goggles_on.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_drone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "skofcraft:fpv_drone"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

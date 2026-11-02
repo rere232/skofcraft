@@ -3,6 +3,7 @@ package ch.rere232.skofcraft.screen;
 import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.entity.AircraftCarrier;
+import ch.rere232.skofcraft.entity.FpvDrone;
 import ch.rere232.skofcraft.entity.OrbitalRod;
 import ch.rere232.skofcraft.entity.PilotedAircraft;
 import ch.rere232.skofcraft.network.SatelliteLinkC2SPacket;
@@ -312,6 +313,9 @@ public class MapApp implements PhoneApp {
             } else if (entity instanceof PilotedAircraft) {
                 color = 0xFFFF5050;
                 size = 2;
+            } else if (entity instanceof FpvDrone) {
+                color = 0xFFFF5050;
+                size = 1;
             } else if (entity instanceof AircraftCarrier) {
                 color = 0xFF50A0FF;
                 size = 3;

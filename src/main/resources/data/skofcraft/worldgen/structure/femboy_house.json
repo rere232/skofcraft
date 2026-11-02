@@ -1,0 +1,10 @@
+{
+  "type": "skofcraft:flat_ground",
+  "biomes": "#skofcraft:has_structure/femboy_house",
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin",
+  "spawn_overrides": {},
+  "start_pool": "skofcraft:femboy_house",
+  "max_height_range": 6,
+  "site_radius": 16
+}

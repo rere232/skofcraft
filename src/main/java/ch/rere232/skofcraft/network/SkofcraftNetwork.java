@@ -45,5 +45,6 @@ public class SkofcraftNetwork {
         CHANNEL.registerMessage(packetId++, HrCompleteC2SPacket.class, HrCompleteC2SPacket::encode, HrCompleteC2SPacket::decode, HrCompleteC2SPacket::handle);
         CHANNEL.registerMessage(packetId++, CuddleC2SPacket.class, CuddleC2SPacket::encode, CuddleC2SPacket::decode, CuddleC2SPacket::handle);
         CHANNEL.registerMessage(packetId++, CuddleSyncS2CPacket.class, CuddleSyncS2CPacket::encode, CuddleSyncS2CPacket::decode, CuddleSyncS2CPacket::handle);
+        CHANNEL.registerMessage(packetId++, FpvDroneStateC2SPacket.class, FpvDroneStateC2SPacket::encode, FpvDroneStateC2SPacket::decode, FpvDroneStateC2SPacket::handle);
     }
 }

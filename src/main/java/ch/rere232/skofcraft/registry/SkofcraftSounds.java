@@ -84,6 +84,7 @@ public class SkofcraftSounds {
     public static final RegistryObject<SoundEvent> REPAIR_WRENCH = sound("repair_wrench");
     public static final RegistryObject<SoundEvent> ROCKET_FIRE = sound("rocket_fire");
     public static final RegistryObject<SoundEvent> ROD_CHARGE = sound("rod_charge");
+    public static final RegistryObject<SoundEvent> FPV_MOTOR = sound("fpv_motor");
     public static final RegistryObject<SoundEvent> ROTOR = sound("rotor");
     public static final RegistryObject<SoundEvent> SHIP_HORN = sound("ship_horn");
     public static final RegistryObject<SoundEvent> SHOCKWAVE = sound("shockwave");

@@ -13,6 +13,7 @@ import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import ch.rere232.skofcraft.registry.SkofcraftRecipes;
 import ch.rere232.skofcraft.registry.SkofcraftSounds;
+import ch.rere232.skofcraft.registry.SkofcraftStructures;
 import ch.rere232.skofcraft.registry.SkofcraftVillagers;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
@@ -33,6 +34,7 @@ public class SkofcraftMod {
         SkofcraftBlocks.BLOCKS.register(modEventBus);
         SkofcraftEffects.EFFECTS.register(modEventBus);
         SkofcraftEntities.ENTITIES.register(modEventBus);
+        SkofcraftStructures.STRUCTURE_TYPES.register(modEventBus);
         SkofcraftSounds.SOUNDS.register(modEventBus);
         SkofcraftItems.ITEMS.register(modEventBus);
         SkofcraftCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "I I",
+    "RAR",
+    "ITI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "skofcraft:rotor_blade"
+    },
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "T": {
+      "item": "minecraft:tnt"
+    }
+  },
+  "result": {
+    "item": "skofcraft:fpv_drone",
+    "count": 2
+  }
+}

@@ -95,6 +95,7 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.JET_FUEL_CANISTER.get());
                 output.accept(SkofcraftItems.APACHE.get());
                 output.accept(SkofcraftItems.F14.get());
+                output.accept(SkofcraftItems.FPV_DRONE.get());
                 output.accept(SkofcraftItems.MAUS.get());
                 output.accept(SkofcraftItems.TIGER_2.get());
                 output.accept(SkofcraftItems.LEOPARD_1.get());

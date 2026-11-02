@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:goggles_on",
+  "display": {
+    "icon": {
+      "item": "skofcraft:fpv_drone"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.cope_cage.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.cope_cage.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "hit": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

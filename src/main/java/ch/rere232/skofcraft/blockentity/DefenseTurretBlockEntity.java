@@ -4,6 +4,7 @@ import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.block.DefenseTurretBlock;
 import ch.rere232.skofcraft.entity.ApacheBullet;
 import ch.rere232.skofcraft.entity.ApacheRocket;
+import ch.rere232.skofcraft.entity.FpvDrone;
 import ch.rere232.skofcraft.entity.PilotedAircraft;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import net.minecraft.core.BlockPos;
@@ -160,6 +161,12 @@ public class DefenseTurretBlockEntity extends BlockEntity {
         boolean airborne;
         if (entity instanceof PilotedAircraft) {
             Entity pilot = entity.getControllingPassenger();
+            if (!engageAllThreats || pilot == null || isFriendly(pilot)) {
+                return false;
+            }
+            airborne = !entity.onGround();
+        } else if (entity instanceof FpvDrone drone) {
+            Player pilot = drone.getPilot();
             if (!engageAllThreats || pilot == null || isFriendly(pilot)) {
                 return false;
             }

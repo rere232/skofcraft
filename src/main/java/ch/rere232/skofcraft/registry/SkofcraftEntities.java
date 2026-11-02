@@ -9,6 +9,7 @@ import ch.rere232.skofcraft.entity.ApacheRocket;
 import ch.rere232.skofcraft.entity.DeliveryCrate;
 import ch.rere232.skofcraft.entity.F14Tomcat;
 import ch.rere232.skofcraft.entity.Femboy;
+import ch.rere232.skofcraft.entity.FpvDrone;
 import ch.rere232.skofcraft.entity.DeliveryPlane;
 import ch.rere232.skofcraft.entity.SpitProjectile;
 import ch.rere232.skofcraft.entity.GigaIcbm;
@@ -68,6 +69,14 @@ public class SkofcraftEntities {
                     .clientTrackingRange(16)
                     .updateInterval(1)
                     .build("f14"));
+
+    public static final RegistryObject<EntityType<FpvDrone>> FPV_DRONE = ENTITIES.register("fpv_drone",
+            () -> EntityType.Builder.<FpvDrone>of(FpvDrone::new, MobCategory.MISC)
+                    .sized(0.7F, 0.45F)
+                    // Further than any view distance: the pilot must keep tracking it right up to the edge of the signal
+                    .clientTrackingRange(32)
+                    .updateInterval(1)
+                    .build("fpv_drone"));
 
     public static final RegistryObject<EntityType<AircraftCarrier>> AIRCRAFT_CARRIER = ENTITIES.register("aircraft_carrier",
             () -> EntityType.Builder.<AircraftCarrier>of(AircraftCarrier::new, MobCategory.MISC)

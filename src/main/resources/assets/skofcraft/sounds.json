@@ -344,6 +344,12 @@
       "skofcraft:rod_charge"
     ]
   },
+  "fpv_motor": {
+    "subtitle": "subtitles.skofcraft.fpv_motor",
+    "sounds": [
+      "skofcraft:fpv_motor"
+    ]
+  },
   "rotor": {
     "subtitle": "subtitles.skofcraft.rotor",
     "sounds": [

@@ -10,6 +10,7 @@ import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.item.AddictolItem;
 import ch.rere232.skofcraft.item.AircraftCarrierItem;
 import ch.rere232.skofcraft.item.ApacheItem;
+import ch.rere232.skofcraft.item.FpvDroneItem;
 import ch.rere232.skofcraft.item.PostbusItem;
 import ch.rere232.skofcraft.item.ItemScannerItem;
 import ch.rere232.skofcraft.item.TankItem;
@@ -122,6 +123,8 @@ public class SkofcraftItems {
             () -> new PhoneItem(new Item.Properties()));
     public static final RegistryObject<Item> APACHE = ITEMS.register("apache",
             () -> new ApacheItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> FPV_DRONE = ITEMS.register("fpv_drone",
+            () -> new FpvDroneItem(new Item.Properties().stacksTo(16).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> F14 = ITEMS.register("f14",
             () -> new F14Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> MAUS = ITEMS.register("maus",
