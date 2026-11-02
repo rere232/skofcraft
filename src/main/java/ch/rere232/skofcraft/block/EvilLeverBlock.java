@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.block;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.network.ScreenFlipS2CPacket;
@@ -7,7 +8,6 @@ import ch.rere232.skofcraft.network.SkofcraftNetwork;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -40,7 +40,7 @@ public class EvilLeverBlock extends LeverBlock {
             boolean flipped = !isFlipped(serverPlayer);
             serverPlayer.getPersistentData().putBoolean(FLIPPED_KEY, flipped);
             sync(serverPlayer);
-            level.playSound(null, pos, SoundEvents.WITCH_CELEBRATE, SoundSource.BLOCKS, 0.8F, flipped ? 0.8F : 1.3F);
+            level.playSound(null, pos, SkofcraftSounds.EVIL_CACKLE.get(), SoundSource.BLOCKS, 0.8F, flipped ? 0.8F : 1.3F);
             serverPlayer.displayClientMessage(Component.translatable(flipped
                     ? "message.skofcraft.evil_lever_flipped" : "message.skofcraft.evil_lever_restored"), true);
             if (flipped) {

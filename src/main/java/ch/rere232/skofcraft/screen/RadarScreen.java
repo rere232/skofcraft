@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.screen;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.network.RadarContactsS2CPacket;
 import ch.rere232.skofcraft.network.RadarScanC2SPacket;
 import ch.rere232.skofcraft.network.SkofcraftNetwork;
@@ -15,7 +16,6 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
@@ -244,7 +244,7 @@ public class RadarScreen extends Screen {
             boolean crossed = previous <= sweep ? bearing > previous && bearing <= sweep : bearing > previous || bearing <= sweep;
             if (crossed) {
                 float pitch = contact.category() == RadarCategory.AIRCRAFT ? 1.8F : 1.4F;
-                Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.NOTE_BLOCK_BIT.value(), pitch, 0.2F));
+                Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SkofcraftSounds.RADAR_PING.get(), pitch, 0.2F));
                 return;
             }
         }

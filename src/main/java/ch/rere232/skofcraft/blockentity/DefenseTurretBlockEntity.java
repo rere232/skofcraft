@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.blockentity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.block.DefenseTurretBlock;
 import ch.rere232.skofcraft.entity.ApacheBullet;
 import ch.rere232.skofcraft.entity.ApacheRocket;
@@ -12,7 +13,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -214,7 +214,7 @@ public class DefenseTurretBlockEntity extends BlockEntity {
             bullet.shoot(aim.x, aim.y, aim.z, weapon.speed, weapon.inaccuracy);
             level.addFreshEntity(bullet);
             level.sendParticles(ParticleTypes.SMOKE, muzzle.x, muzzle.y, muzzle.z, 1, 0.05D, 0.05D, 0.05D, 0.0D);
-            level.playSound(null, muzzle.x, muzzle.y, muzzle.z, SoundEvents.SKELETON_SHOOT, SoundSource.BLOCKS, 0.8F, 1.9F + level.random.nextFloat() * 0.2F);
+            level.playSound(null, muzzle.x, muzzle.y, muzzle.z, SkofcraftSounds.CIWS.get(), SoundSource.BLOCKS, 0.8F, 0.95F + level.random.nextFloat() * 0.1F);
         } else {
             leftTube = !leftTube;
             Vec3 side = new Vec3(aim.z, 0.0D, -aim.x).normalize().scale(leftTube ? 0.2D : -0.2D);
@@ -226,7 +226,7 @@ public class DefenseTurretBlockEntity extends BlockEntity {
             missile.lockOn(target);
             level.addFreshEntity(missile);
             level.sendParticles(ParticleTypes.CLOUD, muzzle.x, muzzle.y, muzzle.z, 8, 0.2D, 0.2D, 0.2D, 0.02D);
-            level.playSound(null, muzzle.x, muzzle.y, muzzle.z, SoundEvents.FIREWORK_ROCKET_LAUNCH, SoundSource.BLOCKS, 2.5F, 0.6F);
+            level.playSound(null, muzzle.x, muzzle.y, muzzle.z, SkofcraftSounds.ROCKET_FIRE.get(), SoundSource.BLOCKS, 2.5F, 1.0F);
         }
     }
 

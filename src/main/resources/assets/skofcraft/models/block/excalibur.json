@@ -1,0 +1,346 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "minecraft:block/stone",
+    "stone": "minecraft:block/stone",
+    "sword": "skofcraft:block/excalibur"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        7,
+        15
+      ],
+      "faces": {
+        "down": {
+          "texture": "#stone"
+        },
+        "up": {
+          "texture": "#stone"
+        },
+        "north": {
+          "texture": "#stone"
+        },
+        "south": {
+          "texture": "#stone"
+        },
+        "west": {
+          "texture": "#stone"
+        },
+        "east": {
+          "texture": "#stone"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        7,
+        3
+      ],
+      "to": [
+        13,
+        9,
+        13
+      ],
+      "faces": {
+        "down": {
+          "texture": "#stone"
+        },
+        "up": {
+          "texture": "#stone"
+        },
+        "north": {
+          "texture": "#stone"
+        },
+        "south": {
+          "texture": "#stone"
+        },
+        "west": {
+          "texture": "#stone"
+        },
+        "east": {
+          "texture": "#stone"
+        }
+      }
+    },
+    {
+      "from": [
+        7.25,
+        9,
+        7.5
+      ],
+      "to": [
+        8.75,
+        20,
+        8.5
+      ],
+      "faces": {
+        "down": {
+          "texture": "#sword",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#sword",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ]
+        },
+        "north": {
+          "texture": "#sword",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#sword",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#sword",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#sword",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        20,
+        7
+      ],
+      "to": [
+        11,
+        21,
+        9
+      ],
+      "faces": {
+        "down": {
+          "texture": "#sword",
+          "uv": [
+            4,
+            0,
+            8,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#sword",
+          "uv": [
+            4,
+            0,
+            8,
+            16
+          ]
+        },
+        "north": {
+          "texture": "#sword",
+          "uv": [
+            4,
+            0,
+            8,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#sword",
+          "uv": [
+            4,
+            0,
+            8,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#sword",
+          "uv": [
+            4,
+            0,
+            8,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#sword",
+          "uv": [
+            4,
+            0,
+            8,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        7.5,
+        21,
+        7.5
+      ],
+      "to": [
+        8.5,
+        24,
+        8.5
+      ],
+      "faces": {
+        "down": {
+          "texture": "#sword",
+          "uv": [
+            8,
+            0,
+            12,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#sword",
+          "uv": [
+            8,
+            0,
+            12,
+            16
+          ]
+        },
+        "north": {
+          "texture": "#sword",
+          "uv": [
+            8,
+            0,
+            12,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#sword",
+          "uv": [
+            8,
+            0,
+            12,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#sword",
+          "uv": [
+            8,
+            0,
+            12,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#sword",
+          "uv": [
+            8,
+            0,
+            12,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        24,
+        7
+      ],
+      "to": [
+        9,
+        25,
+        9
+      ],
+      "faces": {
+        "down": {
+          "texture": "#sword",
+          "uv": [
+            12,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#sword",
+          "uv": [
+            12,
+            0,
+            16,
+            16
+          ]
+        },
+        "north": {
+          "texture": "#sword",
+          "uv": [
+            12,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#sword",
+          "uv": [
+            12,
+            0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#sword",
+          "uv": [
+            12,
+            0,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#sword",
+          "uv": [
+            12,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    }
+  ]
+}

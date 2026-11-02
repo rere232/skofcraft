@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:one_million_beer"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.last_call.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.last_call.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "finished": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

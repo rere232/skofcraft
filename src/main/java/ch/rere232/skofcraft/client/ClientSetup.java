@@ -58,10 +58,15 @@ public class ClientSetup {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(SkofcraftEntities.SPIT.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.FEMBOY.get(), FemboyRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.ANIME_CREW.get(), AnimeCrewRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.HR_REPRESENTATIVE.get(), HrRepresentativeRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.DELIVERY_PLANE.get(), DeliveryPlaneRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.DELIVERY_CRATE.get(), DeliveryCrateRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.APACHE.get(), ApacheRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.F14.get(), F14Renderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.MAUS.get(), MausRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.TANK_SHELL.get(), ctx -> new ThrownItemRenderer<>(ctx, 1.0F, true));
+        event.registerEntityRenderer(SkofcraftEntities.POSTBUS.get(), PostbusRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.AIRCRAFT_CARRIER.get(), AircraftCarrierRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.APACHE_BULLET.get(), ctx -> new ThrownItemRenderer<>(ctx, 0.6F, true));
         event.registerEntityRenderer(SkofcraftEntities.APACHE_ROCKET.get(), ctx -> new ThrownItemRenderer<>(ctx, 1.0F, true));
@@ -81,6 +86,9 @@ public class ClientSetup {
         event.registerLayerDefinition(DeliveryCrateModel.LAYER, DeliveryCrateModel::createBodyLayer);
         event.registerLayerDefinition(ApacheModel.LAYER, ApacheModel::createBodyLayer);
         event.registerLayerDefinition(F14Model.LAYER, F14Model::createBodyLayer);
+        event.registerLayerDefinition(MausModel.LAYER, MausModel::createBodyLayer);
+        event.registerLayerDefinition(PostbusModel.LAYER, PostbusModel::createBodyLayer);
+        event.registerLayerDefinition(PostbusInteriorModel.LAYER, PostbusInteriorModel::createBodyLayer);
         event.registerLayerDefinition(DefenseTurretModel.CIWS_LAYER, DefenseTurretModel::createCiwsLayer);
         event.registerLayerDefinition(DefenseTurretModel.SAM_LAYER, DefenseTurretModel::createSamLayer);
         event.registerLayerDefinition(SpaceModels.ROCKET, SpaceModels::createRocketLayer);
@@ -97,6 +105,7 @@ public class ClientSetup {
         event.registerAboveAll("spit_overlay", SpitOverlay::render);
         event.registerAboveAll("apache_hud", ApacheHud::render);
         event.registerAboveAll("f14_hud", F14Hud::render);
+        event.registerAboveAll("maus_hud", MausHud::render);
         event.registerAboveAll("nuclear_flash", NuclearBlastClient::renderFlash);
     }
 }

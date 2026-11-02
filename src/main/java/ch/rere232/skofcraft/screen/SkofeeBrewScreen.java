@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.screen;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.item.SkofeeItem;
 import ch.rere232.skofcraft.network.SkofcraftNetwork;
 import ch.rere232.skofcraft.network.SkofeeBrewC2SPacket;
@@ -11,7 +12,6 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -132,8 +132,8 @@ public class SkofeeBrewScreen extends Screen {
         int score = scoreFor(value);
         scores[step] = score;
         Minecraft.getInstance().getSoundManager().play(score >= 50
-                ? SimpleSoundInstance.forUI(SoundEvents.NOTE_BLOCK_CHIME, 0.8F + score / 100.0F)
-                : SimpleSoundInstance.forUI(SoundEvents.NOTE_BLOCK_BASS, 0.7F));
+                ? SimpleSoundInstance.forUI(SkofcraftSounds.COFFEE_DING.get(), 0.8F + score / 100.0F)
+                : SimpleSoundInstance.forUI(SkofcraftSounds.COFFEE_FAIL.get(), 0.7F));
     }
 
     private int totalScore() {

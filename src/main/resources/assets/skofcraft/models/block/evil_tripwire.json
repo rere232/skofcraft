@@ -1,0 +1,215 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "skofcraft:block/evil_tripwire",
+    "wire": "skofcraft:block/evil_tripwire"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        1.5,
+        7.75
+      ],
+      "to": [
+        16,
+        2,
+        8.25
+      ],
+      "faces": {
+        "up": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ]
+        },
+        "down": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ]
+        },
+        "north": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ]
+        },
+        "south": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ]
+        },
+        "west": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ]
+        },
+        "east": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            7,
+            16,
+            8
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        7.25
+      ],
+      "to": [
+        1,
+        2,
+        8.75
+      ],
+      "faces": {
+        "up": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        },
+        "down": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        },
+        "north": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        },
+        "south": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        },
+        "west": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        },
+        "east": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        15,
+        0,
+        7.25
+      ],
+      "to": [
+        16,
+        2,
+        8.75
+      ],
+      "faces": {
+        "up": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        },
+        "down": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        },
+        "north": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        },
+        "south": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        },
+        "west": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        },
+        "east": {
+          "texture": "#wire",
+          "uv": [
+            0,
+            10,
+            1,
+            12
+          ]
+        }
+      }
+    }
+  ]
+}

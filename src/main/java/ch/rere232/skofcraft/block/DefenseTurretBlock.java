@@ -1,11 +1,11 @@
 package ch.rere232.skofcraft.block;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.blockentity.DefenseTurretBlockEntity;
 import ch.rere232.skofcraft.blockentity.SkofcraftBlockEntities;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -105,7 +105,7 @@ public class DefenseTurretBlock extends BaseEntityBlock {
             }
             boolean allThreats = !turret.engagesAllThreats();
             turret.setEngageAllThreats(allThreats);
-            level.playSound(null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.6F, allThreats ? 0.6F : 0.9F);
+            level.playSound(null, pos, SkofcraftSounds.SWITCH_CLICK.get(), SoundSource.BLOCKS, 0.6F, allThreats ? 0.6F : 0.9F);
             player.displayClientMessage(Component.translatable("message.skofcraft.turret_mode",
                     Component.translatable(getDescriptionId()),
                     Component.translatable(allThreats ? "message.skofcraft.turret_mode.all" : "message.skofcraft.turret_mode.hostiles")

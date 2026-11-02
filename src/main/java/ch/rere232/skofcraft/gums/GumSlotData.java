@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.gums;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.entity.SpitProjectile;
 import ch.rere232.skofcraft.item.GumConsumableItem;
@@ -9,7 +10,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -109,7 +109,7 @@ public class GumSlotData {
         SpitProjectile spit = new SpitProjectile(player.level(), player);
         spit.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.2F, 1.0F);
         player.level().addFreshEntity(spit);
-        player.level().playSound(null, player.getX(), player.getEyeY(), player.getZ(), SoundEvents.LLAMA_SPIT, SoundSource.PLAYERS, 0.8F, 1.1F);
+        player.level().playSound(null, player.getX(), player.getEyeY(), player.getZ(), SkofcraftSounds.SPIT.get(), SoundSource.PLAYERS, 0.8F, 1.0F);
     }
 
     /** Chewing needs a spit at least every 5 minutes, otherwise nausea and slowness set in. */

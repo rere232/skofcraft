@@ -3,6 +3,8 @@ package ch.rere232.skofcraft.registry;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.block.AircraftWorkbenchBlock;
 import ch.rere232.skofcraft.block.BigRedButtonBlock;
+import ch.rere232.skofcraft.block.ExcaliburBlock;
+import ch.rere232.skofcraft.block.EvilTripwireBlock;
 import ch.rere232.skofcraft.block.CarrierHelmBlock;
 import ch.rere232.skofcraft.block.DeckFixtureBlock;
 import ch.rere232.skofcraft.block.EvilLeverBlock;
@@ -49,6 +51,11 @@ public class SkofcraftBlocks {
     public static final RegistryObject<Block> LAUNCH_PAD = BLOCKS.register("launch_pad", () -> new LaunchPadBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(5.0F, 12.0F).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.METAL)));
     public static final RegistryObject<Block> TOBACCONIST_COUNTER = BLOCKS.register("tobacconist_counter", () -> new TobacconistCounterBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> BIG_RED_BUTTON = BLOCKS.register("big_red_button", () -> new BigRedButtonBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(3.0F, 6.0F).requiresCorrectToolForDrops().noOcclusion().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> EXCALIBUR = BLOCKS.register("excalibur", () -> new ExcaliburBlock(BlockBehaviour.Properties.of()
+            .mapColor(MapColor.STONE).sound(SoundType.STONE).strength(-1.0F, 3600000.0F).noLootTable().noOcclusion()
+            .isValidSpawn((state, level, pos, type) -> false).pushReaction(PushReaction.BLOCK)));
+    public static final RegistryObject<Block> EVIL_TRIPWIRE = BLOCKS.register("evil_tripwire", () -> new EvilTripwireBlock(BlockBehaviour.Properties.of()
+            .mapColor(MapColor.NONE).sound(SoundType.WOOL).noCollission().noOcclusion().instabreak().pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> EVIL_PRESSURE_PLATE = BLOCKS.register("evil_pressure_plate", () -> new EvilPressurePlateBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).forceSolidOn().requiresCorrectToolForDrops().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> EVIL_LEVER = BLOCKS.register("evil_lever", () -> new EvilLeverBlock(BlockBehaviour.Properties.of().noCollission().strength(0.5F).sound(SoundType.STONE).pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> BLAHAJ = BLOCKS.register("blahaj", () -> new BlahajBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLUE).strength(0.8F).noOcclusion().sound(SoundType.WOOL)));

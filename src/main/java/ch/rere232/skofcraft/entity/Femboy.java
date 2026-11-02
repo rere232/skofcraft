@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
@@ -13,7 +14,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -119,6 +119,11 @@ public class Femboy extends PathfinderMob {
         return false;
     }
 
+    @Override
+    protected net.minecraft.sounds.SoundEvent getAmbientSound() {
+        return SkofcraftSounds.FEMBOY_HUM.get();
+    }
+
     private void pat(Player player) {
         if (patCooldown > 0) {
             return;
@@ -126,7 +131,7 @@ public class Femboy extends PathfinderMob {
         patCooldown = PAT_COOLDOWN_TICKS;
         getNavigation().stop();
         getLookControl().setLookAt(player);
-        playSound(SoundEvents.AMETHYST_BLOCK_CHIME, 1.0F, 1.4F + random.nextFloat() * 0.3F);
+        playSound(SkofcraftSounds.HEADPAT.get(), 1.0F, 0.95F + random.nextFloat() * 0.15F);
         if (level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.HEART, getX(), getEyeY() + 0.6D, getZ(), 3, 0.3D, 0.1D, 0.3D, 0.0D);
         }

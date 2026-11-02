@@ -237,6 +237,9 @@ final class QuestBookContent {
                 text("skofee.white_monster"),
                 craft(stack(SkofcraftItems.WHITE_MONSTER.get()), new String[] {"SBW", " C "},
                         'S', Items.SUGAR, 'B', SkofcraftItems.SKOFEE_BEANS_ROASTED.get(), 'W', Items.WHITE_DYE, 'C', SkofcraftItems.EMPTY_CAN.get()),
+                text("skofee.one_million_beer"),
+                craft(stack(SkofcraftItems.ONE_MILLION_BEER.get()), new String[] {"HHH", "HWH", "HCH"},
+                        'H', Items.HAY_BLOCK, 'W', Items.WATER_BUCKET, 'C', SkofcraftItems.EMPTY_CAN.get()),
                 text("skofee.red_bull"),
                 craft(stack(SkofcraftItems.RED_BULL.get()), new String[] {"SBF", " C "},
                         'S', Items.SUGAR, 'B', SkofcraftItems.SKOFEE_BEANS_ROASTED.get(), 'F', Items.FEATHER, 'C', SkofcraftItems.EMPTY_CAN.get())
@@ -296,6 +299,22 @@ final class QuestBookContent {
                         'A', SkofcraftItems.AVIONICS.get(), 'J', SkofcraftItems.JET_ENGINE.get(), 'G', SkofcraftItems.GEAR.get(),
                         'B', Items.IRON_BLOCK),
                 text("f14.p2"), text("f14.p3")
+        )));
+
+        chapters.add(new Chapter(t("maus.title"), stack(SkofcraftItems.MAUS.get()), List.of(
+                text("maus.p1"),
+                craft(stack(SkofcraftItems.MAUS.get()), new String[] {"PPWPP", "IPJPI", "IIJII", "GGGGG"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'W', SkofcraftItems.WEAPON_SYSTEM.get(), 'I', Items.IRON_BLOCK,
+                        'J', SkofcraftItems.JET_ENGINE.get(), 'G', SkofcraftItems.GEAR.get()),
+                text("maus.p2"), text("maus.p3")
+        )));
+
+        chapters.add(new Chapter(t("postbus.title"), stack(SkofcraftItems.POSTBUS.get()), List.of(
+                text("postbus.p1"),
+                craft(stack(SkofcraftItems.POSTBUS.get()), new String[] {"YYYYY", "CCNCC", "PPJAP", "GPPPG"},
+                        'Y', Items.YELLOW_CONCRETE, 'C', Items.GLASS, 'N', Items.NOTE_BLOCK, 'P', SkofcraftItems.AIRCRAFT_PLATE.get(),
+                        'J', SkofcraftItems.JET_ENGINE.get(), 'A', SkofcraftItems.AVIONICS.get(), 'G', SkofcraftItems.GEAR.get()),
+                text("postbus.p2"), text("postbus.p3")
         )));
 
         chapters.add(new Chapter(t("carrier.title"), stack(SkofcraftItems.AIRCRAFT_CARRIER.get()), List.of(

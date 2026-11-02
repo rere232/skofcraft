@@ -1,0 +1,29 @@
+{
+  "type": "skofcraft:aircraft_assembly",
+  "pattern": [
+    "PPWPP",
+    "IPJPI",
+    "IIJII",
+    "GGGGG"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "W": {
+      "item": "skofcraft:weapon_system"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "J": {
+      "item": "skofcraft:jet_engine"
+    },
+    "G": {
+      "item": "skofcraft:gear"
+    }
+  },
+  "result": {
+    "item": "skofcraft:maus"
+  }
+}

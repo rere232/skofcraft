@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.gums.GumSlotData;
 import ch.rere232.skofcraft.gums.GumStatusEffects;
@@ -13,7 +14,6 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -67,7 +67,7 @@ public class SnuffItem extends Item {
                 spawnInhaleDust(level, entity);
             }
         } else if (elapsed == 8 || elapsed == 20) {
-            level.playSound(null, entity.getX(), entity.getEyeY(), entity.getZ(), SoundEvents.FOX_SNIFF, SoundSource.PLAYERS, 0.7F, 1.5F);
+            level.playSound(null, entity.getX(), entity.getEyeY(), entity.getZ(), SkofcraftSounds.SNIFF.get(), SoundSource.PLAYERS, 0.7F, 1.0F);
         }
     }
 
@@ -95,7 +95,7 @@ public class SnuffItem extends Item {
             GumSlotData.onSnuffUsed(player);
             player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
 
-            level.playSound(null, player.getX(), player.getEyeY(), player.getZ(), SoundEvents.CANDLE_EXTINGUISH, SoundSource.PLAYERS, 0.4F, 1.2F);
+            level.playSound(null, player.getX(), player.getEyeY(), player.getZ(), SkofcraftSounds.EXHALE.get(), SoundSource.PLAYERS, 0.4F, 1.0F);
             if (level instanceof ServerLevel serverLevel) {
                 Vec3 face = player.getEyePosition().add(player.getLookAngle().scale(0.4D));
                 serverLevel.sendParticles(ParticleTypes.POOF, face.x, face.y - 0.1D, face.z, 6, 0.1D, 0.05D, 0.1D, 0.01D);

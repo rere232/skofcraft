@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.screen;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.casino.BlackjackGame;
 import ch.rere232.skofcraft.casino.Cards;
 import ch.rere232.skofcraft.casino.SlotMachine;
@@ -9,7 +10,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -73,7 +73,7 @@ final class BlackjackPanel extends CasinoGame {
         this.dealer = dealer;
         waiting = false;
         if (finished && (result == BlackjackGame.WIN || result == BlackjackGame.BLACKJACK)) {
-            host.play(SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0F);
+            host.play(SkofcraftSounds.COIN.get(), 1.0F);
         }
     }
 
@@ -194,7 +194,7 @@ final class BlackjackPanel extends CasinoGame {
         if (waiting) {
             return;
         }
-        host.play(SoundEvents.UI_BUTTON_CLICK.get(), 1.0F);
+        host.play(SkofcraftSounds.UI_CLICK.get(), 1.0F);
         switch (id) {
             case BUTTON_HIT -> send(BlackjackGame.ACTION_HIT);
             case BUTTON_STAND -> send(BlackjackGame.ACTION_STAND);

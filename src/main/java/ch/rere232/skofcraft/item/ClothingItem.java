@@ -1,11 +1,11 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -60,7 +60,7 @@ public class ClothingItem extends Item implements ICurioItem {
 
     @Override
     public ICurio.SoundInfo getEquipSound(SlotContext slotContext, ItemStack stack) {
-        return new ICurio.SoundInfo(SoundEvents.ARMOR_EQUIP_LEATHER, 1.0F, 1.2F);
+        return new ICurio.SoundInfo(SkofcraftSounds.CLOTHES_RUSTLE.get(), 1.0F, 1.2F);
     }
 
     @Override

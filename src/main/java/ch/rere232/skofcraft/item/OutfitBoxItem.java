@@ -1,9 +1,9 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -39,7 +39,7 @@ public class OutfitBoxItem extends Item {
                     player.drop(stack, false);
                 }
             }
-            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BUNDLE_DROP_CONTENTS, SoundSource.PLAYERS, 1.0F, 1.0F);
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), SkofcraftSounds.CLOTHES_RUSTLE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
             player.displayClientMessage(Component.translatable("message.skofcraft.outfit_box_opened"), true);
             if (!player.getAbilities().instabuild) {
                 box.shrink(1);

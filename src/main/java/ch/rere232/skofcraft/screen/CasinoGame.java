@@ -1,12 +1,12 @@
 package ch.rere232.skofcraft.screen;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.casino.SlotMachine;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
@@ -56,7 +56,7 @@ abstract class CasinoGame {
             if (b[5] == 1 && mouseX >= b[1] && mouseX < b[1] + b[3] && mouseY >= b[2] && mouseY < b[2] + b[4]) {
                 if (b[0] >= BET_BUTTON_BASE && b[0] < BET_BUTTON_BASE + SlotMachine.BETS.length) {
                     CasinoApp.selectedBet = b[0] - BET_BUTTON_BASE;
-                    host.play(SoundEvents.UI_BUTTON_CLICK.get(), 1.2F);
+                    host.play(SkofcraftSounds.UI_CLICK.get(), 1.2F);
                 } else {
                     onButton(b[0]);
                 }

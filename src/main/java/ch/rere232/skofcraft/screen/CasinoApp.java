@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.screen;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import java.util.Random;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -9,7 +10,6 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
@@ -202,7 +202,7 @@ public class CasinoApp implements PhoneApp {
             int index = Math.min(TAB_KEYS.length - 1, (int) ((mouseX - tabX) / tabW));
             if (index >= 0 && index != tab && !games[tab].isBusy()) {
                 selectTab(index);
-                play(SoundEvents.UI_BUTTON_CLICK.get(), 1.2F);
+                play(SkofcraftSounds.UI_CLICK.get(), 1.2F);
             }
             return true;
         }

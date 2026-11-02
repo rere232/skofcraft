@@ -1,9 +1,11 @@
 package ch.rere232.skofcraft.space;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.block.NuclearReactorBlock;
 import ch.rere232.skofcraft.entity.IcbmWarhead;
+import ch.rere232.skofcraft.hr.MandatoryHr;
 import ch.rere232.skofcraft.network.MushroomCloudS2CPacket;
 import ch.rere232.skofcraft.network.SkofcraftNetwork;
 import ch.rere232.skofcraft.registry.SkofcraftBlocks;
@@ -21,7 +23,6 @@ import net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.TicketType;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -198,8 +199,8 @@ public final class GigaBlast {
             player.connection.send(new ClientboundSetTitleTextPacket(title));
             player.connection.send(new ClientboundSetSubtitleTextPacket(Component.translatable("message.skofcraft.icbm_incoming_sub",
                     reentry.x, reentry.z, distance, (WARNING_TICKS + 80) / 20).withStyle(ChatFormatting.RED)));
-            player.playNotifySound(SoundEvents.RAID_HORN.value(), SoundSource.HOSTILE, 2.0F, 0.6F);
-            player.playNotifySound(SoundEvents.WITHER_SPAWN, SoundSource.HOSTILE, 0.8F, 0.5F);
+            player.playNotifySound(SkofcraftSounds.SIREN.get(), SoundSource.HOSTILE, 2.0F, 1.0F);
+            player.playNotifySound(SkofcraftSounds.NUKE_WARNING.get(), SoundSource.HOSTILE, 0.8F, 1.0F);
         }
     }
 
@@ -225,11 +226,12 @@ public final class GigaBlast {
                 SkofcraftNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new MushroomCloudS2CPacket(x, y, z, cloudScale, true));
             }
         }
-        level.playSound(null, x, y, z, SoundEvents.ENDER_DRAGON_DEATH, SoundSource.HOSTILE, 30.0F * scale, 0.5F);
-        level.playSound(null, x, y, z, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 30.0F * scale, 0.3F);
+        level.playSound(null, x, y, z, SkofcraftSounds.NUKE_BOOM.get(), SoundSource.HOSTILE, 30.0F * scale, 1.0F);
+        level.playSound(null, x, y, z, SkofcraftSounds.EXPLOSION.get(), SoundSource.BLOCKS, 30.0F * scale, 1.0F);
         ServerPlayer caller = level.getServer().getPlayerList().getPlayer(owner);
         if (caller != null) {
             SkofcraftAdvancements.award(caller, SkofcraftAdvancements.GIGA_ICBM);
+            MandatoryHr.recordCrime(caller, "hr.skofcraft.crime.icbm");
         }
         BLASTS.add(new Blast(level, center, owner, scale));
     }
@@ -508,7 +510,7 @@ public final class GigaBlast {
             }
         }
         if (blast.ticks % 4 == 0) {
-            level.playSound(null, cx, blast.cy, cz, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 16.0F * blast.scale, 0.4F + blast.random.nextFloat() * 0.2F);
+            level.playSound(null, cx, blast.cy, cz, SkofcraftSounds.EXPLOSION.get(), SoundSource.BLOCKS, 16.0F * blast.scale, 0.9F + blast.random.nextFloat() * 0.2F);
         }
     }
 

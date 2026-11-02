@@ -18,6 +18,8 @@ public class SkofcraftConfig {
             .define("enableNegativeEffects", true);
     private static final ForgeConfigSpec.BooleanValue ENABLE_VILLAGER = BUILDER.comment("Enable tobacconist villager logic")
             .define("enableVillager", true);
+    private static final ForgeConfigSpec.BooleanValue ENABLE_MANDATORY_HR = BUILDER.comment("Send HR after three war crimes")
+            .define("enableMandatoryHr", true);
 
     private static final ForgeConfigSpec.DoubleValue TOBACCO_GROWTH_SPEED = BUILDER.comment("Tobacco growth speed multiplier")
             .defineInRange("tobaccoGrowthSpeed", 1.0D, 0.1D, 10.0D);
@@ -45,6 +47,7 @@ public class SkofcraftConfig {
     public static boolean enableTolerance;
     public static boolean enableNegativeEffects;
     public static boolean enableVillager;
+    public static boolean enableMandatoryHr;
 
     public static double tobaccoGrowthSpeed;
     public static double skofeeGrowthSpeed = 1.0D;
@@ -63,6 +66,7 @@ public class SkofcraftConfig {
         enableTolerance = ENABLE_TOLERANCE.get();
         enableNegativeEffects = ENABLE_NEGATIVE_EFFECTS.get();
         enableVillager = ENABLE_VILLAGER.get();
+        enableMandatoryHr = ENABLE_MANDATORY_HR.get();
 
         tobaccoGrowthSpeed = TOBACCO_GROWTH_SPEED.get();
         skofeeGrowthSpeed = SKOFEE_GROWTH_SPEED.get();

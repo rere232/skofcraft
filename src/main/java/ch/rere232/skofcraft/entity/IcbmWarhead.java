@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import ch.rere232.skofcraft.space.GigaBlast;
 import net.minecraft.core.particles.ParticleTypes;
@@ -7,7 +8,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -70,7 +70,7 @@ public class IcbmWarhead extends Entity {
         }
         setPos(to.x, to.y, to.z);
         if (tickCount % 5 == 0) {
-            level.playSound(null, getX(), getY(), getZ(), SoundEvents.ENDER_DRAGON_FLAP, SoundSource.HOSTILE, 8.0F, 0.5F);
+            level.playSound(null, getX(), getY(), getZ(), SkofcraftSounds.WARHEAD_FALL.get(), SoundSource.HOSTILE, 8.0F, 1.0F);
         }
     }
 

@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.client;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.SkofcraftMod;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -13,7 +14,6 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -259,9 +259,9 @@ public final class NuclearBlastClient {
         Vec3 at = camera.getPosition();
         double distance = at.distanceTo(new Vec3(b.x, b.y, b.z));
         float volume = (float) Mth.clamp(1.2D - distance / 500.0D, 0.25D, 1.0D);
-        level.playLocalSound(at.x, at.y, at.z, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, volume, 0.35F, false);
-        level.playLocalSound(at.x, at.y, at.z, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.WEATHER, volume, 0.5F, false);
-        level.playLocalSound(at.x, at.y, at.z, SoundEvents.WARDEN_SONIC_BOOM, SoundSource.BLOCKS, volume * 0.8F, 0.5F, false);
+        level.playLocalSound(at.x, at.y, at.z, SkofcraftSounds.NUKE_BOOM.get(), SoundSource.BLOCKS, volume, 1.0F, false);
+        level.playLocalSound(at.x, at.y, at.z, SkofcraftSounds.NUKE_RUMBLE.get(), SoundSource.WEATHER, volume, 1.0F, false);
+        level.playLocalSound(at.x, at.y, at.z, SkofcraftSounds.SHOCKWAVE.get(), SoundSource.BLOCKS, volume * 0.8F, 1.0F, false);
     }
 
     // ---------------------------------------------------------------- cloud shape

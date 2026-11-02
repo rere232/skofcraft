@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.network;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.entity.OrbitalRod;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import ch.rere232.skofcraft.space.IcbmTargets;
@@ -11,7 +12,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
@@ -97,7 +97,7 @@ public class SatelliteLinkC2SPacket {
         int y = level.getHeight(Heightmap.Types.MOTION_BLOCKING, x, z);
         orbit.fire(satellite, now);
         OrbitalRod.call(level, new Vec3(x + 0.5D, y, z + 0.5D), player);
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1.6F);
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), SkofcraftSounds.DESIGNATOR_FIRE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
         return null;
     }
 

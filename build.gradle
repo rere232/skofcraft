@@ -232,6 +232,11 @@ publishing {
     }
 }
 
+// Publish the reobfuscated jar, which is what addons remap for their own dev mappings
+tasks.withType(AbstractPublishToMaven).configureEach {
+    dependsOn 'reobfJar'
+}
+
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }

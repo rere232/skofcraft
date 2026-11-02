@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:postbus"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.du_da_do.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.du_da_do.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "honked": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

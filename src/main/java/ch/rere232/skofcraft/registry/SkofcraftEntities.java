@@ -2,6 +2,7 @@ package ch.rere232.skofcraft.registry;
 
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.entity.AircraftCarrier;
+import ch.rere232.skofcraft.entity.AnimeCrew;
 import ch.rere232.skofcraft.entity.ApacheBullet;
 import ch.rere232.skofcraft.entity.ApacheHelicopter;
 import ch.rere232.skofcraft.entity.ApacheRocket;
@@ -11,9 +12,13 @@ import ch.rere232.skofcraft.entity.Femboy;
 import ch.rere232.skofcraft.entity.DeliveryPlane;
 import ch.rere232.skofcraft.entity.SpitProjectile;
 import ch.rere232.skofcraft.entity.GigaIcbm;
+import ch.rere232.skofcraft.entity.HrRepresentative;
 import ch.rere232.skofcraft.entity.IcbmWarhead;
 import ch.rere232.skofcraft.entity.LaunchRocket;
+import ch.rere232.skofcraft.entity.MausTank;
+import ch.rere232.skofcraft.entity.TankShell;
 import ch.rere232.skofcraft.entity.OrbitalRod;
+import ch.rere232.skofcraft.entity.Postbus;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
@@ -120,6 +125,41 @@ public class SkofcraftEntities {
                     .fireImmune()
                     .clientTrackingRange(10)
                     .build("femboy"));
+
+    public static final RegistryObject<EntityType<HrRepresentative>> HR_REPRESENTATIVE = ENTITIES.register("hr_representative",
+            () -> EntityType.Builder.<HrRepresentative>of(HrRepresentative::new, MobCategory.MISC)
+                    .sized(0.6F, 1.8F)
+                    .fireImmune()
+                    .clientTrackingRange(10)
+                    .build("hr_representative"));
+
+    public static final RegistryObject<EntityType<MausTank>> MAUS = ENTITIES.register("maus",
+            () -> EntityType.Builder.<MausTank>of(MausTank::new, MobCategory.MISC)
+                    .sized(3.6F, 3.2F)
+                    .clientTrackingRange(12)
+                    .updateInterval(1)
+                    .fireImmune()
+                    .build("maus"));
+
+    public static final RegistryObject<EntityType<TankShell>> TANK_SHELL = ENTITIES.register("tank_shell",
+            () -> EntityType.Builder.<TankShell>of(TankShell::new, MobCategory.MISC)
+                    .sized(0.3F, 0.3F)
+                    .clientTrackingRange(10)
+                    .updateInterval(1)
+                    .build("tank_shell"));
+
+    public static final RegistryObject<EntityType<AnimeCrew>> ANIME_CREW = ENTITIES.register("anime_crew",
+            () -> EntityType.Builder.<AnimeCrew>of(AnimeCrew::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.8F)
+                    .clientTrackingRange(10)
+                    .build("anime_crew"));
+
+    public static final RegistryObject<EntityType<Postbus>> POSTBUS = ENTITIES.register("postbus",
+            () -> EntityType.Builder.<Postbus>of(Postbus::new, MobCategory.MISC)
+                    .sized(2.8F, 3.0F)
+                    .clientTrackingRange(12)
+                    .updateInterval(1)
+                    .build("postbus"));
 
     private SkofcraftEntities() {}
 }

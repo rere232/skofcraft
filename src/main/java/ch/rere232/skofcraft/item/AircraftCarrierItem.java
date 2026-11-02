@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.carrier.CarrierBlocks;
 import ch.rere232.skofcraft.carrier.CarrierLayout;
@@ -7,7 +8,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
@@ -53,7 +53,7 @@ public class AircraftCarrierItem extends Item {
         }
 
         CarrierBlocks.fromLayout().place(level, origin, facing);
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BEACON_POWER_SELECT, SoundSource.BLOCKS, 2.0F, 0.5F);
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), SkofcraftSounds.SHIP_HORN.get(), SoundSource.BLOCKS, 2.0F, 1.0F);
         player.displayClientMessage(Component.translatable("message.skofcraft.carrier_deployed"), true);
         SkofcraftAdvancements.award(player, SkofcraftAdvancements.NUCLEAR_NAVY);
         if (!player.getAbilities().instabuild) {

@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.block.CarrierHelmBlock;
 import ch.rere232.skofcraft.carrier.CarrierBlocks;
 import net.minecraft.ChatFormatting;
@@ -7,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionResult;
@@ -65,7 +65,7 @@ public class DamageControlKitItem extends Item {
         }
 
         BlockPos helm = context.getClickedPos();
-        level.playSound(null, helm, SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 1.0F, 0.8F);
+        level.playSound(null, helm, SkofcraftSounds.REPAIR_WRENCH.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
         if (level instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, helm.getX() + 0.5D, helm.getY() + 1.0D, helm.getZ() + 0.5D,
                     12, 0.4D, 0.3D, 0.4D, 0.0D);

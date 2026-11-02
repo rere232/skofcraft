@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.screen;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.casino.Roulette;
 import ch.rere232.skofcraft.casino.SlotMachine;
 import ch.rere232.skofcraft.network.RouletteSpinC2SPacket;
@@ -10,7 +11,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -93,7 +93,7 @@ final class RouletteGame extends CasinoGame {
         host.freezeDiamonds();
         SkofcraftNetwork.CHANNEL.sendToServer(
                 new RouletteSpinC2SPacket(CasinoApp.selectedBet, selectedType, pickedNumber));
-        host.play(SoundEvents.UI_BUTTON_CLICK.get(), 1.0F);
+        host.play(SkofcraftSounds.UI_CLICK.get(), 1.0F);
     }
 
     private void step(float dt) {
@@ -120,13 +120,13 @@ final class RouletteGame extends CasinoGame {
                 }
                 host.unfreezeDiamonds();
                 if (lastPayout > 0) {
-                    host.play(SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0F);
+                    host.play(SkofcraftSounds.COIN.get(), 1.0F);
                 }
             }
         }
         int cell = Mth.floor(stripPos + 0.5F);
         if ((waiting || animating) && cell != lastCell && tickCooldown <= 0.0F) {
-            host.play(SoundEvents.UI_BUTTON_CLICK.get(), 1.6F);
+            host.play(SkofcraftSounds.UI_CLICK.get(), 1.6F);
             tickCooldown = 0.06F;
         }
         lastCell = cell;
@@ -244,11 +244,11 @@ final class RouletteGame extends CasinoGame {
     protected void onButton(int id) {
         if (id >= BUTTON_TYPE && id < BUTTON_TYPE + Roulette.TYPE_COUNT) {
             selectedType = id - BUTTON_TYPE;
-            host.play(SoundEvents.UI_BUTTON_CLICK.get(), 1.2F);
+            host.play(SkofcraftSounds.UI_CLICK.get(), 1.2F);
         } else if (id == BUTTON_MINUS || id == BUTTON_PLUS) {
             pickedNumber = Math.floorMod(pickedNumber + (id == BUTTON_PLUS ? 1 : -1), 37);
             selectedType = Roulette.TYPE_NUMBER;
-            host.play(SoundEvents.UI_BUTTON_CLICK.get(), 1.4F);
+            host.play(SkofcraftSounds.UI_CLICK.get(), 1.4F);
         } else if (id == BUTTON_SPIN) {
             startSpin();
         }

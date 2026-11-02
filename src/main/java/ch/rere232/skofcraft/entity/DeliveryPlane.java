@@ -1,12 +1,12 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -68,7 +68,7 @@ public class DeliveryPlane extends Entity {
         }
 
         if (tickCount % 8 == 0) {
-            level().playSound(null, getX(), getY(), getZ(), SoundEvents.ELYTRA_FLYING, SoundSource.NEUTRAL, 3.0F, 0.6F);
+            level().playSound(null, getX(), getY(), getZ(), SkofcraftSounds.CARGO_PLANE.get(), SoundSource.NEUTRAL, 3.0F, 1.0F);
         }
         if (!dropped) {
             tryDrop(motion);
@@ -88,7 +88,7 @@ public class DeliveryPlane extends Entity {
             crate.setup(targetId, cargo);
             crate.setPos(getX(), getY() - 0.5D, getZ());
             level().addFreshEntity(crate);
-            level().playSound(null, getX(), getY(), getZ(), SoundEvents.BARREL_OPEN, SoundSource.NEUTRAL, 2.0F, 1.0F);
+            level().playSound(null, getX(), getY(), getZ(), SkofcraftSounds.CRATE_DROP.get(), SoundSource.NEUTRAL, 2.0F, 1.0F);
             dropped = true;
         }
     }

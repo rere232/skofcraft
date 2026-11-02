@@ -1,10 +1,10 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -73,7 +73,7 @@ public class EnergyDrinkItem extends Item {
             if (entity instanceof Player player) {
                 SkofeeItem.applyStreak(player, level, "message.skofcraft.energy_drink_jitters");
             }
-            level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.GENERIC_DRINK, SoundSource.PLAYERS, 0.6F, 1.3F);
+            level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SkofcraftSounds.GULP.get(), SoundSource.PLAYERS, 0.6F, 1.0F);
         }
 
         if (entity instanceof Player player && player.getAbilities().instabuild) {

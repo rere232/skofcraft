@@ -1,17 +1,22 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
+import ch.rere232.skofcraft.api.IcbmSpecialTarget;
+import ch.rere232.skofcraft.api.IcbmSpecialTargets;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import ch.rere232.skofcraft.space.GigaBlast;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -26,16 +31,21 @@ public class GigaIcbm extends LaunchRocket {
     private int targetX;
     private int targetZ;
     private float yieldScale = 1.0F;
+    @Nullable
+    private ResourceLocation specialTarget;
 
     public GigaIcbm(EntityType<? extends GigaIcbm> type, Level level) {
         super(type, level);
     }
 
-    public static GigaIcbm create(ServerLevel level, BlockPos pad, double padTop, BlockPos target, UUID owner, float yieldScale) {
+    public static GigaIcbm create(ServerLevel level, BlockPos pad, double padTop, @Nullable BlockPos target, @Nullable ResourceLocation specialTarget, UUID owner, float yieldScale) {
         GigaIcbm missile = new GigaIcbm(SkofcraftEntities.GIGA_ICBM.get(), level);
         missile.setPos(pad.getX() + 0.5D, pad.getY() + padTop, pad.getZ() + 0.5D);
-        missile.targetX = target.getX();
-        missile.targetZ = target.getZ();
+        if (target != null) {
+            missile.targetX = target.getX();
+            missile.targetZ = target.getZ();
+        }
+        missile.specialTarget = specialTarget;
         missile.owner = owner;
         missile.yieldScale = yieldScale;
         return missile;
@@ -51,7 +61,7 @@ public class GigaIcbm extends LaunchRocket {
         if (timer % 50 == 1) {
             for (ServerPlayer player : level.players()) {
                 if (player.distanceToSqr(this) < SIREN_RANGE * SIREN_RANGE) {
-                    player.playNotifySound(SoundEvents.RAID_HORN.value(), SoundSource.HOSTILE, 1.5F, 0.8F);
+                    player.playNotifySound(SkofcraftSounds.SIREN.get(), SoundSource.HOSTILE, 1.5F, 1.0F);
                 }
             }
         }
@@ -60,7 +70,7 @@ public class GigaIcbm extends LaunchRocket {
     @Override
     protected void liftoff(ServerLevel level) {
         super.liftoff(level);
-        level.playSound(null, getX(), getY(), getZ(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.HOSTILE, 10.0F, 0.6F);
+        level.playSound(null, getX(), getY(), getZ(), SkofcraftSounds.MISSILE_ROAR.get(), SoundSource.HOSTILE, 10.0F, 1.0F);
         Component alert = Component.translatable("message.skofcraft.icbm_launched", getBlockX(), getBlockZ())
                 .withStyle(ChatFormatting.DARK_RED, ChatFormatting.BOLD);
         for (ServerPlayer player : level.players()) {
@@ -70,6 +80,14 @@ public class GigaIcbm extends LaunchRocket {
 
     @Override
     protected void reachOrbit(ServerLevel level) {
+        if (specialTarget != null) {
+            IcbmSpecialTarget target = IcbmSpecialTargets.get(specialTarget);
+            if (target != null) {
+                target.onMissileArrived(level, owner);
+            }
+            discard();
+            return;
+        }
         int ticks = GigaBlast.scheduleReentry(level, getX(), getZ(), targetX, targetZ, owner, yieldScale);
         ServerPlayer player = level.getServer().getPlayerList().getPlayer(owner);
         if (player != null) {
@@ -85,6 +103,7 @@ public class GigaIcbm extends LaunchRocket {
         targetX = tag.getInt("TargetX");
         targetZ = tag.getInt("TargetZ");
         yieldScale = tag.contains("Yield") ? tag.getFloat("Yield") : 1.0F;
+        specialTarget = tag.contains("SpecialTarget") ? ResourceLocation.tryParse(tag.getString("SpecialTarget")) : null;
     }
 
     @Override
@@ -93,5 +112,8 @@ public class GigaIcbm extends LaunchRocket {
         tag.putInt("TargetX", targetX);
         tag.putInt("TargetZ", targetZ);
         tag.putFloat("Yield", yieldScale);
+        if (specialTarget != null) {
+            tag.putString("SpecialTarget", specialTarget.toString());
+        }
     }
 }

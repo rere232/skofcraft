@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.screen;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.casino.SlotMachine;
 import ch.rere232.skofcraft.network.CasinoSpinC2SPacket;
 import ch.rere232.skofcraft.network.SkofcraftNetwork;
@@ -7,7 +8,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -82,7 +82,7 @@ final class SlotsGame extends CasinoGame {
             stopped[i] = false;
         }
         SkofcraftNetwork.CHANNEL.sendToServer(new CasinoSpinC2SPacket(CasinoApp.selectedBet));
-        host.play(SoundEvents.UI_BUTTON_CLICK.get(), 1.0F);
+        host.play(SkofcraftSounds.UI_CLICK.get(), 1.0F);
     }
 
     private void step(float dt) {
@@ -106,7 +106,7 @@ final class SlotsGame extends CasinoGame {
             if (!waiting && spinTime >= stopAt[i]) {
                 stopped[i] = true;
                 pos[i] = target[i];
-                host.play(SoundEvents.UI_BUTTON_CLICK.get(), 0.8F + i * 0.2F);
+                host.play(SkofcraftSounds.UI_CLICK.get(), 0.8F + i * 0.2F);
             } else {
                 pos[i] += SPIN_SPEED * dt;
                 allStopped = false;
@@ -116,9 +116,9 @@ final class SlotsGame extends CasinoGame {
             busy = false;
             host.unfreezeDiamonds();
             if (jackpot) {
-                host.play(SoundEvents.PLAYER_LEVELUP, 1.0F);
+                host.play(SkofcraftSounds.JACKPOT.get(), 1.0F);
             } else if (lastPayout > lastBet) {
-                host.play(SoundEvents.EXPERIENCE_ORB_PICKUP, 1.0F);
+                host.play(SkofcraftSounds.COIN.get(), 1.0F);
             }
         }
     }

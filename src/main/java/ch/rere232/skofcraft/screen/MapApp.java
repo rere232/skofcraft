@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.screen;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.entity.AircraftCarrier;
 import ch.rere232.skofcraft.entity.OrbitalRod;
@@ -18,7 +19,6 @@ import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -511,7 +511,7 @@ public class MapApp implements PhoneApp {
     }
 
     private static void click(float pitch) {
-        Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, pitch));
+        Minecraft.getInstance().getSoundManager().play(SimpleSoundInstance.forUI(SkofcraftSounds.UI_CLICK.get(), pitch));
     }
 
     @Override

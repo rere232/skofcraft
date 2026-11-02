@@ -12,6 +12,7 @@ public class SkofcraftKeybinds {
     public static KeyMapping OPEN_GUMS_SCREEN;
     public static KeyMapping SPIT;
     public static KeyMapping HELICOPTER_DESCEND;
+    public static KeyMapping POSTBUS_HORN;
 
     @SubscribeEvent
     public static void registerKeybinds(RegisterKeyMappingsEvent event) {
@@ -21,5 +22,7 @@ public class SkofcraftKeybinds {
         event.register(SPIT);
         HELICOPTER_DESCEND = new KeyMapping("key.skofcraft.helicopter_descend", com.mojang.blaze3d.platform.InputConstants.KEY_C, "key.categories.movement");
         event.register(HELICOPTER_DESCEND);
+        POSTBUS_HORN = new KeyMapping("key.skofcraft.postbus_horn", com.mojang.blaze3d.platform.InputConstants.KEY_H, "key.categories.movement");
+        event.register(POSTBUS_HORN);
     }
 }

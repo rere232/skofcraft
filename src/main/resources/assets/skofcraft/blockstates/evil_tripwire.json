@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "skofcraft:block/evil_tripwire"
+    },
+    "axis=z": {
+      "model": "skofcraft:block/evil_tripwire",
+      "y": 90
+    }
+  }
+}

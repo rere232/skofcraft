@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HHH",
+    "HWH",
+    "HCH"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:hay_block"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    },
+    "C": {
+      "item": "skofcraft:empty_can"
+    }
+  },
+  "result": {
+    "item": "skofcraft:one_million_beer"
+  }
+}

@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.carrier.CarrierBlocks;
 import ch.rere232.skofcraft.carrier.CarrierLayout;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
@@ -17,7 +18,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -98,7 +98,7 @@ public class AircraftCarrier extends Entity implements IEntityAdditionalSpawnDat
             carrier.takeAboard(entity, carrier.toLocal(entity.position()));
         }
         captain.displayClientMessage(Component.translatable("message.skofcraft.carrier_controls"), true);
-        level.playSound(null, captain.getX(), captain.getY(), captain.getZ(), SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 1.5F, 0.6F);
+        level.playSound(null, captain.getX(), captain.getY(), captain.getZ(), SkofcraftSounds.SHIP_HORN.get(), SoundSource.BLOCKS, 1.5F, 1.0F);
     }
 
     private AABB reach() {
@@ -200,7 +200,7 @@ public class AircraftCarrier extends Entity implements IEntityAdditionalSpawnDat
         if (hullBlocked(next, yaw)) {
             if (Math.abs(speed) > 0.05D && getControllingPassenger() instanceof Player captain) {
                 captain.displayClientMessage(Component.translatable("message.skofcraft.carrier_aground"), true);
-                level().playSound(null, getX(), getY(), getZ(), SoundEvents.ANVIL_LAND, SoundSource.BLOCKS, 1.0F, 0.5F);
+                level().playSound(null, getX(), getY(), getZ(), SkofcraftSounds.HULL_CLANG.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             }
             speed = 0.0D;
             throttle = 0.0D;
@@ -252,7 +252,7 @@ public class AircraftCarrier extends Entity implements IEntityAdditionalSpawnDat
             passenger.stopRiding();
             passenger.teleportTo(spot.x, spot.y, spot.z);
         }
-        level().playSound(null, getX(), getY() + CarrierLayout.DECK, getZ(), SoundEvents.CHAIN_PLACE, SoundSource.BLOCKS, 2.0F, 0.5F);
+        level().playSound(null, getX(), getY() + CarrierLayout.DECK, getZ(), SkofcraftSounds.ANCHOR_CHAIN.get(), SoundSource.BLOCKS, 2.0F, 1.0F);
         discard();
     }
 

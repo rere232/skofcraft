@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.block;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.blockentity.NuclearReactorBlockEntity;
 import ch.rere232.skofcraft.blockentity.SkofcraftBlockEntities;
@@ -11,7 +12,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -102,7 +102,7 @@ public class NuclearReactorBlock extends BaseEntityBlock {
         if (level.getBlockState(pos).is(SkofcraftBlocks.NUCLEAR_REACTOR.get())) {
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
         }
-        level.playSound(null, pos, SoundEvents.WARDEN_SONIC_CHARGE, SoundSource.BLOCKS, 4.0F, 0.5F);
+        level.playSound(null, pos, SkofcraftSounds.REACTOR_ALARM.get(), SoundSource.BLOCKS, 4.0F, 1.0F);
         PENDING.add(new PendingBlast(level, pos, level.getGameTime() + MELTDOWN_DELAY, true));
     }
 
@@ -114,8 +114,8 @@ public class NuclearReactorBlock extends BaseEntityBlock {
         level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, x, y, z, 24, 6.0D, 4.0D, 6.0D, 0.0D);
         level.sendParticles(ParticleTypes.FLASH, x, y, z, 6, 2.0D, 2.0D, 2.0D, 0.0D);
         level.sendParticles(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, x, y + 4.0D, z, 120, 6.0D, 10.0D, 6.0D, 0.05D);
-        level.playSound(null, x, y, z, SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 16.0F, 0.4F);
-        level.playSound(null, x, y, z, SoundEvents.WITHER_DEATH, SoundSource.BLOCKS, 8.0F, 0.5F);
+        level.playSound(null, x, y, z, SkofcraftSounds.EXPLOSION.get(), SoundSource.BLOCKS, 16.0F, 1.0F);
+        level.playSound(null, x, y, z, SkofcraftSounds.MELTDOWN.get(), SoundSource.BLOCKS, 8.0F, 1.0F);
         SkofcraftNetwork.CHANNEL.send(PacketDistributor.NEAR.with(PacketDistributor.TargetPoint.p(x, y, z, MushroomCloudS2CPacket.RANGE, level.dimension())),
                 new MushroomCloudS2CPacket(x, y, z));
         for (ServerPlayer player : level.players()) {

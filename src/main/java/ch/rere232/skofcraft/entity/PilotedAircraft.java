@@ -3,7 +3,7 @@ package ch.rere232.skofcraft.entity;
 import net.minecraft.server.level.ServerPlayer;
 
 /** A vehicle the controlling passenger flies and shoots; the client uses this for the HUD and input. */
-public interface PilotedAircraft {
+public interface PilotedAircraft extends FueledVehicle {
     int WEAPON_GUN = 0;
     int WEAPON_MISSILE = 1;
     /** Weapons stay safe this long after a pilot climbs in, so the right-click used to board never fires a missile. */
@@ -18,11 +18,4 @@ public interface PilotedAircraft {
     float getHealth();
 
     float getMaxHealth();
-
-    /** Fuel in ticks of engine time; see {@link AircraftFuel}. */
-    int getFuel();
-
-    int getMaxFuel();
-
-    void setFuel(int fuel);
 }

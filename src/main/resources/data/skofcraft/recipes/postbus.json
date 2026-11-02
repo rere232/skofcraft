@@ -1,0 +1,35 @@
+{
+  "type": "skofcraft:aircraft_assembly",
+  "pattern": [
+    "YYYYY",
+    "CCNCC",
+    "PPJAP",
+    "GPPPG"
+  ],
+  "key": {
+    "Y": {
+      "item": "minecraft:yellow_concrete"
+    },
+    "C": {
+      "item": "minecraft:glass"
+    },
+    "N": {
+      "item": "minecraft:note_block"
+    },
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "J": {
+      "item": "skofcraft:jet_engine"
+    },
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "G": {
+      "item": "skofcraft:gear"
+    }
+  },
+  "result": {
+    "item": "skofcraft:postbus"
+  }
+}

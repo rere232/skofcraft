@@ -1,12 +1,12 @@
 package ch.rere232.skofcraft.block;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -39,7 +39,7 @@ public class EvilPressurePlateBlock extends PressurePlateBlock {
         if (nether == null) {
             return;
         }
-        serverLevel.playSound(null, pos, SoundEvents.WITCH_CELEBRATE, SoundSource.BLOCKS, 1.0F, 0.7F);
+        serverLevel.playSound(null, pos, SkofcraftSounds.EVIL_CACKLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
         serverLevel.sendParticles(ParticleTypes.FLAME, entity.getX(), entity.getY() + 0.2D, entity.getZ(), 20, 0.3D, 0.1D, 0.3D, 0.05D);
         sendToRoof(entity, serverLevel, nether);
     }
@@ -76,6 +76,6 @@ public class EvilPressurePlateBlock extends PressurePlateBlock {
                 }
             });
         }
-        nether.playSound(null, x, y, z, SoundEvents.ENDERMAN_TELEPORT, SoundSource.HOSTILE, 1.0F, 0.6F);
+        nether.playSound(null, x, y, z, SkofcraftSounds.EVIL_WARP.get(), SoundSource.HOSTILE, 1.0F, 1.0F);
     }
 }

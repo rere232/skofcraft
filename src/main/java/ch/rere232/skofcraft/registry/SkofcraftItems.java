@@ -6,9 +6,13 @@ import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.item.AddictolItem;
 import ch.rere232.skofcraft.item.AircraftCarrierItem;
 import ch.rere232.skofcraft.item.ApacheItem;
+import ch.rere232.skofcraft.item.PostbusItem;
+import ch.rere232.skofcraft.item.ItemScannerItem;
+import ch.rere232.skofcraft.item.MausItem;
 import ch.rere232.skofcraft.item.DamageControlKitItem;
 import ch.rere232.skofcraft.item.ClothingItem;
 import ch.rere232.skofcraft.item.EnergyDrinkItem;
+import ch.rere232.skofcraft.item.OneMillionBeerItem;
 import ch.rere232.skofcraft.item.EstrogenPillItem;
 import ch.rere232.skofcraft.item.MaskItem;
 import ch.rere232.skofcraft.item.OutfitBoxItem;
@@ -68,6 +72,8 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> EMPTY_CAN = item("empty_can");
     public static final RegistryObject<Item> WHITE_MONSTER = ITEMS.register("white_monster",
             () -> new EnergyDrinkItem(new Item.Properties().stacksTo(16), EnergyDrinkItem.Kind.WHITE_MONSTER));
+    public static final RegistryObject<Item> ONE_MILLION_BEER = ITEMS.register("one_million_beer",
+            () -> new OneMillionBeerItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> RED_BULL = ITEMS.register("red_bull",
             () -> new EnergyDrinkItem(new Item.Properties().stacksTo(16), EnergyDrinkItem.Kind.RED_BULL));
 
@@ -114,6 +120,13 @@ public class SkofcraftItems {
             () -> new ApacheItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> F14 = ITEMS.register("f14",
             () -> new F14Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> MAUS = ITEMS.register("maus",
+            () -> new MausItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> POSTBUS = ITEMS.register("postbus",
+            () -> new PostbusItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> ITEM_SCANNER = ITEMS.register("item_scanner",
+            () -> new ItemScannerItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> HR_CERTIFICATE = item("hr_certificate");
 
     public static final RegistryObject<Item> GEAR = item("gear");
     public static final RegistryObject<Item> AIRCRAFT_PLATE = item("aircraft_plate");
@@ -201,12 +214,17 @@ public class SkofcraftItems {
             () -> new EstrogenPillItem(new Item.Properties()));
     public static final RegistryObject<Item> FEMBOY_SPAWN_EGG = ITEMS.register("femboy_spawn_egg",
             () -> new ForgeSpawnEggItem(SkofcraftEntities.FEMBOY, 0xF5A9B8, 0x1C1C1C, new Item.Properties()));
+    public static final RegistryObject<Item> ANIME_CREW_SPAWN_EGG = ITEMS.register("anime_crew_spawn_egg",
+            () -> new ForgeSpawnEggItem(SkofcraftEntities.ANIME_CREW, 0x5B6B3A, 0xF08CB4, new Item.Properties()));
     public static final RegistryObject<Item> BLAHAJ = ITEMS.register("blahaj",
             () -> new BlahajItem(SkofcraftBlocks.BLAHAJ.get(), new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> CHICHA = blockItem("chicha", SkofcraftBlocks.CHICHA);
     public static final RegistryObject<Item> BIG_RED_BUTTON = blockItem("big_red_button", SkofcraftBlocks.BIG_RED_BUTTON);
     public static final RegistryObject<Item> EVIL_PRESSURE_PLATE = blockItem("evil_pressure_plate", SkofcraftBlocks.EVIL_PRESSURE_PLATE);
+    public static final RegistryObject<Item> EVIL_TRIPWIRE = blockItem("evil_tripwire", SkofcraftBlocks.EVIL_TRIPWIRE);
     public static final RegistryObject<Item> EVIL_LEVER = blockItem("evil_lever", SkofcraftBlocks.EVIL_LEVER);
+    public static final RegistryObject<Item> EXCALIBUR = ITEMS.register("excalibur",
+            () -> new BlockItem(SkofcraftBlocks.EXCALIBUR.get(), new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> SKOFEE_MACHINE = blockItem("skofee_machine", SkofcraftBlocks.SKOFEE_MACHINE);
     public static final RegistryObject<Item> AIRCRAFT_WORKBENCH = blockItem("aircraft_workbench", SkofcraftBlocks.AIRCRAFT_WORKBENCH);
     public static final RegistryObject<Item> CARRIER_HELM = blockItem("carrier_helm", SkofcraftBlocks.CARRIER_HELM);

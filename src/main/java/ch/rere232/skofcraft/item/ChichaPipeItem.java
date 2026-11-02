@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.blockentity.ChichaBlockEntity;
 import ch.rere232.skofcraft.gums.GumSlotData;
 import ch.rere232.skofcraft.gums.GumStatusEffects;
@@ -15,7 +16,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -118,7 +118,7 @@ public class ChichaPipeItem extends Item {
     public void onUseTick(Level level, LivingEntity entity, ItemStack stack, int remainingTicks) {
         int elapsed = USE_TICKS - remainingTicks;
         if (!level.isClientSide && (elapsed == 4 || elapsed == 14 || elapsed == 24)) {
-            level.playSound(null, entity.getX(), entity.getEyeY(), entity.getZ(), SoundEvents.BUBBLE_COLUMN_UPWARDS_AMBIENT, SoundSource.PLAYERS, 0.6F, 1.2F);
+            level.playSound(null, entity.getX(), entity.getEyeY(), entity.getZ(), SkofcraftSounds.HOOKAH_BUBBLE.get(), SoundSource.PLAYERS, 0.6F, 1.0F);
         }
     }
 
@@ -139,7 +139,7 @@ public class ChichaPipeItem extends Item {
         GumSlotData.onVapePuff(player, 0);
         player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
 
-        level.playSound(null, player.getX(), player.getEyeY(), player.getZ(), SoundEvents.CANDLE_EXTINGUISH, SoundSource.PLAYERS, 0.6F, 0.8F);
+        level.playSound(null, player.getX(), player.getEyeY(), player.getZ(), SkofcraftSounds.EXHALE.get(), SoundSource.PLAYERS, 0.6F, 1.0F);
         if (level instanceof ServerLevel serverLevel) {
             Vec3 mouth = player.getEyePosition().add(player.getLookAngle().scale(0.4D));
             serverLevel.sendParticles(ParticleTypes.CLOUD, mouth.x, mouth.y - 0.2D, mouth.z, 16, 0.15D, 0.06D, 0.15D, 0.02D);

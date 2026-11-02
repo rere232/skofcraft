@@ -1,16 +1,21 @@
 package ch.rere232.skofcraft.blockentity;
 
+import ch.rere232.skofcraft.api.IcbmSpecialTarget;
+import ch.rere232.skofcraft.api.IcbmSpecialTargets;
 import ch.rere232.skofcraft.block.LaunchPadBlock;
 import ch.rere232.skofcraft.entity.GigaIcbm;
 import ch.rere232.skofcraft.entity.LaunchRocket;
 import ch.rere232.skofcraft.item.GigaIcbmItem;
 import ch.rere232.skofcraft.item.SatelliteItem;
+import ch.rere232.skofcraft.space.IcbmTargets;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,6 +39,8 @@ public class LaunchPadBlockEntity extends BlockEntity {
     private int fuel;
     @Nullable
     private BlockPos target;
+    @Nullable
+    private ResourceLocation specialTarget;
 
     public LaunchPadBlockEntity(BlockPos pos, BlockState state) {
         super(SkofcraftBlockEntities.LAUNCH_PAD.get(), pos, state);
@@ -64,8 +71,16 @@ public class LaunchPadBlockEntity extends BlockEntity {
         return target;
     }
 
-    public void setTarget(@Nullable BlockPos target) {
-        this.target = target;
+    /** Null if the missile isn't aimed at one, or the addon that added it is gone. */
+    @Nullable
+    public IcbmSpecialTarget getSpecialTarget() {
+        return IcbmSpecialTargets.get(specialTarget);
+    }
+
+    /** Copies the player's current mark into the missile. */
+    public void programFrom(Player player) {
+        specialTarget = IcbmTargets.getSpecial(player);
+        target = specialTarget != null ? null : IcbmTargets.get(player);
         changed();
     }
 
@@ -74,7 +89,7 @@ public class LaunchPadBlockEntity extends BlockEntity {
     }
 
     public boolean isReady() {
-        return hasSatellite() && fuel >= fuelNeeded() && (!hasIcbm() || target != null);
+        return hasSatellite() && fuel >= fuelNeeded() && (!hasIcbm() || target != null || getSpecialTarget() != null);
     }
 
     public void loadSatellite(ItemStack stack, UUID player) {
@@ -88,6 +103,7 @@ public class LaunchPadBlockEntity extends BlockEntity {
         satellite = ItemStack.EMPTY;
         loader = null;
         target = null;
+        specialTarget = null;
         changed();
         return taken;
     }
@@ -110,14 +126,15 @@ public class LaunchPadBlockEntity extends BlockEntity {
         int burned = fuelNeeded();
         if (satellite.getItem() instanceof SatelliteItem item) {
             level.addFreshEntity(LaunchRocket.create(level, worldPosition, LaunchPadBlock.TOP, item.type, owner));
-        } else if (satellite.getItem() instanceof GigaIcbmItem icbm && target != null) {
-            level.addFreshEntity(GigaIcbm.create(level, worldPosition, LaunchPadBlock.TOP, target, owner, icbm.yieldScale));
+        } else if (satellite.getItem() instanceof GigaIcbmItem icbm && (target != null || getSpecialTarget() != null)) {
+            level.addFreshEntity(GigaIcbm.create(level, worldPosition, LaunchPadBlock.TOP, target, specialTarget, owner, icbm.yieldScale));
         } else {
             return false;
         }
         satellite = ItemStack.EMPTY;
         loader = null;
         target = null;
+        specialTarget = null;
         // A satellite launch burns only its share; the rest stays in the tanks
         fuel -= burned;
         changed();
@@ -151,6 +168,9 @@ public class LaunchPadBlockEntity extends BlockEntity {
             tag.putInt("TargetX", target.getX());
             tag.putInt("TargetZ", target.getZ());
         }
+        if (specialTarget != null) {
+            tag.putString("SpecialTarget", specialTarget.toString());
+        }
     }
 
     @Override
@@ -160,6 +180,7 @@ public class LaunchPadBlockEntity extends BlockEntity {
         loader = tag.hasUUID("Loader") ? tag.getUUID("Loader") : null;
         fuel = tag.getInt("Fuel");
         target = tag.contains("TargetX") ? new BlockPos(tag.getInt("TargetX"), 0, tag.getInt("TargetZ")) : null;
+        specialTarget = tag.contains("SpecialTarget") ? ResourceLocation.tryParse(tag.getString("SpecialTarget")) : null;
     }
 
     @Override

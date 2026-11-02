@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.gums.GumSlotData;
 import ch.rere232.skofcraft.gums.GumStatusEffects;
@@ -11,7 +12,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -72,9 +72,9 @@ public class SmokeItem extends Item {
                 level.addParticle(ParticleTypes.SMOKE, mouth.x, mouth.y - 0.25D, mouth.z, 0.0D, 0.02D, 0.0D);
             }
         } else if (elapsed == 2) {
-            level.playSound(null, entity.getX(), entity.getEyeY(), entity.getZ(), SoundEvents.FLINTANDSTEEL_USE, SoundSource.PLAYERS, 0.6F, 1.4F);
+            level.playSound(null, entity.getX(), entity.getEyeY(), entity.getZ(), SkofcraftSounds.LIGHTER.get(), SoundSource.PLAYERS, 0.6F, 1.0F);
         } else if (elapsed == total * 3 / 8 || elapsed == total * 3 / 4) {
-            level.playSound(null, entity.getX(), entity.getEyeY(), entity.getZ(), SoundEvents.CANDLE_AMBIENT, SoundSource.PLAYERS, 0.6F, 1.3F);
+            level.playSound(null, entity.getX(), entity.getEyeY(), entity.getZ(), SkofcraftSounds.INHALE.get(), SoundSource.PLAYERS, 0.6F, 1.0F);
         }
     }
 
@@ -89,7 +89,7 @@ public class SmokeItem extends Item {
             GumSlotData.onSmoked(player, profile.addiction());
             player.getCooldowns().addCooldown(this, profile.cooldownTicks());
 
-            level.playSound(null, player.getX(), player.getEyeY(), player.getZ(), SoundEvents.CANDLE_EXTINGUISH, SoundSource.PLAYERS, 0.6F, 0.8F);
+            level.playSound(null, player.getX(), player.getEyeY(), player.getZ(), SkofcraftSounds.EXHALE.get(), SoundSource.PLAYERS, 0.6F, 1.0F);
             if (level instanceof ServerLevel serverLevel) {
                 Vec3 mouth = player.getEyePosition().add(player.getLookAngle().scale(0.4D));
                 int puffs = 10 + profile.addiction() * 3;

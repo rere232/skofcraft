@@ -38,6 +38,7 @@ Everything is explained in game in the **Quest Book**, sold by the Tobacconist o
   - [The Tobacconist](#the-tobacconist)
   - [The Phone](#the-phone)
   - [Aviation](#aviation)
+  - [The Swiss Postbus](#the-swiss-postbus)
   - [The Nuclear Aircraft Carrier](#the-nuclear-aircraft-carrier)
   - [Space Program](#space-program)
   - [Tactical Armor](#tactical-armor)
@@ -144,6 +145,8 @@ Every penalty can be turned off in the config.
 A second crop: plant SKOFee seeds, dry the beans, roast them, grind them and brew them in the **SKOFee Machine** with a cup
 and a water bucket. A cup gives three minutes of Speed and Haste. Add milk for a latte.
 
+There is also the **One Million Beer**: one item, a million drinks, nearly fourteen days of non-stop drinking.
+
 ---
 
 ## The Tobacconist
@@ -182,6 +185,16 @@ plates, turbine and rotor blades, avionics, jet engines and weapon systems. They
 | **F-14 Tomcat** | Swing-wing fighter, carrier capable | Vulcan cannon and heat-seeking Sidewinders |
 
 Crash at speed and you get an explosion and some salvage.
+
+On the ground there is also the **Panzer VIII Maus**: 188 tons, a turret that follows your view, an 8-second main gun, and the ability to drive through a fence without slowing down. Built on the same workbench and run on the same fuel.
+
+---
+
+## The Swiss Postbus
+
+A yellow postal bus for nine, built on the Aircraft Workbench and run on jet fuel, because the timetable is not
+negotiable. **W / S** throttle and brake, **A / D** steer, and **H** sounds the real three-tone horn (C♯, E, A), audible
+from 128 blocks away.
 
 ---
 
@@ -246,6 +259,7 @@ low. 28 armor and toughness 5 per piece.
 | **W / S** | Throttle (F-14) or forward / back (Apache) |
 | **A / D** | Rudder (F-14) or strafe (Apache) |
 | **Space / C** | Climb / descend (Apache) |
+| **H** | Sound the horn (Postbus) |
 | **Attack / Use** | Guns / missiles and rockets |
 
 All keys can be rebound in the controls menu.
@@ -262,6 +276,7 @@ All keys can be rebound in the controls menu.
 | `enableTolerance` | `true` | Tolerance system |
 | `enableNegativeEffects` | `true` | Nausea, slowness and other side effects |
 | `enableVillager` | `true` | The Tobacconist |
+| `enableMandatoryHr` | `true` | Consequences |
 | `tobaccoGrowthSpeed` | `1.0` | Tobacco growth multiplier (0.1 – 10) |
 | `skofeeGrowthSpeed` | `1.0` | SKOFee growth multiplier (0.1 – 10) |
 | `machineEnergyMultiplier` | `1.0` | FE/t multiplier for all machines |
@@ -304,5 +319,9 @@ Tout est expliqué en jeu dans le **Livre de quêtes**. Touche **G** pour les ge
 <div align="center">
 
 Made by **Rere232** and **I_Honza_I** · All Rights Reserved
+
+Postbus horn: ["Postauto (CH) Dreiklanghorn"](https://commons.wikimedia.org/wiki/File:Postauto_(CH)_Dreiklanghorn.ogg)
+by Mateus2019, [CC BY 2.0 DE](https://creativecommons.org/licenses/by/2.0/de/deed.en). Trimmed, normalized and converted
+to mono. This licence covers that recording, not the rest of the mod.
 
 </div>

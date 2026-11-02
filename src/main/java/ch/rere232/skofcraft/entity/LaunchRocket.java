@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import ch.rere232.skofcraft.space.OrbitData;
@@ -16,7 +17,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -93,7 +93,7 @@ public class LaunchRocket extends Entity {
             onCountdown(level, timer);
             if (timer % 20 == 0) {
                 announce(level, Component.translatable("message.skofcraft.launch_countdown", (countdown() - timer) / 20).withStyle(ChatFormatting.GOLD));
-                level.playSound(null, getX(), getY(), getZ(), SoundEvents.NOTE_BLOCK_PLING.value(), SoundSource.BLOCKS, 3.0F, 1.0F);
+                level.playSound(null, getX(), getY(), getZ(), SkofcraftSounds.COUNTDOWN_BEEP.get(), SoundSource.BLOCKS, 3.0F, 1.0F);
             }
             return;
         }
@@ -104,7 +104,7 @@ public class LaunchRocket extends Entity {
         setDeltaMovement(0.0D, speed, 0.0D);
         setPos(getX(), getY() + speed, getZ());
         if (timer % 4 == 0) {
-            level.playSound(null, getX(), getY(), getZ(), SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 6.0F, 0.4F);
+            level.playSound(null, getX(), getY(), getZ(), SkofcraftSounds.ENGINE_IGNITE.get(), SoundSource.BLOCKS, 6.0F, 1.0F);
         }
         if (getY() > level.getMaxBuildHeight() + ORBIT_ABOVE_BUILD_LIMIT) {
             reachOrbit(level);
@@ -121,8 +121,8 @@ public class LaunchRocket extends Entity {
 
     protected void liftoff(ServerLevel level) {
         announce(level, Component.translatable("message.skofcraft.launch_liftoff").withStyle(ChatFormatting.RED, ChatFormatting.BOLD));
-        level.playSound(null, getX(), getY(), getZ(), SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 8.0F, 0.5F);
-        level.playSound(null, getX(), getY(), getZ(), SoundEvents.FIREWORK_ROCKET_LARGE_BLAST, SoundSource.BLOCKS, 8.0F, 0.5F);
+        level.playSound(null, getX(), getY(), getZ(), SkofcraftSounds.EXPLOSION.get(), SoundSource.BLOCKS, 8.0F, 1.0F);
+        level.playSound(null, getX(), getY(), getZ(), SkofcraftSounds.MISSILE_ROAR.get(), SoundSource.BLOCKS, 8.0F, 1.0F);
         for (ServerPlayer player : level.players()) {
             if (player.distanceToSqr(this) < VIEW_RANGE * VIEW_RANGE) {
                 level.sendParticles(player, ParticleTypes.EXPLOSION_EMITTER, true, getX(), getY(), getZ(), 2, 1.0D, 0.2D, 1.0D, 0.0D);

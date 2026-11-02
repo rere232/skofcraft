@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.client.ApacheClientInput;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
@@ -11,7 +12,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -112,7 +112,7 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
         if (!level().isClientSide && piloted) {
             AircraftFuel.burn(this, pilot);
             if (running && tickCount % 4 == 0) {
-                level().playSound(null, getX(), getY(), getZ(), SoundEvents.PHANTOM_FLAP, SoundSource.NEUTRAL, 1.4F, 0.45F);
+                level().playSound(null, getX(), getY(), getZ(), SkofcraftSounds.ROTOR.get(), SoundSource.NEUTRAL, 1.4F, 1.0F);
             }
         }
     }
@@ -178,14 +178,14 @@ public class ApacheHelicopter extends Entity implements PilotedAircraft {
             ApacheBullet bullet = new ApacheBullet(level(), pilot);
             Vec3 muzzle = muzzle(0.0D, 1.4D, 3.2D);
             launch(bullet, muzzle, pilot, 3.2F, 0.6F);
-            level().playSound(null, muzzle.x, muzzle.y, muzzle.z, SoundEvents.SKELETON_SHOOT, SoundSource.NEUTRAL, 0.6F, 1.9F);
+            level().playSound(null, muzzle.x, muzzle.y, muzzle.z, SkofcraftSounds.CHAIN_GUN.get(), SoundSource.NEUTRAL, 0.6F, 1.0F);
         } else if (weapon == WEAPON_ROCKET && now >= nextRocketTick) {
             nextRocketTick = now + ROCKET_COOLDOWN;
             rocketLeft = !rocketLeft;
             ApacheRocket rocket = new ApacheRocket(level(), pilot);
             Vec3 muzzle = muzzle(rocketLeft ? 1.8D : -1.8D, 1.25D, 0.8D);
             launch(rocket, muzzle, pilot, 1.8F, 0.0F);
-            level().playSound(null, muzzle.x, muzzle.y, muzzle.z, SoundEvents.FIREWORK_ROCKET_LAUNCH, SoundSource.NEUTRAL, 1.5F, 0.8F);
+            level().playSound(null, muzzle.x, muzzle.y, muzzle.z, SkofcraftSounds.ROCKET_FIRE.get(), SoundSource.NEUTRAL, 1.5F, 1.0F);
         }
     }
 

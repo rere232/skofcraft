@@ -11,3 +11,6 @@ pluginManagement {
 plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.7.0'
 }
+
+// Fixed, because it names the published artifact the addons build against
+rootProject.name = 'skofcraft'

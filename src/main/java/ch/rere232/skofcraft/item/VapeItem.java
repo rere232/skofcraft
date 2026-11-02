@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.gums.GumSlotData;
 import ch.rere232.skofcraft.gums.GumStatusEffects;
@@ -14,7 +15,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -100,7 +100,7 @@ public class VapeItem extends Item {
         int elapsed = USE_TICKS - remainingTicks;
         if (!level.isClientSide) {
             if (elapsed == 4 || elapsed == 12) {
-                level.playSound(null, entity.getX(), entity.getEyeY(), entity.getZ(), SoundEvents.BUBBLE_COLUMN_UPWARDS_AMBIENT, SoundSource.PLAYERS, 0.5F, 1.8F);
+                level.playSound(null, entity.getX(), entity.getEyeY(), entity.getZ(), SkofcraftSounds.VAPE_PUFF.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
             }
         }
     }
@@ -119,7 +119,7 @@ public class VapeItem extends Item {
         GumSlotData.onVapePuff(player, strength);
         player.getCooldowns().addCooldown(this, COOLDOWN_TICKS);
 
-        level.playSound(null, player.getX(), player.getEyeY(), player.getZ(), SoundEvents.CANDLE_EXTINGUISH, SoundSource.PLAYERS, 0.5F, 0.9F);
+        level.playSound(null, player.getX(), player.getEyeY(), player.getZ(), SkofcraftSounds.EXHALE.get(), SoundSource.PLAYERS, 0.5F, 1.0F);
         if (level instanceof ServerLevel serverLevel) {
             Vec3 mouth = player.getEyePosition().add(player.getLookAngle().scale(0.35D));
             serverLevel.sendParticles(ParticleTypes.CLOUD, mouth.x, mouth.y - 0.2D, mouth.z, 10, 0.12D, 0.05D, 0.12D, 0.02D);

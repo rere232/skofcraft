@@ -1,14 +1,17 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
+import ch.rere232.skofcraft.api.IcbmSpecialTargets;
 import ch.rere232.skofcraft.entity.OrbitalRod;
+import ch.rere232.skofcraft.hr.MandatoryHr;
 import ch.rere232.skofcraft.space.IcbmTargets;
 import ch.rere232.skofcraft.space.OrbitData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -70,7 +73,8 @@ public class OrbitalDesignatorItem extends Item {
         Vec3 target = hit.getLocation();
         orbit.fire(satellite, now);
         OrbitalRod.call(serverLevel, target, player);
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0F, 1.6F);
+        MandatoryHr.recordCrime(serverPlayer, "hr.skofcraft.crime.orbital");
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), SkofcraftSounds.DESIGNATOR_FIRE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
         message(player, Component.translatable("message.skofcraft.strike_inbound",
                 (int) Math.round(target.distanceTo(player.position())), OrbitalRod.WARNING_TICKS / 20).withStyle(ChatFormatting.RED));
         return InteractionResultHolder.consume(stack);
@@ -79,13 +83,20 @@ public class OrbitalDesignatorItem extends Item {
     /** Sneak-use: mark the block in view as the Giga ICBM target, no satellite needed. */
     private InteractionResultHolder<ItemStack> markIcbmTarget(Player player, ItemStack stack) {
         HitResult hit = player.pick(ICBM_MARK_RANGE, 1.0F, false);
+        ResourceLocation special = hit.getType() == HitResult.Type.BLOCK ? null : IcbmSpecialTargets.aimedAt(player);
+        if (special != null) {
+            IcbmTargets.setSpecial(player, special);
+            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SkofcraftSounds.DESIGNATOR_MARK.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+            message(player, IcbmSpecialTargets.get(special).markedMessage());
+            return InteractionResultHolder.consume(stack);
+        }
         if (hit.getType() != HitResult.Type.BLOCK) {
             message(player, Component.translatable("message.skofcraft.strike_no_target").withStyle(ChatFormatting.GOLD));
             return InteractionResultHolder.fail(stack);
         }
         BlockPos pos = BlockPos.containing(hit.getLocation());
         IcbmTargets.set(player, pos.getX(), pos.getZ());
-        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_EYE_DEATH, SoundSource.PLAYERS, 1.0F, 0.6F);
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SkofcraftSounds.DESIGNATOR_MARK.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
         message(player, Component.translatable("message.skofcraft.icbm_marked", pos.getX(), pos.getZ()).withStyle(ChatFormatting.LIGHT_PURPLE));
         return InteractionResultHolder.consume(stack);
     }

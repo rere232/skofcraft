@@ -1,8 +1,9 @@
 package ch.rere232.skofcraft.block;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
+import ch.rere232.skofcraft.api.IcbmSpecialTarget;
 import ch.rere232.skofcraft.blockentity.LaunchPadBlockEntity;
 import ch.rere232.skofcraft.item.OrbitalDesignatorItem;
-import ch.rere232.skofcraft.space.IcbmTargets;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import ch.rere232.skofcraft.space.OrbitData;
 import ch.rere232.skofcraft.space.SatelliteType;
@@ -10,7 +11,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -89,21 +89,21 @@ public class LaunchPadBlock extends BaseEntityBlock {
             }
             pad.loadSatellite(held, player.getUUID());
             if (pad.hasIcbm()) {
-                pad.setTarget(IcbmTargets.get(player));
-                level.playSound(null, pos, SoundEvents.ENDER_DRAGON_GROWL, SoundSource.BLOCKS, 0.6F, 1.4F);
+                pad.programFrom(player);
+                level.playSound(null, pos, SkofcraftSounds.ICBM_ARM.get(), SoundSource.BLOCKS, 0.6F, 1.0F);
             }
             if (!creative) {
                 held.shrink(1);
             }
-            level.playSound(null, pos, SoundEvents.ARMOR_EQUIP_IRON, SoundSource.BLOCKS, 1.0F, 0.8F);
+            level.playSound(null, pos, SkofcraftSounds.PAYLOAD_LOAD.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             status(player, pad);
             return InteractionResult.CONSUME;
         }
 
         if (held.getItem() instanceof OrbitalDesignatorItem && pad.hasIcbm()) {
             // Reprogram the missile with the player's current mark
-            pad.setTarget(IcbmTargets.get(player));
-            level.playSound(null, pos, SoundEvents.UI_BUTTON_CLICK.value(), SoundSource.BLOCKS, 1.0F, 1.5F);
+            pad.programFrom(player);
+            level.playSound(null, pos, SkofcraftSounds.UI_CLICK.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             status(player, pad);
             return InteractionResult.CONSUME;
         }
@@ -122,7 +122,7 @@ public class LaunchPadBlock extends BaseEntityBlock {
                     player.drop(empty, false);
                 }
             }
-            level.playSound(null, pos, SoundEvents.BUCKET_EMPTY_LAVA, SoundSource.BLOCKS, 1.0F, 1.2F);
+            level.playSound(null, pos, SkofcraftSounds.FUEL_PUMP.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             status(player, pad);
             return InteractionResult.CONSUME;
         }
@@ -143,7 +143,7 @@ public class LaunchPadBlock extends BaseEntityBlock {
             return InteractionResult.CONSUME;
         }
         if (pad.launch((ServerLevel) level, player.getUUID())) {
-            level.playSound(null, pos, SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 1.5F, 0.6F);
+            level.playSound(null, pos, SkofcraftSounds.LAUNCH_ARM.get(), SoundSource.BLOCKS, 1.5F, 1.0F);
         } else {
             status(player, pad);
         }
@@ -163,7 +163,7 @@ public class LaunchPadBlock extends BaseEntityBlock {
         if (powered && level.getBlockEntity(pos) instanceof LaunchPadBlockEntity pad && pad.isReady()) {
             // A redstone launch is credited to whoever loaded the satellite; the fallback is never used then
             pad.launch((ServerLevel) level, new java.util.UUID(0L, 0L));
-            level.playSound(null, pos, SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 1.5F, 0.6F);
+            level.playSound(null, pos, SkofcraftSounds.LAUNCH_ARM.get(), SoundSource.BLOCKS, 1.5F, 1.0F);
         }
     }
 
@@ -171,7 +171,10 @@ public class LaunchPadBlock extends BaseEntityBlock {
         Component payload = pad.hasSatellite() ? pad.getSatellite().getHoverName() : Component.translatable("message.skofcraft.launch_pad_empty");
         if (pad.hasIcbm()) {
             BlockPos target = pad.getTarget();
-            payload = target == null
+            IcbmSpecialTarget special = pad.getSpecialTarget();
+            payload = special != null
+                    ? special.padStatus(payload)
+                    : target == null
                     ? Component.translatable("message.skofcraft.icbm_no_target", payload).withStyle(ChatFormatting.RED)
                     : Component.translatable("message.skofcraft.icbm_target", payload, target.getX(), target.getZ()).withStyle(ChatFormatting.LIGHT_PURPLE);
         }

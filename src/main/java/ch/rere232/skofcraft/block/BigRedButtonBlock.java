@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.block;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.blockentity.BigRedButtonBlockEntity;
 import ch.rere232.skofcraft.network.ButtonCrashS2CPacket;
@@ -7,7 +8,6 @@ import ch.rere232.skofcraft.network.SkofcraftNetwork;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -70,7 +70,7 @@ public class BigRedButtonBlock extends BaseEntityBlock {
         if (!level.isClientSide) {
             level.setBlock(pos, state.setValue(PRESSED, true), Block.UPDATE_ALL);
             level.scheduleTick(pos, this, PRESS_TICKS);
-            level.playSound(null, pos, SoundEvents.STONE_BUTTON_CLICK_ON, SoundSource.BLOCKS, 1.0F, 0.6F);
+            level.playSound(null, pos, SkofcraftSounds.BUTTON_PRESS.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             if (player instanceof ServerPlayer serverPlayer && !(player instanceof FakePlayer)) {
                 // Award first, so it's saved along with the rest when the game goes down
                 SkofcraftAdvancements.award(serverPlayer, SkofcraftAdvancements.TOLD_YOU_SO);
@@ -84,7 +84,7 @@ public class BigRedButtonBlock extends BaseEntityBlock {
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (state.getValue(PRESSED)) {
             level.setBlock(pos, state.setValue(PRESSED, false), Block.UPDATE_ALL);
-            level.playSound(null, pos, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundSource.BLOCKS, 1.0F, 0.5F);
+            level.playSound(null, pos, SkofcraftSounds.BUTTON_RELEASE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
         }
     }
 }

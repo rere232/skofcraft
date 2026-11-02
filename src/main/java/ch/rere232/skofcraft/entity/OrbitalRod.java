@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -10,7 +11,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -86,10 +86,10 @@ public class OrbitalRod extends Entity {
                 beam(level);
             }
             if (warning % 20 == 0) {
-                level.playSound(null, target.x, target.y, target.z, SoundEvents.NOTE_BLOCK_BIT.value(), SoundSource.HOSTILE, 3.0F, 2.0F);
+                level.playSound(null, target.x, target.y, target.z, SkofcraftSounds.COUNTDOWN_BEEP.get(), SoundSource.HOSTILE, 3.0F, 1.0F);
             }
             if (warning == 0) {
-                level.playSound(null, target.x, target.y, target.z, SoundEvents.WARDEN_SONIC_CHARGE, SoundSource.HOSTILE, 6.0F, 1.4F);
+                level.playSound(null, target.x, target.y, target.z, SkofcraftSounds.ROD_CHARGE.get(), SoundSource.HOSTILE, 6.0F, 1.0F);
             }
             return;
         }
@@ -146,8 +146,8 @@ public class OrbitalRod extends Entity {
                 level.sendParticles(player, ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, true, at.x, at.y + 2.0D, at.z, 60, 4.0D, 3.0D, 4.0D, 0.05D);
             }
         }
-        level.playSound(null, at.x, at.y, at.z, SoundEvents.GENERIC_EXPLODE, SoundSource.HOSTILE, 12.0F, 0.5F);
-        level.playSound(null, at.x, at.y, at.z, SoundEvents.LIGHTNING_BOLT_THUNDER, SoundSource.HOSTILE, 8.0F, 0.8F);
+        level.playSound(null, at.x, at.y, at.z, SkofcraftSounds.EXPLOSION.get(), SoundSource.HOSTILE, 12.0F, 1.0F);
+        level.playSound(null, at.x, at.y, at.z, SkofcraftSounds.NUKE_RUMBLE.get(), SoundSource.HOSTILE, 8.0F, 1.0F);
         if (caller != null) {
             Player player = level.getPlayerByUUID(caller);
             if (player != null) {

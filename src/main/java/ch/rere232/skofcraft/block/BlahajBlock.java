@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.block;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.phone.PhoneAddiction;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import net.minecraft.core.BlockPos;
@@ -8,7 +9,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -76,8 +76,8 @@ public class BlahajBlock extends HorizontalDirectionalBlock {
         PhoneAddiction.reduce(serverPlayer, HUG_ADDICTION_RELIEF);
         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0, true, false, true));
         level.sendParticles(ParticleTypes.HEART, x, y + 0.4D, z, 6, 0.3D, 0.3D, 0.3D, 0.0D);
-        level.playSound(null, x, y, z, SoundEvents.DOLPHIN_PLAY, SoundSource.PLAYERS, 0.7F, 1.5F);
-        level.playSound(null, x, y, z, SoundEvents.WOOL_PLACE, SoundSource.PLAYERS, 0.8F, 1.1F);
+        level.playSound(null, x, y, z, SkofcraftSounds.BLAHAJ_SQUEAK.get(), SoundSource.PLAYERS, 0.7F, 1.0F);
+        level.playSound(null, x, y, z, SkofcraftSounds.PLUSH_SOFT.get(), SoundSource.PLAYERS, 0.8F, 1.0F);
         serverPlayer.displayClientMessage(
                 Component.translatable("message.skofcraft.blahaj_hug." + player.getRandom().nextInt(HUG_MESSAGES)), true);
     }

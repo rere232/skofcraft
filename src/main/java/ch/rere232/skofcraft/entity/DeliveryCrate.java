@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -8,7 +9,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -95,8 +95,8 @@ public class DeliveryCrate extends Entity {
 
         BlockState barrel = Blocks.BARREL.defaultBlockState();
         server.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, barrel), at.x, at.y, at.z, 30, 0.3D, 0.2D, 0.3D, 0.1D);
-        server.playSound(null, at.x, at.y, at.z, SoundEvents.ANVIL_LAND, SoundSource.NEUTRAL, 0.6F, 1.6F);
-        server.playSound(null, at.x, at.y, at.z, SoundEvents.BARREL_CLOSE, SoundSource.NEUTRAL, 1.0F, 0.8F);
+        server.playSound(null, at.x, at.y, at.z, SkofcraftSounds.CRATE_LAND.get(), SoundSource.NEUTRAL, 0.6F, 1.0F);
+        server.playSound(null, at.x, at.y, at.z, SkofcraftSounds.CRATE_OPEN.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
 
         if (target != null) {
             float damage = Math.min(HEAD_DAMAGE, target.getHealth() - 1.0F);

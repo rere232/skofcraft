@@ -1,11 +1,11 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
@@ -25,7 +25,7 @@ public final class AircraftFuel {
     private AircraftFuel() {}
 
     /** Refuels from a Jet Fuel Canister held in {@code hand}; returns false if the player is not holding one. */
-    public static boolean tryRefuel(PilotedAircraft aircraft, Entity entity, Player player, InteractionHand hand) {
+    public static boolean tryRefuel(FueledVehicle aircraft, Entity entity, Player player, InteractionHand hand) {
         ItemStack held = player.getItemInHand(hand);
         if (!held.is(SkofcraftItems.JET_FUEL_CANISTER.get())) {
             return false;
@@ -47,14 +47,14 @@ public final class AircraftFuel {
                 player.drop(empty, false);
             }
         }
-        entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.BUCKET_EMPTY_LAVA, SoundSource.NEUTRAL, 1.0F, 1.2F);
+        entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SkofcraftSounds.FUEL_PUMP.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
         player.displayClientMessage(Component.translatable("message.skofcraft.aircraft_refueled", percent(aircraft)), true);
         SkofcraftAdvancements.award(player, SkofcraftAdvancements.REFUEL);
         return true;
     }
 
     /** Server only: burns one tick of fuel and warns the pilot when the tank runs low or dry. */
-    public static void burn(PilotedAircraft aircraft, LivingEntity pilot) {
+    public static void burn(FueledVehicle aircraft, LivingEntity pilot) {
         int fuel = aircraft.getFuel();
         if (fuel <= 0) {
             return;
@@ -75,7 +75,7 @@ public final class AircraftFuel {
         }
     }
 
-    public static int percent(PilotedAircraft aircraft) {
+    public static int percent(FueledVehicle aircraft) {
         return Math.round(100.0F * aircraft.getFuel() / aircraft.getMaxFuel());
     }
 

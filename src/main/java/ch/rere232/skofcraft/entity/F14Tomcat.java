@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.client.ApacheClientInput;
 import ch.rere232.skofcraft.network.FlightDeckC2SPacket;
 import ch.rere232.skofcraft.network.JetCrashC2SPacket;
@@ -17,7 +18,6 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -142,7 +142,7 @@ public class F14Tomcat extends Entity implements PilotedAircraft {
         if (!level().isClientSide && pilot != null) {
             AircraftFuel.burn(this, pilot);
             if (getFuel() > 0 && tickCount % 6 == 0) {
-                level().playSound(null, getX(), getY(), getZ(), SoundEvents.ENDER_DRAGON_FLAP, SoundSource.NEUTRAL, 2.0F, 1.7F);
+                level().playSound(null, getX(), getY(), getZ(), SkofcraftSounds.JET_ENGINE.get(), SoundSource.NEUTRAL, 2.0F, 1.0F);
             }
         }
     }
@@ -227,7 +227,7 @@ public class F14Tomcat extends Entity implements PilotedAircraft {
         BlockState below = level().getBlockState(BlockPos.containing(getX(), getY() - 0.2D, getZ()));
         if (below.is(SkofcraftBlocks.ARRESTING_WIRE.get()) && speed > HOOK_SPEED && !hooked) {
             hooked = true;
-            deckEvent(pilot, FlightDeckC2SPacket.TRAP, SoundEvents.CHAIN_BREAK, 0.6F);
+            deckEvent(pilot, FlightDeckC2SPacket.TRAP, SkofcraftSounds.ARRESTING_WIRE.get(), 1.0F);
         }
         if (hooked) {
             throttle = 0.0F;
@@ -249,7 +249,7 @@ public class F14Tomcat extends Entity implements PilotedAircraft {
         }
         if (!catapultFired) {
             catapultFired = true;
-            deckEvent(pilot, FlightDeckC2SPacket.CATAPULT, SoundEvents.PISTON_EXTEND, 0.5F);
+            deckEvent(pilot, FlightDeckC2SPacket.CATAPULT, SkofcraftSounds.CATAPULT.get(), 1.0F);
         }
         speed = Math.min(CATAPULT_SPEED, speed + CATAPULT_PUSH);
         return true;
@@ -322,7 +322,7 @@ public class F14Tomcat extends Entity implements PilotedAircraft {
             nextGunTick = now + GUN_COOLDOWN;
             Vec3 muzzle = position().add(forward.scale(4.6D)).add(0.0D, 1.5D, 0.0D);
             AircraftWeapons.launch(level(), new ApacheBullet(level(), pilot), muzzle, pilot, 4.0F, 0.8F);
-            level().playSound(null, muzzle.x, muzzle.y, muzzle.z, SoundEvents.SKELETON_SHOOT, SoundSource.NEUTRAL, 0.7F, 1.6F);
+            level().playSound(null, muzzle.x, muzzle.y, muzzle.z, SkofcraftSounds.VULCAN.get(), SoundSource.NEUTRAL, 0.7F, 1.0F);
         } else if (weapon == WEAPON_MISSILE && now >= nextMissileTick) {
             nextMissileTick = now + MISSILE_COOLDOWN;
             missileLeft = !missileLeft;
@@ -330,7 +330,7 @@ public class F14Tomcat extends Entity implements PilotedAircraft {
             missile.setHoming(true);
             Vec3 muzzle = position().add(forward.scale(1.2D)).add(left.scale(missileLeft ? 2.4D : -2.4D)).add(0.0D, 1.0D, 0.0D);
             AircraftWeapons.launch(level(), missile, muzzle, pilot, 3.0F, 0.0F);
-            level().playSound(null, muzzle.x, muzzle.y, muzzle.z, SoundEvents.FIREWORK_ROCKET_LAUNCH, SoundSource.NEUTRAL, 2.0F, 0.7F);
+            level().playSound(null, muzzle.x, muzzle.y, muzzle.z, SkofcraftSounds.ROCKET_FIRE.get(), SoundSource.NEUTRAL, 2.0F, 1.0F);
         }
     }
 

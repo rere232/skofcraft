@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:maus"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.188_tons.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.188_tons.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "boarded": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

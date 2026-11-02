@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
 import ch.rere232.skofcraft.registry.SkofcraftEffects;
@@ -11,7 +12,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.effect.MobEffect;
@@ -97,7 +97,7 @@ public class TacticalArmorItem extends ArmorItem {
 
         @Override
         public SoundEvent getEquipSound() {
-            return SoundEvents.ARMOR_EQUIP_NETHERITE;
+            return SkofcraftSounds.ARMOR_EQUIP.get();
         }
 
         @Override
@@ -227,7 +227,7 @@ public class TacticalArmorItem extends ArmorItem {
         player.heal(10.0F);
         player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 20 * 30, 1));
         player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20 * 8, 1));
-        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BEACON_POWER_SELECT, SoundSource.PLAYERS, 1.0F, 1.6F);
+        level.playSound(null, player.getX(), player.getY(), player.getZ(), SkofcraftSounds.MEDKIT.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
         if (player instanceof ServerPlayer serverPlayer) {
             serverPlayer.displayClientMessage(Component.translatable("message.skofcraft.tactical_medkit").withStyle(ChatFormatting.AQUA), true);
         }

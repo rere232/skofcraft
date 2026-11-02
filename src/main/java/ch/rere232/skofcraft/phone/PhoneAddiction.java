@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.phone;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.network.PhoneAddictionS2CPacket;
 import ch.rere232.skofcraft.network.SkofcraftNetwork;
@@ -10,7 +11,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -150,7 +150,7 @@ public final class PhoneAddiction {
             return;
         }
         if (player.getRandom().nextInt(15) == 0) {
-            player.playNotifySound(SoundEvents.NOTE_BLOCK_PLING.get(), SoundSource.PLAYERS, 0.7F, 1.5F);
+            player.playNotifySound(SkofcraftSounds.PHONE_NOTIFY.get(), SoundSource.PLAYERS, 0.7F, 1.0F);
             player.displayClientMessage(Component.translatable(
                     "message.skofcraft.phone_phantom." + player.getRandom().nextInt(PHANTOM_MESSAGES)), true);
         }

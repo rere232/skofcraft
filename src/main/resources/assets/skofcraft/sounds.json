@@ -1,0 +1,461 @@
+{
+  "postbus_horn": {
+    "subtitle": "subtitles.skofcraft.postbus_horn",
+    "sounds": [
+      {
+        "name": "skofcraft:postbus_horn",
+        "attenuation_distance": 128
+      }
+    ]
+  },
+  "item_scanner_beep": {
+    "subtitle": "subtitles.skofcraft.item_scanner_beep",
+    "sounds": [
+      "skofcraft:item_scanner_beep"
+    ]
+  },
+  "anchor_chain": {
+    "subtitle": "subtitles.skofcraft.anchor_chain",
+    "sounds": [
+      "skofcraft:anchor_chain"
+    ]
+  },
+  "armor_equip": {
+    "subtitle": "subtitles.skofcraft.armor_equip",
+    "sounds": [
+      "skofcraft:armor_equip"
+    ]
+  },
+  "arresting_wire": {
+    "subtitle": "subtitles.skofcraft.arresting_wire",
+    "sounds": [
+      "skofcraft:arresting_wire"
+    ]
+  },
+  "beans_grind": {
+    "subtitle": "subtitles.skofcraft.beans_grind",
+    "sounds": [
+      "skofcraft:beans_grind"
+    ]
+  },
+  "beer_gulp": {
+    "subtitle": "subtitles.skofcraft.beer_gulp",
+    "sounds": [
+      "skofcraft:beer_gulp"
+    ]
+  },
+  "blahaj_squeak": {
+    "subtitle": "subtitles.skofcraft.blahaj_squeak",
+    "sounds": [
+      "skofcraft:blahaj_squeak"
+    ]
+  },
+  "button_press": {
+    "subtitle": "subtitles.skofcraft.button_press",
+    "sounds": [
+      "skofcraft:button_press"
+    ]
+  },
+  "button_release": {
+    "subtitle": "subtitles.skofcraft.button_release",
+    "sounds": [
+      "skofcraft:button_release"
+    ]
+  },
+  "cargo_plane": {
+    "subtitle": "subtitles.skofcraft.cargo_plane",
+    "sounds": [
+      "skofcraft:cargo_plane"
+    ]
+  },
+  "catapult": {
+    "subtitle": "subtitles.skofcraft.catapult",
+    "sounds": [
+      "skofcraft:catapult"
+    ]
+  },
+  "chain_gun": {
+    "subtitle": "subtitles.skofcraft.chain_gun",
+    "sounds": [
+      "skofcraft:chain_gun"
+    ]
+  },
+  "ciws": {
+    "subtitle": "subtitles.skofcraft.ciws",
+    "sounds": [
+      "skofcraft:ciws"
+    ]
+  },
+  "clothes_rustle": {
+    "subtitle": "subtitles.skofcraft.clothes_rustle",
+    "sounds": [
+      "skofcraft:clothes_rustle"
+    ]
+  },
+  "coffee_brew": {
+    "subtitle": "subtitles.skofcraft.coffee_brew",
+    "sounds": [
+      "skofcraft:coffee_brew"
+    ]
+  },
+  "coffee_ding": {
+    "subtitle": "subtitles.skofcraft.coffee_ding",
+    "sounds": [
+      "skofcraft:coffee_ding"
+    ]
+  },
+  "coffee_fail": {
+    "subtitle": "subtitles.skofcraft.coffee_fail",
+    "sounds": [
+      "skofcraft:coffee_fail"
+    ]
+  },
+  "coin": {
+    "subtitle": "subtitles.skofcraft.coin",
+    "sounds": [
+      "skofcraft:coin"
+    ]
+  },
+  "countdown_beep": {
+    "subtitle": "subtitles.skofcraft.countdown_beep",
+    "sounds": [
+      "skofcraft:countdown_beep"
+    ]
+  },
+  "crate_drop": {
+    "subtitle": "subtitles.skofcraft.crate_drop",
+    "sounds": [
+      "skofcraft:crate_drop"
+    ]
+  },
+  "crate_land": {
+    "subtitle": "subtitles.skofcraft.crate_land",
+    "sounds": [
+      "skofcraft:crate_land"
+    ]
+  },
+  "crate_open": {
+    "subtitle": "subtitles.skofcraft.crate_open",
+    "sounds": [
+      "skofcraft:crate_open"
+    ]
+  },
+  "designator_fire": {
+    "subtitle": "subtitles.skofcraft.designator_fire",
+    "sounds": [
+      "skofcraft:designator_fire"
+    ]
+  },
+  "designator_mark": {
+    "subtitle": "subtitles.skofcraft.designator_mark",
+    "sounds": [
+      "skofcraft:designator_mark"
+    ]
+  },
+  "engine_ignite": {
+    "subtitle": "subtitles.skofcraft.engine_ignite",
+    "sounds": [
+      "skofcraft:engine_ignite"
+    ]
+  },
+  "evil_cackle": {
+    "subtitle": "subtitles.skofcraft.evil_cackle",
+    "sounds": [
+      "skofcraft:evil_cackle"
+    ]
+  },
+  "evil_warp": {
+    "subtitle": "subtitles.skofcraft.evil_warp",
+    "sounds": [
+      "skofcraft:evil_warp"
+    ]
+  },
+  "exhale": {
+    "subtitle": "subtitles.skofcraft.exhale",
+    "sounds": [
+      "skofcraft:exhale"
+    ]
+  },
+  "explosion": {
+    "subtitle": "subtitles.skofcraft.explosion",
+    "sounds": [
+      "skofcraft:explosion"
+    ]
+  },
+  "femboy_hum": {
+    "subtitle": "subtitles.skofcraft.femboy_hum",
+    "sounds": [
+      "skofcraft:femboy_hum"
+    ]
+  },
+  "fuel_pump": {
+    "subtitle": "subtitles.skofcraft.fuel_pump",
+    "sounds": [
+      "skofcraft:fuel_pump"
+    ]
+  },
+  "gulp": {
+    "subtitle": "subtitles.skofcraft.gulp",
+    "sounds": [
+      "skofcraft:gulp"
+    ]
+  },
+  "headpat": {
+    "subtitle": "subtitles.skofcraft.headpat",
+    "sounds": [
+      "skofcraft:headpat"
+    ]
+  },
+  "hookah_bubble": {
+    "subtitle": "subtitles.skofcraft.hookah_bubble",
+    "sounds": [
+      "skofcraft:hookah_bubble"
+    ]
+  },
+  "hull_clang": {
+    "subtitle": "subtitles.skofcraft.hull_clang",
+    "sounds": [
+      "skofcraft:hull_clang"
+    ]
+  },
+  "icbm_arm": {
+    "subtitle": "subtitles.skofcraft.icbm_arm",
+    "sounds": [
+      "skofcraft:icbm_arm"
+    ]
+  },
+  "inhale": {
+    "subtitle": "subtitles.skofcraft.inhale",
+    "sounds": [
+      "skofcraft:inhale"
+    ]
+  },
+  "jackpot": {
+    "subtitle": "subtitles.skofcraft.jackpot",
+    "sounds": [
+      "skofcraft:jackpot"
+    ]
+  },
+  "jet_engine": {
+    "subtitle": "subtitles.skofcraft.jet_engine",
+    "sounds": [
+      "skofcraft:jet_engine"
+    ]
+  },
+  "launch_arm": {
+    "subtitle": "subtitles.skofcraft.launch_arm",
+    "sounds": [
+      "skofcraft:launch_arm"
+    ]
+  },
+  "lighter": {
+    "subtitle": "subtitles.skofcraft.lighter",
+    "sounds": [
+      "skofcraft:lighter"
+    ]
+  },
+  "medkit": {
+    "subtitle": "subtitles.skofcraft.medkit",
+    "sounds": [
+      "skofcraft:medkit"
+    ]
+  },
+  "meltdown": {
+    "subtitle": "subtitles.skofcraft.meltdown",
+    "sounds": [
+      "skofcraft:meltdown"
+    ]
+  },
+  "missile_roar": {
+    "subtitle": "subtitles.skofcraft.missile_roar",
+    "sounds": [
+      "skofcraft:missile_roar"
+    ]
+  },
+  "nuke_boom": {
+    "subtitle": "subtitles.skofcraft.nuke_boom",
+    "sounds": [
+      "skofcraft:nuke_boom"
+    ]
+  },
+  "nuke_rumble": {
+    "subtitle": "subtitles.skofcraft.nuke_rumble",
+    "sounds": [
+      "skofcraft:nuke_rumble"
+    ]
+  },
+  "nuke_warning": {
+    "subtitle": "subtitles.skofcraft.nuke_warning",
+    "sounds": [
+      "skofcraft:nuke_warning"
+    ]
+  },
+  "payload_load": {
+    "subtitle": "subtitles.skofcraft.payload_load",
+    "sounds": [
+      "skofcraft:payload_load"
+    ]
+  },
+  "phone_notify": {
+    "subtitle": "subtitles.skofcraft.phone_notify",
+    "sounds": [
+      "skofcraft:phone_notify"
+    ]
+  },
+  "pill_chime": {
+    "subtitle": "subtitles.skofcraft.pill_chime",
+    "sounds": [
+      "skofcraft:pill_chime"
+    ]
+  },
+  "plush_soft": {
+    "subtitle": "subtitles.skofcraft.plush_soft",
+    "sounds": [
+      "skofcraft:plush_soft"
+    ]
+  },
+  "radar_ping": {
+    "subtitle": "subtitles.skofcraft.radar_ping",
+    "sounds": [
+      "skofcraft:radar_ping"
+    ]
+  },
+  "reactor_alarm": {
+    "subtitle": "subtitles.skofcraft.reactor_alarm",
+    "sounds": [
+      "skofcraft:reactor_alarm"
+    ]
+  },
+  "repair_wrench": {
+    "subtitle": "subtitles.skofcraft.repair_wrench",
+    "sounds": [
+      "skofcraft:repair_wrench"
+    ]
+  },
+  "rocket_fire": {
+    "subtitle": "subtitles.skofcraft.rocket_fire",
+    "sounds": [
+      "skofcraft:rocket_fire"
+    ]
+  },
+  "rod_charge": {
+    "subtitle": "subtitles.skofcraft.rod_charge",
+    "sounds": [
+      "skofcraft:rod_charge"
+    ]
+  },
+  "rotor": {
+    "subtitle": "subtitles.skofcraft.rotor",
+    "sounds": [
+      "skofcraft:rotor"
+    ]
+  },
+  "ship_horn": {
+    "subtitle": "subtitles.skofcraft.ship_horn",
+    "sounds": [
+      "skofcraft:ship_horn"
+    ]
+  },
+  "shockwave": {
+    "subtitle": "subtitles.skofcraft.shockwave",
+    "sounds": [
+      "skofcraft:shockwave"
+    ]
+  },
+  "siren": {
+    "subtitle": "subtitles.skofcraft.siren",
+    "sounds": [
+      "skofcraft:siren"
+    ]
+  },
+  "sniff": {
+    "subtitle": "subtitles.skofcraft.sniff",
+    "sounds": [
+      "skofcraft:sniff"
+    ]
+  },
+  "spit": {
+    "subtitle": "subtitles.skofcraft.spit",
+    "sounds": [
+      "skofcraft:spit"
+    ]
+  },
+  "steam_hiss": {
+    "subtitle": "subtitles.skofcraft.steam_hiss",
+    "sounds": [
+      "skofcraft:steam_hiss"
+    ]
+  },
+  "switch_click": {
+    "subtitle": "subtitles.skofcraft.switch_click",
+    "sounds": [
+      "skofcraft:switch_click"
+    ]
+  },
+  "sword_clang": {
+    "subtitle": "subtitles.skofcraft.sword_clang",
+    "sounds": [
+      "skofcraft:sword_clang"
+    ]
+  },
+  "taser_zap": {
+    "subtitle": "subtitles.skofcraft.taser_zap",
+    "sounds": [
+      "skofcraft:taser_zap"
+    ]
+  },
+  "trip_thud": {
+    "subtitle": "subtitles.skofcraft.trip_thud",
+    "sounds": [
+      "skofcraft:trip_thud"
+    ]
+  },
+  "ui_click": {
+    "subtitle": "subtitles.skofcraft.ui_click",
+    "sounds": [
+      "skofcraft:ui_click"
+    ]
+  },
+  "vape_puff": {
+    "subtitle": "subtitles.skofcraft.vape_puff",
+    "sounds": [
+      "skofcraft:vape_puff"
+    ]
+  },
+  "vulcan": {
+    "subtitle": "subtitles.skofcraft.vulcan",
+    "sounds": [
+      "skofcraft:vulcan"
+    ]
+  },
+  "warhead_fall": {
+    "subtitle": "subtitles.skofcraft.warhead_fall",
+    "sounds": [
+      "skofcraft:warhead_fall"
+    ]
+  },
+  "water_pour": {
+    "subtitle": "subtitles.skofcraft.water_pour",
+    "sounds": [
+      "skofcraft:water_pour"
+    ]
+  },
+  "hr_chime": {
+    "subtitle": "subtitles.skofcraft.hr_chime",
+    "sounds": [
+      "skofcraft:hr_chime"
+    ]
+  },
+  "tank_cannon": {
+    "subtitle": "subtitles.skofcraft.tank_cannon",
+    "sounds": [
+      "skofcraft:tank_cannon"
+    ]
+  },
+  "tank_engine": {
+    "subtitle": "subtitles.skofcraft.tank_engine",
+    "sounds": [
+      "skofcraft:tank_engine"
+    ]
+  }
+}

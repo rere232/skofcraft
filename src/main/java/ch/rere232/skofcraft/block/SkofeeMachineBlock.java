@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.block;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.blockentity.SkofeeMachineBlockEntity;
 import ch.rere232.skofcraft.client.SkofeeClient;
 import ch.rere232.skofcraft.item.SkofeeItem;
@@ -10,7 +11,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -114,7 +114,7 @@ public class SkofeeMachineBlock extends BaseEntityBlock {
             if (!creative) {
                 player.setItemInHand(hand, new ItemStack(Items.BUCKET));
             }
-            level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(null, pos, SkofcraftSounds.WATER_POUR.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             status(player, machine);
             return InteractionResult.CONSUME;
         }
@@ -128,7 +128,7 @@ public class SkofeeMachineBlock extends BaseEntityBlock {
             if (!creative) {
                 held.shrink(added);
             }
-            level.playSound(null, pos, SoundEvents.SAND_PLACE, SoundSource.BLOCKS, 0.6F, 1.4F);
+            level.playSound(null, pos, SkofcraftSounds.BEANS_GRIND.get(), SoundSource.BLOCKS, 0.6F, 1.0F);
             status(player, machine);
             return InteractionResult.CONSUME;
         }
@@ -174,14 +174,14 @@ public class SkofeeMachineBlock extends BaseEntityBlock {
 
         ServerLevel level = player.serverLevel();
         if (quality == SkofeeItem.QUALITY_BURNT) {
-            level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.6F, 1.2F);
+            level.playSound(null, pos, SkofcraftSounds.STEAM_HISS.get(), SoundSource.BLOCKS, 0.6F, 1.0F);
             level.sendParticles(ParticleTypes.SMOKE, pos.getX() + 0.5D, pos.getY() + 0.8D, pos.getZ() + 0.5D, 10, 0.15D, 0.1D, 0.15D, 0.01D);
         } else {
-            level.playSound(null, pos, SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 0.8F, 1.3F);
+            level.playSound(null, pos, SkofcraftSounds.COFFEE_BREW.get(), SoundSource.BLOCKS, 0.8F, 1.0F);
             level.sendParticles(ParticleTypes.CLOUD, pos.getX() + 0.5D, pos.getY() + 0.8D, pos.getZ() + 0.5D, 6, 0.15D, 0.1D, 0.15D, 0.01D);
         }
         if (quality == SkofeeItem.QUALITY_PERFECT) {
-            level.playSound(null, pos, SoundEvents.PLAYER_LEVELUP, SoundSource.BLOCKS, 0.5F, 1.6F);
+            level.playSound(null, pos, SkofcraftSounds.COFFEE_DING.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
             level.sendParticles(ParticleTypes.HAPPY_VILLAGER, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 8, 0.3D, 0.2D, 0.3D, 0.0D);
         }
         player.displayClientMessage(Component.translatable("message.skofcraft.skofee_brewed", SkofeeItem.qualityName(quality)), true);

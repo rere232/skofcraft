@@ -1,10 +1,10 @@
 package ch.rere232.skofcraft.item;
 
+import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.SkofcraftMod;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -58,7 +58,7 @@ public class MaskItem extends ClothingItem {
             stack.getOrCreateTag().putInt(STYLE, next);
             player.displayClientMessage(Component.translatable("message.skofcraft.face_mask_style", style(stack).displayName())
                     .withStyle(ChatFormatting.GRAY), true);
-            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.WOOL_PLACE, SoundSource.PLAYERS, 0.8F, 1.4F);
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), SkofcraftSounds.CLOTHES_RUSTLE.get(), SoundSource.PLAYERS, 0.8F, 1.0F);
         }
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
     }
