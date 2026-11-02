@@ -1,0 +1,35 @@
+{
+  "type": "skofcraft:aircraft_assembly",
+  "pattern": [
+    "PPHPP",
+    "IIIII",
+    "WANAT",
+    "IIIII"
+  ],
+  "key": {
+    "P": {
+      "item": "skofcraft:aircraft_plate"
+    },
+    "H": {
+      "item": "skofcraft:carrier_helm"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "W": {
+      "item": "skofcraft:weapon_system"
+    },
+    "A": {
+      "item": "skofcraft:avionics"
+    },
+    "N": {
+      "item": "skofcraft:nuclear_reactor"
+    },
+    "T": {
+      "item": "skofcraft:turbine_blade"
+    }
+  },
+  "result": {
+    "item": "skofcraft:nuclear_submarine"
+  }
+}

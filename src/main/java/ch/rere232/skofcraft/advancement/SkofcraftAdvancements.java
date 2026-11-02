@@ -37,6 +37,11 @@ public final class SkofcraftAdvancements {
     public static final String TANK_CREW = "tank_crew";
     public static final String SPEED_IS_ARMOR = "speed_is_armor";
     public static final String KING_TIGER = "king_tiger";
+    public static final String SILENT_SERVICE = "silent_service";
+    public static final String FISH_IN_THE_WATER = "fish_in_the_water";
+    public static final String SECOND_STRIKE = "second_strike";
+    public static final String CUDDLE = "cuddle";
+    public static final String FIVE_MORE_MINUTES = "five_more_minutes";
 
     private SkofcraftAdvancements() {}
 

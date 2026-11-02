@@ -77,6 +77,9 @@ public class SkofcraftSounds {
     public static final RegistryObject<SoundEvent> PILL_CHIME = sound("pill_chime");
     public static final RegistryObject<SoundEvent> PLUSH_SOFT = sound("plush_soft");
     public static final RegistryObject<SoundEvent> RADAR_PING = sound("radar_ping");
+    public static final RegistryObject<SoundEvent> SONAR_PING = sound("sonar_ping");
+    public static final RegistryObject<SoundEvent> DIVE_KLAXON = sound("dive_klaxon");
+    public static final RegistryObject<SoundEvent> SUB_HUM = sound("sub_hum");
     public static final RegistryObject<SoundEvent> REACTOR_ALARM = sound("reactor_alarm");
     public static final RegistryObject<SoundEvent> REPAIR_WRENCH = sound("repair_wrench");
     public static final RegistryObject<SoundEvent> ROCKET_FIRE = sound("rocket_fire");

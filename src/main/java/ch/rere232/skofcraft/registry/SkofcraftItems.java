@@ -3,6 +3,7 @@ package ch.rere232.skofcraft.registry;
 import ch.rere232.skofcraft.entity.Leopard1Tank;
 import ch.rere232.skofcraft.entity.MausTank;
 import ch.rere232.skofcraft.entity.Tiger2Tank;
+import ch.rere232.skofcraft.item.NuclearSubmarineItem;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.item.GumConsumableItem;
@@ -129,6 +130,8 @@ public class SkofcraftItems {
             () -> new TankItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), SkofcraftEntities.LEOPARD_1, "tooltip.skofcraft.leopard_1", Leopard1Tank.SPEC.maxFuel()));
     public static final RegistryObject<Item> TIGER_2 = ITEMS.register("tiger_2",
             () -> new TankItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), SkofcraftEntities.TIGER_2, "tooltip.skofcraft.tiger_2", Tiger2Tank.SPEC.maxFuel()));
+    public static final RegistryObject<Item> NUCLEAR_SUBMARINE = ITEMS.register("nuclear_submarine",
+            () -> new NuclearSubmarineItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> POSTBUS = ITEMS.register("postbus",
             () -> new PostbusItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> ITEM_SCANNER = ITEMS.register("item_scanner",

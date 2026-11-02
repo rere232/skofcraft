@@ -333,6 +333,15 @@ final class QuestBookContent {
                 text("postbus.p2"), text("postbus.p3")
         )));
 
+        chapters.add(new Chapter(t("submarine.title"), stack(SkofcraftItems.NUCLEAR_SUBMARINE.get()), List.of(
+                text("submarine.p1"),
+                craft(stack(SkofcraftItems.NUCLEAR_SUBMARINE.get()), new String[] {"PPHPP", "IIIII", "WANAT", "IIIII"},
+                        'P', SkofcraftItems.AIRCRAFT_PLATE.get(), 'H', SkofcraftItems.CARRIER_HELM.get(), 'I', Items.IRON_BLOCK,
+                        'W', SkofcraftItems.WEAPON_SYSTEM.get(), 'A', SkofcraftItems.AVIONICS.get(), 'N', SkofcraftItems.NUCLEAR_REACTOR.get(),
+                        'T', SkofcraftItems.TURBINE_BLADE.get()),
+                text("submarine.p2"), text("submarine.p3"), text("submarine.p4"), text("submarine.p5")
+        )));
+
         chapters.add(new Chapter(t("carrier.title"), stack(SkofcraftItems.AIRCRAFT_CARRIER.get()), List.of(
                 text("carrier.p1"),
                 craft(stack(SkofcraftItems.NUCLEAR_REACTOR.get()), new String[] {"IGRGI", "RANAR", "IGRGI"},
@@ -436,6 +445,10 @@ final class QuestBookContent {
                 craft(stack(SkofcraftItems.BLAHAJ.get()), new String[] {"BBB", "WLW", "BDB"},
                         'B', Items.BLUE_WOOL, 'W', Items.WHITE_WOOL, 'L', Items.LIGHT_BLUE_WOOL, 'D', Items.BLACK_DYE),
                 text("blahaj.p2")
+        )));
+
+        chapters.add(new Chapter(t("cuddling.title"), stack(SkofcraftItems.BLAHAJ.get()), List.of(
+                text("cuddling.p1"), text("cuddling.p2"), text("cuddling.p3")
         )));
 
         chapters.add(new Chapter(t("wardrobe.title"), stack(SkofcraftItems.CHOKER.get()), List.of(

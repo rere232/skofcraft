@@ -98,6 +98,7 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.MAUS.get());
                 output.accept(SkofcraftItems.TIGER_2.get());
                 output.accept(SkofcraftItems.LEOPARD_1.get());
+                output.accept(SkofcraftItems.NUCLEAR_SUBMARINE.get());
                 output.accept(SkofcraftItems.POSTBUS.get());
                 output.accept(SkofcraftItems.ITEM_SCANNER.get());
                 output.accept(SkofcraftItems.HR_CERTIFICATE.get());

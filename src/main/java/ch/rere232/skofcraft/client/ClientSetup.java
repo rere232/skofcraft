@@ -11,7 +11,11 @@ import ch.rere232.skofcraft.menu.SkofcraftMenus;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
 import ch.rere232.skofcraft.item.MaskItem;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraft.resources.ResourceLocation;
 import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 import ch.rere232.skofcraft.screen.AircraftWorkbenchScreen;
@@ -67,6 +71,8 @@ public class ClientSetup {
         event.registerEntityRenderer(SkofcraftEntities.MAUS.get(), ctx -> new TankRenderer<>(ctx, new MausModel(ctx.bakeLayer(MausModel.LAYER)), "maus", 3.0F));
         event.registerEntityRenderer(SkofcraftEntities.LEOPARD_1.get(), ctx -> new TankRenderer<>(ctx, new Leopard1Model(ctx.bakeLayer(Leopard1Model.LAYER)), "leopard_1", 2.5F));
         event.registerEntityRenderer(SkofcraftEntities.TIGER_2.get(), ctx -> new TankRenderer<>(ctx, new Tiger2Model(ctx.bakeLayer(Tiger2Model.LAYER)), "tiger_2", 2.8F));
+        event.registerEntityRenderer(SkofcraftEntities.NUCLEAR_SUBMARINE.get(), SubmarineRenderers.BoatRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.TORPEDO.get(), SubmarineRenderers.FishRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.TANK_SHELL.get(), ctx -> new ThrownItemRenderer<>(ctx, 1.0F, true));
         event.registerEntityRenderer(SkofcraftEntities.POSTBUS.get(), PostbusRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.AIRCRAFT_CARRIER.get(), AircraftCarrierRenderer::new);
@@ -91,6 +97,8 @@ public class ClientSetup {
         event.registerLayerDefinition(MausModel.LAYER, MausModel::createBodyLayer);
         event.registerLayerDefinition(Leopard1Model.LAYER, Leopard1Model::createBodyLayer);
         event.registerLayerDefinition(Tiger2Model.LAYER, Tiger2Model::createBodyLayer);
+        event.registerLayerDefinition(SubmarineModels.Boat.LAYER, SubmarineModels.Boat::createBodyLayer);
+        event.registerLayerDefinition(SubmarineModels.Fish.LAYER, SubmarineModels.Fish::createBodyLayer);
         event.registerLayerDefinition(PostbusModel.LAYER, PostbusModel::createBodyLayer);
         event.registerLayerDefinition(PostbusInteriorModel.LAYER, PostbusInteriorModel::createBodyLayer);
         event.registerLayerDefinition(DefenseTurretModel.CIWS_LAYER, DefenseTurretModel::createCiwsLayer);
@@ -104,12 +112,28 @@ public class ClientSetup {
         }
     }
 
+    /** Swaps in the player model that knows how to cuddle. Layers ask the renderer for its model, so they follow along. */
+    @SubscribeEvent
+    public static void addLayers(EntityRenderersEvent.AddLayers event) {
+        swapPlayerModel(event, "default", ModelLayers.PLAYER, false);
+        swapPlayerModel(event, "slim", ModelLayers.PLAYER_SLIM, true);
+    }
+
+    private static void swapPlayerModel(EntityRenderersEvent.AddLayers event, String skin, ModelLayerLocation layer, boolean slim) {
+        LivingEntityRenderer<?, ?> renderer = event.getSkin(skin);
+        if (renderer != null) {
+            ObfuscationReflectionHelper.setPrivateValue(LivingEntityRenderer.class, renderer,
+                    new CuddlePlayerModel(event.getContext().bakeLayer(layer), slim), "f_115290_");
+        }
+    }
+
     @SubscribeEvent
     public static void registerOverlays(RegisterGuiOverlaysEvent event) {
         event.registerAboveAll("spit_overlay", SpitOverlay::render);
         event.registerAboveAll("apache_hud", ApacheHud::render);
         event.registerAboveAll("f14_hud", F14Hud::render);
         event.registerAboveAll("maus_hud", TankHud::render);
+        event.registerAboveAll("submarine_hud", SubmarineHud::render);
         event.registerAboveAll("nuclear_flash", NuclearBlastClient::renderFlash);
     }
 }

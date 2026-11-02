@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:silent_service",
+  "display": {
+    "icon": {
+      "item": "skofcraft:nuclear_submarine"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.fish_in_the_water.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.fish_in_the_water.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "hit": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

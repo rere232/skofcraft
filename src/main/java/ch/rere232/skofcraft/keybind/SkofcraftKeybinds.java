@@ -13,6 +13,8 @@ public class SkofcraftKeybinds {
     public static KeyMapping SPIT;
     public static KeyMapping HELICOPTER_DESCEND;
     public static KeyMapping POSTBUS_HORN;
+    public static KeyMapping CUDDLE;
+    public static KeyMapping SUBMARINE_LAUNCH;
 
     @SubscribeEvent
     public static void registerKeybinds(RegisterKeyMappingsEvent event) {
@@ -24,5 +26,9 @@ public class SkofcraftKeybinds {
         event.register(HELICOPTER_DESCEND);
         POSTBUS_HORN = new KeyMapping("key.skofcraft.postbus_horn", com.mojang.blaze3d.platform.InputConstants.KEY_H, "key.categories.movement");
         event.register(POSTBUS_HORN);
+        CUDDLE = new KeyMapping("key.skofcraft.cuddle", com.mojang.blaze3d.platform.InputConstants.KEY_B, "key.categories.gameplay");
+        event.register(CUDDLE);
+        SUBMARINE_LAUNCH = new KeyMapping("key.skofcraft.submarine_launch", com.mojang.blaze3d.platform.InputConstants.KEY_N, "key.categories.gameplay");
+        event.register(SUBMARINE_LAUNCH);
     }
 }

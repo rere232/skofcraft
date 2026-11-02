@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Half;
 
@@ -201,21 +202,7 @@ public final class CarrierLayout {
         }
         lantern(map, 0, 3, -27);
 
-        // Crew berthing: bunk beds two high along both sides
-        BlockState bunk = Blocks.BLUE_BED.defaultBlockState();
-        for (int z : new int[] {-23, -21, -19, -17, -15}) {
-            for (int y = 1; y <= 2; y++) {
-                bed(map, bunk, new BlockPos(ROOM_MAX_X, y, z), Direction.EAST);
-                if (z != -19) {
-                    bed(map, bunk, new BlockPos(ROOM_MIN_X, y, z), Direction.WEST);
-                }
-            }
-        }
-        for (int x = 0; x <= 2; x += 2) {
-            barrel(map, new BlockPos(x, 1, -24));
-        }
-        lantern(map, 1, 3, -22);
-        lantern(map, 1, 3, -16);
+        buildBerthing(map);
 
         // Mess: a long table with benches and the galley along the starboard side
         for (int z = -11; z <= -7; z++) {
@@ -304,6 +291,69 @@ public final class CarrierLayout {
         chest(map, new BlockPos(ROOM_MAX_X, 1, 28), Direction.WEST, new ItemStack(Items.SPYGLASS), new ItemStack(Items.COMPASS),
                 new ItemStack(Items.CLOCK), new ItemStack(SkofcraftItems.CIGAR.get(), 4));
         lantern(map, 1, 3, 31);
+    }
+
+    /**
+     * Crew berthing, femboy themed: pink and white bunks two high along both sides, walls striped like thigh-high socks,
+     * a pink carpet and flowers. The stripes are a lining inside the room, so the hull and the mess next door keep their look.
+     */
+    private static void buildBerthing(Map<BlockPos, BlockState> map) {
+        for (int z : new int[] {-23, -21, -19, -17, -15}) {
+            for (int y = 1; y <= 2; y++) {
+                BlockState bunk = (y == 1 ? Blocks.PINK_BED : Blocks.WHITE_BED).defaultBlockState();
+                bed(map, bunk, new BlockPos(ROOM_MAX_X, y, z), Direction.EAST);
+                if (z != -19) {
+                    bed(map, bunk, new BlockPos(ROOM_MIN_X, y, z), Direction.WEST);
+                }
+            }
+            // Over the bunks, and over the door on the port side
+            map.put(new BlockPos(ROOM_MAX_X, 3, z), sockStripe(3));
+            map.put(new BlockPos(ROOM_MIN_X, 3, z), sockStripe(3));
+        }
+        // Between the bunks, with a flower in each nook
+        BlockState[] flowers = {Blocks.POTTED_PINK_TULIP.defaultBlockState(), Blocks.POTTED_ALLIUM.defaultBlockState(),
+                Blocks.POTTED_WHITE_TULIP.defaultBlockState(), Blocks.POTTED_BLUE_ORCHID.defaultBlockState()};
+        int[] nooks = {-22, -20, -18, -16};
+        for (int i = 0; i < nooks.length; i++) {
+            sockWall(map, ROOM_MAX_X, nooks[i]);
+            sockWall(map, ROOM_MIN_X, nooks[i]);
+            map.put(new BlockPos(ROOM_MAX_X - 1, 1, nooks[i]), flowers[i]);
+            map.put(new BlockPos(ROOM_MIN_X + 1, 1, nooks[i]), flowers[nooks.length - 1 - i]);
+        }
+        // Both ends of the room
+        for (int x = ROOM_MIN_X; x <= ROOM_MAX_X; x++) {
+            sockWall(map, x, -14);
+            sockWall(map, x, -24);
+        }
+        // The forward end has the lockers, with candles on them and a cake between them
+        BlockState candles = Blocks.PINK_CANDLE.defaultBlockState()
+                .setValue(BlockStateProperties.CANDLES, 3).setValue(BlockStateProperties.LIT, true);
+        barrel(map, new BlockPos(0, 1, -24), new ItemStack(Items.PINK_DYE, 16), new ItemStack(Items.WHITE_DYE, 16), new ItemStack(Items.LIGHT_BLUE_DYE, 16));
+        barrel(map, new BlockPos(2, 1, -24), new ItemStack(Items.COOKIE, 16), new ItemStack(Items.CAKE), new ItemStack(Items.PEONY, 4));
+        map.put(new BlockPos(0, 2, -24), candles);
+        map.put(new BlockPos(2, 2, -24), candles);
+        map.put(new BlockPos(1, 2, -24), Blocks.PINK_CANDLE_CAKE.defaultBlockState().setValue(BlockStateProperties.LIT, true));
+        // Pink carpet with a blue runner down the middle, wherever the floor is still bare
+        for (int x = ROOM_MIN_X; x <= ROOM_MAX_X; x++) {
+            for (int z = -23; z <= -15; z++) {
+                BlockPos floor = new BlockPos(x, 1, z);
+                if (map.get(floor).isAir()) {
+                    map.put(floor, (x == 1 ? Blocks.LIGHT_BLUE_CARPET : Blocks.PINK_CARPET).defaultBlockState());
+                }
+            }
+        }
+        lantern(map, 1, 3, -22);
+        lantern(map, 1, 3, -16);
+    }
+
+    private static void sockWall(Map<BlockPos, BlockState> map, int x, int z) {
+        for (int y = 1; y <= 3; y++) {
+            map.put(new BlockPos(x, y, z), sockStripe(y));
+        }
+    }
+
+    private static BlockState sockStripe(int y) {
+        return (y == 1 ? Blocks.PINK_WOOL : y == 2 ? Blocks.WHITE_WOOL : Blocks.LIGHT_BLUE_WOOL).defaultBlockState();
     }
 
     /** Hangar deck (y 5-8): lit from the flight deck above, with a refuelling station amidships. */

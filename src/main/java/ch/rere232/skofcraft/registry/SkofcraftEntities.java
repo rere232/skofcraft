@@ -18,7 +18,9 @@ import ch.rere232.skofcraft.entity.LaunchRocket;
 import ch.rere232.skofcraft.entity.Leopard1Tank;
 import ch.rere232.skofcraft.entity.MausTank;
 import ch.rere232.skofcraft.entity.TankShell;
+import ch.rere232.skofcraft.entity.NuclearSubmarine;
 import ch.rere232.skofcraft.entity.Tiger2Tank;
+import ch.rere232.skofcraft.entity.Torpedo;
 import ch.rere232.skofcraft.entity.OrbitalRod;
 import ch.rere232.skofcraft.entity.Postbus;
 import net.minecraft.world.entity.EntityType;
@@ -158,6 +160,22 @@ public class SkofcraftEntities {
                     .updateInterval(1)
                     .fireImmune()
                     .build("tiger_2"));
+
+    public static final RegistryObject<EntityType<NuclearSubmarine>> NUCLEAR_SUBMARINE = ENTITIES.register("nuclear_submarine",
+            () -> EntityType.Builder.<NuclearSubmarine>of(NuclearSubmarine::new, MobCategory.MISC)
+                    .sized(4.0F, 4.0F)
+                    .clientTrackingRange(16)
+                    .updateInterval(1)
+                    .fireImmune()
+                    .build("nuclear_submarine"));
+
+    public static final RegistryObject<EntityType<Torpedo>> TORPEDO = ENTITIES.register("torpedo",
+            () -> EntityType.Builder.<Torpedo>of(Torpedo::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F)
+                    .clientTrackingRange(12)
+                    .updateInterval(1)
+                    .fireImmune()
+                    .build("torpedo"));
 
     public static final RegistryObject<EntityType<TankShell>> TANK_SHELL = ENTITIES.register("tank_shell",
             () -> EntityType.Builder.<TankShell>of(TankShell::new, MobCategory.MISC)

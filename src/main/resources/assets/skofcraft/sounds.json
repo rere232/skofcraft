@@ -457,5 +457,32 @@
     "sounds": [
       "skofcraft:tank_engine"
     ]
+  },
+  "sonar_ping": {
+    "subtitle": "subtitles.skofcraft.sonar_ping",
+    "sounds": [
+      {
+        "name": "skofcraft:sonar_ping",
+        "attenuation_distance": 128
+      }
+    ]
+  },
+  "dive_klaxon": {
+    "subtitle": "subtitles.skofcraft.dive_klaxon",
+    "sounds": [
+      {
+        "name": "skofcraft:dive_klaxon",
+        "attenuation_distance": 64
+      }
+    ]
+  },
+  "sub_hum": {
+    "subtitle": "subtitles.skofcraft.sub_hum",
+    "sounds": [
+      {
+        "name": "skofcraft:sub_hum",
+        "attenuation_distance": 32
+      }
+    ]
   }
 }

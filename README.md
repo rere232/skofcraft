@@ -34,10 +34,12 @@ Everything is explained in game in the **Quest Book**, sold by the Tobacconist o
     - [More ways to get your fix](#more-ways-to-get-your-fix)
     - [Flavors](#flavors)
   - [Consuming](#consuming)
+  - [Cuddling](#cuddling)
   - [SKOFee](#skofee)
   - [The Tobacconist](#the-tobacconist)
   - [The Phone](#the-phone)
   - [Aviation](#aviation)
+  - [The Nuclear Submarine](#the-nuclear-submarine)
   - [The Swiss Postbus](#the-swiss-postbus)
   - [The Nuclear Aircraft Carrier](#the-nuclear-aircraft-carrier)
   - [Space Program](#space-program)
@@ -140,6 +142,14 @@ Every penalty can be turned off in the config.
 
 ---
 
+## Cuddling
+
+Look at another player and press **B**. They get 15 seconds to press it back, and nothing happens if they don't. While
+you cuddle, you both regenerate slowly and your phone addiction eases. Press **B** again or sneak to let go. Taking damage
+also ends it.
+
+---
+
 ## SKOFee
 
 A second crop: plant SKOFee seeds, dry the beans, roast them, grind them and brew them in the **SKOFee Machine** with a cup
@@ -189,6 +199,19 @@ Crash at speed and you get an explosion and some salvage.
 On the ground there is also the **Panzer VIII Maus**: 188 tons, a turret that follows your view, an 8-second main gun, and the ability to drive through a fence without slowing down. Built on the same workbench and run on the same fuel.
 
 Two more share its controls. The **Tiger II** has heavy armor, a long 88 mm gun, a slow turret and a small fuel tank. The **Leopard 1** does 65 km/h and reloads in 5 seconds, but its armor won't stop a machine gun.
+
+---
+
+## The Nuclear Submarine
+
+An Ohio-class ballistic missile submarine, 48 blocks long, built on the Aircraft Workbench around a whole Naval Nuclear
+Reactor. It takes no fuel, and everyone aboard breathes for free.
+
+- **W / S** set the throttle, **A / D** the rudder, and **Space / C** surface and dive. The dive alarm is included.
+- **Sonar:** always hears ships and torpedoes close by. **Attack** sends an active ping that charts everything in the water further out, and everyone nearby hears it.
+- **Torpedoes:** **Use** fires a homing torpedo that blows a flooded hole in what it hits.
+- **Missiles:** right-click the boat with a Giga ICBM to load one of its 16 tubes, mark a target, stop, come up shallower than 70 m and press **N**. No pad, no canisters.
+- Radar can't see it once the sail is under. If the hull gives out, the reactor melts down.
 
 ---
 
@@ -257,11 +280,13 @@ low. 28 armor and toughness 5 per piece.
 | --- | --- |
 | **G** | Open the gum |
 | **V** | Spit (while chewing tobacco) |
+| **B** | Ask for a cuddle, accept one or let go |
 | **Shift + right-click** | Crank a manual machine |
 | **W / S** | Throttle (F-14) or forward / back (Apache) |
 | **A / D** | Rudder (F-14) or strafe (Apache) |
 | **Space / C** | Climb / descend (Apache) |
 | **H** | Sound the horn (Postbus) |
+| **N** | Launch a missile (Submarine) |
 | **Attack / Use** | Guns / missiles and rockets |
 
 All keys can be rebound in the controls menu.
@@ -279,6 +304,7 @@ All keys can be rebound in the controls menu.
 | `enableNegativeEffects` | `true` | Nausea, slowness and other side effects |
 | `enableVillager` | `true` | The Tobacconist |
 | `enableMandatoryHr` | `true` | Consequences |
+| `enableCuddling` | `true` | Player cuddles |
 | `tobaccoGrowthSpeed` | `1.0` | Tobacco growth multiplier (0.1 – 10) |
 | `skofeeGrowthSpeed` | `1.0` | SKOFee growth multiplier (0.1 – 10) |
 | `machineEnergyMultiplier` | `1.0` | FE/t multiplier for all machines |

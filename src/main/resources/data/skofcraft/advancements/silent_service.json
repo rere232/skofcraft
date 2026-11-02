@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:nuclear_submarine"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.silent_service.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.silent_service.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "boarded": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

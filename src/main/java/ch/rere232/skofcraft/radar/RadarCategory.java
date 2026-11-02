@@ -2,6 +2,7 @@ package ch.rere232.skofcraft.radar;
 
 import ch.rere232.skofcraft.entity.AircraftCarrier;
 import ch.rere232.skofcraft.entity.DeliveryPlane;
+import ch.rere232.skofcraft.entity.NuclearSubmarine;
 import ch.rere232.skofcraft.entity.PilotedAircraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,6 +36,10 @@ public enum RadarCategory {
     public static RadarCategory of(Entity entity) {
         if (!entity.isAlive()) {
             return null;
+        }
+        if (entity instanceof NuclearSubmarine submarine) {
+            // Radar doesn't go through water, which is rather the point
+            return submarine.isSubmerged() ? null : SHIP;
         }
         if (entity instanceof PilotedAircraft || entity instanceof DeliveryPlane || entity instanceof EnderDragon) {
             return AIRCRAFT;
