@@ -48,6 +48,8 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.FLAVOR_COLA.get());
                 output.accept(SkofcraftItems.FLAVOR_COFFEE.get());
                 output.accept(SkofcraftItems.FLAVOR_NATURE.get());
+                output.accept(SkofcraftItems.FLAVOR_REGENTS_BLEND.get());
+                output.accept(SkofcraftItems.FLAVOR_ROYAL_RESERVE.get());
 
                 output.accept(SkofcraftItems.EMPTY_POUCH.get());
                 output.accept(SkofcraftItems.SNUS_POUCH.get());
@@ -78,11 +80,15 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.ESTROGEN_PILL.get());
                 output.accept(SkofcraftItems.FEMBOY_SPAWN_EGG.get());
                 output.accept(SkofcraftItems.ANIME_CREW_SPAWN_EGG.get());
+                output.accept(SkofcraftItems.KINGDOM_NOBLE_SPAWN_EGG.get());
                 output.accept(SkofcraftItems.BIG_RED_BUTTON.get());
                 output.accept(SkofcraftItems.EVIL_PRESSURE_PLATE.get());
                 output.accept(SkofcraftItems.EVIL_TRIPWIRE.get());
                 output.accept(SkofcraftItems.EVIL_LEVER.get());
                 output.accept(SkofcraftItems.EXCALIBUR.get());
+                SkofcraftGagBlocks.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
+                SkofcraftKingdom.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
+                SkofcraftPastel.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
                 output.accept(SkofcraftItems.AIRCRAFT_WORKBENCH.get());
                 output.accept(SkofcraftItems.GEAR.get());
                 output.accept(SkofcraftItems.AIRCRAFT_PLATE.get());
@@ -103,6 +109,7 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.POSTBUS.get());
                 output.accept(SkofcraftItems.ITEM_SCANNER.get());
                 output.accept(SkofcraftItems.HR_CERTIFICATE.get());
+                output.accept(SkofcraftItems.KNOW_WHAT_IM_DOING_CERTIFICATE.get());
                 output.accept(SkofcraftItems.NUCLEAR_REACTOR.get());
                 output.accept(SkofcraftItems.CARRIER_HELM.get());
                 output.accept(SkofcraftItems.RADAR.get());

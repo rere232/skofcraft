@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.block;
 
+import ch.rere232.skofcraft.kingdom.PastelParadise;
 import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.phone.PhoneAddiction;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
@@ -80,5 +81,6 @@ public class BlahajBlock extends HorizontalDirectionalBlock {
         level.playSound(null, x, y, z, SkofcraftSounds.PLUSH_SOFT.get(), SoundSource.PLAYERS, 0.8F, 1.0F);
         serverPlayer.displayClientMessage(
                 Component.translatable("message.skofcraft.blahaj_hug." + player.getRandom().nextInt(HUG_MESSAGES)), true);
+        PastelParadise.onHug(serverPlayer);
     }
 }

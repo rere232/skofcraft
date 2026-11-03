@@ -1,18 +1,23 @@
 package ch.rere232.skofcraft.screen;
 
+import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.item.GumConsumableItem;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
+import ch.rere232.skofcraft.registry.SkofcraftPastel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /** Chapters shown in the quest book. Text lives in the lang files under questbook.skofcraft.*. */
 @OnlyIn(Dist.CLIENT)
@@ -103,7 +108,7 @@ final class QuestBookContent {
         chapters.add(new Chapter(t("flavors.title"), stack(SkofcraftItems.FLAVOR_BERRY.get()), List.of(
                 text("flavors.p1"),
                 text("flavors.mint"), text("flavors.ice_mint"), text("flavors.berry"), text("flavors.citrus"),
-                text("flavors.cola"), text("flavors.licorice"), text("flavors.coffee"), text("flavors.nature"),
+                text("flavors.cola"), text("flavors.licorice"), text("flavors.coffee"), text("flavors.nature"), text("flavors.regents_blend"), text("flavors.royal_reserve"),
                 craft(new ItemStack(SkofcraftItems.FLAVOR_COFFEE.get(), 2), new String[] {"   ", " GS", "   "},
                         'G', SkofcraftItems.SKOFEE_GROUND.get(), 'S', Items.SUGAR),
                 text("flavors.p2")
@@ -458,6 +463,20 @@ final class QuestBookContent {
                 text("cuddling.p1"), text("cuddling.p2"), text("cuddling.p3")
         )));
 
+        chapters.add(gagChapter());
+
+        chapters.add(new Chapter(t("pastel.title"), stack(SkofcraftPastel.BUNNY_EARS.get()), List.of(
+                text("pastel.p1"), text("pastel.p2"), text("pastel.p3"), text("pastel.p4"), text("pastel.p5"), text("pastel.p6"),
+                text("pastel.recover"), text("pastel.hearts"), text("pastel.therapy"), text("pastel.getting_around"),
+                craft(new ItemStack(SkofcraftPastel.COTTON_CANDY.get(), 2), new String[] {"SDS"}, 'S', Items.SUGAR, 'D', Items.PINK_DYE),
+                craft(new ItemStack(SkofcraftPastel.COTTON_PUFF.get(), 2), new String[] {"C C", " F "}, 'C', SkofcraftPastel.COTTON_CANDY.get(), 'F', Items.FEATHER),
+                text("pastel.gloom"), text("pastel.algorithm")
+        )));
+
+        chapters.add(new Chapter(t("kingdom.title"), stack(SkofcraftItems.FLAVOR_ROYAL_RESERVE.get()), List.of(
+                text("kingdom.p1"), text("kingdom.p2"), text("kingdom.p3"), text("kingdom.p4"), text("kingdom.p5"), text("kingdom.p6")
+        )));
+
         chapters.add(new Chapter(t("wardrobe.title"), stack(SkofcraftItems.CHOKER.get()), List.of(
                 text("wardrobe.p1"),
                 text("wardrobe.femboys"),
@@ -510,6 +529,62 @@ final class QuestBookContent {
         )));
 
         return chapters;
+    }
+
+    /** The joke blocks. Their items live in SkofcraftGagBlocks, which has no field per block. */
+    private static Chapter gagChapter() {
+        List<Entry> entries = new ArrayList<>();
+        entries.add(text("gags.intro"));
+        gag(entries, "swiss_bureaucracy_block", new String[] {"PPP", "PBP", "PPP"}, 'P', Items.PAPER, 'B', Items.WRITABLE_BOOK);
+        gag(entries, "swiss_neutrality_block", new String[] {"RWR", "WWW", "RWR"}, 'R', Items.RED_WOOL, 'W', Items.WHITE_WOOL);
+        gag(entries, "health_insurance_block", new String[] {"PDP", "PGP", "PPP"}, 'P', Items.PAPER, 'D', Items.DIAMOND, 'G', Items.GLISTERING_MELON_SLICE);
+        gag(entries, "postbus_stop", new String[] {"YYY", " S ", " S "}, 'Y', Items.YELLOW_WOOL, 'S', Items.STICK);
+        gag(entries, "load_bearing_snus", new String[] {"TIT", "TIT", "TIT"}, 'T', SkofcraftItems.TOBACCO_DUST.get(), 'I', Items.IRON_INGOT);
+        gag(entries, "strategic_snus_reserve", new String[] {"DDD", "DBD", "DDD"}, 'D', SkofcraftItems.TOBACCO_DUST.get(), 'B', SkofcraftItems.FILLED_SNUS_BOX.get());
+        gag(entries, "hr_complaint_box", new String[] {"PIP", "PCP"}, 'P', Items.PAPER, 'I', Items.INK_SAC, 'C', Items.CHEST);
+        gag(entries, "office_microwave", new String[] {"III", "GFR", "III"}, 'I', Items.IRON_INGOT, 'G', Items.GLASS_PANE, 'F', Items.FURNACE, 'R', Items.REDSTONE);
+        gag(entries, "swivel_chair", new String[] {"B  ", "BBB", "ISI"}, 'B', Items.BLACK_WOOL, 'I', Items.IRON_INGOT, 'S', Items.STICK);
+        gag(entries, "thought_leader_block", new String[] {"BBB", "BGB", "BBB"}, 'B', Items.BOOK, 'G', Items.GOLD_INGOT);
+        gag(entries, "unpaid_intern_box", new String[] {"PCP", "PBP", "PPP"}, 'P', Items.OAK_PLANKS, 'C', SkofcraftItems.SKOFEE_CUP.get(), 'B', Items.PAPER);
+        gag(entries, "compressed_monday", new String[] {"GGG", "GCG", "GGG"}, 'G', Items.GRAY_CONCRETE, 'C', Items.CLOCK);
+        gag(entries, "passive_aggressive_note", new String[] {"IP"}, 'I', Items.INK_SAC, 'P', Items.PAPER);
+        gag(entries, "server_lag_block", new String[] {"GRG", "RCR", "GRG"}, 'G', Items.GLASS_PANE, 'R', Items.REDSTONE, 'C', Items.CLOCK);
+        gag(entries, "missing_texture_block", new String[] {"MBM", "BMB", "MBM"}, 'M', Items.MAGENTA_DYE, 'B', Items.BLACK_DYE);
+        gag(entries, "definitely_stone", new String[] {"G", "S"}, 'G', Items.GUNPOWDER, 'S', Items.STONE);
+        gag(entries, "fake_diamond_ore", new String[] {"LSL"}, 'L', Items.LIGHT_BLUE_DYE, 'S', Items.STONE);
+        gag(entries, "indoor_grass", new String[] {"GGG", " D "}, 'G', Items.GREEN_DYE, 'D', Items.DIRT);
+        gag(entries, "certified_fireproof_block", new String[] {"BBB", "BPB", "BBB"}, 'B', Items.BRICKS, 'P', Items.PAPER);
+        gag(entries, "knockoff_excalibur", new String[] {"W", "C"}, 'W', Items.WOODEN_SWORD, 'C', Items.COBBLESTONE);
+        gag(entries, "amazooon_package", new String[] {"PSP", "PCP", "PPP"}, 'P', Items.PAPER, 'C', Items.CHEST, 'S', Items.STRING);
+        gag(entries, "ejection_seat", new String[] {" L ", "ITI", " F "}, 'L', Items.LEATHER, 'I', Items.IRON_INGOT, 'T', Items.TNT, 'F', Items.FIREWORK_ROCKET);
+        gag(entries, "banana_peel", new String[] {"Y Y", "YSY"}, 'Y', Items.YELLOW_DYE, 'S', Items.SLIME_BALL);
+        gag(entries, "wet_floor", new String[] {"Y", "W", "I"}, 'Y', Items.YELLOW_CONCRETE, 'W', Items.WATER_BUCKET, 'I', Items.ICE);
+        gag(entries, "whoopee_cushion", new String[] {"PSP"}, 'P', Items.PINK_WOOL, 'S', Items.SLIME_BALL);
+        gag(entries, "bouncy_castle", new String[] {"RYR", "YSY", "RYR"}, 'R', Items.RED_WOOL, 'Y', Items.YELLOW_WOOL, 'S', Items.SLIME_BLOCK);
+        gag(entries, "emergency_exit", new String[] {"GGG", "GDG", "GGG"}, 'G', Items.GREEN_CONCRETE, 'D', Items.OAK_DOOR);
+        gag(entries, "slightly_radioactive_barrel", new String[] {"GGG", "GBG", "GGG"}, 'G', Items.GLOWSTONE_DUST, 'B', Items.BARREL);
+        gag(entries, "loot_box", new String[] {"GGG", "GCG", "GDG"}, 'G', Items.GOLD_INGOT, 'C', Items.CHEST, 'D', Items.DIAMOND);
+        gag(entries, "router", new String[] {"S S", "IRI"}, 'S', Items.STICK, 'I', Items.IRON_INGOT, 'R', Items.REDSTONE);
+        gag(entries, "smoke_detector", new String[] {" N ", "QRQ"}, 'N', Items.NOTE_BLOCK, 'Q', Items.QUARTZ, 'R', Items.REDSTONE);
+        gag(entries, "launch_code_note", new String[] {"YP"}, 'Y', Items.YELLOW_DYE, 'P', Items.PAPER);
+        gag(entries, "emotional_support_anvil", new String[] {"W", "A"}, 'W', Items.PINK_WOOL, 'A', Items.ANVIL);
+        gag(entries, "debugging_duck", new String[] {"YY", "YO"}, 'Y', Items.YELLOW_WOOL, 'O', Items.ORANGE_DYE);
+        gag(entries, "cat_loaf", new String[] {"OFO", "OOO"}, 'O', Items.ORANGE_WOOL, 'F', Items.COD);
+        gag(entries, "judgmental_block", new String[] {"SES", "SSS", "SSS"}, 'S', Items.STONE_BRICKS, 'E', Items.SPIDER_EYE);
+        gag(entries, "reverse_sand", new String[] {"F", "S"}, 'F', Items.FEATHER, 'S', Items.SAND);
+        entries.add(text("gags.know_what_im_doing_certificate"));
+        entries.add(craft(stack(SkofcraftItems.KNOW_WHAT_IM_DOING_CERTIFICATE.get()), new String[] {"I", "C", "G"},
+                'I', Items.INK_SAC, 'C', SkofcraftItems.HR_CERTIFICATE.get(), 'G', Items.GOLD_INGOT));
+        return new Chapter(t("gags.title"), stack(gagItem("whoopee_cushion")), entries);
+    }
+
+    private static void gag(List<Entry> entries, String name, String[] pattern, Object... keyPairs) {
+        entries.add(text("gags." + name));
+        entries.add(craft(stack(gagItem(name)), pattern, keyPairs));
+    }
+
+    private static Item gagItem(String name) {
+        return ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(SkofcraftMod.MODID, name));
     }
 
     private static Entry feCraft(ItemLike result, ItemLike center) {

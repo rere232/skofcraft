@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "OFO",
+    "OOO"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:orange_wool"
+    },
+    "F": {
+      "item": "minecraft:cod"
+    }
+  },
+  "result": {
+    "item": "skofcraft:cat_loaf"
+  }
+}

@@ -44,6 +44,9 @@ Everything is explained in game in the **Quest Book**, sold by the Tobacconist o
   - [The Nuclear Aircraft Carrier](#the-nuclear-aircraft-carrier)
   - [Space Program](#space-program)
   - [Tactical Armor](#tactical-armor)
+  - [The Snus Kingdom](#the-snus-kingdom)
+  - [Pastel Paradise](#pastel-paradise)
+  - [Regrettable Blocks](#regrettable-blocks)
   - [Controls](#controls)
   - [Configuration](#configuration)
   - [Building from source](#building-from-source)
@@ -277,6 +280,92 @@ low. 28 armor and toughness 5 per piece.
 
 ---
 
+## The Snus Kingdom
+
+The homeland. Put **four Extra Strong pouches** in your gum at once (Premium counts) and you pass out and wake up on the floor of its castle.
+
+- **Staying:** you stay as long as there is anything in your gum. When the last pouch runs out, withdrawal throws you back where you collapsed. Addictol wakes you up at once.
+- **The throne:** empty for 900 years, because the king has to pull Excalibur and nobody has managed it. The **Interim Regent** is temporarily in charge, and sells **Royal Reserve** flavor (Strength, Resistance), **Regent's Blend** and a very reasonable sword.
+- **Kingdom Nobles:** wander the fields selling Regent's Blend (Fire Resistance, Water Breathing) and Addictol. Killing one is a matter for HR.
+- **The land:** Tobacco Fields with lit Cigar Trees, Grounds Dunes with wild SKOFee, and Tin Mountains of packed snus under giant tins, capped with pouch fabric. The sea and rivers are liquid SKOFee, which gives Speed and Haste and fits in a bucket.
+- **Also:** it is always late afternoon, nothing hostile lives there, and beds explode.
+
+Operators can use `/snuskingdom` to go there and back without the overdose.
+
+---
+
+## Pastel Paradise
+
+Soft floating islands in a pink sky. Wear all six pieces of the fit, plus ears and a tail (cat, bunny or fox), and hug a Blahaj to get there. Sneak and hug one to come home. If you fall off an island, Blahaj catches you.
+
+- **The land:** pink grass, cherry trees, cotton candy clouds, Femboys, rabbits and cats. Nothing hostile spawns and it is always midday.
+- **Structures:** cottages, Headpat Cafes, plush towers and striped boutiques, with snacks, SKOFee and clothes in the chests.
+- **New clothes:** Pastel Skirt, Striped Thigh Highs, Pastel Crop Top, Heart Choker, Bunny Ears and Fox Tail, found only in those chests.
+- **The Rightful Fit:** the rarest drop, in about 1 boutique chest in 50. A Royal Tiara, a Royal Gown and Glass Slippers.
+
+Wear all of The Rightful Fit in the Snus Kingdom and **Excalibur comes out of the stone**. The sword beats netherite and the Interim Regent loses their job. Right-click the empty stone with the sword to put it back.
+
+**It's where you recover from the rest of the mod:**
+
+- **Recovery:** your phone addiction, nicotine tolerance and nicotine addiction fade while you are here, twice as fast in a hot spring. Stay 5 minutes and you go home **Well Rested** (+2 hearts, quicker swing, 20 minutes).
+- **Heart Tokens:** headpats earn them, at most one every 30 seconds. Boutique Keepers sell clothes, Cotton Puffs, Blahaj, couches, altars and, for two stacks of tokens, The Rightful Fit.
+- **Therapy Couch:** 8 tokens take one incident off your HR record.
+- **Getting around:** Cotton Puffs push you between islands. Cotton Candy Clouds and Marshmallow take no fall damage and bounce you.
+- **Gloom:** only come for players with a phone addiction of 25 or more, and their hits make it worse.
+- **The Algorithm:** offer your phone at a Heart Altar in a Plush Tower to summon this boss. It drops the **Do Not Disturb Charm**, which stops your phone feeding the habit.
+
+Operators can use `/pastelparadise` to go there and back.
+
+---
+
+## Regrettable Blocks
+
+37 blocks that exist because nobody stopped us. All of them are craftable, and the recipes are in the Quest Book.
+
+| Block | What it does |
+| --- | --- |
+| **Swiss Bureaucracy Block** | Right-click to file a request. Mining one drops two, which is how bureaucracy works. |
+| **Block of Swiss Neutrality** | Right-click: monsters within 16 blocks forget who they were chasing, and everyone nearby, monsters and players alike, gets Weakness for 10 seconds. |
+| **Health Insurance Block** | Right-click to pay a diamond for 3 seconds of Regeneration. Without a diamond, you are not covered. |
+| **Postbus Stop** | Right-click to check the timetable. Exactly 10 seconds later the horn sounds and the bus has already left. |
+| **Load-Bearing Snus Tin** | Break it and the ceiling above comes down: 3 columns wide, up to 16 blocks high. Containers, fluids and bedrock stop the collapse. |
+| **Strategic Snus Reserve** | Right-click to release the reserve: Speed II and Haste II for 15 seconds, then some nausea. Takes 30 seconds to refill. |
+| **HR Complaint Box** | Right-click to file a complaint. One in ten comes back as an incident on your own record, and enough incidents get you training. |
+| **Office Microwave** | Right-click with raw food to cook one instantly, with a small chance of charcoal. Ingots and nuggets explode. Five second cooldown. |
+| **Swivel Chair** | Right-click to spin 180 degrees. That is all it does. You will do it again. |
+| **Thought Leader Block** | Right-click for 10 seconds of Haste and a lesson about B2B sales you did not ask for. |
+| **Unpaid Intern In A Box** | Right-click to send the intern on an errand, once a minute. Usually brings back junk. One errand in twenty brings a SKOFee. |
+| **Compressed Monday** | Walking on it gives Slowness and Mining Fatigue. On an actual Monday, it gives level III of both. On an actual Friday, it does nothing. |
+| **Passive-Aggressive Note** | Stick it somewhere for your colleagues to find. Right-click to read it. |
+| **Block of Server Lag** | Walking on it sometimes rubberbands you 3 blocks backwards. |
+| **Missing Texture Block** | This is the finished texture. Right-click to report the bug. |
+| **Definitely Stone** | Looks exactly like stone. Hisses when you walk on it. Never explodes. You will still flinch every time. |
+| **Diamond Ore?** | Hide it in a friend's mine. Drops one piece of coal and a laugh. |
+| **Indoor Grass** | Touch it to lower your phone addiction by 2%, every 10 seconds. The real thing still works better. |
+| **Certified Fireproof Block** | Burns like nothing else, spreads fire fast and sets you alight when you walk on it. Right-click to test the certification. Do not build your house from it. |
+| **Excalibur (From Amazooon)** | Anyone can pull it from the stone. It comes out as a wooden sword with one hit left in it. |
+| **Amazooon Package** | Place it and open it. Inside: paper and usually a smaller package. Very rarely a diamond. |
+| **Ejection Seat** | Right-click to leave very quickly, straight up, roughly 30 blocks. One ejection in ten has no parachute, and that fall will probably kill you. |
+| **Banana Peel** | Walk over it and you slide off in the direction you were looking. |
+| **Wet Floor** | More slippery than ice. You were warned, and that is what the sign is legally for. |
+| **Whoopee Cushion** | Stand on it. You know what it does. |
+| **Bouncy Castle Block** | No fall damage, and every bounce goes higher than the last, up to about 20 blocks. Sneak to stop. |
+| **Emergency Exit** | Right-click to go straight up to the highest solid block above it. Works everywhere, including in the Nether, which is how you end up on the roof. |
+| **Slightly Radioactive Barrel** | Glows. Now and then it gives everyone within 4 blocks Hunger and Glowing. Right-click to lick it for Haste II and Poison. |
+| **Loot Box** | Right-click to pay a diamond. 90% dirt or a stick, 9% two diamonds, 1% netherite scrap. The odds are published here, unlike elsewhere. |
+| **Router With One Bar** | Plays your phone's notification sound at random, so you check your phone for nothing. Right-click to reboot it, for all the good that does. |
+| **Smoke Detector (Low Battery)** | Chirps every 20 to 80 seconds, forever. There is no battery to change. Hide one in someone's base. |
+| **Launch Code Note** | The launch code, on a sticky note. Right-click to read it. It does not launch anything, but the code is correct. |
+| **Emotional Support Anvil** | Hug it to lower your phone addiction by 3% and get a little Regeneration. One hug in twenty goes badly. |
+| **Debugging Duck** | Right-click to explain your problem. The duck quacks some advice. |
+| **Cat Loaf** | Pet it for a little Regeneration. One time in five, it knocks an item out of your hand. |
+| **Judgmental Block** | Right-click for an honest review of your health, armor, depth, phone habits and what you are holding. |
+| **Reverse Sand** | Falls upwards until something stops it. |
+
+The **Certificate of "I Know What I'm Doing"** isn't a block, but it belongs here. Craft it from your Certificate of Completion, an ink sac and a gold ingot, then right-click to sign it. HR then waits for 30 incidents instead of 3, for good.
+
+---
+
 ## Controls
 
 | Key | Action |
@@ -309,6 +398,8 @@ All keys can be rebound in the controls menu.
 | `enableVillager` | `true` | The Tobacconist |
 | `enableMandatoryHr` | `true` | Consequences |
 | `enableCuddling` | `true` | Player cuddles |
+| `enableSnusKingdom` | `true` | Passing out into the Snus Kingdom on four Extra Strong pouches |
+| `enablePastelParadise` | `true` | Hugging your way into Pastel Paradise |
 | `tobaccoGrowthSpeed` | `1.0` | Tobacco growth multiplier (0.1 – 10) |
 | `skofeeGrowthSpeed` | `1.0` | SKOFee growth multiplier (0.1 – 10) |
 | `machineEnergyMultiplier` | `1.0` | FE/t multiplier for all machines |
@@ -341,6 +432,8 @@ SKOFCRAFT est un mod Forge 1.20.1 (Curios requis). Il propose :
 - Une chaîne complète de production de **snus** et de **nicotine pouches**, des machines manuelles jusqu'aux lignes
   industrielles en FE, plus cigares, cigarettes, tabac à chiquer, vapes et chicha.
 - Le **SKOFee**, un **Buraliste** villageois et un **téléphone** avec casino, livraison par avion et carte satellite.
+- **Pastel Paradise** : des iles flottantes roses, de nouveaux vetements, et la tenue qui permet de retirer Excalibur.
+- Le **Royaume du Snus** : quatre pouches Extra Fortes en meme temps, et vous vous reveillez sur place.
 - L'**Apache**, le **F-14**, un **porte-avions nucléaire**, un **programme spatial**, l'**ICBM géant** et une **armure
   tactique** au-delà de la netherite.
 

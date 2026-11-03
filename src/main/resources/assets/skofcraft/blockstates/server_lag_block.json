@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "skofcraft:block/server_lag_block"
+    }
+  }
+}

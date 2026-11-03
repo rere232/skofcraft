@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "GGG",
+    "GDG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:green_concrete"
+    },
+    "D": {
+      "item": "minecraft:oak_door"
+    }
+  },
+  "result": {
+    "item": "skofcraft:emergency_exit"
+  }
+}

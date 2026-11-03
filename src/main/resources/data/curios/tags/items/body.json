@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "skofcraft:crop_top"
+    "skofcraft:crop_top",
+    "skofcraft:pastel_crop_top",
+    "skofcraft:royal_gown"
   ]
 }

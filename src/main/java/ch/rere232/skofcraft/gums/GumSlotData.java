@@ -244,6 +244,13 @@ public class GumSlotData {
         }
     }
 
+    /** A slow recovery: a little less tolerance and addiction, without touching what's in the gum. */
+    public static void ease(Player player, int amount) {
+        CompoundTag rootTag = getRootTag(player);
+        rootTag.putInt(TOLERANCE_KEY, Math.max(0, rootTag.getInt(TOLERANCE_KEY) - amount));
+        rootTag.putInt(ADDICTION_KEY, Math.max(0, rootTag.getInt(ADDICTION_KEY) - amount));
+    }
+
     /** Wipes tolerance, addiction and cravings back to zero. */
     public static void resetDependence(Player player) {
         CompoundTag rootTag = getRootTag(player);

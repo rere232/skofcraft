@@ -5,6 +5,7 @@ import ch.rere232.skofcraft.config.SkofcraftConfig;
 import ch.rere232.skofcraft.network.PhoneAddictionS2CPacket;
 import ch.rere232.skofcraft.network.SkofcraftNetwork;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
+import ch.rere232.skofcraft.registry.SkofcraftPastel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -66,6 +67,13 @@ public final class PhoneAddiction {
         sync(player);
     }
 
+    /** Feeds the habit from outside the phone, e.g. a hit from a Gloom. */
+    public static void add(ServerPlayer player, int amount) {
+        if (SkofcraftConfig.enableAddiction) {
+            setLevel(player, level(player) + amount);
+        }
+    }
+
     /** Eases the habit, e.g. with a hug from a plushie. */
     public static void reduce(ServerPlayer player, int amount) {
         setLevel(player, level(player) - amount);
@@ -102,7 +110,7 @@ public final class PhoneAddiction {
             return;
         }
         tag.putLong(LAST_USE, now);
-        if (SkofcraftConfig.enableAddiction && APP_GAIN[app] > 0) {
+        if (SkofcraftConfig.enableAddiction && APP_GAIN[app] > 0 && !SkofcraftPastel.isWearingCharm(player)) {
             setLevel(player, level(player) + APP_GAIN[app]);
         }
     }

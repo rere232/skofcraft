@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PCP",
+    "PBP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:oak_planks"
+    },
+    "C": {
+      "item": "skofcraft:skofee_cup"
+    },
+    "B": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "item": "skofcraft:unpaid_intern_box"
+  }
+}

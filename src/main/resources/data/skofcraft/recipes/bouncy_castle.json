@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "RYR",
+    "YSY",
+    "RYR"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:red_wool"
+    },
+    "Y": {
+      "item": "minecraft:yellow_wool"
+    },
+    "S": {
+      "item": "minecraft:slime_block"
+    }
+  },
+  "result": {
+    "item": "skofcraft:bouncy_castle"
+  }
+}

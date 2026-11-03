@@ -1,5 +1,6 @@
 package ch.rere232.skofcraft.entity;
 
+import ch.rere232.skofcraft.kingdom.PastelParadise;
 import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.advancement.SkofcraftAdvancements;
@@ -45,8 +46,13 @@ public class Femboy extends PathfinderMob {
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(Femboy.class, EntityDataSerializers.INT);
     private static final String[] NAMES = {"Felix", "Ezra", "Milo", "Theo", "Remy", "Jules", "Kai", "Sasha", "Robin", "Charlie", "Nico", "Eli"};
     private static final int PAT_COOLDOWN_TICKS = 10;
+    public static final int PAT_REACTION_TICKS = 30;
+    public static final int PAT_EASE_TICKS = 5;
+    private static final byte EVENT_PATTED = 100;
 
     private int patCooldown;
+    /** Client side only: counts down the delighted reaction to the last headpat. */
+    private int patTicks;
 
     public Femboy(EntityType<? extends Femboy> type, Level level) {
         super(type, level);
@@ -105,6 +111,23 @@ public class Femboy extends PathfinderMob {
         if (patCooldown > 0) {
             patCooldown--;
         }
+        if (patTicks > 0) {
+            patTicks--;
+        }
+    }
+
+    public int getPatTicks() {
+        return patTicks;
+    }
+
+    @Override
+    public void handleEntityEvent(byte event) {
+        if (event == EVENT_PATTED) {
+            // Another pat mid-reaction holds the pose instead of starting it over
+            patTicks = patTicks > 0 ? Math.max(patTicks, PAT_REACTION_TICKS - PAT_EASE_TICKS) : PAT_REACTION_TICKS;
+        } else {
+            super.handleEntityEvent(event);
+        }
     }
 
     @Override
@@ -131,12 +154,14 @@ public class Femboy extends PathfinderMob {
         patCooldown = PAT_COOLDOWN_TICKS;
         getNavigation().stop();
         getLookControl().setLookAt(player);
+        level().broadcastEntityEvent(this, EVENT_PATTED);
         playSound(SkofcraftSounds.HEADPAT.get(), 1.0F, 0.95F + random.nextFloat() * 0.15F);
         if (level() instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.HEART, getX(), getEyeY() + 0.6D, getZ(), 3, 0.3D, 0.1D, 0.3D, 0.0D);
         }
         player.displayClientMessage(Component.translatable("message.skofcraft.headpat", getDisplayName()), true);
         SkofcraftAdvancements.award(player, SkofcraftAdvancements.HEADPATS);
+        PastelParadise.onPat(player);
     }
 
     @Override
@@ -159,6 +184,14 @@ public class Femboy extends PathfinderMob {
         @SubscribeEvent
         public static void onAttributes(EntityAttributeCreationEvent event) {
             event.put(SkofcraftEntities.FEMBOY.get(), createAttributes().build());
+        }
+
+        /** Only Pastel Paradise lists them as a natural spawn; in villages {@link Spawner} does it by hand. */
+        @SubscribeEvent
+        public static void onSpawnPlacements(net.minecraftforge.event.entity.SpawnPlacementRegisterEvent event) {
+            event.register(SkofcraftEntities.FEMBOY.get(), net.minecraft.world.entity.SpawnPlacements.Type.ON_GROUND,
+                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, net.minecraft.world.entity.Mob::checkMobSpawnRules,
+                    net.minecraftforge.event.entity.SpawnPlacementRegisterEvent.Operation.REPLACE);
         }
     }
 

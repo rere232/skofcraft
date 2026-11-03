@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "W",
+    "A"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:pink_wool"
+    },
+    "A": {
+      "item": "minecraft:anvil"
+    }
+  },
+  "result": {
+    "item": "skofcraft:emotional_support_anvil"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "type": "skofcraft:pastel_paradise",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "skofcraft:pastel_paradise",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "skofcraft:pastel_meadow",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 0.0,
+            "erosion": 0.0,
+            "humidity": [
+              -1.0,
+              1.0
+            ],
+            "offset": 0.0,
+            "temperature": [
+              -1.0,
+              -0.15
+            ],
+            "weirdness": 0.0
+          }
+        },
+        {
+          "biome": "skofcraft:blossom_grove",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 0.0,
+            "erosion": 0.0,
+            "humidity": [
+              -1.0,
+              1.0
+            ],
+            "offset": 0.0,
+            "temperature": [
+              -0.15,
+              0.2
+            ],
+            "weirdness": 0.0
+          }
+        },
+        {
+          "biome": "skofcraft:lavender_heights",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 0.0,
+            "erosion": 0.0,
+            "humidity": [
+              -1.0,
+              1.0
+            ],
+            "offset": 0.0,
+            "temperature": [
+              0.2,
+              1.0
+            ],
+            "weirdness": 0.0
+          }
+        }
+      ]
+    }
+  }
+}

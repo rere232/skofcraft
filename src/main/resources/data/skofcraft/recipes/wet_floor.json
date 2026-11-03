@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "Y",
+    "W",
+    "I"
+  ],
+  "key": {
+    "Y": {
+      "item": "minecraft:yellow_concrete"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    },
+    "I": {
+      "item": "minecraft:ice"
+    }
+  },
+  "result": {
+    "item": "skofcraft:wet_floor"
+  }
+}

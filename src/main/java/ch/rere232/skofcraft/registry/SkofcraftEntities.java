@@ -1,6 +1,11 @@
 package ch.rere232.skofcraft.registry;
 
 import ch.rere232.skofcraft.SkofcraftMod;
+import ch.rere232.skofcraft.entity.BoutiqueKeeper;
+import ch.rere232.skofcraft.entity.Gloom;
+import ch.rere232.skofcraft.entity.InterimRegent;
+import ch.rere232.skofcraft.entity.TheAlgorithm;
+import ch.rere232.skofcraft.entity.KingdomNoble;
 import ch.rere232.skofcraft.entity.AircraftCarrier;
 import ch.rere232.skofcraft.entity.AnimeCrew;
 import ch.rere232.skofcraft.entity.ApacheBullet;
@@ -145,6 +150,37 @@ public class SkofcraftEntities {
                     .fireImmune()
                     .clientTrackingRange(10)
                     .build("hr_representative"));
+
+    public static final RegistryObject<EntityType<KingdomNoble>> KINGDOM_NOBLE = ENTITIES.register("kingdom_noble",
+            () -> EntityType.Builder.<KingdomNoble>of(KingdomNoble::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.8F)
+                    .clientTrackingRange(10)
+                    .build("kingdom_noble"));
+
+    public static final RegistryObject<EntityType<InterimRegent>> INTERIM_REGENT = ENTITIES.register("interim_regent",
+            () -> EntityType.Builder.<InterimRegent>of(InterimRegent::new, MobCategory.MISC)
+                    .sized(0.6F, 1.8F)
+                    .clientTrackingRange(10)
+                    .build("interim_regent"));
+
+    public static final RegistryObject<EntityType<BoutiqueKeeper>> BOUTIQUE_KEEPER = ENTITIES.register("boutique_keeper",
+            () -> EntityType.Builder.<BoutiqueKeeper>of(BoutiqueKeeper::new, MobCategory.MISC)
+                    .sized(0.6F, 1.8F)
+                    .clientTrackingRange(10)
+                    .build("boutique_keeper"));
+
+    public static final RegistryObject<EntityType<Gloom>> GLOOM = ENTITIES.register("gloom",
+            () -> EntityType.Builder.<Gloom>of(Gloom::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.8F)
+                    .clientTrackingRange(8)
+                    .build("gloom"));
+
+    public static final RegistryObject<EntityType<TheAlgorithm>> THE_ALGORITHM = ENTITIES.register("the_algorithm",
+            () -> EntityType.Builder.<TheAlgorithm>of(TheAlgorithm::new, MobCategory.MONSTER)
+                    .sized(1.2F, 3.6F)
+                    .fireImmune()
+                    .clientTrackingRange(12)
+                    .build("the_algorithm"));
 
     public static final RegistryObject<EntityType<MausTank>> MAUS = ENTITIES.register("maus",
             () -> EntityType.Builder.<MausTank>of(MausTank::new, MobCategory.MISC)

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "GGG",
+    " D "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:green_dye"
+    },
+    "D": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "result": {
+    "item": "skofcraft:indoor_grass"
+  }
+}

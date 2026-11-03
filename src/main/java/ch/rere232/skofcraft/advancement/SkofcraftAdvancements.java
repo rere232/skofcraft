@@ -43,6 +43,17 @@ public final class SkofcraftAdvancements {
     public static final String COPE_CAGE = "cope_cage";
     public static final String CUDDLE = "cuddle";
     public static final String FIVE_MORE_MINUTES = "five_more_minutes";
+    public static final String LOAD_BEARING = "load_bearing";
+    public static final String DEDUCTIBLE = "deductible";
+    public static final String SCAMMED = "scammed";
+    public static final String LONG_LIVE_THE_INTERIM = "long_live_the_interim";
+    public static final String RUDE_AWAKENING = "rude_awakening";
+    public static final String REGICIDE = "regicide";
+    public static final String SOFT_LANDING = "soft_landing";
+    public static final String RIGHTFUL = "rightful";
+    public static final String INNER_PEACE = "inner_peace";
+    public static final String UNSUBSCRIBED = "unsubscribed";
+    public static final String TALKED_IT_OUT = "talked_it_out";
 
     private SkofcraftAdvancements() {}
 

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LSL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:light_blue_dye"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "skofcraft:fake_diamond_ore"
+  }
+}

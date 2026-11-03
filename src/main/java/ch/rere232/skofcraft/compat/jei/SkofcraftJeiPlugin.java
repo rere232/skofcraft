@@ -48,7 +48,8 @@ public class SkofcraftJeiPlugin implements IModPlugin {
             SkofcraftItems.FLAVOR_MINT, "mint", SkofcraftItems.FLAVOR_ICE_MINT, "ice_mint",
             SkofcraftItems.FLAVOR_BERRY, "berry", SkofcraftItems.FLAVOR_CITRUS, "citrus",
             SkofcraftItems.FLAVOR_COLA, "cola", SkofcraftItems.FLAVOR_LICORICE, "licorice",
-            SkofcraftItems.FLAVOR_COFFEE, "coffee", SkofcraftItems.FLAVOR_NATURE, "nature");
+            SkofcraftItems.FLAVOR_COFFEE, "coffee", SkofcraftItems.FLAVOR_NATURE, "nature",
+            SkofcraftItems.FLAVOR_REGENTS_BLEND, "regents_blend", SkofcraftItems.FLAVOR_ROYAL_RESERVE, "royal_reserve");
 
     private static RecipeType<MachineRecipe> type(String path) {
         return RecipeType.create(SkofcraftMod.MODID, path, MachineRecipe.class);

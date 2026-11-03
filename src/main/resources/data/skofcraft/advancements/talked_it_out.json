@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:therapy_couch"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.talked_it_out.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.talked_it_out.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "done": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -22,6 +22,10 @@ public class SkofcraftConfig {
             .define("enableMandatoryHr", true);
     private static final ForgeConfigSpec.BooleanValue ENABLE_CUDDLING = BUILDER.comment("Let players ask each other for a cuddle")
             .define("enableCuddling", true);
+    private static final ForgeConfigSpec.BooleanValue ENABLE_SNUS_KINGDOM = BUILDER.comment("Send players to the Snus Kingdom when they overdose on four Extra Strong pouches")
+            .define("enableSnusKingdom", true);
+    private static final ForgeConfigSpec.BooleanValue ENABLE_PASTEL_PARADISE = BUILDER.comment("Send players to Pastel Paradise when they hug a Blahaj in the full fit with ears and a tail")
+            .define("enablePastelParadise", true);
 
     private static final ForgeConfigSpec.DoubleValue TOBACCO_GROWTH_SPEED = BUILDER.comment("Tobacco growth speed multiplier")
             .defineInRange("tobaccoGrowthSpeed", 1.0D, 0.1D, 10.0D);
@@ -51,6 +55,8 @@ public class SkofcraftConfig {
     public static boolean enableVillager;
     public static boolean enableMandatoryHr;
     public static boolean enableCuddling = true;
+    public static boolean enableSnusKingdom = true;
+    public static boolean enablePastelParadise = true;
 
     public static double tobaccoGrowthSpeed;
     public static double skofeeGrowthSpeed = 1.0D;
@@ -71,6 +77,8 @@ public class SkofcraftConfig {
         enableVillager = ENABLE_VILLAGER.get();
         enableMandatoryHr = ENABLE_MANDATORY_HR.get();
         enableCuddling = ENABLE_CUDDLING.get();
+        enableSnusKingdom = ENABLE_SNUS_KINGDOM.get();
+        enablePastelParadise = ENABLE_PASTEL_PARADISE.get();
 
         tobaccoGrowthSpeed = TOBACCO_GROWTH_SPEED.get();
         skofeeGrowthSpeed = SKOFEE_GROWTH_SPEED.get();

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "I",
+    "C",
+    "G"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:ink_sac"
+    },
+    "C": {
+      "item": "skofcraft:hr_certificate"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "skofcraft:know_what_im_doing_certificate"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "carvers": {},
+  "downfall": 0.0,
+  "effects": {
+    "fog_color": 16768236,
+    "foliage_color": 16425160,
+    "grass_color": 16232655,
+    "mood_sound": {
+      "block_search_extent": 8,
+      "offset": 2.0,
+      "sound": "minecraft:ambient.cave",
+      "tick_delay": 6000
+    },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "minecraft:music.overworld.cherry_grove"
+    },
+    "particle": {
+      "options": {
+        "type": "minecraft:heart"
+      },
+      "probability": 0.0008
+    },
+    "sky_color": 16365785,
+    "water_color": 16099784,
+    "water_fog_color": 16099784
+  },
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "skofcraft:pastel_boutique",
+      "skofcraft:pastel_cottage",
+      "skofcraft:headpat_cafe",
+      "skofcraft:plush_tower",
+      "skofcraft:hot_spring",
+      "minecraft:patch_grass_plain",
+      "minecraft:flower_cherry",
+      "minecraft:trees_cherry"
+    ],
+    [
+      "skofcraft:cotton_cloud"
+    ]
+  ],
+  "has_precipitation": false,
+  "spawn_costs": {},
+  "spawners": {
+    "ambient": [],
+    "axolotls": [],
+    "creature": [
+      {
+        "type": "skofcraft:femboy",
+        "weight": 3,
+        "minCount": 1,
+        "maxCount": 2
+      },
+      {
+        "type": "minecraft:rabbit",
+        "weight": 8,
+        "minCount": 2,
+        "maxCount": 3
+      },
+      {
+        "type": "minecraft:cat",
+        "weight": 3,
+        "minCount": 1,
+        "maxCount": 1
+      }
+    ],
+    "misc": [],
+    "monster": [],
+    "underground_water_creature": [],
+    "water_ambient": [],
+    "water_creature": []
+  },
+  "temperature": 0.7
+}

@@ -45,7 +45,18 @@ public class ClothingRenderer implements ICurioRenderer {
         MASK(32, 16),
         TACTICAL_GLOVES(64, 16),
         CAT_EARS(32, 16),
-        CAT_TAIL(32, 16);
+        CAT_TAIL(32, 16),
+        // Pastel Paradise loot: the same cuts in new colors, and one new pair of ears
+        PASTEL_SKIRT(64, 32),
+        STRIPED_THIGH_HIGHS(32, 32),
+        PASTEL_CROP_TOP(64, 32),
+        HEART_CHOKER(32, 16),
+        BUNNY_EARS(32, 16),
+        FOX_TAIL(32, 16),
+        // The Rightful Fit
+        ROYAL_TIARA(32, 16),
+        ROYAL_GOWN(64, 32),
+        ROYAL_SLIPPERS(32, 32);
 
         /** How far the tail bends at each joint, from the base up to the curled tip. */
         private static final float[] TAIL_BENDS = {2.0F, 0.4F, 0.4F, 0.5F};
@@ -81,7 +92,7 @@ public class ClothingRenderer implements ICurioRenderer {
             PartDefinition root = mesh.getRoot();
             switch (this) {
                 // A leather band hugging the top of the torso where the neck is, with an open metal heart ring in front
-                case CHOKER -> {
+                case CHOKER, HEART_CHOKER -> {
                     CubeListBuilder choker = CubeListBuilder.create()
                             .texOffs(0, 0).addBox(-4.0F, -0.5F, -2.0F, 8.0F, 1.0F, 4.0F, new CubeDeformation(0.3F));
                     // The heart outline, one half-pixel cube per filled cell, centred on the front of the band
@@ -97,17 +108,45 @@ public class ClothingRenderer implements ICurioRenderer {
                     root.addOrReplaceChild("body", choker, PartPose.ZERO);
                 }
                 // A top over the chest, stopping well above the waist, with little caps over the shoulders
-                case CROP_TOP -> {
+                case CROP_TOP, PASTEL_CROP_TOP -> {
                     root.addOrReplaceChild("body", CubeListBuilder.create()
                             .texOffs(0, 0).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 6.0F, 4.0F, new CubeDeformation(0.27F)), PartPose.ZERO);
                     addArms(root, 16, -2.0F, 3.0F);
                 }
                 // A pleated skirt: waistband at the hips, flaring out over the top of the legs
-                case SKIRT -> root.addOrReplaceChild("body", CubeListBuilder.create()
+                case SKIRT, PASTEL_SKIRT -> root.addOrReplaceChild("body", CubeListBuilder.create()
                         .texOffs(0, 0).addBox(-4.5F, 9.5F, -2.5F, 9.0F, 2.0F, 5.0F, new CubeDeformation(0.05F))
                         .texOffs(0, 8).addBox(-5.0F, 11.5F, -3.0F, 10.0F, 5.0F, 6.0F, new CubeDeformation(0.05F)), PartPose.ZERO);
                 // Stockings from the foot to high on the thigh
-                case THIGH_HIGHS -> {
+                // A band and three points across the front of the head, with a gem in the middle one
+                case ROYAL_TIARA -> root.addOrReplaceChild("head", CubeListBuilder.create()
+                        .texOffs(0, 0).addBox(-4.5F, -9.0F, -4.75F, 9.0F, 1.0F, 0.5F)
+                        .texOffs(0, 0).addBox(-3.5F, -10.0F, -4.75F, 1.0F, 1.0F, 0.5F)
+                        .texOffs(0, 0).addBox(2.5F, -10.0F, -4.75F, 1.0F, 1.0F, 0.5F)
+                        .texOffs(0, 0).addBox(-1.0F, -11.0F, -4.75F, 2.0F, 2.0F, 0.5F)
+                        .texOffs(0, 8).addBox(-0.5F, -10.5F, -5.0F, 1.0F, 1.0F, 0.25F), PartPose.ZERO);
+                // A bodice over the torso and a full skirt flaring past the knees
+                case ROYAL_GOWN -> root.addOrReplaceChild("body", CubeListBuilder.create()
+                        .texOffs(0, 0).addBox(-4.0F, 0.0F, -2.0F, 8.0F, 10.0F, 4.0F, new CubeDeformation(0.3F))
+                        .texOffs(0, 14).addBox(-5.5F, 10.0F, -3.5F, 11.0F, 10.0F, 7.0F, new CubeDeformation(0.05F)), PartPose.ZERO);
+                // Just the feet
+                case ROYAL_SLIPPERS -> {
+                    root.addOrReplaceChild("right_leg", CubeListBuilder.create()
+                            .texOffs(0, 0).addBox(-2.0F, 10.0F, -2.5F, 4.0F, 2.0F, 5.0F, SNUG), PartPose.ZERO);
+                    root.addOrReplaceChild("left_leg", CubeListBuilder.create()
+                            .texOffs(0, 8).addBox(-2.0F, 10.0F, -2.5F, 4.0F, 2.0F, 5.0F, SNUG), PartPose.ZERO);
+                }
+                // Two tall ears standing straight up, pink inside
+                case BUNNY_EARS -> {
+                    PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);
+                    for (int side = -1; side <= 1; side += 2) {
+                        head.addOrReplaceChild(side < 0 ? "right_ear" : "left_ear", CubeListBuilder.create()
+                                        .texOffs(0, 0).addBox(-1.0F, -7.0F, -0.5F, 2.0F, 7.0F, 1.0F)
+                                        .texOffs(0, 8).addBox(-0.5F, -6.5F, -0.75F, 1.0F, 6.0F, 0.25F),
+                                PartPose.offsetAndRotation(side * 2.0F, -8.0F, -1.0F, 0.0F, 0.0F, side * 0.12F));
+                    }
+                }
+                case THIGH_HIGHS, STRIPED_THIGH_HIGHS -> {
                     root.addOrReplaceChild("right_leg", CubeListBuilder.create()
                             .texOffs(0, 0).addBox(-2.0F, 2.0F, -2.0F, 4.0F, 10.0F, 4.0F, SNUG), PartPose.ZERO);
                     root.addOrReplaceChild("left_leg", CubeListBuilder.create()
@@ -136,7 +175,7 @@ public class ClothingRenderer implements ICurioRenderer {
                     }
                 }
                 // A tail from the small of the back, a chain of segments curving back and up, with a white tip
-                case CAT_TAIL -> {
+                case CAT_TAIL, FOX_TAIL -> {
                     PartDefinition parent = root.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.ZERO);
                     for (int i = 0; i < TAIL_BENDS.length; i++) {
                         boolean tip = i == TAIL_BENDS.length - 1;
@@ -185,19 +224,19 @@ public class ClothingRenderer implements ICurioRenderer {
         ResourceLocation texture = piece == Piece.MASK ? MaskItem.style(stack).texture : piece.texture;
         VertexConsumer consumer = buffers.getBuffer(RenderType.entityCutoutNoCull(texture));
         switch (piece) {
-            case THIGH_HIGHS -> {
+            case THIGH_HIGHS, STRIPED_THIGH_HIGHS, ROYAL_SLIPPERS -> {
                 draw(root.getChild("right_leg"), humanoid.rightLeg, poseStack, consumer, light);
                 draw(root.getChild("left_leg"), humanoid.leftLeg, poseStack, consumer, light);
             }
             case HAND_WARMERS, TACTICAL_GLOVES -> drawArms(slotContext, humanoid, poseStack, consumer, light);
-            case MASK, CAT_EARS -> draw(root.getChild("head"), humanoid.head, poseStack, consumer, light);
-            case CAT_TAIL -> {
+            case MASK, CAT_EARS, BUNNY_EARS, ROYAL_TIARA -> draw(root.getChild("head"), humanoid.head, poseStack, consumer, light);
+            case CAT_TAIL, FOX_TAIL -> {
                 // A lazy side to side sway, faster while walking
                 ModelPart base = root.getChild("body").getChild("tail_0");
                 base.zRot = Mth.sin(ageInTicks * 0.08F + limbSwing * 0.5F) * (0.15F + limbSwingAmount * 0.3F);
                 draw(root.getChild("body"), humanoid.body, poseStack, consumer, light);
             }
-            case CROP_TOP -> {
+            case CROP_TOP, PASTEL_CROP_TOP -> {
                 draw(root.getChild("body"), humanoid.body, poseStack, consumer, light);
                 drawArms(slotContext, humanoid, poseStack, consumer, light);
             }

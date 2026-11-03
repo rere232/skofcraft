@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "skofcraft:item/know_what_im_doing_certificate"
+  }
+}

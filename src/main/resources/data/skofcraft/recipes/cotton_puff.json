@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "C C",
+    " F "
+  ],
+  "key": {
+    "C": {
+      "item": "skofcraft:cotton_candy"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "skofcraft:cotton_puff",
+    "count": 2
+  }
+}

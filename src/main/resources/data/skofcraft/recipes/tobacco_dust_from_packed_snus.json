@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "skofcraft:packed_snus"
+    }
+  ],
+  "result": {
+    "item": "skofcraft:tobacco_dust"
+  }
+}

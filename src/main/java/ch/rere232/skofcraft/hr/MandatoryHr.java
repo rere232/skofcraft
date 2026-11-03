@@ -43,6 +43,7 @@ import java.util.UUID;
 @Mod.EventBusSubscriber(modid = SkofcraftMod.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class MandatoryHr {
     public static final int CRIMES_BEFORE_TRAINING = 3;
+    public static final int CERTIFIED_CRIMES_BEFORE_TRAINING = 30;
     /** A little under what the slides take on the client, so a lagging server can't refuse an honest finish. */
     private static final long MIN_TRAINING_TICKS = 700L;
     private static final int CHECK_INTERVAL = 40;
@@ -53,6 +54,7 @@ public final class MandatoryHr {
     private static final int SPAWN_MAX_HEIGHT_DIFFERENCE = 8;
     private static final String CRIMES = "SkofcraftWarCrimes";
     private static final String TRAINING = "SkofcraftHrTraining";
+    private static final String CERTIFIED = "SkofcraftHrCertified";
     private static final Map<UUID, Long> TRAINING_STARTED = new HashMap<>();
 
     private MandatoryHr() {}
@@ -65,8 +67,35 @@ public final class MandatoryHr {
         return persisted;
     }
 
+    private static int crimesBeforeTraining(Player player) {
+        return record(player).getBoolean(CERTIFIED) ? CERTIFIED_CRIMES_BEFORE_TRAINING : CRIMES_BEFORE_TRAINING;
+    }
+
     public static boolean isDue(Player player) {
-        return record(player).getInt(CRIMES) >= CRIMES_BEFORE_TRAINING;
+        return record(player).getInt(CRIMES) >= crimesBeforeTraining(player);
+    }
+
+    public static int incidents(Player player) {
+        return record(player).getInt(CRIMES);
+    }
+
+    /** One incident fewer on the record. Anyone already in training still has to finish it. */
+    public static void forgiveOne(Player player) {
+        CompoundTag record = record(player);
+        record.putInt(CRIMES, Math.max(0, record.getInt(CRIMES) - 1));
+    }
+
+    /**
+     * Raises the player's limit for good. Returns false if they had already signed. A representative already on the way
+     * goes home by itself, because the player is no longer due.
+     */
+    public static boolean certify(Player player) {
+        CompoundTag record = record(player);
+        if (record.getBoolean(CERTIFIED)) {
+            return false;
+        }
+        record.putBoolean(CERTIFIED, true);
+        return true;
     }
 
     public static boolean isInTraining(Player player) {
@@ -81,8 +110,9 @@ public final class MandatoryHr {
         CompoundTag record = record(player);
         int crimes = record.getInt(CRIMES) + 1;
         record.putInt(CRIMES, crimes);
+        int limit = crimesBeforeTraining(player);
         player.displayClientMessage(Component.translatable("hr.skofcraft.logged",
-                Math.min(crimes, CRIMES_BEFORE_TRAINING), CRIMES_BEFORE_TRAINING, Component.translatable(reasonKey)).withStyle(ChatFormatting.GRAY), false);
+                Math.min(crimes, limit), limit, Component.translatable(reasonKey)).withStyle(ChatFormatting.GRAY), false);
     }
 
     public static void startTraining(ServerPlayer player) {
@@ -205,7 +235,7 @@ public final class MandatoryHr {
                 .requires(source -> source.hasPermission(Commands.LEVEL_GAMEMASTERS))
                 .executes(context -> {
                     ServerPlayer player = context.getSource().getPlayerOrException();
-                    record(player).putInt(CRIMES, CRIMES_BEFORE_TRAINING);
+                    record(player).putInt(CRIMES, crimesBeforeTraining(player));
                     context.getSource().sendSuccess(() -> Component.translatable("hr.skofcraft.command"), false);
                     return 1;
                 }));

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "skofcraft:block/missing_texture_block"
+    }
+  }
+}

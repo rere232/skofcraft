@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "W",
+    "C"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:wooden_sword"
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "skofcraft:knockoff_excalibur"
+  }
+}

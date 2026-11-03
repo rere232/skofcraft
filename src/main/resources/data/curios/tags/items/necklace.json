@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "skofcraft:choker"
+    "skofcraft:choker",
+    "skofcraft:heart_choker"
   ]
 }

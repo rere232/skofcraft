@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "TIT",
+    "TIT",
+    "TIT"
+  ],
+  "key": {
+    "T": {
+      "item": "skofcraft:tobacco_dust"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "skofcraft:load_bearing_snus"
+  }
+}

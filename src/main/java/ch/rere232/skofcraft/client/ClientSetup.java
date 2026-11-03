@@ -10,6 +10,7 @@ import ch.rere232.skofcraft.menu.FEPackagerMenu;
 import ch.rere232.skofcraft.menu.SkofcraftMenus;
 import ch.rere232.skofcraft.registry.SkofcraftEntities;
 import ch.rere232.skofcraft.registry.SkofcraftItems;
+import ch.rere232.skofcraft.registry.SkofcraftPastel;
 import ch.rere232.skofcraft.item.MaskItem;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -52,6 +53,15 @@ public class ClientSetup {
         CuriosRendererRegistry.register(SkofcraftItems.CAT_EARS.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.CAT_EARS));
         CuriosRendererRegistry.register(SkofcraftItems.CAT_TAIL.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.CAT_TAIL));
         CuriosRendererRegistry.register(SkofcraftItems.TACTICAL_GLOVES.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.TACTICAL_GLOVES));
+        CuriosRendererRegistry.register(SkofcraftPastel.PASTEL_SKIRT.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.PASTEL_SKIRT));
+        CuriosRendererRegistry.register(SkofcraftPastel.STRIPED_THIGH_HIGHS.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.STRIPED_THIGH_HIGHS));
+        CuriosRendererRegistry.register(SkofcraftPastel.PASTEL_CROP_TOP.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.PASTEL_CROP_TOP));
+        CuriosRendererRegistry.register(SkofcraftPastel.HEART_CHOKER.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.HEART_CHOKER));
+        CuriosRendererRegistry.register(SkofcraftPastel.BUNNY_EARS.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.BUNNY_EARS));
+        CuriosRendererRegistry.register(SkofcraftPastel.FOX_TAIL.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.FOX_TAIL));
+        CuriosRendererRegistry.register(SkofcraftPastel.ROYAL_TIARA.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.ROYAL_TIARA));
+        CuriosRendererRegistry.register(SkofcraftPastel.ROYAL_GOWN.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.ROYAL_GOWN));
+        CuriosRendererRegistry.register(SkofcraftPastel.GLASS_SLIPPERS.get(), () -> new ClothingRenderer(ClothingRenderer.Piece.ROYAL_SLIPPERS));
         // The face mask icon follows its style: 0, 1/3, 2/3, 1 (item properties are clamped to 0..1)
         event.enqueueWork(() -> ItemProperties.register(SkofcraftItems.FACE_MASK.get(),
                 ResourceLocation.fromNamespaceAndPath(SkofcraftMod.MODID, "style"),
@@ -64,6 +74,11 @@ public class ClientSetup {
         event.registerEntityRenderer(SkofcraftEntities.FEMBOY.get(), FemboyRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.ANIME_CREW.get(), AnimeCrewRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.HR_REPRESENTATIVE.get(), HrRepresentativeRenderer::new);
+        event.registerEntityRenderer(SkofcraftEntities.KINGDOM_NOBLE.get(), ctx -> new KingdomNobleRenderer<>(ctx, "kingdom_noble"));
+        event.registerEntityRenderer(SkofcraftEntities.INTERIM_REGENT.get(), ctx -> new KingdomNobleRenderer<>(ctx, "interim_regent"));
+        event.registerEntityRenderer(SkofcraftEntities.BOUTIQUE_KEEPER.get(), ctx -> new KingdomNobleRenderer<>(ctx, "boutique_keeper"));
+        event.registerEntityRenderer(SkofcraftEntities.GLOOM.get(), ctx -> new PastelMobRenderer<>(ctx, "gloom", 1.0F));
+        event.registerEntityRenderer(SkofcraftEntities.THE_ALGORITHM.get(), ctx -> new PastelMobRenderer<>(ctx, "the_algorithm", 2.0F));
         event.registerEntityRenderer(SkofcraftEntities.DELIVERY_PLANE.get(), DeliveryPlaneRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.DELIVERY_CRATE.get(), DeliveryCrateRenderer::new);
         event.registerEntityRenderer(SkofcraftEntities.APACHE.get(), ApacheRenderer::new);
@@ -91,6 +106,7 @@ public class ClientSetup {
 
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(FemboyModel.LAYER, FemboyModel::createBodyLayer);
         event.registerLayerDefinition(DeliveryPlaneModel.LAYER, DeliveryPlaneModel::createBodyLayer);
         event.registerLayerDefinition(DeliveryCrateModel.LAYER, DeliveryCrateModel::createBodyLayer);
         event.registerLayerDefinition(ApacheModel.LAYER, ApacheModel::createBodyLayer);

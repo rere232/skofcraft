@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "skofcraft:cat_tail"
+    "skofcraft:cat_tail",
+    "skofcraft:fox_tail"
   ]
 }

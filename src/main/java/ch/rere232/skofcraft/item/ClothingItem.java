@@ -6,6 +6,7 @@ import ch.rere232.skofcraft.registry.SkofcraftItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -38,6 +39,13 @@ public class ClothingItem extends Item implements ICurioItem {
                 SkofcraftItems.SKIRT, SkofcraftItems.THIGH_HIGHS);
     }
 
+    /** Wearing all six pieces of the fit at once. */
+    public static boolean isWearingFullOutfit(Player player) {
+        return CuriosApi.getCuriosInventory(player)
+                .map(curios -> outfit().stream().allMatch(piece -> curios.isEquipped(piece.get())))
+                .orElse(false);
+    }
+
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         // Only the choker checks, so the five pieces do not all run the same check
@@ -45,10 +53,7 @@ public class ClothingItem extends Item implements ICurioItem {
                 || player.tickCount % OUTFIT_CHECK_TICKS != 0) {
             return;
         }
-        boolean complete = CuriosApi.getCuriosInventory(player)
-                .map(curios -> outfit().stream().allMatch(piece -> curios.isEquipped(piece.get())))
-                .orElse(false);
-        if (complete) {
+        if (isWearingFullOutfit(player)) {
             SkofcraftAdvancements.award(player, SkofcraftAdvancements.FULL_OUTFIT);
         }
     }

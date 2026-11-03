@@ -161,6 +161,16 @@ public class GumStatusEffects {
         }
         if (flavorId.endsWith("flavor_nature")) {
             player.addEffect(new MobEffectInstance(MobEffects.LUCK, 120, 0, true, false, true));
+            return;
+        }
+        if (flavorId.endsWith("flavor_regents_blend")) {
+            player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 120, 0, true, false, true));
+            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 120, 0, true, false, true));
+            return;
+        }
+        if (flavorId.endsWith("flavor_royal_reserve")) {
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 120, 0, true, false, true));
+            player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 120, 0, true, false, true));
         }
     }
 }

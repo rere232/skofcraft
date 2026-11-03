@@ -16,24 +16,30 @@ import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 /** An Amazooon box with the whole Amazon femboy fit inside. Right-click to unbox it. */
 public class OutfitBoxItem extends Item {
-    public OutfitBoxItem(Properties properties) {
-        super(properties);
-    }
+    private final Supplier<List<RegistryObject<Item>>> contents;
+    private final String tooltipKey;
 
     /** The six pieces needed for the outfit advancement. */
-    private static List<RegistryObject<Item>> contents() {
-        return List.of(SkofcraftItems.FACE_MASK, SkofcraftItems.CHOKER, SkofcraftItems.CROP_TOP, SkofcraftItems.HAND_WARMERS,
-                SkofcraftItems.SKIRT, SkofcraftItems.THIGH_HIGHS);
+    public OutfitBoxItem(Properties properties) {
+        this(properties, () -> List.of(SkofcraftItems.FACE_MASK, SkofcraftItems.CHOKER, SkofcraftItems.CROP_TOP, SkofcraftItems.HAND_WARMERS,
+                SkofcraftItems.SKIRT, SkofcraftItems.THIGH_HIGHS), "tooltip.skofcraft.outfit_box");
+    }
+
+    public OutfitBoxItem(Properties properties, Supplier<List<RegistryObject<Item>>> contents, String tooltipKey) {
+        super(properties);
+        this.contents = contents;
+        this.tooltipKey = tooltipKey;
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack box = player.getItemInHand(hand);
         if (!level.isClientSide) {
-            for (RegistryObject<Item> piece : contents()) {
+            for (RegistryObject<Item> piece : contents.get()) {
                 ItemStack stack = new ItemStack(piece.get());
                 if (!player.getInventory().add(stack)) {
                     player.drop(stack, false);
@@ -50,8 +56,8 @@ public class OutfitBoxItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.skofcraft.outfit_box").withStyle(ChatFormatting.GRAY));
-        for (RegistryObject<Item> piece : contents()) {
+        tooltip.add(Component.translatable(tooltipKey).withStyle(ChatFormatting.GRAY));
+        for (RegistryObject<Item> piece : contents.get()) {
             tooltip.add(Component.literal(" - ").append(piece.get().getDescription()).withStyle(ChatFormatting.DARK_GRAY));
         }
     }

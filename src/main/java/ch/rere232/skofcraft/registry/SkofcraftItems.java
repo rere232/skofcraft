@@ -33,6 +33,7 @@ import ch.rere232.skofcraft.item.F14Item;
 import ch.rere232.skofcraft.item.ChichaPipeItem;
 import ch.rere232.skofcraft.item.PouchMixItem;
 import ch.rere232.skofcraft.item.PhoneItem;
+import ch.rere232.skofcraft.item.KnowWhatImDoingCertificateItem;
 import ch.rere232.skofcraft.item.SnuffItem;
 import ch.rere232.skofcraft.item.VapeItem;
 import ch.rere232.skofcraft.item.QuestBookItem;
@@ -114,6 +115,9 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> FLAVOR_COLA = item("flavor_cola");
     public static final RegistryObject<Item> FLAVOR_COFFEE = item("flavor_coffee");
     public static final RegistryObject<Item> FLAVOR_NATURE = item("flavor_nature");
+    public static final RegistryObject<Item> FLAVOR_REGENTS_BLEND = item("flavor_regents_blend");
+    public static final RegistryObject<Item> FLAVOR_ROYAL_RESERVE = ITEMS.register("flavor_royal_reserve",
+            () -> new Item(new Item.Properties().rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> EMPTY_POUCH = item("empty_pouch");
     public static final RegistryObject<Item> SNUS_POUCH = gumItem("snus_pouch", () -> SkofcraftConfig.snusDurationMinutes);
@@ -140,6 +144,8 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> ITEM_SCANNER = ITEMS.register("item_scanner",
             () -> new ItemScannerItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> HR_CERTIFICATE = item("hr_certificate");
+    public static final RegistryObject<Item> KNOW_WHAT_IM_DOING_CERTIFICATE = ITEMS.register("know_what_im_doing_certificate",
+            () -> new KnowWhatImDoingCertificateItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> GEAR = item("gear");
     public static final RegistryObject<Item> AIRCRAFT_PLATE = item("aircraft_plate");
@@ -229,6 +235,8 @@ public class SkofcraftItems {
             () -> new ForgeSpawnEggItem(SkofcraftEntities.FEMBOY, 0xF5A9B8, 0x1C1C1C, new Item.Properties()));
     public static final RegistryObject<Item> ANIME_CREW_SPAWN_EGG = ITEMS.register("anime_crew_spawn_egg",
             () -> new ForgeSpawnEggItem(SkofcraftEntities.ANIME_CREW, 0x5B6B3A, 0xF08CB4, new Item.Properties()));
+    public static final RegistryObject<Item> KINGDOM_NOBLE_SPAWN_EGG = ITEMS.register("kingdom_noble_spawn_egg",
+            () -> new ForgeSpawnEggItem(SkofcraftEntities.KINGDOM_NOBLE, 0x5B2A86, 0xE0B040, new Item.Properties()));
     public static final RegistryObject<Item> BLAHAJ = ITEMS.register("blahaj",
             () -> new BlahajItem(SkofcraftBlocks.BLAHAJ.get(), new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> CHICHA = blockItem("chicha", SkofcraftBlocks.CHICHA);

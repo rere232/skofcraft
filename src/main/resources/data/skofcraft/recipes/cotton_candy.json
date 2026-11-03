@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "food",
+  "pattern": [
+    "SDS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "D": {
+      "item": "minecraft:pink_dye"
+    }
+  },
+  "result": {
+    "item": "skofcraft:cotton_candy",
+    "count": 2
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "skofcraft:block/fake_diamond_ore"
+    }
+  }
+}

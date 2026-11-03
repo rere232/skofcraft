@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:addictol"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.rude_awakening.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.rude_awakening.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "done": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

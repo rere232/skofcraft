@@ -2,6 +2,7 @@ package ch.rere232.skofcraft.item;
 
 import ch.rere232.skofcraft.registry.SkofcraftSounds;
 import ch.rere232.skofcraft.gums.GumSlotData;
+import ch.rere232.skofcraft.kingdom.SnusKingdom;
 import ch.rere232.skofcraft.phone.PhoneAddiction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -55,6 +56,9 @@ public class AddictolItem extends Item {
             player.removeEffect(MobEffects.WEAKNESS);
             player.removeEffect(MobEffects.DIG_SLOWDOWN);
             player.removeEffect(MobEffects.CONFUSION);
+            if (player instanceof ServerPlayer serverPlayer && SnusKingdom.isIn(serverPlayer)) {
+                SnusKingdom.wakeUp(serverPlayer, "addictol");
+            }
             player.displayClientMessage(Component.translatable("message.skofcraft.addictol_used"), true);
 
             level.playSound(null, player.getX(), player.getY(), player.getZ(), SkofcraftSounds.PILL_CHIME.get(), SoundSource.PLAYERS, 1.0F, 1.0F);

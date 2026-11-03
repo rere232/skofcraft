@@ -2,6 +2,14 @@
   "replace": false,
   "values": [
     "skofcraft:tobacconist_counter",
-    "skofcraft:chicha"
+    "skofcraft:chicha",
+    "skofcraft:swiss_bureaucracy_block",
+    "skofcraft:hr_complaint_box",
+    "skofcraft:swivel_chair",
+    "skofcraft:thought_leader_block",
+    "skofcraft:unpaid_intern_box",
+    "skofcraft:emergency_exit",
+    "skofcraft:cigar_wrapper",
+    "skofcraft:pastel_planks"
   ]
 }

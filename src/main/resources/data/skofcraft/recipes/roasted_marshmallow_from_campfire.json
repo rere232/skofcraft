@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "ingredient": {
+    "item": "skofcraft:marshmallow"
+  },
+  "result": "skofcraft:roasted_marshmallow",
+  "experience": 0.2,
+  "cookingtime": 400
+}

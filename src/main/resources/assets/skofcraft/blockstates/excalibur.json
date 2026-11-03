@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "pulled=false": {
       "model": "skofcraft:block/excalibur"
+    },
+    "pulled=true": {
+      "model": "skofcraft:block/excalibur_empty"
     }
   }
 }

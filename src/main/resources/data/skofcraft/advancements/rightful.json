@@ -1,0 +1,23 @@
+{
+  "parent": "skofcraft:root",
+  "display": {
+    "icon": {
+      "item": "skofcraft:excalibur_sword"
+    },
+    "title": {
+      "translate": "advancements.skofcraft.rightful.title"
+    },
+    "description": {
+      "translate": "advancements.skofcraft.rightful.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "done": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

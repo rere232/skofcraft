@@ -168,7 +168,9 @@ public class ChichaBlock extends BaseEntityBlock {
                 || item == SkofcraftItems.FLAVOR_LICORICE.get()
                 || item == SkofcraftItems.FLAVOR_COLA.get()
                 || item == SkofcraftItems.FLAVOR_COFFEE.get()
-                || item == SkofcraftItems.FLAVOR_NATURE.get();
+                || item == SkofcraftItems.FLAVOR_NATURE.get()
+                || item == SkofcraftItems.FLAVOR_REGENTS_BLEND.get()
+                || item == SkofcraftItems.FLAVOR_ROYAL_RESERVE.get();
         if (stack.isEmpty() || !flavor) {
             return null;
         }

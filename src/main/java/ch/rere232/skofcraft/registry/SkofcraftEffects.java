@@ -14,6 +14,7 @@ public class SkofcraftEffects {
 
     public static final RegistryObject<MobEffect> SPIT_BLIND = EFFECTS.register("spit_blind", SpitBlindEffect::new);
     public static final RegistryObject<MobEffect> ESTROGEN = EFFECTS.register("estrogen", EstrogenEffect::new);
+    public static final RegistryObject<MobEffect> WELL_RESTED = EFFECTS.register("well_rested", ch.rere232.skofcraft.effect.WellRestedEffect::new);
     public static final RegistryObject<MobEffect> TRIPPED = EFFECTS.register("tripped", TrippedEffect::new);
 
     private SkofcraftEffects() {}
