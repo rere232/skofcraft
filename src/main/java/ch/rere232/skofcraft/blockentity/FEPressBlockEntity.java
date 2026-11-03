@@ -44,12 +44,7 @@ public class FEPressBlockEntity extends BlockEntity {
 
     private final SimpleContainer inputSlots = new SimpleContainer(3);
     private final SimpleContainer outputSlots = new SimpleContainer(1);
-    private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, (slot, stack) -> switch (slot) {
-        case 0 -> stack.is(SkofcraftItems.TOBACCO_DUST.get()) || stack.is(SkofcraftItems.NICOTINE_MIX.get());
-        case 1 -> stack.is(SkofcraftItems.EMPTY_POUCH.get());
-        case 2 -> stack.is(SkofcraftItems.NICOTINE_EXTRACT.get()) || stack.is(SkofcraftItems.NICOTINE_CRYSTALS.get());
-        default -> false;
-    }));
+    private final LazyOptional<MachineItemHandler> itemHandler = LazyOptional.of(() -> new MachineItemHandler(inputSlots, outputSlots, this::setChanged, FEPressBlockEntity::isValidInput));
 
     private int processingProgress = 0;
     private boolean isProcessing = false;
@@ -69,6 +64,16 @@ public class FEPressBlockEntity extends BlockEntity {
 
     private static boolean isManualBlock(Block block) {
         return block == SkofcraftBlocks.MANUAL_POUCH_PRESS.get();
+    }
+
+    /** Slot 0 takes the material, slot 1 the empty pouches, slot 2 the optional booster. */
+    public static boolean isValidInput(int slot, ItemStack stack) {
+        return switch (slot) {
+            case 0 -> stack.is(SkofcraftItems.TOBACCO_DUST.get()) || stack.is(SkofcraftItems.NICOTINE_MIX.get());
+            case 1 -> stack.is(SkofcraftItems.EMPTY_POUCH.get());
+            case 2 -> stack.is(SkofcraftItems.NICOTINE_EXTRACT.get()) || stack.is(SkofcraftItems.NICOTINE_CRYSTALS.get());
+            default -> false;
+        };
     }
 
     public void tick() {
@@ -191,7 +196,12 @@ public class FEPressBlockEntity extends BlockEntity {
             inputSlots.setItem(i, ItemStack.EMPTY);
         }
         for (int i = 0; i < inputList.size() && i < inputSlots.getContainerSize(); i++) {
-            inputSlots.setItem(i, ItemStack.of(inputList.getCompound(i)));
+            CompoundTag stackTag = inputList.getCompound(i);
+            // Saves from before slot indices were stored fall back to list order
+            int slot = stackTag.contains("Slot") ? stackTag.getByte("Slot") : i;
+            if (slot >= 0 && slot < inputSlots.getContainerSize()) {
+                inputSlots.setItem(slot, ItemStack.of(stackTag));
+            }
         }
 
         net.minecraft.nbt.ListTag outputList = tag.getList("OutputItems", 10);
@@ -216,6 +226,7 @@ public class FEPressBlockEntity extends BlockEntity {
             ItemStack stack = inputSlots.getItem(i);
             if (!stack.isEmpty()) {
                 CompoundTag stackTag = new CompoundTag();
+                stackTag.putByte("Slot", (byte) i);
                 stack.save(stackTag);
                 inputList.add(stackTag);
             }

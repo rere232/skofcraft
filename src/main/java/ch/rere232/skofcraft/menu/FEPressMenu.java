@@ -49,9 +49,9 @@ public class FEPressMenu extends AbstractContainerMenu {
         this.blockEntity = blockEntity;
         this.data = data;
 
-        addSlot(new Slot(blockEntity.getInputSlots(), 0, 44, 35));
-        addSlot(new Slot(blockEntity.getInputSlots(), 1, 62, 35));
-        addSlot(new Slot(blockEntity.getInputSlots(), 2, 26, 35));
+        addSlot(inputSlot(blockEntity, 0, 44));
+        addSlot(inputSlot(blockEntity, 1, 62));
+        addSlot(inputSlot(blockEntity, 2, 26));
         addSlot(new Slot(blockEntity.getOutputSlots(), 0, 116, 35) {
             @Override
             public boolean mayPlace(ItemStack itemStack) {
@@ -70,6 +70,15 @@ public class FEPressMenu extends AbstractContainerMenu {
         }
 
         addDataSlots(data);
+    }
+
+    private static Slot inputSlot(FEPressBlockEntity blockEntity, int index, int x) {
+        return new Slot(blockEntity.getInputSlots(), index, x, 35) {
+            @Override
+            public boolean mayPlace(ItemStack itemStack) {
+                return FEPressBlockEntity.isValidInput(index, itemStack);
+            }
+        };
     }
 
     public FEPressMenu(int windowId, Inventory playerInventory, FriendlyByteBuf buffer) {
