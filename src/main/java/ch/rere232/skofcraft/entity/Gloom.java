@@ -77,8 +77,12 @@ public class Gloom extends Monster {
         }
     }
 
+    /**
+     * Not called Events: the event bus names its handler wrappers from the package, simple class name, method and event,
+     * so this would share one with {@link KingdomNoble.Events} and run in its place.
+     */
     @Mod.EventBusSubscriber(modid = ch.rere232.skofcraft.SkofcraftMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class Events {
+    public static class GloomAttributes {
         @SubscribeEvent
         public static void onAttributes(EntityAttributeCreationEvent event) {
             event.put(SkofcraftEntities.GLOOM.get(), createAttributes().build());
