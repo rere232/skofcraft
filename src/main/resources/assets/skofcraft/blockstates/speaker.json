@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "skofcraft:block/speaker"
+    },
+    "facing=east": {
+      "model": "skofcraft:block/speaker",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "skofcraft:block/speaker",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "skofcraft:block/speaker",
+      "y": 270
+    }
+  }
+}

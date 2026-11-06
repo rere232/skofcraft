@@ -113,6 +113,9 @@ public class SkofcraftCreativeTabs {
                 output.accept(SkofcraftItems.NUCLEAR_REACTOR.get());
                 output.accept(SkofcraftItems.CARRIER_HELM.get());
                 output.accept(SkofcraftItems.RADAR.get());
+                output.accept(SkofcraftItems.DJ_MIXER.get());
+                output.accept(SkofcraftItems.SPEAKER.get());
+                output.accept(SkofcraftItems.AUDIO_CABLE.get());
                 output.accept(SkofcraftItems.CIWS.get());
                 output.accept(SkofcraftItems.SAM_LAUNCHER.get());
                 output.accept(SkofcraftItems.LAUNCH_PAD.get());

@@ -2,6 +2,9 @@ package ch.rere232.skofcraft.registry;
 
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.block.AircraftWorkbenchBlock;
+import ch.rere232.skofcraft.block.AudioCableBlock;
+import ch.rere232.skofcraft.block.DjMixerBlock;
+import ch.rere232.skofcraft.block.SpeakerBlock;
 import ch.rere232.skofcraft.block.BigRedButtonBlock;
 import ch.rere232.skofcraft.block.ExcaliburBlock;
 import ch.rere232.skofcraft.block.EvilTripwireBlock;
@@ -78,6 +81,10 @@ public class SkofcraftBlocks {
     public static final RegistryObject<Block> INDUSTRIAL_POUCH_LINE = BLOCKS.register("industrial_pouch_line", () -> new FEPressBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(3.0F, 6.0F)));
     public static final RegistryObject<Block> INDUSTRIAL_PACKAGER = BLOCKS.register("industrial_packager", () -> new FEPackagerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(3.0F, 6.0F), true));
     public static final RegistryObject<Block> INDUSTRIAL_EXTRACTOR = BLOCKS.register("industrial_extractor", () -> new FEDryerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).strength(3.0F, 6.0F)));
+
+    public static final RegistryObject<Block> DJ_MIXER = BLOCKS.register("dj_mixer", () -> new DjMixerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.5F, 6.0F).requiresCorrectToolForDrops().noOcclusion().lightLevel(state -> 4).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> SPEAKER = BLOCKS.register("speaker", () -> new SpeakerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2.0F, 6.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> AUDIO_CABLE = BLOCKS.register("audio_cable", () -> new AudioCableBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(0.3F).noOcclusion().sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY)));
 
     private static RegistryObject<Block> machine(String name, MapColor color) {
         return BLOCKS.register(name, () -> new Block(BlockBehaviour.Properties.of().mapColor(color).strength(3.0F, 6.0F)));

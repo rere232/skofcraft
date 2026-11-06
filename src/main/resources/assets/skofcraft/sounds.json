@@ -1,4 +1,12 @@
 {
+  "dj_mixer_stream": {
+    "sounds": [
+      {
+        "name": "skofcraft:ui_click",
+        "stream": true
+      }
+    ]
+  },
   "postbus_horn": {
     "subtitle": "subtitles.skofcraft.postbus_horn",
     "sounds": [

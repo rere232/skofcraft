@@ -13,6 +13,9 @@ public class SkofcraftBlockEntities {
     public static final RegistryObject<BlockEntityType<NuclearReactorBlockEntity>> NUCLEAR_REACTOR = BLOCK_ENTITIES.register("nuclear_reactor",
             () -> BlockEntityType.Builder.of(NuclearReactorBlockEntity::new, SkofcraftBlocks.NUCLEAR_REACTOR.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<DjMixerBlockEntity>> DJ_MIXER = BLOCK_ENTITIES.register("dj_mixer",
+            () -> BlockEntityType.Builder.of(DjMixerBlockEntity::new, SkofcraftBlocks.DJ_MIXER.get()).build(null));
+
     public static final RegistryObject<BlockEntityType<RadarBlockEntity>> RADAR = BLOCK_ENTITIES.register("radar",
             () -> BlockEntityType.Builder.of(RadarBlockEntity::new, SkofcraftBlocks.RADAR.get()).build(null));
 

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "skofcraft:block/dj_mixer"
+    },
+    "facing=east": {
+      "model": "skofcraft:block/dj_mixer",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "skofcraft:block/dj_mixer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "skofcraft:block/dj_mixer",
+      "y": 270
+    }
+  }
+}

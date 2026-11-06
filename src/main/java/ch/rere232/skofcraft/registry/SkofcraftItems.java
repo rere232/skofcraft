@@ -250,6 +250,9 @@ public class SkofcraftItems {
     public static final RegistryObject<Item> AIRCRAFT_WORKBENCH = blockItem("aircraft_workbench", SkofcraftBlocks.AIRCRAFT_WORKBENCH);
     public static final RegistryObject<Item> CARRIER_HELM = blockItem("carrier_helm", SkofcraftBlocks.CARRIER_HELM);
     public static final RegistryObject<Item> RADAR = blockItem("radar", SkofcraftBlocks.RADAR);
+    public static final RegistryObject<Item> DJ_MIXER = blockItem("dj_mixer", SkofcraftBlocks.DJ_MIXER);
+    public static final RegistryObject<Item> SPEAKER = blockItem("speaker", SkofcraftBlocks.SPEAKER);
+    public static final RegistryObject<Item> AUDIO_CABLE = blockItem("audio_cable", SkofcraftBlocks.AUDIO_CABLE);
     public static final RegistryObject<Item> CIWS = blockItem("ciws", SkofcraftBlocks.CIWS);
     public static final RegistryObject<Item> SAM_LAUNCHER = blockItem("sam_launcher", SkofcraftBlocks.SAM_LAUNCHER);
     public static final RegistryObject<Item> LAUNCH_PAD = blockItem("launch_pad", SkofcraftBlocks.LAUNCH_PAD);

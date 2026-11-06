@@ -23,6 +23,9 @@ public class SkofcraftSounds {
     public static final RegistryObject<SoundEvent> ITEM_SCANNER_BEEP = SOUNDS.register("item_scanner_beep",
             () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(SkofcraftMod.MODID, "item_scanner_beep")));
 
+    /** Placeholder event for the DJ mixer's streamed songs; the audio itself comes from yt-dlp, never from this file. */
+    public static final RegistryObject<SoundEvent> DJ_MIXER_STREAM = sound("dj_mixer_stream");
+
     public static final RegistryObject<SoundEvent> ANCHOR_CHAIN = sound("anchor_chain");
     public static final RegistryObject<SoundEvent> ARMOR_EQUIP = sound("armor_equip");
     public static final RegistryObject<SoundEvent> ARRESTING_WIRE = sound("arresting_wire");

@@ -257,6 +257,17 @@ final class QuestBookContent {
                 text("phone.p2"), text("phone.p3"), text("phone.p4")
         )));
 
+        chapters.add(new Chapter(t("dj.title"), stack(SkofcraftItems.DJ_MIXER.get()), List.of(
+                text("dj.p1"),
+                craft(stack(SkofcraftItems.DJ_MIXER.get()), new String[] {"BNB", "RJR", "III"},
+                        'B', Items.STONE_BUTTON, 'N', Items.NOTE_BLOCK, 'R', Items.REDSTONE, 'J', Items.JUKEBOX, 'I', Items.IRON_INGOT),
+                craft(new ItemStack(SkofcraftItems.SPEAKER.get(), 2), new String[] {"PIP", "PNP", "PRP"},
+                        'P', Items.OAK_PLANKS, 'I', Items.IRON_INGOT, 'N', Items.NOTE_BLOCK, 'R', Items.REDSTONE),
+                craft(new ItemStack(SkofcraftItems.AUDIO_CABLE.get(), 12), new String[] {"KKK", "CRC", "KKK"},
+                        'K', Items.DRIED_KELP, 'C', Items.COPPER_INGOT, 'R', Items.REDSTONE),
+                text("dj.p2"), text("dj.p3"), text("dj.p4")
+        )));
+
         chapters.add(new Chapter(t("aircraft.title"), stack(SkofcraftItems.AIRCRAFT_WORKBENCH.get()), List.of(
                 text("aircraft.p1"),
                 craft(stack(SkofcraftItems.AIRCRAFT_WORKBENCH.get()), new String[] {"PPP", "GTG", "IBI"},

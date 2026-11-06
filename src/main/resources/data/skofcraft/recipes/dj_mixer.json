@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "BNB",
+    "RJR",
+    "III"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:stone_button"
+    },
+    "N": {
+      "item": "minecraft:note_block"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "J": {
+      "item": "minecraft:jukebox"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "skofcraft:dj_mixer"
+  }
+}

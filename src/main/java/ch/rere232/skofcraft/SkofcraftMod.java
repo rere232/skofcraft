@@ -60,6 +60,7 @@ public class SkofcraftMod {
         SkofcraftNetwork.register();
 
         context.registerConfig(ModConfig.Type.COMMON, SkofcraftConfig.SPEC, "skofcraft-common.toml");
+        context.registerConfig(ModConfig.Type.CLIENT, ch.rere232.skofcraft.config.SkofcraftClientConfig.SPEC, "skofcraft-client.toml");
 
         MinecraftForge.EVENT_BUS.register(new GumEvents());
         MinecraftForge.EVENT_BUS.register(new CarrierEvents());

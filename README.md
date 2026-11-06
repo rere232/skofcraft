@@ -38,6 +38,7 @@ Everything is explained in game in the **Quest Book**, sold by the Tobacconist o
   - [SKOFee](#skofee)
   - [The Tobacconist](#the-tobacconist)
   - [The Phone](#the-phone)
+  - [DJ Mixer](#dj-mixer)
   - [Aviation](#aviation)
   - [The Nuclear Submarine](#the-nuclear-submarine)
   - [The Swiss Postbus](#the-swiss-postbus)
@@ -184,6 +185,24 @@ A working smartphone with a battery, a home screen and five apps:
 
 Screen time builds a **phone addiction**: notification badges, a feed that scrolls itself, phantom notifications and,
 eventually, real withdrawal. Touch grass in daylight to get over it.
+
+---
+
+## DJ Mixer
+
+Put on a show. The **DJ Mixer** plays songs from **YouTube** and **YouTube Music** through **Speakers** wired to it with
+**Audio Cable** (up to 64 speakers per mixer, any length of cable).
+
+- Search by song or artist, switch between YouTube and YT Music, or paste a video, song or playlist link
+- A shared queue with play/pause, stop, previous/next, seeking, repeat (queue or one song), shuffle and volume
+- Everyone near a speaker hears the same part of the song; it fades out 48 blocks from the nearest speaker and follows
+  the Jukebox/Note Blocks volume slider
+
+Audio is streamed on each player's own computer with [yt-dlp](https://github.com/yt-dlp/yt-dlp) and
+[Deno](https://deno.com), and decoded inside the mod by [Concentus](https://github.com/lostromb/concentus) (no ffmpeg
+needed). The mod downloads yt-dlp and Deno by itself into `.minecraft/skofcraft/media` (about 65 MB, once) the first
+time you open a mixer or hear one playing; turn `autoDownloadMediaTools` off in `skofcraft-client.toml` to manage them
+yourself. Servers need nothing extra.
 
 ---
 

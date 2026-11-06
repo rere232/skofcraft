@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "skofcraft:block/speaker_side",
+    "side": "skofcraft:block/speaker_side",
+    "front": "skofcraft:block/speaker_front"
+  }
+}

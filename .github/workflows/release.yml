@@ -42,6 +42,7 @@ jobs:
               -name '*.jar' \
               ! -name '*-sources.jar' \
               ! -name '*-dev.jar' \
+              ! -name '*-slim.jar' \
               ! -name '*-javadoc.jar'
           )
 

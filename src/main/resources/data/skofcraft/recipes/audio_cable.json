@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "KKK",
+    "CRC",
+    "KKK"
+  ],
+  "key": {
+    "K": {
+      "item": "minecraft:dried_kelp"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "skofcraft:audio_cable",
+    "count": 12
+  }
+}
