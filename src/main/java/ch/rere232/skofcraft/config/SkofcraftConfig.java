@@ -71,6 +71,10 @@ public class SkofcraftConfig {
 
     @SubscribeEvent
     public static void onLoad(final ModConfigEvent event) {
+        // The mod also has a client config (SkofcraftClientConfig), loaded first; only this file's events concern us
+        if (event.getConfig().getSpec() != SPEC) {
+            return;
+        }
         enableAddiction = ENABLE_ADDICTION.get();
         enableTolerance = ENABLE_TOLERANCE.get();
         enableNegativeEffects = ENABLE_NEGATIVE_EFFECTS.get();

@@ -197,12 +197,16 @@ Put on a show. The **DJ Mixer** plays songs from **YouTube** and **YouTube Music
 - A shared queue with play/pause, stop, previous/next, seeking, repeat (queue or one song), shuffle and volume
 - Everyone near a speaker hears the same part of the song; it fades out 48 blocks from the nearest speaker and follows
   the Jukebox/Note Blocks volume slider
+- The screen shakes on every bass hit, synced to what the speakers play (`bassScreenShake` in `skofcraft-client.toml`,
+  0 turns it off)
 
 Audio is streamed on each player's own computer with [yt-dlp](https://github.com/yt-dlp/yt-dlp) and
 [Deno](https://deno.com), and decoded inside the mod by [Concentus](https://github.com/lostromb/concentus) (no ffmpeg
 needed). The mod downloads yt-dlp and Deno by itself into `.minecraft/skofcraft/media` (about 65 MB, once) the first
 time you open a mixer or hear one playing; turn `autoDownloadMediaTools` off in `skofcraft-client.toml` to manage them
-yourself. Servers need nothing extra.
+yourself. Songs are kept in `.minecraft/skofcraft/media/cache` (up to 512 MB, oldest deleted first) and the next song in
+the queue is fetched while the current one plays, so only the very first song has to wait for YouTube; the mixer holds
+the song at 0:00 until a listener has it ready, so nobody misses the start. Servers need nothing extra.
 
 ---
 

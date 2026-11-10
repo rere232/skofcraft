@@ -48,5 +48,6 @@ public class SkofcraftNetwork {
         CHANNEL.registerMessage(packetId++, FpvDroneStateC2SPacket.class, FpvDroneStateC2SPacket::encode, FpvDroneStateC2SPacket::decode, FpvDroneStateC2SPacket::handle);
         CHANNEL.registerMessage(packetId++, MixerActionC2SPacket.class, MixerActionC2SPacket::encode, MixerActionC2SPacket::decode, MixerActionC2SPacket::handle);
         CHANNEL.registerMessage(packetId++, MixerAddC2SPacket.class, MixerAddC2SPacket::encode, MixerAddC2SPacket::decode, MixerAddC2SPacket::handle);
+        CHANNEL.registerMessage(packetId++, MixerReadyC2SPacket.class, MixerReadyC2SPacket::encode, MixerReadyC2SPacket::decode, MixerReadyC2SPacket::handle);
     }
 }

@@ -3,6 +3,8 @@ package ch.rere232.skofcraft.client.audio;
 import ch.rere232.skofcraft.SkofcraftMod;
 import ch.rere232.skofcraft.audio.MixerTrack;
 import ch.rere232.skofcraft.blockentity.DjMixerBlockEntity;
+import ch.rere232.skofcraft.network.MixerReadyC2SPacket;
+import ch.rere232.skofcraft.network.SkofcraftNetwork;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -11,6 +13,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
+import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -105,7 +108,7 @@ public final class MixerAudioClient {
             Retry retry = RETRIES.get(pos);
             int count = retry != null && retry.revision() == mixer.revision() ? retry.count() : 0;
             if (count >= MAX_RETRIES || (retry != null && ticks < retry.notBefore())) {
-                session.tick(mixer::elapsedMs, 0.0F);
+                session.tick(mixer::elapsedMs, 0.0F, false, () -> { });
                 return;
             }
             RETRIES.put(pos, new Retry(mixer.revision(), count + 1, ticks + RETRY_DELAY_TICKS));
@@ -117,7 +120,14 @@ public final class MixerAudioClient {
             SESSIONS.put(pos, session);
             session.start();
         }
-        session.tick(mixer::elapsedMs, gain(mixer, distance));
+        int revision = mixer.revision();
+        session.tick(mixer::elapsedMs, gain(mixer, distance), mixer.isWaiting(),
+                () -> SkofcraftNetwork.CHANNEL.sendToServer(new MixerReadyC2SPacket(pos, revision)));
+        // Fetch the next song while this one plays, so it starts the moment its turn comes
+        int next = mixer.upNext();
+        if (next >= 0 && next < mixer.queue().size() && session.phase() == MixerSession.Phase.PLAYING) {
+            TrackCache.prefetch(mixer.queue().get(next));
+        }
         if (session.phase() == MixerSession.Phase.PLAYING && ticks % PARTICLE_INTERVAL == 0) {
             spawnNotes(mixer, listener);
         }
@@ -163,6 +173,25 @@ public final class MixerAudioClient {
         RETRIES.clear();
     }
 
+    /** Every frame: shake the camera for bass hits the speakers are playing right now. */
+    @SubscribeEvent
+    public static void onCameraAngles(ViewportEvent.ComputeCameraAngles event) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.level != null && !mc.isPaused()) {
+            for (Map.Entry<BlockPos, MixerSession> entry : SESSIONS.entrySet()) {
+                if (mc.level.getBlockEntity(entry.getKey()) instanceof DjMixerBlockEntity mixer && mixer.isPlaying()) {
+                    // The mixer clock moves in 50 ms ticks; the partial tick puts hits on the right frame
+                    long now = mixer.elapsedMs() + (long) (event.getPartialTick() * 50.0D);
+                    float hit = entry.getValue().bassHit(now);
+                    if (hit > 0.0F) {
+                        BassShake.kick(hit);
+                    }
+                }
+            }
+        }
+        BassShake.apply(event);
+    }
+
     @SubscribeEvent
     public static void onLoggingOut(ClientPlayerNetworkEvent.LoggingOut event) {
         stopAll();
@@ -176,8 +205,8 @@ public final class MixerAudioClient {
             return null;
         }
         return switch (session.phase()) {
-            case RESOLVING -> "Finding the song...";
-            case BUFFERING -> "Buffering...";
+            case RESOLVING -> session.cached() ? "Loading..." : "Getting the song from YouTube...";
+            case BUFFERING -> "Starting...";
             case PLAYING -> "";
             case ENDED -> session.droppedOut() ? "Stream dropped" : "";
             case FAILED -> "Error: " + session.error();

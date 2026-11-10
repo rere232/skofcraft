@@ -40,6 +40,8 @@ public class DjMixerBlockEntity extends BlockEntity {
     private static final long END_GRACE_MS = 1500L;
     /** Pressing previous after this far into a song restarts it instead of going back one. */
     private static final long RESTART_THRESHOLD_MS = 3000L;
+    /** The longest the clock waits for a listener to have the song ready (nobody near, or nobody with yt-dlp). */
+    private static final long WAIT_TIMEOUT_TICKS = 30L * 20L;
 
     public enum Repeat {
         OFF, ALL, ONE;
@@ -63,6 +65,14 @@ public class DjMixerBlockEntity extends BlockEntity {
     private int revision;
     /** True once the last song of the queue finished with repeat off: queueing more then starts the new songs. */
     private boolean atEnd;
+    /**
+     * Holding the clock at {@link #pausedMs} until a listener reports the song ready: fetching it from YouTube takes
+     * seconds, and without the wait everyone would come in that far into the song.
+     */
+    private boolean waiting;
+    private long waitingSince;
+    /** With shuffle on, the song after this one, picked in advance so clients can fetch it ahead of time. */
+    private int shuffleNext = -1;
     private int ticks;
 
     public DjMixerBlockEntity(BlockPos pos, BlockState state) {
@@ -75,6 +85,9 @@ public class DjMixerBlockEntity extends BlockEntity {
         }
         if (++ticks % SCAN_INTERVAL == 1) {
             scanNetwork();
+        }
+        if (playing && waiting && now() - waitingSince >= WAIT_TIMEOUT_TICKS) {
+            startClock();
         }
         if (playing) {
             MixerTrack track = currentTrack();
@@ -151,11 +164,11 @@ public class DjMixerBlockEntity extends BlockEntity {
         if (playing) {
             pausedMs = elapsedMs();
             playing = false;
+            waiting = false;
         } else {
-            startTick = now() - pausedMs / 50L;
             playing = true;
             atEnd = false;
-            revision++;
+            holdAt(pausedMs);
         }
         changed();
     }
@@ -163,6 +176,7 @@ public class DjMixerBlockEntity extends BlockEntity {
     public void stop() {
         if (playing || pausedMs != 0L) {
             playing = false;
+            waiting = false;
             pausedMs = 0L;
             changed();
         }
@@ -195,11 +209,11 @@ public class DjMixerBlockEntity extends BlockEntity {
         long max = track.durationMs() > 0L ? Math.max(0L, track.durationMs() - 1000L) : Long.MAX_VALUE / 4L;
         long target = Math.max(0L, Math.min(max, ms));
         if (playing) {
-            startTick = now() - target / 50L;
+            holdAt(target);
         } else {
             pausedMs = target;
+            revision++;
         }
-        revision++;
         changed();
     }
 
@@ -208,12 +222,55 @@ public class DjMixerBlockEntity extends BlockEntity {
             return;
         }
         current = index;
-        startTick = now();
-        pausedMs = 0L;
         playing = true;
         atEnd = false;
-        revision++;
+        holdAt(0L);
+        pickShuffleNext();
         changed();
+    }
+
+    /** Freezes the clock at {@code ms} until {@link #ready} or the timeout, and has clients (re)start their stream. */
+    private void holdAt(long ms) {
+        pausedMs = ms;
+        waiting = true;
+        waitingSince = now();
+        revision++;
+    }
+
+    private void startClock() {
+        waiting = false;
+        startTick = now() - pausedMs / 50L;
+        changed();
+    }
+
+    /** A client has buffered the song for {@code revision}: start the clock, for everyone at once. */
+    public void ready(int revision) {
+        if (playing && waiting && revision == this.revision) {
+            startClock();
+        }
+    }
+
+    private void pickShuffleNext() {
+        shuffleNext = -1;
+        if (shuffle && queue.size() > 1 && level != null) {
+            do {
+                shuffleNext = level.random.nextInt(queue.size());
+            } while (shuffleNext == current);
+        }
+    }
+
+    /** The song that plays after this one, or -1 if the queue stops; clients fetch it ahead of time. */
+    public int upNext() {
+        if (current < 0 || current >= queue.size()) {
+            return -1;
+        }
+        if (repeat == Repeat.ONE) {
+            return current;
+        }
+        if (shuffle && queue.size() > 1) {
+            return shuffleNext >= 0 && shuffleNext < queue.size() && shuffleNext != current ? shuffleNext : -1;
+        }
+        return current + 1 < queue.size() ? current + 1 : repeat == Repeat.ALL ? 0 : -1;
     }
 
     public void remove(int index) {
@@ -224,6 +281,7 @@ public class DjMixerBlockEntity extends BlockEntity {
         if (queue.isEmpty()) {
             current = -1;
             playing = false;
+            waiting = false;
             pausedMs = 0L;
         } else if (index < current) {
             current--;
@@ -258,6 +316,7 @@ public class DjMixerBlockEntity extends BlockEntity {
         queue.clear();
         current = -1;
         playing = false;
+        waiting = false;
         pausedMs = 0L;
         atEnd = false;
         changed();
@@ -278,6 +337,7 @@ public class DjMixerBlockEntity extends BlockEntity {
 
     public void toggleShuffle() {
         shuffle = !shuffle;
+        pickShuffleNext();
         changed();
     }
 
@@ -292,8 +352,8 @@ public class DjMixerBlockEntity extends BlockEntity {
         }
         int target;
         if (shuffle && queue.size() > 1) {
-            target = current;
-            while (target == current) {
+            target = shuffleNext;
+            while (target < 0 || target >= queue.size() || target == current) {
                 target = level == null ? 0 : level.random.nextInt(queue.size());
             }
         } else {
@@ -304,6 +364,7 @@ public class DjMixerBlockEntity extends BlockEntity {
                 target = 0;
             } else {
                 playing = false;
+                waiting = false;
                 pausedMs = 0L;
                 atEnd = true;
                 changed();
@@ -328,7 +389,7 @@ public class DjMixerBlockEntity extends BlockEntity {
 
     /** How far into the current song the mixer is, by the level clock. */
     public long elapsedMs() {
-        if (!playing) {
+        if (!playing || waiting) {
             return pausedMs;
         }
         return Math.max(0L, (now() - startTick) * 50L);
@@ -367,6 +428,11 @@ public class DjMixerBlockEntity extends BlockEntity {
         return shuffle;
     }
 
+    /** The clock is held while a listener gets the song ready. */
+    public boolean isWaiting() {
+        return playing && waiting;
+    }
+
     public int revision() {
         return revision;
     }
@@ -395,6 +461,9 @@ public class DjMixerBlockEntity extends BlockEntity {
         tag.putBoolean("Shuffle", shuffle);
         tag.putInt("Revision", revision);
         tag.putBoolean("AtEnd", atEnd);
+        tag.putBoolean("Waiting", waiting);
+        tag.putLong("WaitingSince", waitingSince);
+        tag.putInt("ShuffleNext", shuffleNext);
     }
 
     @Override
@@ -423,6 +492,9 @@ public class DjMixerBlockEntity extends BlockEntity {
         shuffle = tag.getBoolean("Shuffle");
         revision = tag.getInt("Revision");
         atEnd = tag.getBoolean("AtEnd");
+        waiting = tag.getBoolean("Waiting");
+        waitingSince = tag.getLong("WaitingSince");
+        shuffleNext = tag.contains("ShuffleNext") ? tag.getInt("ShuffleNext") : -1;
     }
 
     @Override
